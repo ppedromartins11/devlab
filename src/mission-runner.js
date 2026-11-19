@@ -2,31 +2,38 @@
  * Não usa eval na origem do DevLab. Cada tentativa tem timeout e termina o Worker.
  */
 function runWorker() {
-  self.onmessage = ({data}) => {
+  self.onmessage = async ({data}) => {
     const {code, functionName, cases} = data;
     const printable = value => {
       if (value === undefined) return 'undefined';
       try { return JSON.stringify(value); } catch { return String(value); }
     };
+    const equal = (a,b) => {
+      if (typeof a === 'number' && typeof b === 'number') return Number.isFinite(a) && Number.isFinite(b) && Math.abs(a-b)<1e-9;
+      if (Object.is(a,b)) return true;
+      if (!a || !b || typeof a !== 'object' || typeof b !== 'object') return false;
+      if (Array.isArray(a)!==Array.isArray(b)) return false;
+      const keysA=Object.keys(a),keysB=Object.keys(b);
+      return keysA.length===keysB.length && keysA.every(k=>Object.hasOwn(b,k)&&equal(a[k],b[k]));
+    };
     try {
       const getFunction = new Function('"use strict";\n' + code + '\nreturn typeof ' + functionName + ' !== "undefined" ? ' + functionName + ' : undefined;');
       const tested = getFunction();
       if (typeof tested !== 'function') throw new Error('A função ' + functionName + ' não foi encontrada. Confira o nome e a assinatura.');
-      const results = cases.map(item => {
+      const results = [];
+      for (const item of cases) {
         let actual;
         try {
           const args = structuredClone(item.args);
           const before = structuredClone(args);
-          actual = tested(...args);
-          if (actual && typeof actual.then === 'function') throw new Error('Este exercício exige uma função síncrona.');
-          const equal = (a,b) => {
-            if (typeof a === 'number' && typeof b === 'number') return Math.abs(a-b) < 1e-9;
-            return printable(a) === printable(b);
-          };
+          const returned = tested(...args);
+          if (item.requiresPromise && (!returned || typeof returned.then !== 'function')) throw new Error('A função deve retornar uma Promise.');
+          if (!item.requiresPromise && returned && typeof returned.then === 'function') throw new Error('Este exercício exige uma função síncrona.');
+          actual = await returned;
           const unchanged = !item.unchangedArgs || equal(args,before);
-          return {label:item.label,ok:equal(actual,item.expected)&&unchanged,expected:printable(item.expected),actual:printable(actual),mutation:!unchanged};
-        } catch(error) { return {label:item.label,ok:false,expected:printable(item.expected),actual:'Erro: ' + String(error.message || error).slice(0,200)}; }
-      });
+          results.push({label:item.label,ok:equal(actual,item.expected)&&unchanged,expected:printable(item.expected),actual:printable(actual),mutation:!unchanged});
+        } catch(error) { results.push({label:item.label,ok:false,expected:printable(item.expected),actual:'Erro: ' + String(error.message || error).slice(0,200)}); }
+      }
       self.postMessage({kind:'results',results});
     } catch(error) { self.postMessage({kind:'error',message:String(error.message||error).slice(0,300)}); }
   };

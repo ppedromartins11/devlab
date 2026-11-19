@@ -10,7 +10,10 @@ import {
 import { allJsLessons, allTsLessons, allLessons, jsUnits, tsUnits, projectStarter, typescriptProjectStarter } from './course.js';
 import { buildPreview, loadStorageBucket, makeExportHtml } from './preview.js';
 import { checkpoints, inspectExercise, localDateKey, streakDays, experiencePoints } from './learning.js';
-import { runtimeCheckedLessons } from './runtime-check.js';
+import { runtimeCheckedLessons,domCheckedLessons } from './runtime-check.js';
+import { lessonContracts,inspectTypeScriptContract } from './lesson-contracts.js';
+import { runMissionInSandbox } from './mission-runner.js';
+import { previewSafetyWarning } from './preview-guard.js';
 import './monacoSetup.js';
 
 const STORAGE = 'devlab-v1:';
@@ -209,14 +212,43 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
     setCompleted(prev=>prev.includes(lesson.id)?prev:[...prev,lesson.id]);
     recordActivity();setStage(inspection.mode==='behavior'?'practice':'build');alertToast('Desafio concluído! +30 XP');
   },[lesson.id,source,setVerifiedDrafts,setPracticePassed,setCompleted,recordActivity]);
-  const verifyExercise=()=>{
+  const verifyExercise=async ()=>{
     if(mode!=='exercise'){alertToast('Selecione o exercício da aula.');return;}
     const inspection=inspectExercise(lesson,source);
     if(consoleLines.some(x=>x.level==='error'))inspection.checks.push({label:'Resolva os erros do console.',ok:false});
     if(!quizOk)inspection.checks.push({label:'Responda ao quiz em Aprender.',ok:false});
     inspection.passed=inspection.checks.every(x=>x.ok);
     if(!inspection.passed){setCheckResult(inspection);return;}
-    if(runtimeCheckedLessons.has(lesson.id)){
+    if(lessonContracts[lesson.id]){
+      if(pendingCheckRef.current)return;
+      const contract=lessonContracts[lesson.id],pending={id:lesson.id};
+      pendingCheckRef.current=pending;
+      let result;
+      try {
+        let script=isTs?source.ts||'':source.js||'';
+        if(isTs){
+          const ts=await import('typescript');
+          const typed=inspectTypeScriptContract(ts,script,contract);
+          inspection.checks.push(...typed);
+          if(!typed.every(c=>c.ok))result={kind:'error',message:'Corrija a assinatura e os tipos indicados.'};
+          else {
+            const compiled=ts.transpileModule(script,{fileName:'solution.ts',reportDiagnostics:true,compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.None,strict:true}});
+            const errors=(compiled.diagnostics||[]).filter(d=>d.category===ts.DiagnosticCategory.Error);
+            if(errors.length)result={kind:'error',message:ts.flattenDiagnosticMessageText(errors[0].messageText,' ')};
+            else script=compiled.outputText;
+          }
+        }
+        if(!result)result=await runMissionInSandbox(contract,script,5000);
+      }catch(error){result={kind:'error',message:error?.message||String(error)};}
+      if(pendingCheckRef.current!==pending)return;
+      pendingCheckRef.current=null;
+      if(result.kind==='results') {
+        if(result.results.length!==contract.tests.length)inspection.checks.push({label:'Quantidade de testes inesperada.',ok:false});
+        for(const item of result.results)inspection.checks.push({label:item.ok?item.label:`${item.label} — esperado: ${item.expected}; obtido: ${item.actual}`,ok:item.ok===true});
+      } else inspection.checks.push({label:result.message||'Falha ao executar os testes.',ok:false});
+      inspection.passed=inspection.checks.every(c=>c.ok);
+      finishCheck(inspection);
+    }else if(domCheckedLessons.has(lesson.id)){
       if(pendingCheckRef.current)return;
       const nonce=++checkNonceRef.current,token=tokenRef.current;
       const pending={id:lesson.id,inspection,nonce,token,timer:null};
@@ -271,6 +303,8 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
           js=out.outputText;
         }
         if(obsolete) return;
+        const warning=previewSafetyWarning(js);
+        if(warning){setConsoleLines([{level:'error',args:[warning]}]);setIframeDoc('<!doctype html><html lang="pt-BR"><body><p>Prévia pausada. Revise o console do DevLab.</p></body></html>');return;}
         setIframeDoc(buildPreview({html:source.html||'',css:source.css||'',js,token,stored:loadStorageBucket(bucket)}));
       }catch(error){if(!obsolete)setConsoleLines([{level:'error',args:[`Falha ao compilar: ${error.message}`]}]);}
       finally {if(!obsolete)setRunning(false);}
@@ -333,7 +367,7 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
     <div className="lesson-layout"><section className="theory-pane">{stage==='learn'&&<><div className="lesson-card"><div className="card-kicker"><BookOpen size={17}/> ENTENDA O CONCEITO</div><h2>Teoria essencial</h2>{lesson.theory.map((p,i)=><p key={i}>{p}</p>)}<div className="concept-list"><strong>O que você precisa dominar</strong><div>{lesson.concepts.map(c=><span key={c}>{c}</span>)}</div></div></div>
       <div className="lesson-card code-example"><div className="card-kicker"><Code2 size={17}/> EXEMPLO EXPLICADO</div><div className="sample-code"><div className="sample-top"><span>exemplo.{isTs?'ts':'js'}</span><button onClick={()=>{navigator.clipboard?.writeText(lesson.example).then(()=>alertToast('Exemplo copiado.')).catch(()=>alertToast('Não foi possível copiar.'));}} aria-label="Copiar exemplo"><Copy size={14}/></button></div><pre><code>{lesson.example}</code></pre></div><p className="hint-note">Leia cada linha, tente prever a saída e depois altere os valores no editor.</p></div>
       </>}{stage==='practice'&&<><div className="lesson-card challenge-card"><div className="card-kicker mint"><Lightbulb size={17}/> AGORA É SUA VEZ</div><h2>Desafio prático</h2><p>{lesson.challenge}</p><button className="hint-trigger" onClick={()=>setShowHints(v=>!v)}>{showHints?'Ocultar dicas −':'Precisa de uma dica? +'}</button>{showHints&&<ol>{lesson.steps.map((s,i)=><li key={i}>{s}</li>)}</ol>}<button className="challenge-cta" onClick={()=>switchMode('exercise')}><Terminal size={16}/> Abrir exercício no editor <ArrowDownRight size={16}/></button></div>
-      <div className="validation-box" aria-live="polite"><div className="validation-top"><span>⌘ Verificação de exercício</span><span className="validation-tag">+30 XP</span></div><p>{runtimeCheckedLessons.has(lesson.id)?'A verificação executa testes de comportamento real no navegador, com entradas variadas.':'Esta aula usa uma verificação orientativa por estrutura; experimente também as missões da Oficina.'}</p><button className="check-button" onClick={verifyExercise}>✓ Verificar solução</button>{checkResult&&<div className={'validation-result '+(checkResult.passed?'pass':'fail')}><strong>{checkResult.passed?`Aprovado: ${checkResult.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos:'}</strong>{checkResult.checks.map((c,i)=><div className="validation-row" key={i}>{c.ok?'✓':'○'} <span>{c.label}</span></div>)}{checkResult.passed&&<button className="challenge-cta" onClick={()=>setStage('build')}>Aplicar no projeto TaskFlow →</button>}</div>}{practiceOk&&!checkResult&&<div className="validation-result pass">✓ Exercício já verificado.</div>}</div></>}{stage==='build'&&<div className="lesson-card project-task"><div className="card-kicker purple"><FolderKanban size={17}/> APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>{lesson.project}</p><div className="project-lesson-actions"><button className="project-apply" onClick={()=>switchMode('project')}><Code2 size={16}/> Abrir código compartilhado</button><button className={'milestone-button '+(isMilestoneDone?'done':'')} onClick={()=>toggleMile(lesson.id)}>{isMilestoneDone?<CheckCircle2 size={16}/>:<Circle size={16}/>} {isMilestoneDone?'Marco feito':'Marcar marco'}</button></div><p className="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>
+      <div className="validation-box" aria-live="polite"><div className="validation-top"><span>⌘ Verificação de exercício</span><span className="validation-tag">+30 XP</span></div><p>{lessonContracts[lesson.id]?`Contrato: ${lessonContracts[lesson.id].signature}. ${lessonContracts[lesson.id].tests.length} casos executados em Worker com timeout.`:domCheckedLessons.has(lesson.id)?'O navegador verifica eventos e alterações reais de DOM na prévia isolada.':'Este marco ainda utiliza verificação orientativa; comprove sua entrega no TaskFlow.'}</p><button className="check-button" onClick={verifyExercise}>✓ Verificar solução</button>{checkResult&&<div className={'validation-result '+(checkResult.passed?'pass':'fail')}><strong>{checkResult.passed?`Aprovado: ${checkResult.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos:'}</strong>{checkResult.checks.map((c,i)=><div className="validation-row" key={i}>{c.ok?'✓':'○'} <span>{c.label}</span></div>)}{checkResult.passed&&<button className="challenge-cta" onClick={()=>setStage('build')}>Aplicar no projeto TaskFlow →</button>}</div>}{practiceOk&&!checkResult&&<div className="validation-result pass">✓ Exercício já verificado.</div>}</div></>}{stage==='build'&&<div className="lesson-card project-task"><div className="card-kicker purple"><FolderKanban size={17}/> APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>{lesson.project}</p><div className="project-lesson-actions"><button className="project-apply" onClick={()=>switchMode('project')}><Code2 size={16}/> Abrir código compartilhado</button><button className={'milestone-button '+(isMilestoneDone?'done':'')} onClick={()=>toggleMile(lesson.id)}>{isMilestoneDone?<CheckCircle2 size={16}/>:<Circle size={16}/>} {isMilestoneDone?'Marco feito':'Marcar marco'}</button></div><p className="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>
       }{stage==='learn'&&<div className="lesson-card quiz-card"><div className="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div className="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>{question.prompt}</h2><div className="quiz-choices">{question.choices.map((c,i)=><button key={i} className={'quiz-choice '+(quizOk&&i===question.answer?'correct ':'')+(answer===i&&!quizOk?'incorrect':'')} disabled={quizOk} onClick={()=>chooseAnswer(i)}><span className="choice-letter">{'ABC'[i]}</span>{c}<span className="choice-state">{quizOk&&i===question.answer?'✓':answer===i&&!quizOk?'×':''}</span></button>)}</div>{quizOk?<div className="feedback success"><strong>✓ Excelente! Resposta correta.</strong><p>{question.explanation}</p><button onClick={()=>setStage('practice')}>Ir para o exercício <ArrowRight size={14}/></button></div>:answer!==null?<div className="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>:<p className="quiz-foot">Escolha uma resposta para receber feedback imediato.</p>}</div>}
       <div className="lesson-nav">{prev&&<button onClick={()=>jump('aula/'+prev.id)}><ArrowLeft size={16}/><span><small>AULA ANTERIOR</small>{prev.title}</span></button>}{next&&<button onClick={()=>jump('aula/'+next.id)} className="next-lesson"><span><small>PRÓXIMA AULA</small>{next.title}</span><ArrowRight size={16}/></button>}</div>
     </section>

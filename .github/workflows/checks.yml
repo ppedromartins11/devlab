@@ -21,4 +21,6 @@ jobs:
       - run: node tests/study-tools.mjs
       - run: node tests/missions.mjs
       - run: node tests/lesson-assessment.mjs
+      - run: node tests/lesson-contracts.mjs
+      - run: node tests/preview-guard.mjs
       - run: node scripts/build-static.mjs

@@ -525,7 +525,180 @@ h1,h2,h3 {font-family: Inter,'Segoe UI', -apple-system, BlinkMacSystemFont, sans
 .mission-success{color:#24694c!important;font-weight:650}
 @media(max-width:1180px){.mission-layout{grid-template-columns:1fr}.mission-spec{display:grid;grid-template-columns:1fr 1fr}.mission-section:nth-child(odd){border-right:1px solid var(--rule)}}
 @media(max-width:700px){.mission-grid{grid-template-columns:1fr}.mission-heading{display:block}.mission-status{margin-top:12px}.mission-stat{display:grid;gap:6px}.mission-spec{display:block}.mission-section:nth-child(odd){border-right:0}.mission-section{padding:18px}.mission-results{padding:18px}.mission-promo{display:block;padding:17px}.mission-promo .button-primary{margin-top:14px}.mission-editor-actions{align-items:stretch}.mission-editor-actions>div{width:100%;display:grid;grid-template-columns:1fr 1fr}.mission-editor-actions .run-button{grid-column:1/-1}.mission-category-head{display:block}.mission-category-head>span{display:block;margin-top:10px}}
-</style></head><body><div id="root"></div><script>/** Conteúdo autoral. A estrutura em unidades foi inspirada em plataformas de estudo,
+</style></head><body><div id="root"></div><script>/** Bloqueia alguns padrões de loops sem condição de saída antes de montar a prévia.
+ * Não é prova formal de terminação: loops gerais exigem isolamento de processo.
+ */
+function codeOnly(source) {
+  const input=String(source||'');let result='',i=0,state='code';
+  while(i<input.length){const ch=input[i],next=input[i+1];
+    if(state==='code'){
+      if(ch==='/'&&next==='/'){state='line';result+='  ';i+=2;continue;}
+      if(ch==='/'&&next==='*'){state='block';result+='  ';i+=2;continue;}
+      if(ch==='\''||ch==='"'||ch==='`'){state=ch;result+=' ';i++;continue;}
+      result+=ch;i++;continue;
+    }
+    if(state==='line'){if(ch==='\n'){state='code';result+='\n';}else result+=' ';i++;continue;}
+    if(state==='block'){if(ch==='*'&&next==='/'){state='code';result+='  ';i+=2;}else{result+=ch==='\n'?'\n':' ';i++;}continue;}
+    if(ch==='\\'){result+='  ';i+=Math.min(2,input.length-i);continue;}
+    if(ch===state)state='code';result+=ch==='\n'?'\n':' ';i++;
+  }
+  return result;
+}
+function previewSafetyWarning(script){
+  if(String(script||'').length>35000)return 'A prévia ultrapassa 35 mil caracteres de JavaScript. Divida o projeto em arquivos menores.';
+  const code=codeOnly(script);
+  if(/\bwhile\s*\(\s*(?:true|1)\s*\)/.test(code)||/\bfor\s*\(\s*;\s*;\s*\)/.test(code))
+    return 'A prévia bloqueou um laço sem condição explícita (while(true) ou for(;;)). Reescreva com uma condição de saída verificável.';
+  return null;
+}
+
+/** Contratos autorais com casos de entrada independentes do código do aluno.
+ * Os casos ficam no cliente: são testes de aprendizagem, não uma prova antifraude.
+ * Para provas de DOM, permanece o avaliador da prévia. */
+const task=(titulo,concluida=false,prioridade='normal')=>({titulo,concluida,prioridade});
+const test=(label,args,expected,extra={})=>({label,args,expected,...extra});
+const spec=(functionName,signature,challenge,steps,starter,tests,extra={})=>({functionName,signature,challenge,steps,starter,tests,...extra});
+
+const lessonContracts = {
+  variaveis:spec('apresentarPerfil','apresentarPerfil(nome, pontos, ativo)',
+    'Crie apresentarPerfil(nome, pontos, ativo). Retorne "Olá, NOME! Você tem P pontos. Status: ativo/inativo.". Use parâmetros, let/const e template literals.',
+    ['Declare a função com três parâmetros.','Use ativo para escolher o status.','Retorne uma string que funcione com nomes e pontos diferentes.'],
+    'function apresentarPerfil(nome, pontos, ativo) {\n  // TODO: retorne a apresentação do perfil\n}',[
+      test('Nome e pontos iniciais',['Ana',15,true],'Olá, Ana! Você tem 15 pontos. Status: ativo.'),
+      test('Perfil inativo',['Leo',0,false],'Olá, Leo! Você tem 0 pontos. Status: inativo.'),
+      test('Outro nome, sem texto fixo',['Marina',120,true],'Olá, Marina! Você tem 120 pontos. Status: ativo.'),
+      test('Números negativos',['Bia',-4,false],'Olá, Bia! Você tem -4 pontos. Status: inativo.')]),
+  condicionais:spec('mensagemProgresso','mensagemProgresso(concluidas)',
+    'Implemente mensagemProgresso(concluidas): com zero ou menos retorne "Comece agora"; de 1 a 4 retorne "Continue praticando"; com 5 ou mais retorne "Excelente progresso".',
+    ['Use if / else if / else.','Considere os limites 0, 1, 4 e 5.','Use return para cada situação.'],
+    'function mensagemProgresso(concluidas) {\n  // TODO: decida a mensagem usando condições\n}',[
+      test('Zero tarefa',[0],'Comece agora'),test('Valor negativo',[-3],'Comece agora'),
+      test('Primeira tarefa',[1],'Continue praticando'),test('Limite intermediário',[4],'Continue praticando'),
+      test('Limite avançado',[5],'Excelente progresso'),test('Muitas tarefas',[48],'Excelente progresso')]),
+  switch:spec('legendaStatus','legendaStatus(status)',
+    'Crie legendaStatus(status). Os estados "pendente", "fazendo" e "concluida" devem retornar "Pendente", "Em andamento" e "Concluída". Para outros valores, retorne "Desconhecido".',
+    ['Use switch com case e break ou return.','Inclua um caso default.','Teste todos os estados.'],
+    'function legendaStatus(status) {\n  // TODO: switch com três estados e um default\n}',[
+      test('Pendente',['pendente'],'Pendente'),test('Em andamento',['fazendo'],'Em andamento'),
+      test('Concluída',['concluida'],'Concluída'),test('Valor inesperado',['pausada'],'Desconhecido'),
+      test('String vazia',[''],'Desconhecido')]),
+  funcoes:spec('percentual','percentual(concluidas, total)',
+    'Implemente percentual(concluidas, total). Calcule concluidas / total * 100. Se total for zero ou negativo, retorne 0. A função precisa funcionar com números diferentes.',
+    ['Receba dois parâmetros numéricos.','Trate total menor ou igual a zero.','Retorne o cálculo, sem depender do DOM ou de valores fixos.'],
+    'function percentual(concluidas, total) {\n  // TODO: devolva a porcentagem calculada\n}',[
+      test('Três de oito',[3,8],37.5),test('Divisão por zero',[3,0],0),test('Total negativo',[5,-2],0),
+      test('Nenhuma concluída',[0,17],0),test('Todas concluídas',[20,20],100),test('Valor decimal',[1,5],20)]),
+  objetos:spec('resumirTarefas','resumirTarefas(tarefas)',
+    'Receba um array de objetos { titulo, prioridade }. Retorne um novo array com textos no formato "TÍTULO — PRIORIDADE", mantendo a ordem e sem modificar o array original.',
+    ['Leia as propriedades de cada objeto.','Crie um novo array de strings.','Preserve os dados de entrada.'],
+    'function resumirTarefas(tarefas) {\n  // TODO: crie descrições para cada tarefa\n}',[
+      test('Três tarefas',[[task('Estudar',false,'alta'),task('Revisar',true,'baixa'),task('Praticar',false,'normal')]],['Estudar — alta','Revisar — baixa','Praticar — normal'],{unchangedArgs:true}),
+      test('Lista vazia',[[]],[],{unchangedArgs:true}),
+      test('Uma tarefa',[[task('Organizar',false,'urgente')]],['Organizar — urgente'],{unchangedArgs:true}),
+      test('Textos diferentes',[[task('Enviar email',false,'média'),task('Deploy',false,'alta')]],['Enviar email — média','Deploy — alta'],{unchangedArgs:true})]),
+  'metodos-array':spec('resumoTarefas','resumoTarefas(tarefas)',
+    'Retorne { pendentes: [títulos não concluídos], concluidas: quantidade concluída } a partir de um array de objetos {titulo, concluida}. Não modifique a entrada.',
+    ['Use filter/map ou lógica equivalente.','Some as tarefas concluídas.','Retorne um objeto novo, preservando a ordem.'],
+    'function resumoTarefas(tarefas) {\n  // TODO: filtre tarefas pendentes e conte concluídas\n}',[
+      test('Lista mista',[[task('Revisar'),task('Praticar',true),task('Publicar')]],{pendentes:['Revisar','Publicar'],concluidas:1},{unchangedArgs:true}),
+      test('Lista vazia',[[]],{pendentes:[],concluidas:0},{unchangedArgs:true}),
+      test('Tudo concluído',[[task('A',true),task('B',true)]],{pendentes:[],concluidas:2},{unchangedArgs:true}),
+      test('Tudo pendente',[[task('A'),task('B'),task('C')]],{pendentes:['A','B','C'],concluidas:0},{unchangedArgs:true})]),
+  'strings-numeros':spec('normalizarTitulo','normalizarTitulo(texto)',
+    'Crie normalizarTitulo(texto). Remova espaços no início e no fim e reduza sequências de espaços internos a um único espaço. Retorne uma string.',
+    ['Use trim() e substituição com expressão regular.','Trate strings vazias.','Não dependa de um título fixo.'],
+    'function normalizarTitulo(texto) {\n  // TODO: normalize o texto\n}',[
+      test('Remove bordas',['  Aprender JavaScript   '],'Aprender JavaScript'),
+      test('Reduz espaços internos',['  Estudar    funções  '],'Estudar funções'),
+      test('Texto sem espaços extras',['DevLab'],'DevLab'),
+      test('Somente espaços',['     '],''),test('String vazia',[''],'')]),
+  arquitetura:spec('criarTarefa','criarTarefa(id, titulo)',
+    'Implemente criarTarefa(id, titulo): devolva {id, titulo: texto sem espaços externos, concluida: false}; se o título ficar vazio, retorne null. Depois experimente separar validação, criação e renderização no TaskFlow.',
+    ['Separe a normalização da construção do objeto.','Recuse títulos em branco.','Não dependa de IDs fixos.'],
+    'function criarTarefa(id, titulo) {\n  // TODO: valide e crie um objeto de tarefa\n}',[
+      test('Cria objeto',[3,'  Estudar  '],{id:3,titulo:'Estudar',concluida:false}),
+      test('ID diferente',[99,'Publicar'],{id:99,titulo:'Publicar',concluida:false}),
+      test('Só espaços',[8,'   '],null),test('Vazio',[1,''],null),
+      test('Título interno com espaço',[7,'Ler docs'],{id:7,titulo:'Ler docs',concluida:false})]),
+  testes:spec('tituloValido','tituloValido(texto)',
+    'Implemente tituloValido(texto). Retorne true para strings com pelo menos um caractere visível após trim e false para strings vazias ou com somente espaços.',
+    ['Devolva boolean, não texto.','Teste espaços e strings vazias.','Não confunda um espaço com título válido.'],
+    'function tituloValido(texto) {\n  // TODO: retorne true somente para títulos preenchidos\n}',[
+      test('Título preenchido',['Estudar'],true),test('Somente espaços',['   '],false),
+      test('String vazia',[''],false),test('Espaços ao redor',['  Praticar  '],true),
+      test('Tab e quebra de linha',['\t\n'],false)]),
+  assincrono:spec('carregarMensagem','async carregarMensagem(nome, atraso)',
+    'Crie uma função assíncrona carregarMensagem(nome, atraso) que retorne uma Promise e resolva com "Dados carregados: NOME" depois de aguardar atraso milissegundos usando setTimeout. Você pode usar async/await.',
+    ['A função precisa devolver uma Promise.','Aguarde com setTimeout dentro de uma Promise.','O texto deve mudar conforme o nome recebido.'],
+    'async function carregarMensagem(nome, atraso) {\n  // TODO: aguarde a Promise e devolva a mensagem\n}',[
+      test('Primeira resposta',['Tarefa A',5],'Dados carregados: Tarefa A',{requiresPromise:true}),
+      test('Segundo nome',['TaskFlow',10],'Dados carregados: TaskFlow',{requiresPromise:true}),
+      test('String vazia',['',0],'Dados carregados: ',{requiresPromise:true})]),
+  'ts-intro':spec('apresentarHoras','apresentarHoras(nome: string, horas: number): string',
+    'Implemente apresentarHoras(nome: string, horas: number): string. Retorne "NOME estudou H horas." e declare tipos de parâmetros e retorno.',
+    ['Declare tipos string e number.','Defina retorno do tipo string.','Retorne uma frase para diferentes nomes e horas.'],
+    'function apresentarHoras(nome: string, horas: number): string {\n  // TODO: retorne a apresentação tipada\n}',[
+      test('Primeiro aluno',['Ana',3],'Ana estudou 3 horas.'),
+      test('Outro aluno',['Luís',0],'Luís estudou 0 horas.'),
+      test('Horas decimais',['Pedro',1.5],'Pedro estudou 1.5 horas.')],{language:'ts',typeRequirements:{parameters:2,returns:'string'}}),
+  'ts-tipos':spec('mediaNotas','mediaNotas(notas: number[]): number',
+    'Implemente mediaNotas(notas: number[]): number. Retorne a média aritmética; para array vazio, retorne 0.',
+    ['Use array tipado de números.','Some os valores e divida pelo comprimento.','Trate array vazio.'],
+    'function mediaNotas(notas: number[]): number {\n  // TODO: calcule a média\n}',[
+      test('Três notas',[[8,9,10]],9,{unchangedArgs:true}),
+      test('Array vazio',[[]],0,{unchangedArgs:true}),
+      test('Uma nota',[[7]],7,{unchangedArgs:true}),
+      test('Decimais',[[3.5,7.5]],5.5,{unchangedArgs:true})],{language:'ts',typeRequirements:{parameters:1,returns:'number',arrayParameter:true}}),
+  'ts-interfaces':spec('titulosPendentes','titulosPendentes(tarefas: Tarefa[]): string[]',
+    'Declare interface Tarefa com id: number, titulo: string e concluida: boolean. Implemente titulosPendentes(tarefas: Tarefa[]): string[] que retorna somente os títulos pendentes.',
+    ['Declare a interface Tarefa.','Receba um array de Tarefa.','Retorne um array de strings sem alterar a entrada.'],
+    'interface Tarefa { id: number; titulo: string; concluida: boolean; }\n\nfunction titulosPendentes(tarefas: Tarefa[]): string[] {\n  // TODO: devolva títulos pendentes\n}',[
+      test('Mistura de tarefas',[[{id:1,titulo:'Ler',concluida:false},{id:2,titulo:'Testar',concluida:true},{id:3,titulo:'Criar',concluida:false}]],['Ler','Criar'],{unchangedArgs:true}),
+      test('Vazio',[[]],[],{unchangedArgs:true}),
+      test('Somente concluídas',[[{id:1,titulo:'Feito',concluida:true}]],[],{unchangedArgs:true})],{language:'ts',typeRequirements:{parameters:1,returns:'string[]',interfaceName:'Tarefa',arrayParameter:true}}),
+  'ts-funcoes':spec('percentual','percentual(parte: number, total: number): number',
+    'Escreva percentual(parte: number, total: number): number. Calcule parte / total * 100, retornando 0 quando total não for positivo.',
+    ['Tipar parâmetros e retorno.','Evitar divisão por zero.','Testar outros totais.'],
+    'function percentual(parte: number, total: number): number {\n  // TODO: calcule e retorne o percentual\n}',[
+      test('3 de 8',[3,8],37.5),test('0 de 5',[0,5],0),test('Total zero',[4,0],0),
+      test('5 de 10',[5,10],50),test('Total negativo',[3,-1],0)],{language:'ts',typeRequirements:{parameters:2,returns:'number'}}),
+  'ts-generics':spec('primeiro','primeiro<T>(itens: T[]): T | undefined',
+    'Crie primeiro<T>(itens: T[]): T | undefined. Retorne o primeiro elemento ou undefined em um array vazio. Preserve o tipo genérico.',
+    ['Declare o tipo genérico <T>.','Use T[] como parâmetro.','Retorne T | undefined.'],
+    'function primeiro<T>(itens: T[]): T | undefined {\n  // TODO: devolva o primeiro item\n}',[
+      test('Strings',[["JS","TS"]],'JS',{unchangedArgs:true}),
+      test('Números',[[7,8,9]],7,{unchangedArgs:true}),
+      test('Array vazio',[[]],undefined,{unchangedArgs:true}),
+      test('Booleanos',[[false,true]],false,{unchangedArgs:true})],{language:'ts',typeRequirements:{parameters:1,returns:'T | undefined',generic:true,arrayParameter:true}})
+};
+
+const contractLessonIds = Object.freeze(Object.keys(lessonContracts));
+
+/** Confere assinaturas TS com AST; não substitui typecheck completo com libs DOM. */
+function inspectTypeScriptContract(ts, source, contract) {
+  if (contract.language !== 'ts') return [];
+  const root=ts.createSourceFile('solution.ts',source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
+  const syntax=[...root.parseDiagnostics];
+  if(syntax.length) return [{label:'Código TypeScript sem erros de sintaxe.',ok:false}];
+  const fn=root.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text===contract.functionName);
+  const checks=[{label:'Função '+contract.functionName+' declarada com TypeScript.',ok:!!fn}];
+  if(!fn)return checks;
+  const fmt=(node)=>node?.getText(root).replace(/\s+/g,'').toLowerCase()||'';
+  const req=contract.typeRequirements;
+  checks.push({label:'Todos os parâmetros possuem anotações de tipo.',ok:fn.parameters.length===req.parameters&&fn.parameters.every(p=>Boolean(p.type))});
+  if(req.arrayParameter)checks.push({label:'A função recebe um array tipado.',ok:fn.parameters.some(p=>fmt(p.type).includes('[]')||fmt(p.type).startsWith('array<'))});
+  checks.push({label:'O tipo de retorno corresponde ao contrato.',ok:fmt(fn.type)===req.returns.replace(/\s+/g,'').toLowerCase()});
+  if(req.generic)checks.push({label:'A função declara um parâmetro genérico T.',ok:fn.typeParameters?.some(p=>p.name.text==='T')===true});
+  if(req.interfaceName){
+    const iface=root.statements.find(node=>ts.isInterfaceDeclaration(node)&&node.name.text===req.interfaceName);
+    const fields=new Map(iface?.members.filter(ts.isPropertySignature).map(m=>[m.name.getText(root),fmt(m.type)])||[]);
+    checks.push({label:'Interface Tarefa declara id, titulo e concluida com tipos corretos.',ok:!!iface&&fields.get('id')==='number'&&fields.get('titulo')==='string'&&fields.get('concluida')==='boolean'});
+  }
+  return checks;
+}
+
+
+/** Conteúdo autoral. A estrutura em unidades foi inspirada em plataformas de estudo,
  *  mas todos os textos, exemplos e desafios abaixo são próprios deste projeto. */
 const baseHtml = `<main class="app">
   <span class="eyebrow">Meu laboratório</span>
@@ -824,6 +997,17 @@ const tsUnits = [
   ]}
 ];
 
+// Aulas com contratos verificáveis: desafio e editor solicitam exatamente a mesma API.
+for (const unit of [...jsUnits, ...tsUnits]) {
+  for (const item of unit.lessons) {
+    const contract = lessonContracts[item.id];
+    if (!contract) continue;
+    item.challenge = contract.challenge;
+    item.steps = contract.steps;
+    item.starter = {...item.starter, js: contract.starter};
+  }
+}
+
 const allJsLessons = jsUnits.flatMap(unit => unit.lessons.map((item,i) => ({ ...item, unitId:unit.id, unitTitle:unit.title, unitIndex: jsUnits.indexOf(unit), lessonIndex:i, language:'js' })));
 const allTsLessons = tsUnits.flatMap(unit => unit.lessons.map((item,i) => ({ ...item, unitId:unit.id, unitTitle:unit.title, unitIndex:tsUnits.indexOf(unit), lessonIndex:i, language:'ts' })));
 const allLessons = [...allJsLessons, ...allTsLessons];
@@ -998,12 +1182,15 @@ function experiencePoints(quizPassed, exercisePassed, milestones) {
  return new Set(quizPassed).size*10+new Set(exercisePassed).size*30+new Set(milestones).size*15;
 }
 
+
 /** Aulas com verificação de comportamento real no iframe isolado. */
-const runtimeCheckedLessons = new Set([
+const domCheckedLessons = new Set([
   'primeiros-passos','operadores','debug-console','loops','arrays',
   'dom-basico','eventos','formularios','renderizacao','api-json',
   'storage','acessibilidade'
 ]);
+
+const runtimeCheckedLessons = new Set([...domCheckedLessons,...contractLessonIds]);
 
 /**
  * Verificações comportamentais da prévia isolada. Nenhuma solução é executada
@@ -1403,31 +1590,38 @@ const missionCategories = [
  * Não usa eval na origem do DevLab. Cada tentativa tem timeout e termina o Worker.
  */
 function runWorker() {
-  self.onmessage = ({data}) => {
+  self.onmessage = async ({data}) => {
     const {code, functionName, cases} = data;
     const printable = value => {
       if (value === undefined) return 'undefined';
       try { return JSON.stringify(value); } catch { return String(value); }
     };
+    const equal = (a,b) => {
+      if (typeof a === 'number' && typeof b === 'number') return Number.isFinite(a) && Number.isFinite(b) && Math.abs(a-b)<1e-9;
+      if (Object.is(a,b)) return true;
+      if (!a || !b || typeof a !== 'object' || typeof b !== 'object') return false;
+      if (Array.isArray(a)!==Array.isArray(b)) return false;
+      const keysA=Object.keys(a),keysB=Object.keys(b);
+      return keysA.length===keysB.length && keysA.every(k=>Object.hasOwn(b,k)&&equal(a[k],b[k]));
+    };
     try {
       const getFunction = new Function('"use strict";\n' + code + '\nreturn typeof ' + functionName + ' !== "undefined" ? ' + functionName + ' : undefined;');
       const tested = getFunction();
       if (typeof tested !== 'function') throw new Error('A função ' + functionName + ' não foi encontrada. Confira o nome e a assinatura.');
-      const results = cases.map(item => {
+      const results = [];
+      for (const item of cases) {
         let actual;
         try {
           const args = structuredClone(item.args);
           const before = structuredClone(args);
-          actual = tested(...args);
-          if (actual && typeof actual.then === 'function') throw new Error('Este exercício exige uma função síncrona.');
-          const equal = (a,b) => {
-            if (typeof a === 'number' && typeof b === 'number') return Math.abs(a-b) < 1e-9;
-            return printable(a) === printable(b);
-          };
+          const returned = tested(...args);
+          if (item.requiresPromise && (!returned || typeof returned.then !== 'function')) throw new Error('A função deve retornar uma Promise.');
+          if (!item.requiresPromise && returned && typeof returned.then === 'function') throw new Error('Este exercício exige uma função síncrona.');
+          actual = await returned;
           const unchanged = !item.unchangedArgs || equal(args,before);
-          return {label:item.label,ok:equal(actual,item.expected)&&unchanged,expected:printable(item.expected),actual:printable(actual),mutation:!unchanged};
-        } catch(error) { return {label:item.label,ok:false,expected:printable(item.expected),actual:'Erro: ' + String(error.message || error).slice(0,200)}; }
-      });
+          results.push({label:item.label,ok:equal(actual,item.expected)&&unchanged,expected:printable(item.expected),actual:printable(actual),mutation:!unchanged});
+        } catch(error) { results.push({label:item.label,ok:false,expected:printable(item.expected),actual:'Erro: ' + String(error.message || error).slice(0,200)}); }
+      }
       self.postMessage({kind:'results',results});
     } catch(error) { self.postMessage({kind:'error',message:String(error.message||error).slice(0,300)}); }
   };
@@ -1514,7 +1708,7 @@ function recordActivity(){const today=localDateKey();if(!st.activityDates.includ
 const stageButton=(stage,label,number,done)=>`<button class="stage-btn ${st.step===stage?'active':''} ${done?'finished':''}" data-stage="${stage}" aria-current="${st.step===stage?'step':'false'}"><span class="stage-no">${done?'✓':number}</span><span>${label}</span></button>`;
 function learningNav(l){const quiz=st.quizPassed.includes(l.id),code=st.practicePassed.includes(l.id),project=st.milestones.includes(l.id);return `<div class="lesson-stage"><div class="stage-heading"><span class="section-kicker">ETAPAS DA AULA</span><span>${[quiz,code,project].filter(Boolean).length}/3 etapas</span></div><div class="stage-track">${stageButton('learn','01 · Aprender',1,quiz)}<span class="stage-join"></span>${stageButton('practice','02 · Praticar',2,code)}<span class="stage-join"></span>${stageButton('build','03 · Construir',3,project)}</div></div>`;}
 function quizSection(l){const q=checkpoints[l.id],correct=st.quizPassed.includes(l.id),answer=st.answers[l.id],wrong=answer!==undefined&&answer!==q.answer;return `<div class="lesson-card quiz-card"><div class="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div class="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>${esc(q.prompt)}</h2><div class="quiz-choices">${q.choices.map((choice,i)=>`<button class="quiz-choice ${correct&&i===q.answer?'correct':''} ${wrong&&i===answer?'incorrect':''}" data-answer="${i}" ${correct?'disabled':''}><span class="choice-letter">${'ABC'[i]}</span>${esc(choice)}<span class="choice-state">${correct&&i===q.answer?'✓':wrong&&i===answer?'×':''}</span></button>`).join('')}</div>${correct?`<div class="feedback success" role="status"><strong>✓ Excelente! Resposta correta.</strong><p>${esc(q.explanation)}</p><button data-stage="practice">Ir para o exercício →</button></div>`:wrong?`<div class="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>`:'<p class="quiz-foot">Escolha uma resposta para receber feedback imediatamente.</p>'}</div>`;}
-function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. ${runtimeCheckedLessons.has(l.id)?'O navegador executará testes reais de comportamento, com entradas diferentes e verificação de resultados.':'Esta aula ainda usa verificação orientativa por estrutura; avance à Oficina para testar lógica com casos-limite.'}</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?`Aprovado: ${result.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}${result.passed?'<button class="challenge-cta" data-stage="build">Aplicar no projeto TaskFlow →</button>':''}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
+function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. ${lessonContracts[l.id]?`Seu contrato: <code>${esc(lessonContracts[l.id].signature)}</code>. O DevLab testa ${lessonContracts[l.id].tests.length} situações diferentes dentro de um Worker com limite de tempo.`:domCheckedLessons.has(l.id)?'O navegador avalia o comportamento na prévia isolada. Código de DOM ainda requer cuidado: um loop síncrono pode bloquear a aba.':'Este marco exige um projeto ou documento real e ainda tem validação orientativa.'}</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?`Aprovado: ${result.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}${result.passed?'<button class="challenge-cta" data-stage="build">Aplicar no projeto TaskFlow →</button>':''}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
 
 function nav(path){ location.hash='#/'+path; if(getRoute().page==='lesson' && path==='aula/'+getRoute().id) render(); window.scrollTo({top:0}); }
 function percent(lang){const a=lang==='ts'?allTsLessons:allJsLessons;return Math.round(100*a.filter(x=>st.completed.includes(x.id)).length/a.length);}
@@ -1628,6 +1822,8 @@ async function runPreview(){const frame=$('#devlab-preview');if(!frame)return;co
     js=output.outputText;
  }
  if(token!==st.token)return;
+ const warning=previewSafetyWarning(js);
+ if(warning){st.logs.push({level:'error',args:[warning]});frame.srcdoc='<!doctype html><html lang="pt-BR"><body><p style="font-family:system-ui;padding:24px">Prévia pausada: verifique o console do DevLab.</p></body></html>';updateConsole();return;}
  frame.srcdoc=buildPreview({html:draft.html||'',css:draft.css||'',js,token,stored:storageSnapshot()});updateConsole();
  }catch(error){st.logs.push({level:'error',args:[error.message]});updateConsole();}}
 function updateConsole(){const o=$('#console-output'),count=$('#console-count');if(o){o.innerHTML=logLines();o.scrollTop=o.scrollHeight;}if(count)count.textContent=String(st.logs.length);}
@@ -1656,6 +1852,40 @@ function finishCheck(id,inspection){
  if(inspection.passed){st.step=inspection.mode==='behavior'?'practice':'build';toast('Desafio concluído! +30 XP');}
  render();
 }
+async function checkLessonContract(l,draft,inspection){
+ const contract=lessonContracts[l.id];
+ const requestId=++st.checkRequestId;
+ const pending={id:l.id,requestId};
+ st.pendingCheck=pending;
+ const button=$('[data-action="check-exercise"]');
+ if(button){button.disabled=true;button.textContent='Executando testes…';}
+ const fail=message=>({kind:'error',message});
+ let result;
+ try {
+   let source=isTs(l)?draft.ts||'':draft.js||'';
+   if(isTs(l)){
+     const ts=await ensureTypeScript();
+     const typed=inspectTypeScriptContract(ts,source,contract);
+     inspection.checks.push(...typed);
+     if(!typed.every(c=>c.ok)) result=fail('Corrija a assinatura e os tipos indicados.');
+     else {
+       const out=ts.transpileModule(source,{fileName:'solution.ts',reportDiagnostics:true,compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.None,strict:true}});
+       const errors=(out.diagnostics||[]).filter(d=>d.category===ts.DiagnosticCategory.Error);
+       if(errors.length)result=fail(ts.flattenDiagnosticMessageText(errors[0].messageText,' '));
+       else source=out.outputText;
+     }
+   }
+   if(!result)result=await runMissionInSandbox(contract,source,5000);
+ } catch(error) {result=fail(error?.message||String(error));}
+ if(st.pendingCheck!==pending || getRoute().page!=='lesson' || currentLesson().id!==l.id)return;
+ st.pendingCheck=null;
+ if(result.kind==='results'){
+   if(result.results.length!==contract.tests.length) inspection.checks.push({label:'Quantidade de testes inesperada.',ok:false});
+   for(const item of result.results)inspection.checks.push({label:item.ok?item.label:`${item.label} — esperado: ${item.expected}; obtido: ${item.actual}`,ok:item.ok===true});
+ } else inspection.checks.push({label:result.message||'O avaliador não respondeu.',ok:false});
+ inspection.passed=inspection.checks.length>0&&inspection.checks.every(c=>c.ok);
+ finishCheck(l.id,inspection);
+}
 function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=findMission(id);if(!m)return;if(name==='run-tests'){evaluateMission();return;}if(name==='mission-hint'){st.missionHint=!st.missionHint;render();return;}if(name==='mission-reset'){if(!confirm('Restaurar o código da missão? Suas alterações serão perdidas.'))return;st.missionAttempt++;delete st.missionDrafts[id];save('mission-drafts',st.missionDrafts);st.missionResult=null;st.missionChecking=false;render();return;}if(name==='mission-export'){downloadFile(m.id+'.js',missionDraft(id),'text/javascript');return;}return;}const l=currentLesson(),draft=activeDraft(l);switch(name){
  case 'run':runPreview();break;
  case 'hint':st.hintShown=!st.hintShown;render();break;
@@ -1666,7 +1896,8 @@ function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=f
    if(!st.quizPassed.includes(l.id))inspection.checks.push({label:'Responda ao quiz em Aprender.',ok:false});
    inspection.passed=inspection.checks.every(x=>x.ok);
    if(!inspection.passed){st.checkResult=inspection;render();break;}
-   if(runtimeCheckedLessons.has(l.id)){
+   if(lessonContracts[l.id]){if(!st.pendingCheck)checkLessonContract(l,draft,inspection);}
+   else if(domCheckedLessons.has(l.id)){
      if(st.pendingCheck)return;
      const nonce=++st.checkRequestId, token=st.token;
      const pending={id:l.id,inspection,nonce,token,timer:null};

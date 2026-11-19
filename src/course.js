@@ -1,3 +1,4 @@
+import { lessonContracts } from './lesson-contracts.js';
 /** Conteúdo autoral. A estrutura em unidades foi inspirada em plataformas de estudo,
  *  mas todos os textos, exemplos e desafios abaixo são próprios deste projeto. */
 const baseHtml = `<main class="app">
@@ -296,6 +297,17 @@ export const tsUnits = [
       'Prepare o TaskFlow tipado para ser dividido em módulos e futuramente integrado a um backend.')
   ]}
 ];
+
+// Aulas com contratos verificáveis: desafio e editor solicitam exatamente a mesma API.
+for (const unit of [...jsUnits, ...tsUnits]) {
+  for (const item of unit.lessons) {
+    const contract = lessonContracts[item.id];
+    if (!contract) continue;
+    item.challenge = contract.challenge;
+    item.steps = contract.steps;
+    item.starter = {...item.starter, js: contract.starter};
+  }
+}
 
 export const allJsLessons = jsUnits.flatMap(unit => unit.lessons.map((item,i) => ({ ...item, unitId:unit.id, unitTitle:unit.title, unitIndex: jsUnits.indexOf(unit), lessonIndex:i, language:'js' })));
 export const allTsLessons = tsUnits.flatMap(unit => unit.lessons.map((item,i) => ({ ...item, unitId:unit.id, unitTitle:unit.title, unitIndex:tsUnits.indexOf(unit), lessonIndex:i, language:'ts' })));

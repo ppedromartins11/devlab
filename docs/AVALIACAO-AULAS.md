@@ -1,4 +1,4 @@
-# Avaliação automática nas aulas — DevLab 6.0
+# Avaliação automática nas aulas — DevLab 7.0
 
 ## Objetivo
 
@@ -21,7 +21,7 @@ Verificar comportamentos observáveis do código do aluno no ambiente **isolado*
 | localStorage | Clique incrementa valor salvo e atualiza a interface |
 | Acessibilidade | label associado, aria-live, confirmação e media query no CSS |
 
-As demais aulas permanecem com **verificação orientativa de estrutura/conceito**. Não se deve anunciar essas verificações como testes comportamentais. As seis missões da Oficina continuam com testes específicos de funções, incluindo casos-limite.
+Na versão 7, outras **15 aulas** têm contratos executados em Worker (JS/TS); somente `projeto-integrador` e `proximos-passos` permanecem orientativas. Veja [SPRINT-7.md](SPRINT-7.md). Não se deve anunciar essas verificações como testes comportamentais. As seis missões da Oficina continuam com testes específicos de funções, incluindo casos-limite.
 
 ## Arquitetura e segurança
 

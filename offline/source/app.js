@@ -23,7 +23,7 @@ function recordActivity(){const today=localDateKey();if(!st.activityDates.includ
 const stageButton=(stage,label,number,done)=>`<button class="stage-btn ${st.step===stage?'active':''} ${done?'finished':''}" data-stage="${stage}" aria-current="${st.step===stage?'step':'false'}"><span class="stage-no">${done?'✓':number}</span><span>${label}</span></button>`;
 function learningNav(l){const quiz=st.quizPassed.includes(l.id),code=st.practicePassed.includes(l.id),project=st.milestones.includes(l.id);return `<div class="lesson-stage"><div class="stage-heading"><span class="section-kicker">ETAPAS DA AULA</span><span>${[quiz,code,project].filter(Boolean).length}/3 etapas</span></div><div class="stage-track">${stageButton('learn','01 · Aprender',1,quiz)}<span class="stage-join"></span>${stageButton('practice','02 · Praticar',2,code)}<span class="stage-join"></span>${stageButton('build','03 · Construir',3,project)}</div></div>`;}
 function quizSection(l){const q=checkpoints[l.id],correct=st.quizPassed.includes(l.id),answer=st.answers[l.id],wrong=answer!==undefined&&answer!==q.answer;return `<div class="lesson-card quiz-card"><div class="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div class="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>${esc(q.prompt)}</h2><div class="quiz-choices">${q.choices.map((choice,i)=>`<button class="quiz-choice ${correct&&i===q.answer?'correct':''} ${wrong&&i===answer?'incorrect':''}" data-answer="${i}" ${correct?'disabled':''}><span class="choice-letter">${'ABC'[i]}</span>${esc(choice)}<span class="choice-state">${correct&&i===q.answer?'✓':wrong&&i===answer?'×':''}</span></button>`).join('')}</div>${correct?`<div class="feedback success" role="status"><strong>✓ Excelente! Resposta correta.</strong><p>${esc(q.explanation)}</p><button data-stage="practice">Ir para o exercício →</button></div>`:wrong?`<div class="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>`:'<p class="quiz-foot">Escolha uma resposta para receber feedback imediatamente.</p>'}</div>`;}
-function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. ${runtimeCheckedLessons.has(l.id)?'O navegador executará testes reais de comportamento, com entradas diferentes e verificação de resultados.':'Esta aula ainda usa verificação orientativa por estrutura; avance à Oficina para testar lógica com casos-limite.'}</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?`Aprovado: ${result.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}${result.passed?'<button class="challenge-cta" data-stage="build">Aplicar no projeto TaskFlow →</button>':''}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
+function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. ${lessonContracts[l.id]?`Seu contrato: <code>${esc(lessonContracts[l.id].signature)}</code>. O DevLab testa ${lessonContracts[l.id].tests.length} situações diferentes dentro de um Worker com limite de tempo.`:domCheckedLessons.has(l.id)?'O navegador avalia o comportamento na prévia isolada. Código de DOM ainda requer cuidado: um loop síncrono pode bloquear a aba.':'Este marco exige um projeto ou documento real e ainda tem validação orientativa.'}</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?`Aprovado: ${result.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}${result.passed?'<button class="challenge-cta" data-stage="build">Aplicar no projeto TaskFlow →</button>':''}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
 
 function nav(path){ location.hash='#/'+path; if(getRoute().page==='lesson' && path==='aula/'+getRoute().id) render(); window.scrollTo({top:0}); }
 function percent(lang){const a=lang==='ts'?allTsLessons:allJsLessons;return Math.round(100*a.filter(x=>st.completed.includes(x.id)).length/a.length);}
@@ -137,6 +137,8 @@ async function runPreview(){const frame=$('#devlab-preview');if(!frame)return;co
     js=output.outputText;
  }
  if(token!==st.token)return;
+ const warning=previewSafetyWarning(js);
+ if(warning){st.logs.push({level:'error',args:[warning]});frame.srcdoc='<!doctype html><html lang="pt-BR"><body><p style="font-family:system-ui;padding:24px">Prévia pausada: verifique o console do DevLab.</p></body></html>';updateConsole();return;}
  frame.srcdoc=buildPreview({html:draft.html||'',css:draft.css||'',js,token,stored:storageSnapshot()});updateConsole();
  }catch(error){st.logs.push({level:'error',args:[error.message]});updateConsole();}}
 function updateConsole(){const o=$('#console-output'),count=$('#console-count');if(o){o.innerHTML=logLines();o.scrollTop=o.scrollHeight;}if(count)count.textContent=String(st.logs.length);}
@@ -165,6 +167,40 @@ function finishCheck(id,inspection){
  if(inspection.passed){st.step=inspection.mode==='behavior'?'practice':'build';toast('Desafio concluído! +30 XP');}
  render();
 }
+async function checkLessonContract(l,draft,inspection){
+ const contract=lessonContracts[l.id];
+ const requestId=++st.checkRequestId;
+ const pending={id:l.id,requestId};
+ st.pendingCheck=pending;
+ const button=$('[data-action="check-exercise"]');
+ if(button){button.disabled=true;button.textContent='Executando testes…';}
+ const fail=message=>({kind:'error',message});
+ let result;
+ try {
+   let source=isTs(l)?draft.ts||'':draft.js||'';
+   if(isTs(l)){
+     const ts=await ensureTypeScript();
+     const typed=inspectTypeScriptContract(ts,source,contract);
+     inspection.checks.push(...typed);
+     if(!typed.every(c=>c.ok)) result=fail('Corrija a assinatura e os tipos indicados.');
+     else {
+       const out=ts.transpileModule(source,{fileName:'solution.ts',reportDiagnostics:true,compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.None,strict:true}});
+       const errors=(out.diagnostics||[]).filter(d=>d.category===ts.DiagnosticCategory.Error);
+       if(errors.length)result=fail(ts.flattenDiagnosticMessageText(errors[0].messageText,' '));
+       else source=out.outputText;
+     }
+   }
+   if(!result)result=await runMissionInSandbox(contract,source,5000);
+ } catch(error) {result=fail(error?.message||String(error));}
+ if(st.pendingCheck!==pending || getRoute().page!=='lesson' || currentLesson().id!==l.id)return;
+ st.pendingCheck=null;
+ if(result.kind==='results'){
+   if(result.results.length!==contract.tests.length) inspection.checks.push({label:'Quantidade de testes inesperada.',ok:false});
+   for(const item of result.results)inspection.checks.push({label:item.ok?item.label:`${item.label} — esperado: ${item.expected}; obtido: ${item.actual}`,ok:item.ok===true});
+ } else inspection.checks.push({label:result.message||'O avaliador não respondeu.',ok:false});
+ inspection.passed=inspection.checks.length>0&&inspection.checks.every(c=>c.ok);
+ finishCheck(l.id,inspection);
+}
 function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=findMission(id);if(!m)return;if(name==='run-tests'){evaluateMission();return;}if(name==='mission-hint'){st.missionHint=!st.missionHint;render();return;}if(name==='mission-reset'){if(!confirm('Restaurar o código da missão? Suas alterações serão perdidas.'))return;st.missionAttempt++;delete st.missionDrafts[id];save('mission-drafts',st.missionDrafts);st.missionResult=null;st.missionChecking=false;render();return;}if(name==='mission-export'){downloadFile(m.id+'.js',missionDraft(id),'text/javascript');return;}return;}const l=currentLesson(),draft=activeDraft(l);switch(name){
  case 'run':runPreview();break;
  case 'hint':st.hintShown=!st.hintShown;render();break;
@@ -175,7 +211,8 @@ function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=f
    if(!st.quizPassed.includes(l.id))inspection.checks.push({label:'Responda ao quiz em Aprender.',ok:false});
    inspection.passed=inspection.checks.every(x=>x.ok);
    if(!inspection.passed){st.checkResult=inspection;render();break;}
-   if(runtimeCheckedLessons.has(l.id)){
+   if(lessonContracts[l.id]){if(!st.pendingCheck)checkLessonContract(l,draft,inspection);}
+   else if(domCheckedLessons.has(l.id)){
      if(st.pendingCheck)return;
      const nonce=++st.checkRequestId, token=st.token;
      const pending={id:l.id,inspection,nonce,token,timer:null};

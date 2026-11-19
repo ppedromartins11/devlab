@@ -1,5 +1,16 @@
 # DevLab — Aprenda construindo
 
+## DevLab 7.0 — avaliação por contratos e casos-limite
+
+- **27 das 29 aulas** agora têm testes automatizados: 12 com interações de DOM e **15 novos contratos** de funções, incluindo as cinco aulas de TypeScript. Os dois marcos finais de produto e README continuam orientativos, pois exigem evidências de entrega, não apenas uma saída de função.
+- Os novos contratos executam em um **Web Worker dentro de iframe de origem opaca**, com teto de 5 segundos, comparação estrutural de arrays/objetos, checagem de não mutação quando aplicável, casos-limite, Promise assíncrona e mensagens de erro por caso. O avaliador nunca executa a função do aluno na origem da aplicação.
+- Em TypeScript o DevLab **verifica anotações de parâmetros, retorno, generics e interface com AST**, transpila e executa os casos. **Não é um typecheck completo** com bibliotecas de tipos; use `tsc --noEmit` em projetos reais.
+- A prévia bloqueia **alguns padrões óbvios** de laços ilimitados antes de executar o JS (por exemplo `while(true)` e `for(;;)`). Isso **não garante interromper qualquer loop em handlers de DOM**: o sandbox limita permissões de origem, mas o iframe ainda pode bloquear a thread principal. Não execute código desconhecido. A solução robusta exigirá prévia em processo isolado/serviço próprio.
+- A versão em produção continua estática. O código React/Monaco acompanha as alterações, mas seu build não foi validado localmente por indisponibilidade de npm neste ambiente.
+- **Progresso preservado**: exercícios salvos, quizzes e marcos anteriores continuam no mesmo armazenamento local. Nas 15 aulas com novo contrato, refaça a verificação para comprovar o novo requisito.
+
+Documentação detalhada em [docs/SPRINT-7.md](docs/SPRINT-7.md). Para executar: `npm test` (dependências locais) ou, com o ZIP offline, os scripts Node diretamente. Testes de navegador opcionais: `python tests/e2e_sprint7.py` (Chromium/Playwright).
+
 ## DevLab 6.0 — teste o comportamento, não apenas as palavras
 
 Aulas selecionadas agora possuem um **avaliador funcional no iframe da prévia**. Ao verificar a solução, o DevLab executa interações com DOM, eventos, formulários, estado e armazenamento e mostra quais critérios foram aprovados ou reprovados.

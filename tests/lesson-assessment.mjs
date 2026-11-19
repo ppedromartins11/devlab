@@ -1,12 +1,13 @@
 import assert from 'node:assert/strict';
 import { behaviorLessonIds, assessLessonBehavior } from '../src/lesson-assessment.js';
-import { runtimeCheckedLessons } from '../src/runtime-check.js';
+import { runtimeCheckedLessons, domCheckedLessons } from '../src/runtime-check.js';
 import { buildPreview } from '../src/preview.js';
 import { allJsLessons } from '../src/course.js';
 import { inspectExercise } from '../src/learning.js';
 
 assert.equal(behaviorLessonIds.length, 12);
-assert.deepEqual([...runtimeCheckedLessons], behaviorLessonIds);
+assert.deepEqual([...domCheckedLessons], behaviorLessonIds);
+assert.equal(runtimeCheckedLessons.size,27);
 assert(behaviorLessonIds.every(id=>allJsLessons.some(l=>l.id===id)));
 
 function element(text='') {

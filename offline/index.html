@@ -525,6 +525,116 @@ h1,h2,h3 {font-family: Inter,'Segoe UI', -apple-system, BlinkMacSystemFont, sans
 .mission-success{color:#24694c!important;font-weight:650}
 @media(max-width:1180px){.mission-layout{grid-template-columns:1fr}.mission-spec{display:grid;grid-template-columns:1fr 1fr}.mission-section:nth-child(odd){border-right:1px solid var(--rule)}}
 @media(max-width:700px){.mission-grid{grid-template-columns:1fr}.mission-heading{display:block}.mission-status{margin-top:12px}.mission-stat{display:grid;gap:6px}.mission-spec{display:block}.mission-section:nth-child(odd){border-right:0}.mission-section{padding:18px}.mission-results{padding:18px}.mission-promo{display:block;padding:17px}.mission-promo .button-primary{margin-top:14px}.mission-editor-actions{align-items:stretch}.mission-editor-actions>div{width:100%;display:grid;grid-template-columns:1fr 1fr}.mission-editor-actions .run-button{grid-column:1/-1}.mission-category-head{display:block}.mission-category-head>span{display:block;margin-top:10px}}
+
+/* Sprint 8 — workspace editorial, sem substituir o editor didático das aulas. */
+.main-content.page-workspace {max-width:1900px;padding:28px 28px 55px;}
+.ws-page {width:100%;color:#20302b;}
+.ws-page button {transition:background .15s,border-color .15s;}
+.ws-page-heading {display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin:0 0 24px;}
+.ws-page-heading h1 {font-size:clamp(23px,2.7vw,32px);line-height:1.1;margin:8px 0;letter-spacing:-.05em;}
+.ws-page-heading p {font-size:13px;color:#697570;margin:0;max-width:590px;line-height:1.6;}
+.ws-header-actions {display:flex;align-items:center;gap:8px;flex-shrink:0;flex-wrap:wrap;}
+.ws-outline,.ws-main-button,.ws-toolbar>button {border:1px solid #cbd5ce;border-radius:6px;background:#fff;color:#304339;font-size:11px;font-weight:650;padding:10px 13px;}
+.ws-outline:hover,.ws-toolbar>button:hover {background:#edf4ef;}
+.ws-main-button {background:#23614b;color:#fff;border-color:#23614b;}
+.ws-main-button:hover {background:#174e39;}
+.ws-toolbar {height:auto;min-height:55px;display:flex;align-items:center;gap:10px;border:1px solid #dce3dc;border-bottom:0;padding:9px 14px;background:#f5f7f4;border-radius:8px 8px 0 0;}
+.ws-toolbar-spacer {flex:1;}
+.ws-select-wrap {display:flex;align-items:center;gap:9px;}
+.ws-select-wrap label {font-size:11px;color:#67776c;font-weight:700;}
+.ws-select-wrap select {max-width:220px;min-width:150px;border:1px solid #d4ddd6;background:white;border-radius:5px;padding:8px 9px;color:#22382c;font-size:12px;font-weight:650;}
+.ws-toolbar>button {padding:8px 10px;}
+.ws-storage {display:flex;align-items:center;gap:7px;font-size:10px;color:#748077;white-space:nowrap;}
+.ws-storage-dot,.ws-file-dot,.ws-preview-dot {height:7px;width:7px;border-radius:50%;background:#5f9372;display:inline-block;}
+.ws-shell {display:grid;grid-template-columns:190px minmax(300px,1fr) minmax(320px,42%);background:#141c24;border:1px solid #26333a;border-radius:0 0 7px 7px;min-height:625px;overflow:hidden;}
+.ws-explorer {background:#19232b;border-right:1px solid #303c44;color:#b4c4c3;display:flex;flex-direction:column;min-width:0;}
+.ws-explorer-head {display:flex;align-items:center;justify-content:space-between;padding:14px 13px;color:#97aaa8;font-size:10px;font-weight:700;letter-spacing:.07em;border-bottom:1px solid #293941;}
+.ws-explorer-head div {display:flex;gap:3px;}
+.ws-explorer-head button,.ws-output-device button {background:none;border:0;color:#99ada8;padding:3px 5px;border-radius:4px;font-size:16px;}
+.ws-explorer-head button:hover,.ws-output-device button:hover {background:#2a3942;color:white;}
+.ws-explorer-project {padding:18px 12px 10px;color:#d5e3df;font-size:11px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ws-explorer nav {overflow-y:auto;max-height:410px;}
+.ws-tree-folder {padding:8px 7px 5px calc(11px + var(--depth)*11px);font-size:11px;font-weight:650;color:#acc1b9;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.ws-tree-folder>span {color:#667d77;margin-right:4px;}
+.ws-tree-file {display:flex;align-items:center;gap:9px;width:100%;min-width:0;text-align:left;border:0;background:transparent;color:#b4c1c4;padding:9px 9px 9px calc(12px + var(--depth)*12px);font-size:11px;}
+.ws-tree-file:hover {background:#26363f;color:white;}
+.ws-tree-file.active {background:#304338;color:#e4ffe8;}
+.ws-tree-file span:nth-child(2){overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;}
+.ws-tree-file small {color:#7db58d;font-size:9px;}
+.ws-file-ext {font:700 9px ui-monospace,Consolas,monospace;color:#d8c274;min-width:17px;text-align:center;}
+.ws-file-ext.ext-css {color:#8cacff;}
+.ws-file-ext.ext-html {color:#f9ad7c;}
+.ws-file-ext.ext-json {color:#99cfb5;}
+.ws-explorer-help {margin:auto 12px 15px;padding:13px 10px;border:1px solid #34434a;border-radius:6px;background:#212e35;}
+.ws-explorer-help strong {font-size:11px;color:#d0e4d9;}
+.ws-explorer-help p {font-size:10px;line-height:1.6;color:#92a8a2;margin:6px 0 0;}
+.ws-explorer-help code {color:#b9d7c7;}
+.ws-central {min-width:0;background:#101923;display:flex;flex-direction:column;border-right:1px solid #334049;}
+.ws-editor-tabs {display:flex;align-items:stretch;overflow-x:auto;white-space:nowrap;min-height:42px;background:#1e2932;}
+.ws-editor-tab {background:none;border:0;border-right:1px solid #354149;border-bottom:2px solid transparent;color:#99acb0;padding:12px 13px;font-size:11px;font-weight:600;}
+.ws-editor-tab.selected {border-bottom-color:#7bc497;background:#101923;color:#eef4f0;}
+.ws-editor-tab:hover {color:white;}
+.ws-file-toolbar {min-width:0;padding:11px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;color:#c8d4d5;font:11px ui-monospace,Consolas,monospace;border-bottom:1px solid #2c3942;}
+.ws-file-toolbar>span {white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+.ws-file-toolbar>span .ws-file-dot {margin-right:8px;}
+.ws-file-toolbar>div {display:flex;align-items:center;gap:6px;}
+.ws-file-toolbar button {color:#b5c1c5;background:#23303a;border:1px solid #3b4a51;padding:6px 8px;border-radius:4px;font-size:10px;white-space:nowrap;}
+.ws-file-toolbar button:hover {background:#34444c;}
+.ws-file-toolbar button:disabled {opacity:.55;}
+.ws-file-toolbar button.ws-danger {color:#f5c1b7;}
+.ws-file-toolbar #ws-editor-kind {font-size:10px;color:#81979c;margin-right:3px;}
+.ws-editor-area {position:relative;min-height:445px;flex:1;overflow:hidden;}
+.ws-monaco {position:absolute;inset:0;display:none;z-index:3;}
+.ws-fallback {position:absolute;inset:0;display:flex;overflow:hidden;background:#101923;color:#c5d5e3;}
+.ws-lines {font:13px/1.75 ui-monospace,Consolas,monospace;min-width:39px;text-align:right;padding:18px 11px 18px 4px;background:#111c25;color:#657a83;overflow:hidden;white-space:pre;user-select:none;}
+.ws-edit-code {position:relative;min-width:0;flex:1;}
+.ws-edit-code pre,.ws-edit-code textarea {position:absolute;inset:0;width:100%;height:100%;box-sizing:border-box;margin:0;padding:18px 14px;border:0;background:transparent;font:13px/1.75 ui-monospace,Consolas,monospace;tab-size:2;white-space:pre;overflow:auto;}
+.ws-edit-code pre {pointer-events:none;color:#c7d4df;z-index:1;}
+.ws-edit-code textarea {color:transparent;caret-color:#fff;z-index:2;resize:none;-webkit-text-fill-color:transparent;outline:0;}
+.ws-edit-code textarea::selection {background:#38536a;}
+.ws-editor-bottom {min-height:49px;padding:7px 13px;display:flex;align-items:center;justify-content:space-between;background:#17232c;border-top:1px solid #303e46;color:#8fa6a5;font-size:10px;gap:10px;}
+.ws-editor-bottom kbd {border:1px solid #49605f;border-radius:3px;padding:2px 4px;font-size:9px;}
+.ws-editor-bottom .ws-run {border:0;background:#347b5c;color:white;padding:9px 12px;font-weight:750;border-radius:5px;font-size:11px;white-space:nowrap;}
+.ws-editor-bottom .ws-run:hover {background:#2a694e;}
+.ws-output {background:#f9faf7;display:flex;flex-direction:column;min-width:0;}
+.ws-output-header {height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #d8e0d8;color:#3b5145;}
+.ws-output-header strong {font-size:12px;}
+.ws-preview-dot {background:#a5b7aa;margin-left:9px;}
+.ws-preview-dot.ready {background:#448d61;}
+.ws-output-device {display:flex;gap:3px;}
+.ws-output-device button {color:#6b7971;}
+.ws-output-device button.active {background:#e0ece2;color:#225c3f;}
+.ws-frame-container {height:376px;background:#e8eee9;padding:12px;display:flex;align-items:stretch;justify-content:center;overflow:hidden;}
+.ws-frame-container iframe {width:100%;height:100%;border:1px solid #d4ddd5;background:white;border-radius:4px;}
+.ws-frame-container.ws-frame-mobile iframe {max-width:375px;}
+.ws-console-header {height:38px;display:flex;align-items:center;gap:8px;padding:0 12px;border-block:1px solid #dce5de;background:#f5f8f4;}
+.ws-console-header strong {font-size:11px;color:#3c5247;}
+.ws-console-header>span {background:#e5ede5;border-radius:4px;font-size:10px;padding:2px 6px;color:#51745b;}
+.ws-console-header button {margin-left:auto;background:none;border:0;color:#697f70;font-size:11px;}
+.ws-console {flex:1;min-height:120px;max-height:210px;overflow:auto;background:#121c22;padding:12px 13px;font:11px/1.55 ui-monospace,Consolas,monospace;color:#d3e2df;}
+.ws-console-empty {color:#859e9b;margin:4px 0;}
+.ws-console-row {display:flex;gap:10px;margin-bottom:5px;word-break:break-word;}
+.ws-console-row>span {color:#80a798;}
+.ws-console-row.level-error {color:#ffbcb1;}
+.ws-console-row.level-warn {color:#e2cb8e;}
+.ws-output-foot {font-size:10px;color:#6d7f71;padding:9px 12px;border-top:1px solid #dfe7df;}
+.ws-guidance {margin-top:17px;border:1px solid #d9e5dc;border-left:3px solid #7cad8e;border-radius:4px;padding:14px 17px;background:white;}
+.ws-guidance strong {font-size:12px;}
+.ws-guidance p {font-size:11.5px;line-height:1.75;margin:5px 0 0;color:#64776b;}
+.ws-guidance code {background:#eff5f0;border-radius:3px;padding:2px 4px;}
+.ws-dialog {border:1px solid #d4e2d7;background:#fff;color:#20372d;border-radius:8px;max-width:430px;width:calc(100% - 40px);padding:24px;box-shadow:0 15px 50px #101c1e50;}
+.ws-dialog::backdrop {background:#1225219c;}
+.ws-dialog form {display:flex;flex-direction:column;gap:12px;}
+.ws-dialog h2 {font-size:21px;margin:0;}
+.ws-dialog p {font-size:12px;color:#64746b;margin:0;line-height:1.6;}
+.ws-dialog label {font-size:12px;font-weight:700;}
+.ws-dialog input {border:1px solid #bacabc;border-radius:5px;padding:12px;font-size:13px;}
+.ws-dialog>form>div {display:flex;gap:8px;justify-content:flex-end;margin-top:8px;}
+.ws-dialog .ws-dialog-error {min-height:15px;color:#b43d37;font-weight:600;}
+@media(max-width:1520px) { .ws-shell {grid-template-columns:160px minmax(290px,1fr) minmax(300px,40%);} .main-content.page-workspace {padding:24px 18px 45px;} .ws-file-toolbar #ws-editor-kind {display:none;} }
+@media(max-width:1230px) { .ws-shell {grid-template-columns:174px minmax(0,1fr);} .ws-output {grid-column:1/-1;border-top:1px solid #48565c;} .ws-frame-container {height:300px;} .ws-central {border-right:0;} .ws-explorer {border-right:1px solid #344048;} }
+@media(max-width:760px) { .ws-page-heading {flex-direction:column;align-items:flex-start;} .ws-shell {grid-template-columns:minmax(0,1fr);} .ws-explorer {grid-column:1;border-right:0;border-bottom:1px solid #344048;} .ws-explorer nav {display:flex;gap:2px;flex-wrap:wrap;padding:4px 10px 12px;max-height:152px;} .ws-tree-folder {padding:8px 6px;} .ws-tree-file {width:auto;padding:8px 10px;border-radius:4px;} .ws-explorer-help {display:none;} .ws-central,.ws-output {grid-column:1;} .ws-editor-area {min-height:310px;} .ws-file-toolbar {flex-wrap:wrap;} .ws-page-heading h1 {font-size:24px;} .ws-toolbar {flex-wrap:wrap;} .ws-storage {width:100%;} .ws-select-wrap select {max-width:190px;} }
+@media(max-width:460px) { .ws-file-toolbar>div {flex-wrap:wrap;} .ws-editor-bottom>span {display:none;} .ws-header-actions {width:100%;} .ws-header-actions button {flex:1;} .ws-output-header,.ws-console-header {padding-inline:9px;} .ws-page-heading {margin-bottom:15px;} .ws-editor-tab {padding:11px 9px;} }
 </style></head><body><div id="root"></div><script>/** Bloqueia alguns padrões de loops sem condição de saída antes de montar a prévia.
  * Não é prova formal de terminação: loops gerais exigem isolamento de processo.
  */
@@ -1683,6 +1793,176 @@ function runMissionInSandbox(mission, source, timeoutMs=4500) {
   });
 }
 
+/** DevLab workspace: regras puras de projeto, módulos e exportação (sem DOM do host). */
+const WORKSPACE_MAX_FILES = 32;
+const WORKSPACE_MAX_FILE_BYTES = 100_000;
+const WORKSPACE_MAX_TOTAL_BYTES = 480_000;
+const WORKSPACE_EXTENSIONS = ['html', 'css', 'js', 'mjs', 'json'];
+
+const makeId = () => 'ws-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
+const utf8Bytes = value => new TextEncoder().encode(String(value)).length;
+
+function workspacePath(input, base = '') {
+  if (typeof input !== 'string' || !input.trim() || input.includes('\\') || input.includes('\0') || input.startsWith('/') || /^[a-z]+:/i.test(input)) throw new Error('Use um caminho relativo, como src/util.js.');
+  const parts = (base ? base.split('/').filter(Boolean) : []).concat(input.split('/'));
+  const output = [];
+  for (const part of parts) {
+    if (part === '.' || part === '') continue;
+    if (part === '..') { if (!output.length) throw new Error('O arquivo não pode sair da pasta do projeto.'); output.pop(); continue; }
+    if (!/^[a-zA-Z0-9_\- .]+$/.test(part) || part.length > 90 || part.trim() !== part || part.startsWith('.')) throw new Error('Nome inválido. Use letras, números, espaços, _ e -.');
+    output.push(part);
+  }
+  if (!output.length || output.join('/').length > 180) throw new Error('Caminho vazio ou muito longo.');
+  return output.join('/');
+}
+function validateWorkspace(project) {
+  if (!project || typeof project !== 'object' || !project.files || typeof project.files !== 'object' || Array.isArray(project.files)) throw new Error('Projeto inválido.');
+  const files = Object.entries(project.files);
+  if (!files.length || files.length > WORKSPACE_MAX_FILES) throw new Error(`Use entre 1 e ${WORKSPACE_MAX_FILES} arquivos.`);
+  let total = 0;
+  for (const [path, source] of files) {
+    if (workspacePath(path) !== path) throw new Error('Caminho de arquivo inválido: ' + path);
+    const ext = path.split('.').pop().toLowerCase();
+    if (!WORKSPACE_EXTENSIONS.includes(ext)) throw new Error('Extensão não suportada: ' + path);
+    if (typeof source !== 'string' || utf8Bytes(source) > WORKSPACE_MAX_FILE_BYTES) throw new Error('Arquivo muito grande: ' + path);
+    total += utf8Bytes(source);
+  }
+  if (total > WORKSPACE_MAX_TOTAL_BYTES) throw new Error('Projeto acima do limite de 480 KB.');
+  if (!Object.hasOwn(project.files, 'index.html')) throw new Error('O projeto precisa de index.html na raiz.');
+  if (!project.entry || !Object.hasOwn(project.files, project.entry) || !/\.(js|mjs)$/.test(project.entry)) throw new Error('Selecione um módulo JavaScript inicial válido.');
+  return true;
+}
+function createWorkspace(template='modular', name='Meu workspace') {
+  const base = {
+    id:makeId(), name, entry:'src/main.js', selected:'src/main.js', folders:['src','styles'], files:{}, version:1, updated:Date.now()
+  };
+  base.files['index.html'] = `<!doctype html>\n<html lang="pt-BR">\n<head>\n  <meta charset="utf-8" />\n  <meta name="viewport" content="width=device-width, initial-scale=1" />\n  <title>${template==='modular'?'TaskFlow':'Meu primeiro site'}</title>\n  <link rel="stylesheet" href="./styles/style.css" />\n</head>\n<body>\n  <main class="app">\n    <span class="eyebrow">DEVLAB / WORKSPACE</span>\n    <h1 id="heading">${template==='modular'?'Minhas tarefas':'Meu primeiro site'}</h1>\n    <p id="message">${template==='modular'?'Organize seu dia em pequenas etapas.':'Personalize esta página com JavaScript.'}</p>\n    <form id="task-form">\n      <label for="task-input">${template==='modular'?'Nova tarefa':'Digite uma mensagem'}</label>\n      <div class="input-row"><input id="task-input" placeholder="Escreva aqui..." required /><button type="submit">Adicionar</button></div>\n    </form>\n    <ul id="task-list"></ul>\n  </main>\n  <script type="module" src="./src/main.js"><\/script>\n</body>\n</html>\n`;
+  base.files['styles/style.css'] = `:root { font-family: system-ui, sans-serif; color: #213b33; background: #edf4ef; }\n* { box-sizing: border-box; }\nbody { margin: 0; padding: 36px 16px; }\n.app { max-width: 640px; margin: 0 auto; padding: 30px; border: 1px solid #d7e5dc; border-radius: 14px; background: white; }\n.eyebrow { color: #487b65; font-size: 11px; font-weight: 700; letter-spacing: .13em; }\nh1 { margin: 12px 0; font-size: clamp(26px, 5vw, 38px); }\np { color: #627268; }\nlabel { display:block; margin-bottom: 8px; font-size: 13px; font-weight:600; }\n.input-row { display:flex; gap:8px; }\ninput { min-width:0; flex:1; padding:11px; border:1px solid #bccfc3; border-radius:7px; }\nbutton { border:0; border-radius:7px; background:#216147; color:white; padding:11px 15px; cursor:pointer; }\nul { padding-left:22px; line-height:1.9; }\n@media (max-width: 450px) { .app { padding: 20px; } .input-row {flex-direction:column} }\n`;
+  if (template==='modular') {
+    base.files['src/tasks.js'] = `// Uma função pequena fica fácil de testar e reutilizar.\nexport function criarTarefa(texto) {\n  return { id: Date.now(), texto: texto.trim(), concluida: false };\n}\n\nexport function adicionarTarefa(lista, texto) {\n  if (!texto.trim()) return lista;\n  return [...lista, criarTarefa(texto)];\n}\n`;
+    base.files['src/main.js'] = `import { adicionarTarefa } from './tasks.js';\n\nconst formulario = document.querySelector('#task-form');\nconst campo = document.querySelector('#task-input');\nconst lista = document.querySelector('#task-list');\nlet tarefas = [];\n\nfunction renderizar() {\n  lista.replaceChildren();\n  for (const tarefa of tarefas) {\n    const item = document.createElement('li');\n    item.textContent = tarefa.texto;\n    lista.append(item);\n  }\n}\n\nformulario.addEventListener('submit', event => {\n  event.preventDefault();\n  tarefas = adicionarTarefa(tarefas, campo.value);\n  campo.value = '';\n  renderizar();\n  console.log('Tarefas:', tarefas.length);\n});\n`;
+  } else {
+    base.files['src/main.js'] = `const formulario = document.querySelector('#task-form');\nconst mensagem = document.querySelector('#message');\nconst campo = document.querySelector('#task-input');\n\nformulario.addEventListener('submit', event => {\n  event.preventDefault();\n  mensagem.textContent = campo.value.trim() || 'Tente escrever algo.';\n  console.log('Mensagem atualizada!');\n});\n`;
+  }
+  validateWorkspace(base);
+  return base;
+}
+function workspaceAdd(project, path, source = '') {
+  const normalized = workspacePath(path);
+  if (normalized !== path) throw new Error('Use o caminho normalizado, sem ./ ou barras duplicadas.');
+  if (Object.hasOwn(project.files, normalized)) throw new Error('Este arquivo já existe.');
+  const updated={...project,files:{...project.files,[normalized]:source}};
+  validateWorkspace(updated);
+  updated.folders=[...new Set([...(project.folders||[]), ...folderAncestors(normalized)])];
+  return updated;
+}
+function folderAncestors(path) {const arr=path.split('/').slice(0,-1);return arr.map((_,i)=>arr.slice(0,i+1).join('/'));}
+function workspaceRename(project, oldPath, newPath) {
+  if (oldPath === 'index.html' || oldPath === project.entry) throw new Error('Não renomeie index.html ou o módulo inicial.');
+  const path=workspacePath(newPath);
+  if (path!==newPath || !Object.hasOwn(project.files,oldPath) || Object.hasOwn(project.files,path)) throw new Error('Caminho inválido ou já utilizado.');
+  const files={...project.files,[path]:project.files[oldPath]};delete files[oldPath];
+  const updated={...project,files,selected:project.selected===oldPath?path:project.selected,folders:[...new Set([...(project.folders||[]),...folderAncestors(path)])]};
+  validateWorkspace(updated);return updated;
+}
+function workspaceDelete(project,path) {
+  if (path==='index.html'||path===project.entry) throw new Error('Não exclua index.html nem o módulo inicial.');
+  if(!Object.hasOwn(project.files,path))throw new Error('Arquivo não encontrado.');
+  const files={...project.files};delete files[path];
+  const updated={...project,files,selected:project.selected===path?project.entry:project.selected};validateWorkspace(updated);return updated;
+}
+function workspaceAddFolder(project,path){const p=workspacePath(path);if(p!==path)throw new Error('Nome da pasta inválido.');if((project.folders||[]).includes(p))throw new Error('Esta pasta já existe.');return {...project,folders:[...new Set([...(project.folders||[]),p,...folderAncestors(p)])]};}
+function resolveImport(spec,from,files) {
+  if (!spec.startsWith('./')&&!spec.startsWith('../')) throw new Error(`Importação externa não suportada: ${spec}. Utilize caminhos relativos.`);
+  const fromDir=from.includes('/')?from.slice(0,from.lastIndexOf('/')):'';
+  const canonical=workspacePath(spec,fromDir);
+  const found=[canonical,canonical+'.js',canonical+'.mjs',canonical+'/index.js'].find(p=>Object.hasOwn(files,p));
+  if(!found || !/\.(m?js)$/.test(found)) throw new Error(`Módulo não encontrado: ${spec} (em ${from})`);
+  return found;
+}
+function workspaceRewriteImports(source,from,files) {
+  // Subconjunto explícito de ES modules: import/export estáticos e import('arquivo') literal.
+  // Não tenta analisar JavaScript arbitrário nem transformar imports calculados.
+  const pattern=/(\b(?:import|export)\s*(?:[\s\S]{0,260}?\s+from\s*)?|\bimport\s*\(\s*)(['"])(\.\.?\/[^'"\n]+)\2(\s*\)?)/g;
+  let rewritten=String(source).replace(pattern,(whole,prefix,quote,spec,suffix)=>{
+    const resolved=resolveImport(spec,from,files);
+    return prefix+quote+'@devlab/'+resolved+quote+suffix;
+  });
+  // Importações com origem remota ou bare specifier não são instaladas automaticamente.
+  const external=/(?:\bimport\s*(?:[\s\S]{0,160}?\s+from\s*)?|\bexport\s+[^\n]{0,160}?\s+from\s*)(['"])(?!@devlab\/)([^.'"\/][^'"]*|https?:[^'"]*)\1/g;
+  let m;while((m=external.exec(rewritten)))throw new Error('Importação não suportada em '+from+': '+m[2]);
+  return rewritten;
+}
+const jsLiteral = x => JSON.stringify(x).replace(/</g,'\\u003c').replace(/[\u2028\u2029]/g,' ');
+function buildWorkspacePreview(project,token,storage={}) {
+  validateWorkspace(project);
+  const files=project.files;
+  let body=files['index.html'];
+  const links=[];
+  // O ambiente inclui CSS local, sem baixar caminhos do projeto do servidor da plataforma.
+  body=body.replace(/<link\b[^>]*>/gi,tag=>{
+    const href=tag.match(/\bhref\s*=\s*['"]([^'"]+)['"]/i)?.[1];
+    if(href?.startsWith('./')||href?.startsWith('../')){links.push(href);return '';}
+    return tag;
+  });
+  body=body.replace(/<script\b[^>]*\bsrc\s*=\s*['"](?:\.\.?\/)?[^'"]+['"][^>]*>\s*<\/script\s*>/gi,'');
+  const cssPaths=Object.keys(files).filter(x=>x.endsWith('.css')).sort();
+  const css=cssPaths.map(x=>files[x]).join('\n');
+  const rewritten={};
+  for(const [path,source] of Object.entries(files))if(/\.(m?js)$/.test(path))rewritten[path]=workspaceRewriteImports(source,path,files);
+  const appScript=`(() => {
+  const token=${jsLiteral(token)};
+  const memory=${jsLiteral(storage)};
+  const send=(kind,payload)=>parent.postMessage({__devlab_workspace:true,token,kind,payload},'*');
+  const original={};
+  const toText=value=>{try{return typeof value==='string'?value:JSON.stringify(value)}catch{return String(value)}};
+  for(const level of ['log','warn','error','info']){
+    original[level]=console[level]?.bind(console);
+    console[level]=(...args)=>{send('log',{level,args:args.map(toText)});original[level]?.(...args)};
+  }
+  window.addEventListener('error',event=>send('log',{level:'error',args:[event.message||'Erro desconhecido']}));
+  window.addEventListener('unhandledrejection',event=>send('log',{level:'error',args:[toText(event.reason)]}));
+  const store={
+    get length(){return Object.keys(memory).length},
+    key:i=>Object.keys(memory)[i]??null,
+    getItem:k=>Object.hasOwn(memory,String(k))?memory[String(k)]:null,
+    setItem:(k,v)=>{memory[String(k)]=String(v);send('storage',memory)},
+    removeItem:k=>{delete memory[String(k)];send('storage',memory)},
+    clear:()=>{for(const key of Object.keys(memory))delete memory[key];send('storage',memory)}
+  };
+  try{Object.defineProperty(window,'localStorage',{configurable:true,value:store});}catch(err){console.warn('Storage virtual indisponível')}
+  const sources=${jsLiteral(rewritten)};
+  const map={imports:{}};
+  for(const [path,code] of Object.entries(sources)){
+    map.imports['@devlab/'+path]=URL.createObjectURL(new Blob([code],{type:'text/javascript'}));
+  }
+  const importMap=document.createElement('script');importMap.type='importmap';importMap.textContent=JSON.stringify(map);document.head.appendChild(importMap);
+  import(${jsLiteral('@devlab/'+project.entry)}).then(()=>send('ready',null)).catch(error=>console.error(error?.stack||String(error)));
+})();`;
+  const safeScript=appScript.replace(/<\/script/gi,'<\\/script');
+  const safeCss=css.replace(/<\/style/gi,'<\\/style');
+  // CSS e boot são adicionados após o conteúdo para que o DOM já exista na execução do JS.
+  return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${safeCss}</style></head><body>${body}<script>${safeScript}<\/script></body></html>`;
+}
+// ZIP sem compressão: funciona offline, sem dependências externas.
+const crcTable = Array.from({length:256},(_,n)=>{let c=n;for(let i=0;i<8;i++)c=c&1?0xedb88320^(c>>>1):c>>>1;return c>>>0;});
+const crc32 = data => {let c=0xffffffff;for(const byte of data)c=crcTable[(c^byte)&255]^(c>>>8);return (c^0xffffffff)>>>0;};
+function workspaceZip(project) {
+  validateWorkspace(project);
+  const encoder=new TextEncoder(), parts=[], central=[];let offset=0;
+  const u16=(arr,i,v)=>{arr[i]=v&255;arr[i+1]=(v>>>8)&255};
+  const u32=(arr,i,v)=>{u16(arr,i,v);u16(arr,i+2,v>>>16)};
+  for(const [path,source] of Object.entries(project.files)){
+    const name=encoder.encode(path),data=encoder.encode(source),crc=crc32(data);
+    const head=new Uint8Array(30);u32(head,0,0x04034b50);u16(head,4,20);u16(head,6,0x800);u16(head,8,0);u32(head,14,crc);u32(head,18,data.length);u32(head,22,data.length);u16(head,26,name.length);
+    parts.push(head,name,data);
+    const center=new Uint8Array(46);u32(center,0,0x02014b50);u16(center,4,20);u16(center,6,20);u16(center,8,0x800);u32(center,16,crc);u32(center,20,data.length);u32(center,24,data.length);u16(center,28,name.length);u32(center,42,offset);
+    central.push(center,name);offset+=head.length+name.length+data.length;
+  }
+  const centralSize=central.reduce((sum,b)=>sum+b.length,0),end=new Uint8Array(22);u32(end,0,0x06054b50);u16(end,8,Object.keys(project.files).length);u16(end,10,Object.keys(project.files).length);u32(end,12,centralSize);u32(end,16,offset);
+  return new Blob([...parts,...central,end],{type:'application/zip'});
+}
+
 /* DevLab Offline - interface sem dependências, para uso pessoal e local. */
 const $ = (selector, root=document) => root.querySelector(selector);
 const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
@@ -1693,7 +1973,7 @@ const esc = (x) => String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const isTs = l => l?.language==='ts';
 const currentLesson = () => allLessons.find(l => l.id === getRoute().id) || allJsLessons[0];
 const starterFor = l => isTs(l) ? {html:l.starter.html,css:l.starter.css,ts:l.starter.js} : {...l.starter};
-const getRoute = () => { const p=location.hash.replace(/^#\/?/,'') || 'inicio'; if(p.startsWith('aula/'))return {page:'lesson',id:p.slice(5)};if(p==='curso/typescript')return {page:'course',lang:'ts'};if(p==='curso/javascript')return {page:'course',lang:'js'};if(p==='projeto')return {page:'project'};if(p==='revisao')return {page:'review'};if(p==='desafios')return {page:'briefs'};if(p==='oficina')return {page:'missions'};if(p.startsWith('missao/'))return {page:'mission',id:p.slice(7)};return {page:'home'}; };
+const getRoute = () => { const p=location.hash.replace(/^#\/?/,'') || 'inicio'; if(p.startsWith('aula/'))return {page:'lesson',id:p.slice(5)};if(p==='curso/typescript')return {page:'course',lang:'ts'};if(p==='curso/javascript')return {page:'course',lang:'js'};if(p==='projeto')return {page:'project'};if(p==='workspace')return {page:'workspace'};if(p==='revisao')return {page:'review'};if(p==='desafios')return {page:'briefs'};if(p==='oficina')return {page:'missions'};if(p.startsWith('missao/'))return {page:'mission',id:p.slice(7)};return {page:'home'}; };
 const st = { missionDrafts:load('mission-drafts',{}),missionProgress:load('mission-progress',{}),missionResult:null,missionChecking:false,missionHint:false,missionAttempt:0, pendingCheck:null,checkRequestId:0,verifiedDrafts:load('verified-drafts',{}),reviews:load('reviews',{}), reviewSelected:null,reviewReveal:false,notes:load('notes',{}),activeBrief:load('active-brief','conversor'),briefDrafts:load('brief-drafts',{}),briefChecklist:load('brief-checklist',{}),openBriefIntent:false, quizPassed:load('quiz-passed',[]),practicePassed:load('practice-passed',[]),activityDates:load('activity-dates',[]),answers:{},step:'learn',hintShown:false,checkResult:null, completed:load('completed',[]),milestones:load('milestones',[]),exercises:load('exercises',{}), projectJs:load('project-js',structuredClone(projectStarter)),projectTs:load('project-ts',structuredClone(typescriptProjectStarter)),last:load('last','primeiros-passos'),mode:'exercise',tab:'js',device:'desktop',consoleOpen:false,logs:[],search:'',expanded:load('expanded',jsUnits.concat(tsUnits).map(x=>x.id)),mobileMenu:false,token:0 };
 let runnerTimer=0;
 function reviewsDue(){return reviewQueue(st.reviews,allLessons,localDateKey());}
@@ -1723,11 +2003,11 @@ function sidebar(){
     const open=st.expanded.includes(unit.id) || st.search;
     return `<div class="nav-unit"><button class="unit-toggle" data-unit="${unit.id}"><span>${esc(unit.title.replace(/^\d+\. /,''))}</span><span>${open?'⌄':'›'}</span></button>${open?`<div class="unit-lessons">${f.map(l=>`<button class="lesson-link ${getRoute().id===l.id?'active-lesson':''}" data-nav="aula/${l.id}"><span class="lesson-status ${st.completed.includes(l.id)?'done':''}">${iconMark(st.completed.includes(l.id))}</span><span>${esc(l.title)}</span></button>`).join('')}</div>`:''}</div>`;
   }).join('');
-  return `<aside class="sidebar ${st.mobileMenu?'sidebar-open':''}"><div class="sidebar-top"><button class="brand-button" data-nav="inicio"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>LABORATÓRIO DE CÓDIGO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu">✕</button></div><div class="sidebar-scroll"><div class="sidebar-group"><div class="sidebar-label">NAVEGAÇÃO</div><button class="side-link ${getRoute().page==='home'?'selected':''}" data-nav="inicio"><span>▦</span> Visão geral</button><button class="side-link ${getRoute().page==='project'?'selected':''}" data-nav="projeto"><span>▤</span> Projeto TaskFlow <span class="side-count">${st.milestones.length}/${allJsLessons.length}</span></button><button class="side-link ${['missions','mission'].includes(getRoute().page)?'selected':''}" data-nav="oficina"><span>⌘</span> Oficina de código <span class="side-count">${missions.filter(m=>st.missionProgress[m.id]?.passed).length}/${missions.length}</span></button><button class="side-link ${getRoute().page==='review'?'selected':''}" data-nav="revisao"><span>↺</span> Revisão espaçada <span class="side-count">${reviewsDue().length}</span></button><button class="side-link ${getRoute().page==='briefs'?'selected':''}" data-nav="desafios"><span>◫</span> Desafios reais <span class="side-count">3</span></button></div><div class="side-search"><span>⌕</span><input id="lesson-search" aria-label="Buscar aulas" placeholder="Buscar aulas..." value="${esc(st.search)}" /></div><div class="sidebar-group sidebar-course"><div class="sidebar-label">CURSOS</div><button class="course-link" data-nav="curso/javascript"><span class="js-logo">JS</span><span>JavaScript<small>${allJsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allJsLessons.length} aulas</small></span>›</button>${renderUnits(jsUnits,'js')}<button class="course-link ts-nav" data-nav="curso/typescript"><span class="ts-logo">TS</span><span>TypeScript<small>${allTsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allTsLessons.length} aulas · trilha 2</small></span>›</button>${renderUnits(tsUnits,'ts')}</div></div><div class="sidebar-bottom"><div class="avatar">P</div><div><strong>Progresso local</strong><small>${xp()} XP · ${streak()} dias de sequência</small></div><span class="online-dot"></span></div></aside>`;
+  return `<aside class="sidebar ${st.mobileMenu?'sidebar-open':''}"><div class="sidebar-top"><button class="brand-button" data-nav="inicio"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>LABORATÓRIO DE CÓDIGO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu">✕</button></div><div class="sidebar-scroll"><div class="sidebar-group"><div class="sidebar-label">NAVEGAÇÃO</div><button class="side-link ${getRoute().page==='home'?'selected':''}" data-nav="inicio"><span>▦</span> Visão geral</button><button class="side-link ${getRoute().page==='project'?'selected':''}" data-nav="projeto"><span>▤</span> Projeto TaskFlow <span class="side-count">${st.milestones.length}/${allJsLessons.length}</span></button><button class="side-link ${['missions','mission'].includes(getRoute().page)?'selected':''}" data-nav="oficina"><span>⌘</span> Oficina de código <span class="side-count">${missions.filter(m=>st.missionProgress[m.id]?.passed).length}/${missions.length}</span></button><button class="side-link ${getRoute().page==='workspace'?'selected':''}" data-nav="workspace"><span>⌑</span> Workspace <span class="side-count">NOVO</span></button><button class="side-link ${getRoute().page==='review'?'selected':''}" data-nav="revisao"><span>↺</span> Revisão espaçada <span class="side-count">${reviewsDue().length}</span></button><button class="side-link ${getRoute().page==='briefs'?'selected':''}" data-nav="desafios"><span>◫</span> Desafios reais <span class="side-count">3</span></button></div><div class="side-search"><span>⌕</span><input id="lesson-search" aria-label="Buscar aulas" placeholder="Buscar aulas..." value="${esc(st.search)}" /></div><div class="sidebar-group sidebar-course"><div class="sidebar-label">CURSOS</div><button class="course-link" data-nav="curso/javascript"><span class="js-logo">JS</span><span>JavaScript<small>${allJsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allJsLessons.length} aulas</small></span>›</button>${renderUnits(jsUnits,'js')}<button class="course-link ts-nav" data-nav="curso/typescript"><span class="ts-logo">TS</span><span>TypeScript<small>${allTsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allTsLessons.length} aulas · trilha 2</small></span>›</button>${renderUnits(tsUnits,'ts')}</div></div><div class="sidebar-bottom"><div class="avatar">P</div><div><strong>Progresso local</strong><small>${xp()} XP · ${streak()} dias de sequência</small></div><span class="online-dot"></span></div></aside>`;
 }
-function topbar(){let r=getRoute(),l=currentLesson();let bread=r.page==='home'?'Visão geral':r.page==='project'?'Projeto TaskFlow':r.page==='review'?'Revisão espaçada':r.page==='briefs'?'Desafios reais':r.page==='missions'?'Oficina de código':r.page==='mission'?('Oficina / '+(findMission(r.id)?.title||'Missão')):r.page==='course'?(r.lang==='ts'?'TypeScript':'JavaScript'):`${isTs(l)?'TypeScript':'JavaScript'} / ${l.title}`;return `<header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu">☰</button><span class="breadcrumbs"><button data-nav="inicio">Meu aprendizado</button><span>› ${esc(bread)}</span></span></div><div class="topbar-right"><span class="topbar-xp">${xp()} XP</span><span class="sync-label"><span class="sync-dot"></span> Salvamento local</span><button class="topbar-project" data-nav="projeto">Projeto TaskFlow →</button></div></header>`;}
+function topbar(){let r=getRoute(),l=currentLesson();let bread=r.page==='home'?'Visão geral':r.page==='workspace'?'Workspace':r.page==='project'?'Projeto TaskFlow':r.page==='review'?'Revisão espaçada':r.page==='briefs'?'Desafios reais':r.page==='missions'?'Oficina de código':r.page==='mission'?('Oficina / '+(findMission(r.id)?.title||'Missão')):r.page==='course'?(r.lang==='ts'?'TypeScript':'JavaScript'):`${isTs(l)?'TypeScript':'JavaScript'} / ${l.title}`;return `<header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu">☰</button><span class="breadcrumbs"><button data-nav="inicio">Meu aprendizado</button><span>› ${esc(bread)}</span></span></div><div class="topbar-right"><span class="topbar-xp">${xp()} XP</span><span class="sync-label"><span class="sync-dot"></span> Salvamento local</span><button class="topbar-project" data-nav="projeto">Projeto TaskFlow →</button></div></header>`;}
 function stat(sym,value,label){return `<div class="stat"><span class="stat-icon">${sym}</span><strong>${esc(value)}</strong><span>${esc(label)}</span></div>`;}
-function home(){return `<div class="home-page"><div class="welcome-overline"><span class="welcome-dot"></span> PAINEL DE ESTUDOS</div><div class="hero-banner"><div class="hero-text">${pill('TRILHA DE DESENVOLVIMENTO WEB','hero-chip')}<h1>JavaScript na prática.<br/><em>Do conceito ao código.</em></h1><p>Estude um conceito, resolva um exercício e aplique a solução no TaskFlow. Seu código fica salvo neste navegador.</p><div class="hero-buttons"><button class="button-primary" data-nav="aula/${st.last}">${st.completed.length?'Continuar estudando':'Começar pelo básico'} →</button><button class="button-ghost" data-nav="projeto">Abrir TaskFlow</button></div></div><div class="hero-art"><div class="hero-code-card"><div class="window-dots"><i></i><i></i><i></i></div><div class="hero-code-lines"><span><b>const</b> projeto = &#123;</span><span>&nbsp;&nbsp;objetivo: <strong>'aprender'</strong>,</span><span>&nbsp;&nbsp;pratica: <strong>true</strong>,</span><span>&nbsp;&nbsp;resultado: <strong>'construir'</strong></span><span>&#125;;</span><span class="hero-comment">// Seu progresso começa aqui_</span></div></div><div class="hero-float">&lt;/&gt;</div></div></div><section class="stats-grid">${stat('▤',st.completed.length+'/'+allLessons.length,'aulas concluídas')}${stat('★',xp()+' XP','experiência conquistada')}${stat('🔥',streak()+' dias','sequência de estudos')}${stat('◈',percent('js')+'%','avanço em JavaScript')}</section><section class="learning-tools" aria-label="Próximas ações"><div class="learning-tools-copy"><span class="section-kicker">ESTUDE COM INTENÇÃO</span><h2>Praticar também é revisar.</h2><p>Recupere conceitos de memória e resolva problemas fora das aulas guiadas.</p></div><div class="learning-tools-grid"><button class="learning-tool" data-nav="revisao"><span class="learning-tool-symbol">↺</span><span><strong>Revisão espaçada</strong><small>${reviewsDue().length?reviewsDue().length+" conceito(s) para recordar hoje":"Nenhuma revisão vencida"}</small></span><span aria-hidden="true">→</span></button><button class="learning-tool" data-nav="desafios"><span class="learning-tool-symbol">◫</span><span><strong>Desafios independentes</strong><small>3 briefs, requisitos e editor próprio</small></span><span aria-hidden="true">→</span></button></div></section><section class="mission-promo"><div><span class="section-kicker">NOVA ÁREA · OFICINA</span><h2>Escreva, depure e comprove.</h2><p>Seis missões com verificação automática e um ambiente de execução isolado. Nas avaliações finais, não há código inicial.</p></div><button class="button-primary" data-nav="oficina">Abrir Oficina →</button></section><section class="micro-session"><div><span class="section-kicker">RETOME DE ONDE PAROU</span><h2>Uma aula de cada vez.</h2><p>Volte à última aula aberta e continue no mesmo ponto.</p></div><button class="button-primary" data-nav="aula/${st.last}">Continuar a trilha →</button></section><section class="section-block"><div class="section-heading"><div><span class="section-kicker">CURSOS</span><h2>Seu plano de estudos</h2><p>Fundamentos de JavaScript primeiro. TypeScript depois.</p></div></div><div class="tracks-grid">${trackCard('js')}${trackCard('ts')}</div></section><section class="project-feature"><div class="feature-icon">▤</div><div><span class="section-kicker">PROJETO PRÁTICO</span><h3>TaskFlow · projeto de aplicação</h3><p>Construa um gerenciador de tarefas aplicando cada conceito da teoria. Edite HTML, CSS e JavaScript com prévia ao vivo.</p></div><button class="button-outline" data-nav="projeto">Conhecer projeto →</button></section><footer class="footer-note">DevLab · Projeto pessoal · Seu progresso é armazenado neste navegador.</footer></div>`;}
+function home(){return `<div class="home-page"><div class="welcome-overline"><span class="welcome-dot"></span> PAINEL DE ESTUDOS</div><div class="hero-banner"><div class="hero-text">${pill('TRILHA DE DESENVOLVIMENTO WEB','hero-chip')}<h1>JavaScript na prática.<br/><em>Do conceito ao código.</em></h1><p>Estude um conceito, resolva um exercício e aplique a solução no TaskFlow. Seu código fica salvo neste navegador.</p><div class="hero-buttons"><button class="button-primary" data-nav="aula/${st.last}">${st.completed.length?'Continuar estudando':'Começar pelo básico'} →</button><button class="button-ghost" data-nav="workspace">Abrir workspace</button></div></div><div class="hero-art"><div class="hero-code-card"><div class="window-dots"><i></i><i></i><i></i></div><div class="hero-code-lines"><span><b>const</b> projeto = &#123;</span><span>&nbsp;&nbsp;objetivo: <strong>'aprender'</strong>,</span><span>&nbsp;&nbsp;pratica: <strong>true</strong>,</span><span>&nbsp;&nbsp;resultado: <strong>'construir'</strong></span><span>&#125;;</span><span class="hero-comment">// Seu progresso começa aqui_</span></div></div><div class="hero-float">&lt;/&gt;</div></div></div><section class="stats-grid">${stat('▤',st.completed.length+'/'+allLessons.length,'aulas concluídas')}${stat('★',xp()+' XP','experiência conquistada')}${stat('🔥',streak()+' dias','sequência de estudos')}${stat('◈',percent('js')+'%','avanço em JavaScript')}</section><section class="learning-tools" aria-label="Próximas ações"><div class="learning-tools-copy"><span class="section-kicker">ESTUDE COM INTENÇÃO</span><h2>Praticar também é revisar.</h2><p>Recupere conceitos de memória e resolva problemas fora das aulas guiadas.</p></div><div class="learning-tools-grid"><button class="learning-tool" data-nav="revisao"><span class="learning-tool-symbol">↺</span><span><strong>Revisão espaçada</strong><small>${reviewsDue().length?reviewsDue().length+" conceito(s) para recordar hoje":"Nenhuma revisão vencida"}</small></span><span aria-hidden="true">→</span></button><button class="learning-tool" data-nav="desafios"><span class="learning-tool-symbol">◫</span><span><strong>Desafios independentes</strong><small>3 briefs, requisitos e editor próprio</small></span><span aria-hidden="true">→</span></button></div></section><section class="mission-promo"><div><span class="section-kicker">NOVA ÁREA · OFICINA</span><h2>Escreva, depure e comprove.</h2><p>Seis missões com verificação automática e um ambiente de execução isolado. Nas avaliações finais, não há código inicial.</p></div><button class="button-primary" data-nav="oficina">Abrir Oficina →</button></section><section class="micro-session"><div><span class="section-kicker">RETOME DE ONDE PAROU</span><h2>Uma aula de cada vez.</h2><p>Volte à última aula aberta e continue no mesmo ponto.</p></div><button class="button-primary" data-nav="aula/${st.last}">Continuar a trilha →</button></section><section class="section-block"><div class="section-heading"><div><span class="section-kicker">CURSOS</span><h2>Seu plano de estudos</h2><p>Fundamentos de JavaScript primeiro. TypeScript depois.</p></div></div><div class="tracks-grid">${trackCard('js')}${trackCard('ts')}</div></section><section class="project-feature"><div class="feature-icon">▤</div><div><span class="section-kicker">PROJETO PRÁTICO</span><h3>TaskFlow · projeto de aplicação</h3><p>Construa um gerenciador de tarefas aplicando cada conceito da teoria. Edite HTML, CSS e JavaScript com prévia ao vivo.</p></div><button class="button-outline" data-nav="workspace">Desenvolver com arquivos reais →</button></section><footer class="footer-note">DevLab · Projeto pessoal · Seu progresso é armazenado neste navegador.</footer></div>`;}
 function trackCard(lang){const js=lang==='js',value=percent(lang);const lessons=js?allJsLessons:allTsLessons;return `<div class="track-card"><div class="track-top"><div class="track-symbol ${js?'js-track-symbol':'ts-track-symbol'}">${js?'JS':'TS'}</div>${pill(js?'TRILHA PRINCIPAL':'ETAPA 2',js?'':'soft-blue')}</div><h3>${js?'JavaScript':'TypeScript'}</h3><p>${js?'Lógica, arrays, funções, DOM, APIs, armazenamento e aplicações completas.':'Tipagem, interfaces, funções seguras e modelos de dados para projetos maiores.'}</p><div class="track-meta"><span>▤ ${lessons.length} aulas</span><span>⌘ Editor + prévia</span></div><div class="track-bottom"><div class="progress-copy"><span>Seu progresso</span><strong>${lessons.filter(x=>st.completed.includes(x.id)).length}/${lessons.length}</strong></div>${progress(value)}<button data-nav="curso/${js?'javascript':'typescript'}">Explorar trilha →</button></div></div>`;}
 function course(lang){let units=lang==='ts'?tsUnits:jsUnits, lessons=lang==='ts'?allTsLessons:allJsLessons,done=lessons.filter(x=>st.completed.includes(x.id)).length;return `<div class="course-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="course-hero"><div class="course-badge ${lang==='ts'?'badge-ts':'badge-js'}">${lang==='ts'?'TS':'JS'}</div><div><span class="section-kicker">${lang==='ts'?'TRILHA 02 · PRÓXIMO PASSO':'TRILHA 01 · SUA BASE'}</span><h1>${lang==='ts'?'TypeScript':'JavaScript'}</h1><p>${lang==='ts'?'Adicione tipos à sua base de JavaScript e aprenda a criar sistemas mais seguros.':'Do zero à prática: desenvolva lógica, entenda o navegador e construa interfaces reais sem pular fundamentos.'}</p><div class="course-metrics"><span>▤ ${units.length} unidades</span><span>⌘ ${lessons.length} aulas</span><span>▶ Laboratório integrado</span></div></div></div>${lang==='ts'?'<div class="course-hint">ⓘ Recomendação: estude JavaScript antes de começar. O editor compila TypeScript e executa a página na prévia.</div>':''}<div class="course-progress"><div class="course-progress-top"><strong>Seu progresso na trilha</strong><span>${done}/${lessons.length} aulas · <strong>${percent(lang)}%</strong></span></div>${progress(percent(lang))}</div><div class="unit-section"><div class="section-heading"><div><span class="section-kicker">CONTEÚDO DO CURSO</span><h2>Unidades e aulas</h2><p>Estude em ordem ou abra a aula que quiser revisar.</p></div></div><div class="unit-cards">${units.map((u,i)=>`<div class="unit-card unit-path-card"><div class="unit-card-head"><div class="unit-number">${String(i+1).padStart(2,'0')}</div><div><h3>${esc(u.title.replace(/^\d+\. /,''))}</h3><p>${esc(u.subtitle)}</p></div><span class="unit-meta">${u.lessons.filter(l=>st.completed.includes(l.id)).length}/${u.lessons.length}</span></div><div class="unit-items">${u.lessons.map((l,j)=>`<button class="unit-item ${st.practicePassed.includes(l.id)?'unit-verified':''}" data-nav="aula/${l.id}"><span class="unit-item-icon ${st.completed.includes(l.id)?'completed':''}">${st.completed.includes(l.id)?'✓':String(j+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.summary)}</small></span><span class="unit-item-right">${l.minutes} min ›</span></button>`).join('')}</div></div>`).join('')}</div></div></div>`;}
 function project(){return `<div class="project-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="project-hero">${pill('▤ PROJETO PRÁTICO','hero-chip')}<h1>TaskFlow <span>— seu projeto evolutivo.</span></h1><p>Não é apenas uma série de exercícios. Você tem um produto próprio, que melhora conforme aprende. Todas as aulas compartilham o mesmo código no modo <strong>Projeto guiado</strong>.</p><button class="button-primary" data-nav="aula/${st.last}">⌘ Abrir meu código →</button></div><div class="project-stats">${stat('✓',st.milestones.length+'/'+allJsLessons.length,'marcos praticados')}${stat('⌘','HTML + CSS + JS','base do produto')}${stat('▣','Ao vivo','visualização da interface')}</div><div class="project-board"><div class="project-board-title"><span class="section-kicker">ROADMAP DO PRODUTO</span><h2>Implemente passo a passo</h2><p>Marque um marco depois de aplicar o conceito no seu projeto. A validação é manual.</p></div>${jsUnits.map((u,i)=>`<div class="project-unit"><div class="project-unit-head"><span class="project-stage">FASE ${String(i+1).padStart(2,'0')}</span><strong>${esc(u.title.replace(/^\d+\. /,''))}</strong></div><div class="project-todos">${u.lessons.map(l=>`<div class="project-todo"><button class="project-check ${st.milestones.includes(l.id)?'checked':''}" data-milestone="${l.id}" aria-label="${st.milestones.includes(l.id)?'Desmarcar':'Marcar'} marco">${st.milestones.includes(l.id)?'✓':''}</button><div><strong class="${st.milestones.includes(l.id)?'struck':''}">${esc(l.title)}</strong><p>${esc(l.project)}</p></div><button class="link-open" data-nav="aula/${l.id}">→</button></div>`).join('')}</div></div>`).join('')}<div class="project-unit"><div class="project-unit-head"><span class="project-stage ts-stage">PRÓXIMA FASE</span><strong>Melhorar o projeto com TypeScript</strong></div><p class="stage-desc">Depois de consolidar JS, modele tarefas com interfaces e tipifique suas funções.</p><button class="button-outline" data-nav="curso/typescript">Ir para TypeScript →</button></div></div></div>`;}
@@ -1785,8 +2065,8 @@ async function evaluateMission(){
 }
 
 function render(){const r=getRoute();if(r.page==='lesson'){st.last=currentLesson().id;save('last',st.last);if(!['html','css','js','ts'].includes(st.tab))st.tab=isTs(currentLesson())?'ts':'js';if(isTs(currentLesson())&&st.tab==='js')st.tab='ts';if(!isTs(currentLesson())&&st.tab==='ts')st.tab='js';}
- $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?'page-lesson':''}">${r.page==='home'?home():r.page==='course'?course(r.lang):r.page==='project'?project():r.page==='review'?reviewPage():r.page==='briefs'?briefsPage():r.page==='missions'?missionHubPage():r.page==='mission'?missionEditorPage():lessonPage(currentLesson())}</main></div></div>`;
- if(r.page==='lesson'){refreshEditor();runPreview();}else if(r.page==='mission'){refreshEditor();}
+ $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?'page-lesson':r.page==='workspace'?'page-workspace':''}">${r.page==='home'?home():r.page==='workspace'?workspacePage():r.page==='course'?course(r.lang):r.page==='project'?project():r.page==='review'?reviewPage():r.page==='briefs'?briefsPage():r.page==='missions'?missionHubPage():r.page==='mission'?missionEditorPage():lessonPage(currentLesson())}</main></div></div>`;
+ if(r.page==='lesson'){refreshEditor();runPreview();}else if(r.page==='mission'){refreshEditor();}else if(r.page==='workspace'){workspaceMount();}
 }
 function refreshEditor(){const editor=$('#code-editor');if(!editor)return;const value=editor.value;const el=$('#syntax-layer');if(el)el.innerHTML=syntax(value);const gutter=$('#editor-lines');if(gutter)gutter.textContent=Array.from({length:Math.max(1,value.split('\n').length)},(_,i)=>String(i+1)).join('\n');}
 function onEditorInput(){if(getRoute().page==='mission'){const id=getRoute().id;st.missionAttempt++;st.missionDrafts[id]=$('#code-editor').value;save('mission-drafts',st.missionDrafts);if(st.missionProgress[id]?.passed && st.missionProgress[id].passedCode!==st.missionDrafts[id]){st.missionProgress[id].passed=false;save('mission-progress',st.missionProgress);const status=$('.mission-status');if(status){status.textContent='Aguardando testes';status.classList.remove('is-passed');}const counter=$('.side-link[data-nav="oficina"] .side-count');if(counter)counter.textContent=missions.filter(m=>st.missionProgress[m.id]?.passed).length+'/'+missions.length;}st.missionResult=null;st.missionChecking=false;refreshEditor();return;}if(st.pendingCheck){clearTimeout(st.pendingCheck.timer);st.pendingCheck=null;}st.checkResult=null;const l=currentLesson(),draft=activeDraft(l),tab=activeTab(l);draft[tab]=$('#code-editor').value;if(st.mode==='exercise'){st.exercises[l.id]=draft;save('exercises',st.exercises)}else if(st.mode==='brief'){st.briefDrafts[st.activeBrief]=draft;save('brief-drafts',st.briefDrafts)}else if(isTs(l))save('project-ts',st.projectTs);else save('project-js',st.projectJs);if(st.mode==='exercise' && st.verifiedDrafts[l.id] && st.verifiedDrafts[l.id]!==JSON.stringify(draft)){delete st.verifiedDrafts[l.id];save('verified-drafts',st.verifiedDrafts);st.practicePassed=st.practicePassed.filter(id=>id!==l.id);save('practice-passed',st.practicePassed);}refreshEditor();clearTimeout(runnerTimer);runnerTimer=setTimeout(runPreview,650);}
@@ -1886,7 +2166,7 @@ async function checkLessonContract(l,draft,inspection){
  inspection.passed=inspection.checks.length>0&&inspection.checks.every(c=>c.ok);
  finishCheck(l.id,inspection);
 }
-function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=findMission(id);if(!m)return;if(name==='run-tests'){evaluateMission();return;}if(name==='mission-hint'){st.missionHint=!st.missionHint;render();return;}if(name==='mission-reset'){if(!confirm('Restaurar o código da missão? Suas alterações serão perdidas.'))return;st.missionAttempt++;delete st.missionDrafts[id];save('mission-drafts',st.missionDrafts);st.missionResult=null;st.missionChecking=false;render();return;}if(name==='mission-export'){downloadFile(m.id+'.js',missionDraft(id),'text/javascript');return;}return;}const l=currentLesson(),draft=activeDraft(l);switch(name){
+function action(name){if(getRoute().page==='workspace')return;if(getRoute().page==='mission'){const id=getRoute().id,m=findMission(id);if(!m)return;if(name==='run-tests'){evaluateMission();return;}if(name==='mission-hint'){st.missionHint=!st.missionHint;render();return;}if(name==='mission-reset'){if(!confirm('Restaurar o código da missão? Suas alterações serão perdidas.'))return;st.missionAttempt++;delete st.missionDrafts[id];save('mission-drafts',st.missionDrafts);st.missionResult=null;st.missionChecking=false;render();return;}if(name==='mission-export'){downloadFile(m.id+'.js',missionDraft(id),'text/javascript');return;}return;}const l=currentLesson(),draft=activeDraft(l);switch(name){
  case 'run':runPreview();break;
  case 'hint':st.hintShown=!st.hintShown;render();break;
  case 'check-exercise':{
@@ -1948,9 +2228,187 @@ window.addEventListener('scroll',event=>{if(event.target?.id==='code-editor'){
 window.addEventListener('keydown',event=>{const target=event.target;if(target?.id!=='code-editor')return;if(event.key==='Tab'){
  event.preventDefault();const s=target.selectionStart,e=target.selectionEnd;target.value=target.value.slice(0,s)+'  '+target.value.slice(e);target.selectionStart=target.selectionEnd=s+2;onEditorInput();
  }else if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();if(getRoute().page==='mission')evaluateMission();else runPreview();}});
-window.addEventListener('hashchange',()=>{st.missionAttempt++;st.missionResult=null;st.missionChecking=false;st.missionHint=false;if(getRoute().page==='mission'){st.mobileMenu=false;render();return;}st.mode=st.openBriefIntent?'brief':'exercise';st.openBriefIntent=false;st.tab=isTs(currentLesson())?'ts':'js';st.consoleOpen=false;st.mobileMenu=false;st.step=st.practicePassed.includes(currentLesson().id)?'build':st.quizPassed.includes(currentLesson().id)?'practice':'learn';st.checkResult=null;st.pendingCheck=null;st.hintShown=false;render();});
+window.addEventListener('hashchange',()=>{workspaceEditorDispose();st.missionAttempt++;st.missionResult=null;st.missionChecking=false;st.missionHint=false;if(getRoute().page==='mission'){st.mobileMenu=false;render();return;}if(getRoute().page==='workspace'){st.mobileMenu=false;render();return;}st.mode=st.openBriefIntent?'brief':'exercise';st.openBriefIntent=false;st.tab=isTs(currentLesson())?'ts':'js';st.consoleOpen=false;st.mobileMenu=false;st.step=st.practicePassed.includes(currentLesson().id)?'build':st.quizPassed.includes(currentLesson().id)?'practice':'learn';st.checkResult=null;st.pendingCheck=null;st.hintShown=false;render();});
 for(const id of st.quizPassed){st.reviews=enrollReview(st.reviews,id,localDateKey());}
 save('reviews',st.reviews);
 st.step=st.practicePassed.includes(currentLesson().id)?'build':st.quizPassed.includes(currentLesson().id)?'practice':'learn';
+
+/* Sprint 8: workspace de múltiplos arquivos para projetos reais (sem substituir a Oficina). */
+const wst = {
+  projects: load('workspace-projects', {}), activeId: load('workspace-active', ''), selected: '', logs: [],
+  token: 0, device: 'desktop', consoleOpen: true, timer: null, editor: null, editorModel: null,
+  monacoRequested: false, monacoLoading: false, monacoAvailable: Boolean(window.monaco?.editor),
+  lastReady: false, popupKind: null, popupTarget: null
+};
+function workspaceInit() {
+  const projects = Object.values(wst.projects).filter(p => {try { validateWorkspace(p);return true; }catch {return false;}});
+  if(!projects.length){const project=createWorkspace('modular','TaskFlow modular');wst.projects={[project.id]:project};wst.activeId=project.id;workspaceSave();}
+  else if(!wst.projects[wst.activeId])wst.activeId=projects[0].id;
+  wst.selected=wst.projects[wst.activeId]?.selected||'src/main.js';
+}
+function workspaceProject(){return wst.projects[wst.activeId];}
+function workspaceSave(){
+  try{localStorage.setItem(PREFIX+'workspace-projects',JSON.stringify(wst.projects));localStorage.setItem(PREFIX+'workspace-active',JSON.stringify(wst.activeId));return true;}
+  catch(error){console.warn('Workspace sem espaço de armazenamento',error);const status=$('#ws-save-status');if(status)status.textContent='Falha ao salvar · exporte um ZIP';return false;}
+}
+function workspaceUpdate(updated, selected=updated.selected){
+  updated.updated=Date.now(); updated.selected=selected; validateWorkspace(updated);
+  wst.projects[updated.id]=updated;wst.selected=selected;workspaceSave();
+}
+function workspaceType(path){return path.endsWith('.html')?'HTML':path.endsWith('.css')?'CSS':path.endsWith('.json')?'JSON':'JS';}
+function workspaceTree(project){
+  const files=Object.keys(project.files).sort((a,b)=>a.localeCompare(b,'pt-BR'));
+  const folders=[...new Set([...(project.folders||[]),...files.flatMap(path=>path.split('/').slice(0,-1).map((_,i)=>path.split('/').slice(0,i+1).join('/')))])].sort();
+  const nodes=[...folders.map(path=>({path,folder:true})),...files.map(path=>({path,folder:false}))].sort((a,b)=>a.path.localeCompare(b.path,'pt-BR'));
+  return nodes.map(node=>{
+    const depth=node.path.split('/').length-1;
+    if(node.folder)return `<div class="ws-tree-folder" style="--depth:${depth}"><span aria-hidden="true">⌄</span> ${esc(node.path.split('/').at(-1))}</div>`;
+    const active=node.path===wst.selected;
+    return `<button role="treeitem" aria-selected="${active}" class="ws-tree-file ${active?'active':''}" style="--depth:${depth}" data-ws-file="${esc(node.path)}" title="${esc(node.path)}"><span class="ws-file-ext ext-${workspaceType(node.path).toLowerCase()}">${workspaceType(node.path)==='HTML'?'◇':workspaceType(node.path)==='CSS'?'#':workspaceType(node.path)==='JSON'?'{}':'JS'}</span><span>${esc(node.path.split('/').at(-1))}</span>${node.path===project.entry?'<small>●</small>':''}</button>`;
+  }).join('');
+}
+function workspacePage(){
+  const p=workspaceProject();
+  if(!p)return '<div class="study-page">Projeto indisponível.</div>';
+  if(!Object.hasOwn(p.files,wst.selected))wst.selected=p.entry;
+  const tabs=Object.keys(p.files).sort((a,b)=>a===p.entry?-1:b===p.entry?1:a.localeCompare(b));
+  const value=p.files[wst.selected]||'';
+  return `<section class="ws-page" aria-label="Workspace de desenvolvimento">
+    <div class="ws-page-heading"><div><span class="section-kicker">SPRINT 08 · DESENVOLVIMENTO REAL</span><h1>Seu espaço de desenvolvimento.</h1><p>Organize arquivos, conecte módulos com import/export e veja a aplicação ganhar forma.</p></div><div class="ws-header-actions"><button data-ws-action="import-taskflow" class="ws-outline">Trazer TaskFlow das aulas</button><button data-ws-action="export" class="ws-main-button">↓ Exportar ZIP</button></div></div>
+    <div class="ws-toolbar"><div class="ws-select-wrap"><label for="ws-project-select">Projeto</label><select id="ws-project-select">${Object.values(wst.projects).map(item=>`<option value="${esc(item.id)}" ${item.id===p.id?'selected':''}>${esc(item.name)}</option>`).join('')}</select></div><button data-ws-action="new-project" title="Novo projeto">＋ Novo projeto</button><button data-ws-action="rename-project" title="Renomear projeto">Renomear</button><span class="ws-toolbar-spacer"></span><span class="ws-storage"><span class="ws-storage-dot"></span><span id="ws-save-status">Arquivos salvos neste navegador</span></span></div>
+    <div class="ws-shell"><aside class="ws-explorer"><div class="ws-explorer-head"><span>EXPLORADOR</span><div><button data-ws-action="add-file" title="Novo arquivo" aria-label="Novo arquivo">＋</button><button data-ws-action="add-folder" title="Nova pasta" aria-label="Nova pasta">▤</button></div></div><div class="ws-explorer-project">▾ ${esc(p.name)}</div><nav role="tree" aria-label="Arquivos do projeto">${workspaceTree(p)}</nav><div class="ws-explorer-help"><strong>Estrutura real</strong><p>Use <code>import</code> e <code>export</code> em arquivos .js. O projeto é executado na prévia isolada.</p></div></aside>
+    <div class="ws-central"><div class="ws-editor-tabs" role="tablist" aria-label="Abas de arquivos">${tabs.map(path=>`<button role="tab" aria-selected="${path===wst.selected}" class="ws-editor-tab ${path===wst.selected?'selected':''}" data-ws-file="${esc(path)}" title="${esc(path)}">${esc(path.split('/').at(-1))}</button>`).join('')}</div><div class="ws-file-toolbar"><span><span class="ws-file-dot"></span>${esc(wst.selected)}</span><div><span id="ws-editor-kind">Editor de código</span><button data-ws-action="set-entry" ${wst.selected===p.entry?'disabled':''} title="Executar este módulo inicial">${wst.selected===p.entry?'● Inicial':'Definir inicial'}</button><button data-ws-action="rename-file" title="Renomear arquivo">Renomear</button><button data-ws-action="delete-file" class="ws-danger" title="Excluir arquivo">Excluir</button></div></div><div class="ws-editor-area"><div id="ws-editor-monaco" class="ws-monaco"></div><div class="ws-fallback" id="ws-editor-fallback"><div id="ws-editor-lines" class="ws-lines">1</div><div class="ws-edit-code"><pre id="ws-syntax" aria-hidden="true">${syntax(value)}</pre><textarea id="ws-code-editor" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off" aria-label="Código do arquivo ${esc(wst.selected)}">${esc(value)}</textarea></div></div></div><div class="ws-editor-bottom"><span><kbd>Ctrl</kbd> + <kbd>Enter</kbd> para executar</span><button data-ws-action="run" class="ws-run">▶ Executar projeto</button></div></div>
+    <div class="ws-output"><div class="ws-output-header"><div><strong>Prévia</strong><span id="ws-live-dot" class="ws-preview-dot"></span></div><div class="ws-output-device"><button data-ws-action="desktop" class="${wst.device==='desktop'?'active':''}" aria-label="Prévia desktop">▣</button><button data-ws-action="mobile" class="${wst.device==='mobile'?'active':''}" aria-label="Prévia celular">▯</button><button data-ws-action="run" aria-label="Atualizar prévia">↻</button></div></div><div class="ws-frame-container ${wst.device==='mobile'?'ws-frame-mobile':''}"><iframe id="ws-preview-frame" sandbox="allow-scripts allow-forms" title="Aplicação em execução isolada"></iframe></div><div class="ws-console-header"><strong>Console</strong><span id="ws-console-count">0</span><button data-ws-action="clear-console">Limpar</button></div><div class="ws-console" id="ws-console" aria-live="polite">${workspaceLogs()}</div><div class="ws-output-foot" id="ws-preview-status">Prévia isolada · HTML, CSS e módulos JavaScript</div></div></div>
+    <div class="ws-guidance"><strong>Pratique como em um projeto real</strong><p>Comece em <code>src/main.js</code>, investigue <code>src/tasks.js</code> e experimente criar um módulo. O JavaScript executa apenas dentro de um iframe isolado. Não digite senhas ou credenciais. Para usar npm, backend e um terminal de verdade, exporte o ZIP e abra no VS Code.</p></div>
+    <dialog id="ws-dialog" class="ws-dialog"><form id="ws-dialog-form"><h2 id="ws-dialog-title">Novo arquivo</h2><p id="ws-dialog-description">Caminhos relativos, como src/helpers.js</p><label for="ws-dialog-value" id="ws-dialog-label">Caminho ou nome</label><input type="text" id="ws-dialog-value" maxlength="180" required autocomplete="off"><p id="ws-dialog-error" class="ws-dialog-error" role="alert"></p><div><button type="button" data-ws-action="cancel-dialog" class="ws-outline">Cancelar</button><button type="submit" class="ws-main-button">Confirmar</button></div></form></dialog>
+  </section>`;
+}
+function workspaceLogs(){return wst.logs.length?wst.logs.map(row=>`<div class="ws-console-row level-${esc(row.level)}"><span>${row.level==='error'?'×':row.level==='warn'?'!':'›'}</span><code>${esc((row.args||[]).join(' '))}</code></div>`).join(''):'<p class="ws-console-empty">Use console.log() no seu módulo para acompanhar a execução.</p>';}
+function workspaceUpdateLogs(){const el=$('#ws-console'),count=$('#ws-console-count');if(el){el.innerHTML=workspaceLogs();el.scrollTop=el.scrollHeight;}if(count)count.textContent=String(wst.logs.length);}
+function workspaceEditorDispose(){if(wst.editor){try{wst.editor.dispose()}catch{}wst.editor=null;}if(wst.editorModel){try{wst.editorModel.dispose()}catch{}wst.editorModel=null;}}
+function workspaceUpdateSyntax(){const input=$('#ws-code-editor');if(!input)return;const pre=$('#ws-syntax'),lines=$('#ws-editor-lines');if(pre)pre.innerHTML=syntax(input.value);if(lines)lines.textContent=Array.from({length:Math.max(1,input.value.split('\n').length)},(_,i)=>i+1).join('\n');}
+function workspaceEditorValue(value){
+  const p=workspaceProject();if(!p || !Object.hasOwn(p.files,wst.selected))return;
+  try{const updated={...p,files:{...p.files,[wst.selected]:value}};validateWorkspace(updated);workspaceUpdate(updated,wst.selected);const label=$('#ws-save-status');if(label)label.textContent='Salvo agora';}
+  catch(error){const label=$('#ws-save-status');if(label)label.textContent=error.message;return;}
+  workspaceUpdateSyntax();clearTimeout(wst.timer);wst.timer=setTimeout(workspaceRunPreview,750);
+}
+function workspaceMonacoMount(){
+  const p=workspaceProject(),target=$('#ws-editor-monaco');if(!target||!p)return;
+  const fallback=$('#ws-editor-fallback');
+  if(!window.monaco?.editor){workspaceMonacoLoad();return;}
+  if(wst.editor)return;
+  try{
+    const path=wst.selected,lang=path.endsWith('.css')?'css':path.endsWith('.html')?'html':path.endsWith('.json')?'json':'javascript';
+    wst.editorModel=window.monaco.editor.createModel(p.files[path],lang);
+    wst.editor=window.monaco.editor.create(target,{model:wst.editorModel,theme:'vs-dark',fontFamily:'Consolas, Menlo, monospace',fontSize:13,minimap:{enabled:false},scrollBeyondLastLine:false,automaticLayout:true,wordWrap:'on',tabSize:2,renderLineHighlight:'line',padding:{top:18},overviewRulerBorder:false});
+    wst.editor.onDidChangeModelContent(()=>workspaceEditorValue(wst.editor.getValue()));
+    wst.editor.addCommand(window.monaco.KeyMod.CtrlCmd|window.monaco.KeyCode.Enter,()=>workspaceRunPreview());
+    target.style.display='block';if(fallback)fallback.style.display='none';const kind=$('#ws-editor-kind');if(kind)kind.textContent='Monaco Editor';
+  }catch(error){console.warn('Monaco indisponível; usando editor nativo.',error);workspaceEditorDispose();}
+}
+function workspaceMonacoLoad(){
+  if(wst.monacoRequested)return;wst.monacoRequested=true;
+  const base='https://cdn.jsdelivr.net/npm/monaco-editor@0.52.2/min/vs';
+  const script=document.createElement('script');script.src=base+'/loader.js';script.async=true;
+  script.onload=()=>{try{window.require.config({paths:{vs:base}});window.require(['vs/editor/editor.main'],()=>{if(getRoute().page==='workspace')workspaceMonacoMount();},()=>{});}catch(error){console.warn('Não foi possível carregar o Monaco',error);}};
+  script.onerror=()=>{const kind=$('#ws-editor-kind');if(kind)kind.textContent='Editor local (offline)';};
+  document.head.appendChild(script);
+}
+function workspaceMount(){workspaceUpdateSyntax();workspaceMonacoMount();workspaceRunPreview();}
+function workspaceStorageBucket(){return PREFIX+'workspace-preview:'+wst.activeId;}
+function workspaceStorage(){try{const value=JSON.parse(localStorage.getItem(workspaceStorageBucket())||'{}');return value&&typeof value==='object'&&!Array.isArray(value)?value:{};}catch{return {};}}
+function workspaceRunPreview(){
+  const frame=$('#ws-preview-frame');if(!frame)return;
+  const p=workspaceProject();wst.logs=[];wst.lastReady=false;workspaceUpdateLogs();
+  const status=$('#ws-preview-status');if(status)status.textContent='Executando módulos…';
+  const token=++wst.token;
+  try{
+    const src=buildWorkspacePreview(p,token,workspaceStorage());
+    frame.srcdoc=src;
+  }catch(error){wst.logs.push({level:'error',args:[error.message||String(error)]});workspaceUpdateLogs();if(status)status.textContent='Erro de configuração · veja o console';frame.srcdoc='<!doctype html><title>Erro de projeto</title><p>Corrija o problema indicado no console.</p>';}
+}
+window.addEventListener('message',event=>{
+  if(getRoute().page!=='workspace')return;
+  const frame=$('#ws-preview-frame'),data=event.data;
+  if(!frame||event.source!==frame.contentWindow||!data||data.__devlab_workspace!==true||data.token!==wst.token)return;
+  if(data.kind==='log'){wst.logs.push(data.payload);if(wst.logs.length>120)wst.logs.shift();workspaceUpdateLogs();}
+  else if(data.kind==='ready'){wst.lastReady=true;const status=$('#ws-preview-status');if(status)status.textContent='Projeto carregado · origem isolada';const dot=$('#ws-live-dot');if(dot)dot.classList.add('ready');}
+  else if(data.kind==='storage'){try{localStorage.setItem(workspaceStorageBucket(),JSON.stringify(data.payload));}catch(error){wst.logs.push({level:'error',args:['Não foi possível persistir localStorage do projeto.']});workspaceUpdateLogs();}}
+});
+function workspaceShowDialog(kind,initial='',target=''){
+  const dialog=$('#ws-dialog');if(!dialog)return;
+  const labels={'add-file':['Novo arquivo','Digite o caminho, incluindo a extensão, como src/utils.js.'],'add-folder':['Nova pasta','Digite o caminho da pasta, como src/components.'],'rename-file':['Renomear arquivo','Os imports que usam o nome antigo precisam ser atualizados manualmente.'],'new-project':['Novo projeto','O projeto atual continua salvo.'],'rename-project':['Renomear projeto','Altere o nome de exibição deste projeto.']};
+  wst.popupKind=kind;wst.popupTarget=target;
+  $('#ws-dialog-title').textContent=labels[kind][0];$('#ws-dialog-description').textContent=labels[kind][1];$('#ws-dialog-value').value=initial;$('#ws-dialog-error').textContent='';
+  dialog.showModal();$('#ws-dialog-value').focus();
+}
+function workspaceSubmitDialog(){
+  const kind=wst.popupKind,value=$('#ws-dialog-value').value.trim(),p=workspaceProject();let next;
+  try{
+    if(!value)throw new Error('Preencha este campo.');
+    if(kind==='add-file'){next=workspaceAdd(p,value);workspaceUpdate(next,value);}
+    else if(kind==='add-folder'){next=workspaceAddFolder(p,value);workspaceUpdate(next);}
+    else if(kind==='rename-file'){next=workspaceRename(p,wst.popupTarget,value);workspaceUpdate(next,next.selected);}
+    else if(kind==='new-project'){
+      if(value.length>60)throw new Error('Máximo de 60 caracteres.');
+      next=createWorkspace('modular',value);wst.projects[next.id]=next;wst.activeId=next.id;wst.selected=next.entry;workspaceSave();
+    }else if(kind==='rename-project'){if(value.length>60)throw new Error('Máximo de 60 caracteres.');workspaceUpdate({...p,name:value});}
+    $('#ws-dialog').close();workspaceEditorDispose();render();
+  }catch(error){$('#ws-dialog-error').textContent=error.message||String(error);}
+}
+function workspaceAction(name){
+  const p=workspaceProject();if(!p)return;
+  if(name==='run'){workspaceRunPreview();return;}
+  if(name==='desktop'||name==='mobile'){wst.device=name;workspaceEditorDispose();render();return;}
+  if(name==='clear-console'){wst.logs=[];workspaceUpdateLogs();return;}
+  if(name==='cancel-dialog'){$('#ws-dialog')?.close();return;}
+  if(name==='add-file'||name==='add-folder'||name==='new-project')return workspaceShowDialog(name);
+  if(name==='rename-project')return workspaceShowDialog(name,p.name);
+  if(name==='rename-file')return workspaceShowDialog(name,wst.selected,wst.selected);
+  if(name==='delete-file'){
+    if(!confirm('Excluir '+wst.selected+'? Essa operação não pode ser desfeita.'))return;
+    try{workspaceUpdate(workspaceDelete(p,wst.selected));workspaceEditorDispose();render();}catch(error){toast(error.message)}return;
+  }
+  if(name==='set-entry'){
+    if(!/\.(js|mjs)$/.test(wst.selected)){toast('Escolha um arquivo .js para ser o módulo inicial.');return;}
+    try{workspaceUpdate({...p,entry:wst.selected});workspaceEditorDispose();render();}catch(error){toast(error.message)}return;
+  }
+  if(name==='import-taskflow'){
+    if(!confirm('Criar uma cópia do TaskFlow atual das aulas em um novo projeto? O original será preservado.'))return;
+    const clone=createWorkspace('basic','TaskFlow · cópia das aulas');
+    clone.files['index.html']=st.projectJs.html||clone.files['index.html'];clone.files['styles/style.css']=st.projectJs.css||clone.files['styles/style.css'];clone.files['src/main.js']=st.projectJs.js||clone.files['src/main.js'];
+    try{validateWorkspace(clone);wst.projects[clone.id]=clone;wst.activeId=clone.id;wst.selected=clone.entry;workspaceSave();workspaceEditorDispose();render();toast('Cópia criada sem alterar o TaskFlow original.');}catch(error){toast(error.message)}return;
+  }
+  if(name==='export'){
+    try{const data=workspaceZip(p);const url=URL.createObjectURL(data);const link=document.createElement('a');link.href=url;link.download=(p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'devlab-projeto')+'.zip';link.click();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('Projeto exportado em ZIP.');}
+    catch(error){toast('Exportação falhou: '+error.message)}
+  }
+}
+window.addEventListener('click',event=>{
+  if(getRoute().page!=='workspace')return;
+  const file=event.target.closest('[data-ws-file]');
+  if(file){const p=workspaceProject(),next=file.dataset.wsFile;if(!Object.hasOwn(p.files,next)||next===wst.selected)return;workspaceEditorDispose();wst.selected=next;p.selected=next;workspaceSave();render();return;}
+  const control=event.target.closest('[data-ws-action]');if(control){workspaceAction(control.dataset.wsAction);}
+});
+window.addEventListener('input',event=>{
+  if(getRoute().page==='workspace'&&event.target?.id==='ws-code-editor')workspaceEditorValue(event.target.value);
+});
+window.addEventListener('scroll',event=>{
+  if(event.target?.id!=='ws-code-editor')return;const editor=event.target,highlight=$('#ws-syntax'),lines=$('#ws-editor-lines');if(highlight){highlight.scrollTop=editor.scrollTop;highlight.scrollLeft=editor.scrollLeft;}if(lines)lines.scrollTop=editor.scrollTop;
+},true);
+window.addEventListener('keydown',event=>{
+  if(getRoute().page!=='workspace')return;
+  if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();workspaceRunPreview();return;}
+  if(event.target?.id==='ws-code-editor'&&event.key==='Tab'){event.preventDefault();const input=event.target,start=input.selectionStart,end=input.selectionEnd;input.value=input.value.slice(0,start)+'  '+input.value.slice(end);input.selectionStart=input.selectionEnd=start+2;workspaceEditorValue(input.value);}
+});
+window.addEventListener('change',event=>{
+  if(event.target?.id==='ws-project-select'){const id=event.target.value;if(!wst.projects[id])return;wst.activeId=id;wst.selected=wst.projects[id].selected||wst.projects[id].entry;workspaceSave();workspaceEditorDispose();render();}
+});
+window.addEventListener('submit',event=>{
+  if(event.target?.id==='ws-dialog-form'){event.preventDefault();workspaceSubmitDialog();}
+});
+workspaceInit();
+
 render();
 </script></body></html>

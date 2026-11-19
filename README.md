@@ -1,5 +1,13 @@
 # DevLab — Aprenda construindo
 
+## DevLab 8.0 — Workspace profissional (arquivos reais)
+
+O novo caminho `#/workspace` abre um ambiente com **explorador de arquivos**, pastas, abas, editor, prévia, console e projetos separados. O projeto inicial TaskFlow modular tem `index.html`, CSS e dois módulos JavaScript conectados com `import/export`. É possível adicionar/renomear/excluir arquivos, editar e executar o projeto, copiar o TaskFlow das aulas para outro projeto e **exportar ZIP** para o VS Code.
+
+O Workspace publica a versão estática, e pode carregar Monaco pelo CDN quando há conexão; caso contrário mantém o editor nativo completo. Os dados ficam no armazenamento local e **não** substituem o progresso anterior. Consulte [arquitetura, testes, instruções e limites](docs/SPRINT-8.md).
+
+
+
 ## DevLab 7.0 — avaliação por contratos e casos-limite
 
 - **27 das 29 aulas** agora têm testes automatizados: 12 com interações de DOM e **15 novos contratos** de funções, incluindo as cinco aulas de TypeScript. Os dois marcos finais de produto e README continuam orientativos, pois exigem evidências de entrega, não apenas uma saída de função.

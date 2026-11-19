@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080c14"><meta name="description" content="DevLab - Curso prático de JavaScript e TypeScript com editor e prévia."><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f7f5"><meta name="description" content="DevLab - Curso prático de JavaScript e TypeScript com editor e prévia."><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
 .app-layout{display:flex;min-height:100vh}.sidebar{width:274px;min-width:274px;height:100vh;position:sticky;top:0;display:flex;flex-direction:column;background:#0c111c;border-right:1px solid #1a2332;z-index:10}.sidebar-top{padding:26px 20px 27px;border-bottom:1px solid #1a2332;display:flex;align-items:center;justify-content:space-between}.brand-button{display:flex;align-items:center;gap:11px;background:none;color:white;padding:0;text-align:left}.logo-symbol{height:37px;width:37px;display:grid;place-items:center;border-radius:11px;color:#061b1a;background:linear-gradient(145deg,#77eed4,#37b9b0);box-shadow:0 5px 20px #20d4b326}.brand-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.3px;line-height:1}.brand-text>span{color:#63e3c8}.brand-text small{display:block;margin-top:7px;font:700 8px 'DM Sans',sans-serif;color:#74839c;letter-spacing:1.65px}.sidebar-scroll{overflow:auto;flex:1;padding:21px 13px 15px}.sidebar-group{margin-bottom:22px}.sidebar-label{color:#687991;letter-spacing:1.35px;font-size:10px;font-weight:800;margin:0 11px 11px}.side-link,.course-link,.unit-toggle,.lesson-link{width:100%;display:flex;align-items:center;text-align:left;background:transparent;color:#99a8c0}.side-link{gap:13px;padding:11px 12px;border-radius:8px;font-size:13px;font-weight:600}.side-link svg{color:#8191ab}.side-link:hover,.side-link.selected{color:#e8fff9;background:#172934}.side-link.selected svg{color:#6fe6ce}.side-count{margin-left:auto;font-size:10px;color:#66748a}.side-search{border:1px solid #253044;border-radius:9px;height:38px;padding:0 10px;display:flex;align-items:center;gap:8px;margin:6px 8px 24px;color:#687991;background:#101724}.side-search input{width:100%;min-width:0;outline:none;border:0;background:none;color:#dce6f6;font-size:12px}.side-search input::placeholder{color:#647189}.course-link{padding:9px 10px;gap:10px;border-radius:10px;margin-bottom:10px;color:white}.course-link:hover,.selected-course{background:#151f31}.course-link>span:nth-child(2){flex:1;font-size:13px;font-weight:750}.course-link small{display:block;color:#7d8ba6;margin-top:5px;font-size:10px;font-weight:500}.course-link>svg{color:#596980}.js-logo,.ts-logo{width:31px;height:31px;border-radius:7px;display:grid;place-items:center;color:#292500;background:#f7df1e;font-weight:900;font-size:12px}.ts-logo{background:#3178c6;color:white}.nav-unit{margin:0 0 7px 11px;border-left:1px solid #253045}.unit-toggle{justify-content:space-between;font-size:11px;color:#8c9bb4;padding:10px 10px;font-weight:700}.unit-toggle:hover{color:#e6eefd}.unit-lessons{padding-bottom:7px}.lesson-link{gap:8px;padding:7px 9px 7px 12px;font-size:11.5px;line-height:1.4;border-radius:7px;margin-left:2px;width:calc(100% - 3px)}.lesson-link>span:last-child{flex:1}.lesson-link:hover{color:#e4f5fa;background:#152134}.lesson-link.active-lesson{color:#6fe6ce;background:#102e30;font-weight:700}.lesson-status{display:flex;align-items:center;justify-content:center;min-width:13px;color:#485670}.lesson-status.done{color:#5cddbc}.ts-nav{margin-top:26px}.sidebar-bottom{padding:15px 18px;display:flex;gap:10px;align-items:center;border-top:1px solid #1a2332}.avatar{width:33px;height:33px;border:1px solid #354c64;border-radius:50%;display:grid;place-items:center;color:#72e5ce;background:#1b3640;font-weight:800}.sidebar-bottom>div:nth-child(2){flex:1}.sidebar-bottom strong{display:block;font-size:12px}.sidebar-bottom small{display:block;color:#687991;font-size:9.5px;margin-top:4px}.online-dot,.sync-dot,.welcome-dot,.workspace-status,.preview-status{width:7px;height:7px;display:inline-block;background:#61e3b8;border-radius:50%;box-shadow:0 0 12px #2ce1aa55}.close-sidebar,.mobile-menu-btn,.mobile-overlay{display:none!important}
 .main-pane{flex:1;min-width:0;background:radial-gradient(circle at 75% -10%,#17223a 0%,transparent 32%),#080c14}.topbar{height:71px;position:sticky;top:0;z-index:5;background:#080c14ed;backdrop-filter:blur(16px);border-bottom:1px solid #202838;display:flex;align-items:center;justify-content:space-between;padding:0 39px;gap:15px}.topbar-left,.topbar-right,.breadcrumbs{display:flex;align-items:center;gap:11px}.breadcrumbs{color:#75849f;font-size:11px;min-width:0;flex-wrap:wrap}.breadcrumbs button{background:none;color:#8b9bb5;padding:0}.breadcrumbs button:hover{color:white}.breadcrumbs span{color:#d5dfed;max-width:230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sync-label{color:#8190a7;font-size:10.5px}.sync-label .sync-dot{margin-right:7px}.topbar-project{border:1px solid #314057;background:#162033;color:#d8e4f5;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}.topbar-project:hover{background:#1d3041}.main-content{max-width:1600px;padding:42px 46px 72px;margin:0 auto}.section-kicker{color:#67dfc6;letter-spacing:1.7px;font-size:10px;font-weight:800}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.section-heading h2{font-size:24px;margin:9px 0}.section-heading p{color:#8998b2;font-size:13px;margin:0}.back-link{display:flex;align-items:center;gap:8px;color:#94a4bd;background:none;padding:0;margin-bottom:22px;font-size:12px;font-weight:650}.back-link:hover{color:#5fe4c4}
 .welcome-overline{display:flex;align-items:center;gap:9px;color:#9da9bf;letter-spacing:2px;font-size:10px;font-weight:800;margin-bottom:17px}.hero-banner{min-height:348px;border:1px solid #24324b;border-radius:18px;overflow:hidden;background:radial-gradient(circle at 93% 5%,#173d49 0%,transparent 45%),linear-gradient(115deg,#17253e 2%,#121b2e 55%,#11252f 100%);display:flex;justify-content:space-between;gap:10px;padding:45px 50px;position:relative}.hero-banner::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,#8fa9ca0e 1px,transparent 1px),linear-gradient(#8fa9ca0e 1px,transparent 1px);background-size:43px 43px;mask-image:linear-gradient(90deg,transparent,#000)}.hero-text{position:relative;z-index:1;max-width:650px}.pill{display:inline-flex;align-items:center;gap:7px;color:#89abbd;border:1px solid #344459;background:#1b273c;padding:7px 10px;border-radius:6px;font-size:9px;font-weight:850;letter-spacing:.8px;white-space:nowrap}.hero-chip{color:#5ee5c7;border-color:#2a655e;background:#1c4545}.soft-blue{background:#1e3551;border-color:#2c5284;color:#7bb7ff}.hero-banner h1{font-size:clamp(29px,3.2vw,45px);line-height:1.24;margin:25px 0 14px;color:#f6f9ff;letter-spacing:-1.7px}.hero-banner h1 em{font-style:normal;color:#67e2c5}.hero-text>p{font-size:13px;color:#aabbd2;line-height:1.85;max-width:570px}.hero-buttons{display:flex;align-items:center;gap:12px;margin-top:26px}.button-primary{background:#69e6c8;color:#092621;border:1px solid #69e6c8;border-radius:9px;padding:12px 16px;display:inline-flex;align-items:center;justify-content:center;gap:11px;font-weight:850;font-size:12px;box-shadow:0 6px 30px #1ddeab20}.button-primary:hover{background:#86f5da}.button-ghost{border:1px solid #40536c;color:#d4e0ef;background:#ffffff08;border-radius:9px;padding:12px 15px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:750;font-size:12px}.button-ghost:hover{background:#ffffff15}.hero-art{min-width:305px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}.hero-code-card{width:325px;height:225px;border:1px solid #52647a;background:#0a101bbf;box-shadow:0 15px 70px #0008;border-radius:12px;transform:rotate(5deg);overflow:hidden}.window-dots{border-bottom:1px solid #28394b;height:32px;display:flex;align-items:center;gap:6px;padding:0 13px}.window-dots i{width:7px;height:7px;border-radius:50%;background:#f27979}.window-dots i:nth-child(2){background:#ffca70}.window-dots i:nth-child(3){background:#69dbab}.hero-code-lines{padding:20px 19px;display:flex;flex-direction:column;gap:10px;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;color:#c5d6f5}.hero-code-lines b{color:#b6a5fa}.hero-code-lines strong{color:#9fe8b8;font-weight:400}.hero-code-lines .hero-comment{color:#53647d;margin-top:5px}.hero-float{position:absolute;background:#63e1c0;color:#06322c;border-radius:12px;padding:12px 14px;bottom:45px;left:12px;font-weight:950;font-size:23px;box-shadow:0 12px 35px #12d7a833}.stats-grid,.project-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:22px}.stat{border:1px solid #253044;background:#111824;border-radius:12px;padding:17px 19px;min-height:102px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}.stat-icon{color:#64e4c4;display:inline-flex;margin-bottom:5px}.stat strong{color:#edf4ff;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;letter-spacing:-.5px}.stat>span:last-child{font-size:11px;color:#8a9ab3}.section-block{margin-top:45px}.tracks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.track-card{border:1px solid #263246;border-radius:14px;background:linear-gradient(160deg,#111c2b,#101723 80%);padding:25px;min-height:358px;display:flex;flex-direction:column}.track-top{display:flex;justify-content:space-between;align-items:flex-start}.track-symbol{width:45px;height:45px;border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:950}.js-track-symbol{color:#212316;background:#f7df1e}.ts-track-symbol{color:white;background:#3178c6}.track-card h3{font-size:24px;margin:21px 0 10px}.track-card>p{color:#92a2ba;font-size:12.5px;line-height:1.75;max-width:480px;min-height:67px}.track-meta{display:flex;gap:18px;color:#8fa0ba;font-size:11px}.track-meta span{display:flex;gap:7px;align-items:center}.track-bottom{margin-top:auto;padding-top:24px}.progress-copy{display:flex;justify-content:space-between;color:#9aabc2;font-size:11px;margin-bottom:9px}.progress-copy strong{color:#cedaed}.progress-track{height:6px;border-radius:10px;background:#263448;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,#37bca8,#80f1cd);border-radius:10px;transition:width .25s}.track-bottom>button{display:flex;align-items:center;gap:8px;background:none;color:#6be8cb;font-size:12px;font-weight:750;padding:19px 0 0}.track-bottom>button:hover{color:#a2ffea}.project-feature{display:flex;align-items:center;gap:21px;background:linear-gradient(110deg,#17263b,#172139);border:1px solid #30415b;border-radius:13px;padding:25px;margin-top:32px}.feature-icon{flex:none;background:#1f3e48;color:#69e5c5;border-radius:12px;padding:14px}.project-feature>div:nth-child(2){flex:1}.project-feature h3{font-size:19px;margin:8px 0}.project-feature p{color:#91a2bb;font-size:12px;margin:0;max-width:720px}.button-outline{display:inline-flex;align-items:center;gap:8px;border:1px solid #3b5871;color:#d8e7f8;background:transparent;border-radius:9px;padding:11px 14px;font-size:12px;font-weight:700;white-space:nowrap}.button-outline:hover{border-color:#6ee6cc;color:#79edd5}.footer-note{font-size:10px;color:#61708a;margin-top:40px}
@@ -26,6 +26,356 @@
 /* Complementos do editor sem dependências - acessível, com linhas, realce e autoindentação. */
 .sidebar .side-link>span:first-child{min-width:17px;font-size:17px}.logo-symbol{font-size:23px;font-weight:900}.offline-editor{height:300px;display:flex;background:#0c111c;overflow:hidden;font:12px/20px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;letter-spacing:0;tab-size:2}.editor-gutter{flex:none;width:47px;text-align:right;padding:16px 10px 16px 4px;white-space:pre;overflow:hidden;user-select:none;color:#52617b;background:#0d1420;border-right:1px solid #263248}.editor-code{position:relative;min-width:0;flex:1}.editor-code pre,.editor-code textarea{position:absolute;inset:0;margin:0;padding:16px 18px;box-sizing:border-box;width:100%;height:100%;font:inherit;letter-spacing:inherit;line-height:inherit;tab-size:inherit;white-space:pre;overflow:auto;word-break:normal;border:0;outline:0}.editor-code pre{color:#d7e1f3;pointer-events:none;overflow:hidden;z-index:0}.editor-code textarea{resize:none;background:transparent;z-index:1;color:transparent;-webkit-text-fill-color:transparent;caret-color:#a4f4e2;overflow:auto;scrollbar-color:#354359 #0c111c}.editor-code textarea::selection{background:#345c7f70;-webkit-text-fill-color:transparent}.syntax-keyword{color:#d1a0ff}.syntax-string{color:#b0e9ba}.syntax-comment{color:#73829a}.syntax-number{color:#f3c17c}.hero-art .hero-code-card{transform:rotate(4deg)}.console-output{min-height:70px}.offline-editor:focus-within{box-shadow:inset 0 0 0 1px #2c6f72}.lab-pane .offline-editor{height:300px}.course-link{justify-content:flex-start}.course-link>.js-logo,.course-link>.ts-logo{flex:none}.course-link>span:nth-child(2){flex:1}.sidebar .course-link{font-size:15px;font-weight:700}.lab-tip{color:#60ddbf}.sidebar .side-link{font-weight:650}.sidebar .lesson-link{padding:9px 10px}.project-page .project-stats .stat strong{font-size:16px}
 @media(max-width:660px){.lab-pane .offline-editor{height:270px}.editor-code pre,.editor-code textarea{padding:13px 10px}.editor-gutter{width:35px;padding:13px 6px 13px 2px}.hero-art{display:none}}
+
+/* DevLab / Workspace v3
+   Editorial learning UI. Intentionally restrained: no ornamental gradients,
+   glows, oversized metric cards or decorative 'AI dashboard' components. */
+:root {
+  color-scheme: light;
+  --canvas: #f7f7f5;
+  --paper: #fff;
+  --sidebar-surface: #f3f3f0;
+  --ink: #1e2827;
+  --muted: #65716d;
+  --quiet: #88938f;
+  --rule: #dfe4df;
+  --subtle: #eef2ee;
+  --primary: #225d4c;
+  --primary-hover: #184b3d;
+  --primary-tint: #e9f3ee;
+  --editor: #111821;
+  --editor-divider: #293540;
+  font-family: Inter, 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+  background: var(--canvas);
+}
+html {scroll-behavior: smooth;}
+body {background: var(--canvas);}
+button, input {font-family: inherit;}
+button:focus-visible, input:focus-visible, textarea:focus-visible, .file-tab:focus-visible {outline: 2px solid #267e64;outline-offset: 2px;}
+button:disabled {cursor: not-allowed;}
+h1,h2,h3 {font-family: Inter,'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; letter-spacing: -.036em;}
+::selection {background:#ccebd9;color:#1c3e32;}
+::-webkit-scrollbar-thumb {background: #c3cbc6;border-radius:6px;}
+
+/* Shell and primary navigation */
+.sidebar {width:260px;min-width:260px;background:var(--sidebar-surface);border-right:1px solid var(--rule);}
+.sidebar-top {padding:23px 22px 22px;border-color:var(--rule);}
+.brand-button {gap:11px;color:var(--ink);}
+.logo-symbol {width:37px;height:37px;border-radius:10px;background:var(--primary);color:white;font:750 14px/1 ui-monospace,SFMono-Regular,Consolas,monospace;box-shadow:none;}
+.brand-text {font-family:inherit;font-size:22px;letter-spacing:-1.1px;font-weight:770;color:var(--ink);}
+.brand-text>span {color:var(--primary);}
+.brand-text small {font:650 9px/1.2 Inter,'Segoe UI',sans-serif;color:#75817b;letter-spacing:.045em;margin-top:6px;}
+.sidebar-scroll {padding:23px 12px 22px;}
+.sidebar-group {margin-bottom:23px;}
+.sidebar-label {font-size:10px;letter-spacing:.09em;font-weight:750;color:#75807b;margin:0 12px 10px;}
+.side-link,.course-link,.unit-toggle,.lesson-link {color:#5f6a65;}
+.side-link {padding:10px 12px;gap:12px;font-size:12.5px;font-weight:590;border-radius:6px;}
+.side-link>span:first-child {font-size:15px;color:#85908b;}
+.side-link:hover,.side-link.selected {background:#e5ebe6;color:#215241;}
+.side-count,.course-link small {color:#818c85;font-variant-numeric:tabular-nums;}
+.side-search {height:39px;margin:7px 7px 24px;border-radius:7px;border:1px solid #d8dfd9;color:#78847d;background:#fff;}
+.side-search:focus-within {border-color:#77a995;box-shadow:0 0 0 3px #d6e9df;}
+.side-search input {font-size:12px;color:var(--ink);}
+.side-search input::placeholder {color:#89958e;}
+.course-link {margin-bottom:7px;padding:10px;border-radius:6px;color:var(--ink);}
+.course-link:hover,.selected-course {background:#e6ebe7;}
+.course-link>span:nth-child(2) {font-size:13px;font-weight:720;}
+.course-link small {font-size:10.5px;}
+.course-link>svg {color:#75817b;}
+.js-logo,.ts-logo {border-radius:5px;width:31px;height:31px;}
+.nav-unit {border-left:1px solid #d5ddd6;margin-left:15px;margin-bottom:4px;}
+.unit-toggle {font-size:11.5px;padding:10px 11px;color:#6b7770;font-weight:650;}
+.unit-toggle:hover {color:var(--ink);}
+.lesson-link {border-radius:5px;font-size:11.5px;padding:9px 8px 9px 12px;line-height:1.38;}
+.lesson-link:hover {color:var(--ink);background:#e9ede8;}
+.lesson-link.active-lesson {color:#1c624a;background:#e0ece5;font-weight:690;}
+.lesson-status {color:#a9b3ad;}
+.lesson-status.done {color:#247f5c;}
+.sidebar-bottom {background:#f3f3f0;border-color:var(--rule);padding:14px 19px;}
+.avatar {background:#e1e8e1;color:#2b5c47;border:1px solid #ccdacd;font-size:13px;}
+.sidebar-bottom strong {color:var(--ink);}
+.sidebar-bottom small {color:#79857d;font-size:10px;}
+.online-dot,.sync-dot,.welcome-dot,.workspace-status,.preview-status {width:6px;height:6px;background:#49866a;box-shadow:none;}
+
+/* Top bar */
+.main-pane {background:var(--canvas);}
+.topbar {height:64px;padding:0 38px;background:#fff;backdrop-filter:none;border-color:var(--rule);}
+.breadcrumbs {font-size:12px;color:#88948d;}
+.breadcrumbs button {color:#6d7a71;}
+.breadcrumbs span {color:#26342d;max-width:350px;}
+.sync-label {font-size:11px;color:#79877e;}
+.topbar-project {background:var(--paper);color:#285844;border:1px solid #cfdfd3;border-radius:6px;font-size:11.5px;padding:9px 11px;}
+.topbar-project:hover {background:var(--primary-tint);}
+.topbar-xp {background:#f4f5f0;color:#526351;border:1px solid #e2e6df;border-radius:5px;font-size:11px;font-weight:700;padding:8px 9px;}
+.main-content {max-width:1520px;padding:42px 44px 78px;}
+.main-content.page-lesson {padding:31px 35px 70px;}
+.back-link {color:#75847a;font-size:12px;font-weight:560;margin-bottom:19px;}
+.back-link:hover {color:var(--primary);}
+.section-kicker {font-size:10.5px;font-weight:750;letter-spacing:.1em;color:#537366;}
+.section-heading {margin-bottom:17px;}
+.section-heading h2 {font-size:24px;margin:7px 0;color:var(--ink);}
+.section-heading p {font-size:12.5px;color:var(--muted);}
+
+/* Overview: dashboard for a real course, not marketing copy */
+.welcome-overline {font-size:10px;letter-spacing:.12em;color:#69766e;margin-bottom:15px;}
+.hero-banner {border:1px solid #293c35;background:#1f3029;border-radius:10px;min-height:275px;padding:36px 42px;gap:35px;}
+.hero-banner::before {display:none;}
+.hero-text {max-width:690px;}
+.pill {background:#eff3ee;border:1px solid #d9e5db;color:#456451;padding:6px 9px;border-radius:4px;font-size:10px;letter-spacing:.03em;font-weight:690;}
+.hero-chip {background:#2e4539;color:#d9e9dc;border-color:#435d4c;}
+.hero-banner h1 {font-size:clamp(30px,3vw,40px);margin:18px 0 13px;line-height:1.19;letter-spacing:-.045em;color:#f5faf5;}
+.hero-banner h1 em {color:#c5dfce;}
+.hero-text>p {font-size:13.5px;max-width:540px;line-height:1.65;color:#c5d1c9;}
+.hero-buttons {margin-top:22px;}
+.button-primary {background:#dbeddb;border:1px solid #dbeddb;color:#153728;border-radius:6px;padding:11px 15px;font-weight:740;font-size:12px;box-shadow:none;}
+.button-primary:hover {background:#f5fff1;border-color:#f5fff1;}
+.button-ghost {background:transparent;border:1px solid #6f8777;color:#dcebe0;border-radius:6px;padding:11px 15px;font-size:12px;font-weight:630;}
+.button-ghost:hover {background:#2c4338;}
+.hero-art {min-width:260px;}
+.hero-code-card {transform:none!important;border:1px solid #42574a;border-radius:8px;box-shadow:none;background:#182721;width:304px;height:199px;}
+.window-dots {border-color:#384e40;}
+.hero-code-lines {color:#d1ded1;}
+.hero-code-lines b {color:#d0ca92;}
+.hero-code-lines strong {color:#b4d3aa;}
+.hero-code-lines .hero-comment {color:#799d89;}
+.hero-float {display:none;}
+.stats-grid,.project-stats {grid-template-columns:repeat(4,minmax(0,1fr));gap:0;background:#fff;border:1px solid var(--rule);border-radius:8px;overflow:hidden;margin-top:17px;}
+.stat {min-height:84px;border:0;border-right:1px solid var(--rule);background:var(--paper);border-radius:0;padding:16px 20px;gap:5px;}
+.stat:last-child {border:0;}
+.stat-icon {display:none;}
+.stat strong {font-family:inherit;color:var(--ink);font-size:21px;font-weight:720;}
+.stat>span:last-child {font-size:11px;color:#79847c;}
+.micro-session {background:#edf2ed;border:1px solid #dce4dc;border-radius:8px;padding:19px 24px;}
+.micro-session h2 {color:var(--ink);font-size:19px;}
+.micro-session p {color:var(--muted);font-size:12px;}
+.micro-session .button-primary {background:var(--primary);border-color:var(--primary);color:#fff;}
+.micro-session .button-primary:hover {background:var(--primary-hover);}
+.section-block {margin-top:39px;}
+.tracks-grid {gap:15px;}
+.track-card {background:#fff;border-color:var(--rule);border-radius:8px;padding:23px;min-height:315px;}
+.track-card h3 {color:var(--ink);font-size:24px;}
+.track-card>p {color:#67736b;min-height:56px;}
+.track-meta,.progress-copy {color:#79877d;}
+.progress-copy strong {color:var(--primary);}
+.track-bottom {padding-top:16px;}
+.progress-track {background:#e3e9e3;border-radius:7px;height:6px;overflow:hidden;}
+.progress-fill {background:#3e8566;border-radius:7px;}
+.project-feature {margin-top:25px;background:#fff;border:1px solid var(--rule);border-radius:8px;padding:22px 24px;gap:17px;}
+.feature-icon {background:#e6f0e8;color:var(--primary);border-radius:7px;}
+.project-feature h3 {color:var(--ink);font-size:18px;}
+.project-feature p {color:var(--muted);font-size:12px;}
+.button-outline {border-color:#cbd9cc;color:var(--primary);border-radius:6px;background:#fff;font-size:12px;}
+.button-outline:hover {color:#194232;border-color:#91b79c;background:#f5faf6;}
+.footer-note {color:#88948a;font-size:11px;}
+
+/* Course and roadmap */
+.course-hero {background:#fff;border-color:var(--rule);border-radius:9px;padding:29px 31px;}
+.course-hero h1 {color:var(--ink);}
+.course-hero p,.course-metrics,.course-hint {color:var(--muted);}
+.course-badge {width:66px;height:66px;border-radius:8px;font-size:24px;}
+.course-progress {background:#fff;border-color:var(--rule);border-radius:8px;padding:17px 20px;}
+.course-progress-top {color:var(--ink);}
+.course-progress-top>span {color:var(--muted);}
+.course-progress-top>span strong {color:var(--primary);}
+.course-hint {background:#edf3ee;border-color:#dce6dd;}
+.unit-card {background:#fff;border-color:var(--rule);border-radius:8px;}
+.unit-path-card {border-left:1px solid var(--rule);}
+.unit-card-head {border-color:var(--rule);min-height:102px;}
+.unit-card h3 {color:var(--ink);}
+.unit-card-head p,.unit-meta {color:var(--muted);}
+.unit-number {background:#edf4ee;border:1px solid #d9e6dc;color:var(--primary);border-radius:6px;}
+.unit-item {color:#35433a;border-radius:6px;}
+.unit-item:hover {background:#f3f7f3;}
+.unit-item-icon {border-color:#cbd7ce;color:#64766a;}
+.unit-item-icon.completed {background:#e0f1e8;border-color:#a6d1b7;color:#297d58;}
+.unit-item strong {color:var(--ink);}
+.unit-item small,.unit-item-right {color:#7f8a81;}
+.unit-verified {background:#f2f8f4;}
+.project-hero {background:#fff;border-color:var(--rule);border-radius:9px;}
+.project-hero h1,.project-hero h1 span {color:var(--ink);}
+.project-hero p {color:var(--muted);}
+.project-hero .button-primary {color:white;background:var(--primary);border-color:var(--primary);}
+.project-stats {grid-template-columns:repeat(3,minmax(0,1fr));}
+.project-board {background:white;border-color:var(--rule);border-radius:9px;}
+.project-board-title h2,.project-unit-head strong,.project-todo strong {color:var(--ink);}
+.project-board-title p,.project-todo p,.stage-desc {color:var(--muted);}
+.project-unit {border-color:var(--rule);}
+.project-stage {background:#f2f4f0;color:#52675a;border-color:#dae2d9;}
+.project-check {border-color:#afc3b4;}
+.project-check.checked {background:var(--primary);border-color:var(--primary);}
+.link-open {color:var(--primary);}
+
+/* Lesson typography and deliberate stepper */
+.lesson-topline .back-link {margin-bottom:0;}
+.lesson-counter {color:#86928a;letter-spacing:.08em;font-size:10px;}
+.lesson-heading {margin:18px 0 23px;align-items:flex-end;}
+.lesson-heading h1 {color:var(--ink);font-size:clamp(25px,2.6vw,36px);line-height:1.2;margin:7px 0 9px;}
+.lesson-heading p {color:var(--muted);font-size:13px;}
+.complete-button {background:#fff;color:#718078;border:1px solid var(--rule);border-radius:6px;padding:9px 11px;font-size:11px;font-weight:650;}
+.complete-button.is-complete {background:#e8f4eb;color:#236345;border-color:#a5d1b6;}
+.lesson-stage {background:#fff;border:1px solid var(--rule);border-radius:8px;padding:15px 18px;margin-bottom:18px;box-shadow:none;}
+.stage-heading {margin-bottom:11px;}
+.stage-heading>span:last-child {color:#718075;}
+.stage-track {gap:8px;}
+.stage-join {background:#d6ded7;height:1px;width:10px;}
+.stage-btn {padding:10px 12px;background:#fafbf9;border:1px solid var(--rule);border-radius:6px;color:#66756a;font-size:11px;font-weight:650;transition:background .12s,border .12s;}
+.stage-btn:hover {border-color:#95b3a1;}
+.stage-btn.active {border:1px solid #367354;color:#19543b;background:#eaf4ed;box-shadow:none;}
+.stage-btn.finished {color:#2c7352;}
+.stage-no {width:22px;height:22px;min-width:22px;background:#ecefea;color:#5c6b5c;border-radius:5px;}
+.stage-btn.active .stage-no {background:var(--primary);color:#fff;}
+.stage-btn.finished .stage-no {background:#d9ecdf;color:#226e48;}
+.lesson-layout {grid-template-columns:minmax(310px,.86fr) minmax(440px,1.14fr);gap:18px;}
+.lesson-card {background:#fff;border:1px solid var(--rule);border-radius:8px;padding:23px 24px;margin-bottom:14px;}
+.card-kicker,.card-kicker.mint,.card-kicker.purple {color:#507360;font-size:10px;letter-spacing:.075em;font-weight:740;}
+.lesson-card h2 {color:var(--ink);font-size:20px;}
+.lesson-card>p {color:#4d5e54;font-size:13px;line-height:1.77;}
+.concept-list {background:#f5f8f4;border-color:#e1e8e0;border-radius:6px;padding:15px;}
+.concept-list>strong {color:#304b3c;}
+.concept-list span {color:#426b51;background:white;border-color:#cadfcd;font-size:11px;}
+.sample-code {border-radius:6px;border-color:#313d45;background:var(--editor);}
+.sample-top {background:#1b2630;border-color:#313e48;color:#a0afb9;}
+.sample-top button {color:#d5dfe4;}
+.sample-code pre {color:#c3e0c5;font-size:12px;}
+.code-example .hint-note {color:var(--muted);font-size:11.5px;}
+.challenge-card li {color:var(--muted);font-size:12px;}
+.challenge-cta,.project-apply {background:#edf4ed;border:1px solid #bfd6c5;color:var(--primary);border-radius:6px;}
+.challenge-cta:hover,.project-apply:hover {background:#e1efe4;}
+.milestone-button {background:#fff;border-color:#d8e3d9;color:var(--primary);border-radius:6px;}
+.milestone-button.done {background:#e9f4eb;color:#246b48;border-color:#bddac4;}
+.mini-help {color:var(--muted)!important;}
+.lesson-nav button {background:#fff;border-color:var(--rule);border-radius:6px;color:var(--ink);}
+.lesson-nav small {color:var(--primary);}
+
+/* Editors and preview remain dark for contrast and semantic separation */
+.lab-pane {top:82px;}
+.lab-head {margin-bottom:12px;}
+.lab-live {color:#49715b;font-size:10px;letter-spacing:.07em;}
+.lab-live span {background:#498866;box-shadow:none;}
+.lab-head h2 {color:var(--ink);font-size:19px;}
+.lab-head p {color:var(--muted);font-size:12px;}
+.mode-switch {background:#e9eee9;border:1px solid #dfe5df;border-radius:7px;padding:4px;}
+.mode-switch button {color:#536358;border-radius:5px;font-size:11.5px;font-weight:630;padding:10px;}
+.mode-switch button.active {background:#fff;color:var(--primary);box-shadow:0 1px 3px #243a2a1a;}
+.workspace,.preview-wrap,.console-panel {background:#131c25;border-color:#303d46;border-radius:7px;}
+.workspace-bar {background:#1d2a33;border-color:#34414a;padding:11px 13px;}
+.workspace-title {color:#d6dfe1;font-weight:680;letter-spacing:0;font-size:11px;}
+.workspace-autosave {color:#a2b8ad;font-size:10px;}
+.editor-tabs {background:#1b252f;border-color:#303d46;height:39px;}
+.file-tab {background:transparent;color:#a1b0b8;border-color:#303c45;font-size:11px;padding:0 15px;}
+.file-tab.tab-active {background:#111821;color:#f0f5f6;border-top:2px solid #8eba9d;}
+.editor-area {background:var(--editor);}
+.editor-actions {background:#1c2832;border-color:#35424c;padding:11px 12px;}
+.editor-actions>span {color:#aab7bf;font-size:10px;}
+.action-secondary,.run-button {border:1px solid #475563;border-radius:5px;background:#293746;color:#d9e4e8;padding:9px 11px;font-weight:650;font-size:11px;}
+.action-secondary:hover {background:#334558;}
+.run-button {border-color:#cde6d1;background:#d9eddd;color:#1e4a34;}
+.run-button:hover {background:#f0fff2;}
+.preview-wrap {margin-top:12px;}
+.preview-head {background:#23313b;border-color:#394852;}
+.preview-heading {color:#e2e9ed;font-weight:690;}
+.preview-actions button {color:#b7c8d2;}
+.preview-surface {height:244px;background:#f6f8f6;}
+.preview-surface.mobile-surface {background:#26343f;}
+.preview-foot {background:#1a2630;color:#bdc9d1;}
+.console-panel {background:#1b2730;}
+.console-toggle {color:#cedce2;}
+.console-output {background:#111c24;color:#c5d2d8;}
+.lab-tip {border-color:#d8e5db!important;background:#eff5ee!important;color:#52735b!important;border-radius:7px!important;}
+.lab-tip p {color:#52665a!important;}
+.lab-tip strong {color:#2e5740!important;}
+.offline-editor {background:#111821;}
+.editor-gutter {background:#18212b;border-color:#303e49;color:#71808a;}
+.editor-code pre {color:#d6e1e7;}
+.editor-code textarea {scrollbar-color:#475663 #111821;caret-color:#a5d1b4;}
+
+/* Knowledge-check and validation: feedback colors mean something */
+.quiz-card {background:#fff;border-color:var(--rule);}
+.quiz-progress {color:#6e806f;letter-spacing:.06em;}
+.quiz-progress span {color:#577b5d;}
+.quiz-card h2 {color:var(--ink);font-size:19px;}
+.quiz-choice {background:#fafbf9;color:#26382c;border-color:#dce5dc;border-radius:6px;min-height:50px;font-size:12.5px;}
+.quiz-choice:hover {background:#f0f6ee;border-color:#8eb59a;}
+.quiz-choice:focus-visible {outline-color:var(--primary);}
+.quiz-choice.correct {background:#e4f4e8;color:#26613f;border-color:#97c8a5;}
+.quiz-choice.incorrect {background:#fff2ef;color:#8c392f;border-color:#e4b6aa;}
+.choice-letter {background:#edf0eb;color:#53665a;border-radius:5px;}
+.feedback {border-radius:6px;}
+.feedback.success {background:#e7f6eb;color:#2d6447;border-color:#b8ddc2;}
+.feedback.issue {background:#fff2ec;color:#844736;border-color:#efcebb;}
+.feedback button {background:var(--primary);color:#fff;border-radius:5px;}
+.quiz-foot {color:#697b70;}
+.hint-trigger {background:#f1f5ef;color:var(--primary);border-color:#d4e2d5;border-radius:5px;}
+.validation-box {background:#fff;border-color:var(--rule);border-radius:7px;}
+.validation-top {color:var(--ink);}
+.validation-tag {color:#427659;}
+.validation-box>p {color:var(--muted);font-size:12px;}
+.check-button {background:var(--primary);color:#fff;border-radius:6px;}
+.check-button:hover {background:var(--primary-hover);}
+.validation-result {border-radius:5px;}
+.validation-result.pass {background:#e6f4e8;color:#2a6845;}
+.validation-result.fail {background:#fff0ed;color:#8c4b3b;}
+
+/* Responsive refinement */
+@media(max-width:1440px) {
+  .main-content {padding-left:28px;padding-right:28px;}
+  .main-content.page-lesson {padding:22px 23px 60px;}
+  .lesson-layout {grid-template-columns:minmax(290px,.82fr) minmax(425px,1.18fr);}
+}
+@media(max-width:1160px) {
+  .sidebar {width:236px;min-width:236px;}
+  .lesson-layout {grid-template-columns:1fr;}
+  .lab-pane {position:static;max-height:none;overflow:visible;}
+  .stats-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+  .stat:nth-child(2) {border-right:0;}
+  .stat:nth-child(-n+2) {border-bottom:1px solid var(--rule);}
+}
+@media(max-width:860px) {
+  .sidebar {width:270px;min-width:270px;}
+  .topbar {padding:0 19px;}
+  .main-content,.main-content.page-lesson {padding:25px 20px 60px;}
+  .mobile-menu-btn,.close-sidebar {color:var(--ink);}
+}
+@media(max-width:660px) {
+  .topbar {height:60px;}
+  .main-content,.main-content.page-lesson {padding:20px 15px 48px;}
+  .hero-banner {padding:25px 23px;min-height:0;}
+  .hero-banner h1 {font-size:30px;}
+  .hero-text>p {font-size:13px;}
+  .hero-buttons .button-primary,.hero-buttons .button-ghost {width:100%;}
+  .stats-grid {margin-top:13px;}
+  .stat {padding:14px 13px;min-height:76px;}
+  .stat strong {font-size:18px;}
+  .micro-session {padding:19px;}
+  .track-card {min-height:0;}
+  .lesson-heading {display:block;margin-top:15px;}
+  .lesson-heading h1 {font-size:28px;}
+  .complete-button {display:inline-flex;margin-top:14px;white-space:normal;}
+  .lesson-stage {padding:13px 11px;}
+  .stage-btn {padding:9px 6px;font-size:10px;}
+  .stage-no {width:22px;height:22px;}
+  .lesson-card {padding:20px 18px;}
+  .preview-surface {height:225px;}
+  .editor-actions {flex-wrap:wrap;}
+  .editor-actions>div {margin-left:auto;}
+  .project-stats {grid-template-columns:1fr;}
+  .stat {border-bottom:1px solid var(--rule);border-right:0;}
+  .stat:last-child {border:0;}
+}
+@media(prefers-reduced-motion: reduce) { *,*::before,*::after {transition-duration:.01ms!important;animation-duration:.01ms!important;scroll-behavior:auto!important;} }
+
+/* Accessibility affordances shared by both frontends */
+.skip-link {position:absolute;top:-60px;left:20px;z-index:100;background:white;color:#174b34;padding:11px 15px;border:2px solid #225d4c;border-radius:5px;text-decoration:none;font-size:13px;font-weight:700;}
+.skip-link:focus {top:10px;}
+.complete-button:not(.is-complete) {cursor:default;}
+@media print {.sidebar,.topbar,.lab-pane,.lesson-stage,.hero-art {display:none!important;}.main-pane,.main-content {background:#fff!important;max-width:none!important;padding:0!important;} }
+.track-bottom button,.track-bottom button:hover {color:var(--primary);}
+.track-bottom button:focus-visible {outline:2px solid var(--primary);outline-offset:3px;}
+@media(max-width:660px) {
+  .topbar-project {white-space:nowrap;font-size:11px;padding:8px 10px;}
+  .breadcrumbs span {max-width:128px;}
+}
 </style></head><body><div id="root"></div><script>/** Conteúdo autoral. A estrutura em unidades foi inspirada em plataformas de estudo,
  *  mas todos os textos, exemplos e desafios abaixo são próprios deste projeto. */
 const baseHtml = `<main class="app">
@@ -610,9 +960,9 @@ const xp=()=>experiencePoints(st.quizPassed,st.practicePassed,st.milestones);
 const streak=()=>streakDays(st.activityDates);
 function recordActivity(){const today=localDateKey();if(!st.activityDates.includes(today)){st.activityDates.push(today);save('activity-dates',st.activityDates);}}
 const stageButton=(stage,label,number,done)=>`<button class="stage-btn ${st.step===stage?'active':''} ${done?'finished':''}" data-stage="${stage}" aria-current="${st.step===stage?'step':'false'}"><span class="stage-no">${done?'✓':number}</span><span>${label}</span></button>`;
-function learningNav(l){const quiz=st.quizPassed.includes(l.id),code=st.practicePassed.includes(l.id),project=st.milestones.includes(l.id);return `<div class="lesson-stage"><div class="stage-heading"><span class="section-kicker">SUA JORNADA NESTA AULA</span><span>${[quiz,code,project].filter(Boolean).length}/3 etapas</span></div><div class="stage-track">${stageButton('learn','01 · Aprender',1,quiz)}<span class="stage-join"></span>${stageButton('practice','02 · Praticar',2,code)}<span class="stage-join"></span>${stageButton('build','03 · Construir',3,project)}</div></div>`;}
+function learningNav(l){const quiz=st.quizPassed.includes(l.id),code=st.practicePassed.includes(l.id),project=st.milestones.includes(l.id);return `<div class="lesson-stage"><div class="stage-heading"><span class="section-kicker">ETAPAS DA AULA</span><span>${[quiz,code,project].filter(Boolean).length}/3 etapas</span></div><div class="stage-track">${stageButton('learn','01 · Aprender',1,quiz)}<span class="stage-join"></span>${stageButton('practice','02 · Praticar',2,code)}<span class="stage-join"></span>${stageButton('build','03 · Construir',3,project)}</div></div>`;}
 function quizSection(l){const q=checkpoints[l.id],correct=st.quizPassed.includes(l.id),answer=st.answers[l.id],wrong=answer!==undefined&&answer!==q.answer;return `<div class="lesson-card quiz-card"><div class="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div class="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>${esc(q.prompt)}</h2><div class="quiz-choices">${q.choices.map((choice,i)=>`<button class="quiz-choice ${correct&&i===q.answer?'correct':''} ${wrong&&i===answer?'incorrect':''}" data-answer="${i}" ${correct?'disabled':''}><span class="choice-letter">${'ABC'[i]}</span>${esc(choice)}<span class="choice-state">${correct&&i===q.answer?'✓':wrong&&i===answer?'×':''}</span></button>`).join('')}</div>${correct?`<div class="feedback success" role="status"><strong>✓ Excelente! Resposta correta.</strong><p>${esc(q.explanation)}</p><button data-stage="practice">Ir para o exercício →</button></div>`:wrong?`<div class="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>`:'<p class="quiz-foot">Escolha uma resposta para receber feedback imediatamente.</p>'}</div>`;}
-function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>⌘ Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. A verificação é orientativa: confirma estrutura e conceitos, mas não substitui testes de comportamento.</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?'Muito bem! Agora aplique no TaskFlow.':'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
+function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. A verificação é orientativa: confirma estrutura e conceitos, mas não substitui testes de comportamento.</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?'Muito bem! Agora aplique no TaskFlow.':'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
 
 function nav(path){ location.hash='#/'+path; if(getRoute().page==='lesson' && path==='aula/'+getRoute().id) render(); window.scrollTo({top:0}); }
 function percent(lang){const a=lang==='ts'?allTsLessons:allJsLessons;return Math.round(100*a.filter(x=>st.completed.includes(x.id)).length/a.length);}
@@ -627,14 +977,14 @@ function sidebar(){
     const open=st.expanded.includes(unit.id) || st.search;
     return `<div class="nav-unit"><button class="unit-toggle" data-unit="${unit.id}"><span>${esc(unit.title.replace(/^\d+\. /,''))}</span><span>${open?'⌄':'›'}</span></button>${open?`<div class="unit-lessons">${f.map(l=>`<button class="lesson-link ${getRoute().id===l.id?'active-lesson':''}" data-nav="aula/${l.id}"><span class="lesson-status ${st.completed.includes(l.id)?'done':''}">${iconMark(st.completed.includes(l.id))}</span><span>${esc(l.title)}</span></button>`).join('')}</div>`:''}</div>`;
   }).join('');
-  return `<aside class="sidebar ${st.mobileMenu?'sidebar-open':''}"><div class="sidebar-top"><button class="brand-button" data-nav="inicio"><span class="logo-symbol">⌘</span><span class="brand-text">dev<span>lab</span><small>APRENDA CONSTRUINDO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu">✕</button></div><div class="sidebar-scroll"><div class="sidebar-group"><div class="sidebar-label">ESPAÇO DE ESTUDO</div><button class="side-link ${getRoute().page==='home'?'selected':''}" data-nav="inicio"><span>▦</span> Visão geral</button><button class="side-link ${getRoute().page==='project'?'selected':''}" data-nav="projeto"><span>▤</span> Projeto TaskFlow <span class="side-count">${st.milestones.length}/${allJsLessons.length}</span></button></div><div class="side-search"><span>⌕</span><input id="lesson-search" aria-label="Buscar aulas" placeholder="Buscar aulas..." value="${esc(st.search)}" /></div><div class="sidebar-group sidebar-course"><div class="sidebar-label">TRILHAS DE APRENDIZADO</div><button class="course-link" data-nav="curso/javascript"><span class="js-logo">JS</span><span>JavaScript<small>${allJsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allJsLessons.length} aulas</small></span>›</button>${renderUnits(jsUnits,'js')}<button class="course-link ts-nav" data-nav="curso/typescript"><span class="ts-logo">TS</span><span>TypeScript<small>${allTsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allTsLessons.length} aulas · trilha 2</small></span>›</button>${renderUnits(tsUnits,'ts')}</div></div><div class="sidebar-bottom"><div class="avatar">P</div><div><strong>Meu espaço</strong><small>★ ${xp()} XP · 🔥 ${streak()} dia(s) seguidos</small></div><span class="online-dot"></span></div></aside>`;
+  return `<aside class="sidebar ${st.mobileMenu?'sidebar-open':''}"><div class="sidebar-top"><button class="brand-button" data-nav="inicio"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>LABORATÓRIO DE CÓDIGO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu">✕</button></div><div class="sidebar-scroll"><div class="sidebar-group"><div class="sidebar-label">NAVEGAÇÃO</div><button class="side-link ${getRoute().page==='home'?'selected':''}" data-nav="inicio"><span>▦</span> Visão geral</button><button class="side-link ${getRoute().page==='project'?'selected':''}" data-nav="projeto"><span>▤</span> Projeto TaskFlow <span class="side-count">${st.milestones.length}/${allJsLessons.length}</span></button></div><div class="side-search"><span>⌕</span><input id="lesson-search" aria-label="Buscar aulas" placeholder="Buscar aulas..." value="${esc(st.search)}" /></div><div class="sidebar-group sidebar-course"><div class="sidebar-label">CURSOS</div><button class="course-link" data-nav="curso/javascript"><span class="js-logo">JS</span><span>JavaScript<small>${allJsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allJsLessons.length} aulas</small></span>›</button>${renderUnits(jsUnits,'js')}<button class="course-link ts-nav" data-nav="curso/typescript"><span class="ts-logo">TS</span><span>TypeScript<small>${allTsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allTsLessons.length} aulas · trilha 2</small></span>›</button>${renderUnits(tsUnits,'ts')}</div></div><div class="sidebar-bottom"><div class="avatar">P</div><div><strong>Progresso local</strong><small>${xp()} XP · ${streak()} dias de sequência</small></div><span class="online-dot"></span></div></aside>`;
 }
-function topbar(){let r=getRoute(),l=currentLesson();let bread=r.page==='home'?'Visão geral':r.page==='project'?'Projeto TaskFlow':r.page==='course'?(r.lang==='ts'?'TypeScript':'JavaScript'):`${isTs(l)?'TypeScript':'JavaScript'} / ${l.title}`;return `<header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu">☰</button><span class="breadcrumbs"><button data-nav="inicio">Meu aprendizado</button><span>› ${esc(bread)}</span></span></div><div class="topbar-right"><span class="topbar-xp">★ ${xp()} XP</span><span class="sync-label"><span class="sync-dot"></span> Salvamento local</span><button class="topbar-project" data-nav="projeto">▤ &nbsp; Meu projeto ↗</button></div></header>`;}
+function topbar(){let r=getRoute(),l=currentLesson();let bread=r.page==='home'?'Visão geral':r.page==='project'?'Projeto TaskFlow':r.page==='course'?(r.lang==='ts'?'TypeScript':'JavaScript'):`${isTs(l)?'TypeScript':'JavaScript'} / ${l.title}`;return `<header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu">☰</button><span class="breadcrumbs"><button data-nav="inicio">Meu aprendizado</button><span>› ${esc(bread)}</span></span></div><div class="topbar-right"><span class="topbar-xp">${xp()} XP</span><span class="sync-label"><span class="sync-dot"></span> Salvamento local</span><button class="topbar-project" data-nav="projeto">Projeto TaskFlow →</button></div></header>`;}
 function stat(sym,value,label){return `<div class="stat"><span class="stat-icon">${sym}</span><strong>${esc(value)}</strong><span>${esc(label)}</span></div>`;}
-function home(){return `<div class="home-page"><div class="welcome-overline"><span class="welcome-dot"></span> SEU ESPAÇO DE EVOLUÇÃO</div><div class="hero-banner"><div class="hero-text">${pill('✦ TRILHA COMPLETA · DO ZERO À WEB','hero-chip')}<h1>Aprenda de verdade.<br/><em>Construa enquanto aprende.</em></h1><p>Do primeiro console.log ao seu próprio sistema web. Teoria direta, editor de código integrado e um projeto que cresce junto com você.</p><div class="hero-buttons"><button class="button-primary" data-nav="aula/${st.last}">▶ ${st.completed.length?'Continuar estudando':'Começar a aprender'} →</button><button class="button-ghost" data-nav="projeto">▤ Ver projeto guiado</button></div></div><div class="hero-art"><div class="hero-code-card"><div class="window-dots"><i></i><i></i><i></i></div><div class="hero-code-lines"><span><b>const</b> projeto = &#123;</span><span>&nbsp;&nbsp;objetivo: <strong>'aprender'</strong>,</span><span>&nbsp;&nbsp;pratica: <strong>true</strong>,</span><span>&nbsp;&nbsp;resultado: <strong>'construir'</strong></span><span>&#125;;</span><span class="hero-comment">// Seu progresso começa aqui_</span></div></div><div class="hero-float">&lt;/&gt;</div></div></div><section class="stats-grid">${stat('▤',st.completed.length+'/'+allLessons.length,'aulas concluídas')}${stat('★',xp()+' XP','experiência conquistada')}${stat('🔥',streak()+' dias','sequência de estudos')}${stat('◈',percent('js')+'%','avanço em JavaScript')}</section><section class="micro-session"><div><span class="section-kicker">SESSÃO RÁPIDA</span><h2>5 minutos de prática fazem diferença.</h2><p>Revise uma ideia, resolva o desafio e avance seu projeto. Sem limite de erros e sem perder progresso.</p></div><button class="button-primary" data-nav="aula/${st.last}">Continuar a trilha →</button></section><section class="section-block"><div class="section-heading"><div><span class="section-kicker">TRILHAS DE APRENDIZADO</span><h2>Escolha por onde continuar</h2><p>Uma sequência progressiva para desenvolver raciocínio e autonomia.</p></div></div><div class="tracks-grid">${trackCard('js')}${trackCard('ts')}</div></section><section class="project-feature"><div class="feature-icon">▤</div><div><span class="section-kicker">PROJETO INTEGRADOR</span><h3>TaskFlow — seu primeiro produto funcional</h3><p>Construa um gerenciador de tarefas aplicando cada conceito da teoria. Edite HTML, CSS e JavaScript com prévia ao vivo.</p></div><button class="button-outline" data-nav="projeto">Conhecer projeto →</button></section><footer class="footer-note">DevLab · Projeto pessoal · Não requer login ou serviços externos para funcionar.</footer></div>`;}
+function home(){return `<div class="home-page"><div class="welcome-overline"><span class="welcome-dot"></span> PAINEL DE ESTUDOS</div><div class="hero-banner"><div class="hero-text">${pill('TRILHA DE DESENVOLVIMENTO WEB','hero-chip')}<h1>JavaScript na prática.<br/><em>Do conceito ao código.</em></h1><p>Estude um conceito, resolva um exercício e aplique a solução no TaskFlow. Seu código fica salvo neste navegador.</p><div class="hero-buttons"><button class="button-primary" data-nav="aula/${st.last}">${st.completed.length?'Continuar estudando':'Começar pelo básico'} →</button><button class="button-ghost" data-nav="projeto">Abrir TaskFlow</button></div></div><div class="hero-art"><div class="hero-code-card"><div class="window-dots"><i></i><i></i><i></i></div><div class="hero-code-lines"><span><b>const</b> projeto = &#123;</span><span>&nbsp;&nbsp;objetivo: <strong>'aprender'</strong>,</span><span>&nbsp;&nbsp;pratica: <strong>true</strong>,</span><span>&nbsp;&nbsp;resultado: <strong>'construir'</strong></span><span>&#125;;</span><span class="hero-comment">// Seu progresso começa aqui_</span></div></div><div class="hero-float">&lt;/&gt;</div></div></div><section class="stats-grid">${stat('▤',st.completed.length+'/'+allLessons.length,'aulas concluídas')}${stat('★',xp()+' XP','experiência conquistada')}${stat('🔥',streak()+' dias','sequência de estudos')}${stat('◈',percent('js')+'%','avanço em JavaScript')}</section><section class="micro-session"><div><span class="section-kicker">RETOME DE ONDE PAROU</span><h2>Uma aula de cada vez.</h2><p>Volte à última aula aberta e continue no mesmo ponto.</p></div><button class="button-primary" data-nav="aula/${st.last}">Continuar a trilha →</button></section><section class="section-block"><div class="section-heading"><div><span class="section-kicker">CURSOS</span><h2>Seu plano de estudos</h2><p>Fundamentos de JavaScript primeiro. TypeScript depois.</p></div></div><div class="tracks-grid">${trackCard('js')}${trackCard('ts')}</div></section><section class="project-feature"><div class="feature-icon">▤</div><div><span class="section-kicker">PROJETO PRÁTICO</span><h3>TaskFlow · projeto de aplicação</h3><p>Construa um gerenciador de tarefas aplicando cada conceito da teoria. Edite HTML, CSS e JavaScript com prévia ao vivo.</p></div><button class="button-outline" data-nav="projeto">Conhecer projeto →</button></section><footer class="footer-note">DevLab · Projeto pessoal · Seu progresso é armazenado neste navegador.</footer></div>`;}
 function trackCard(lang){const js=lang==='js',value=percent(lang);const lessons=js?allJsLessons:allTsLessons;return `<div class="track-card"><div class="track-top"><div class="track-symbol ${js?'js-track-symbol':'ts-track-symbol'}">${js?'JS':'TS'}</div>${pill(js?'TRILHA PRINCIPAL':'ETAPA 2',js?'':'soft-blue')}</div><h3>${js?'JavaScript':'TypeScript'}</h3><p>${js?'Lógica, arrays, funções, DOM, APIs, armazenamento e aplicações completas.':'Tipagem, interfaces, funções seguras e modelos de dados para projetos maiores.'}</p><div class="track-meta"><span>▤ ${lessons.length} aulas</span><span>⌘ Editor + prévia</span></div><div class="track-bottom"><div class="progress-copy"><span>Seu progresso</span><strong>${lessons.filter(x=>st.completed.includes(x.id)).length}/${lessons.length}</strong></div>${progress(value)}<button data-nav="curso/${js?'javascript':'typescript'}">Explorar trilha →</button></div></div>`;}
 function course(lang){let units=lang==='ts'?tsUnits:jsUnits, lessons=lang==='ts'?allTsLessons:allJsLessons,done=lessons.filter(x=>st.completed.includes(x.id)).length;return `<div class="course-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="course-hero"><div class="course-badge ${lang==='ts'?'badge-ts':'badge-js'}">${lang==='ts'?'TS':'JS'}</div><div><span class="section-kicker">${lang==='ts'?'TRILHA 02 · PRÓXIMO PASSO':'TRILHA 01 · SUA BASE'}</span><h1>${lang==='ts'?'TypeScript':'JavaScript'}</h1><p>${lang==='ts'?'Adicione tipos à sua base de JavaScript e aprenda a criar sistemas mais seguros.':'Do zero à prática: desenvolva lógica, entenda o navegador e construa interfaces reais sem pular fundamentos.'}</p><div class="course-metrics"><span>▤ ${units.length} unidades</span><span>⌘ ${lessons.length} aulas</span><span>▶ Laboratório integrado</span></div></div></div>${lang==='ts'?'<div class="course-hint">ⓘ Recomendação: estude JavaScript antes de começar. O editor compila TypeScript e executa a página na prévia.</div>':''}<div class="course-progress"><div class="course-progress-top"><strong>Seu progresso na trilha</strong><span>${done}/${lessons.length} aulas · <strong>${percent(lang)}%</strong></span></div>${progress(percent(lang))}</div><div class="unit-section"><div class="section-heading"><div><span class="section-kicker">CONTEÚDO DO CURSO</span><h2>Unidades e aulas</h2><p>Estude em ordem ou abra a aula que quiser revisar.</p></div></div><div class="unit-cards">${units.map((u,i)=>`<div class="unit-card unit-path-card"><div class="unit-card-head"><div class="unit-number">${String(i+1).padStart(2,'0')}</div><div><h3>${esc(u.title.replace(/^\d+\. /,''))}</h3><p>${esc(u.subtitle)}</p></div><span class="unit-meta">${u.lessons.filter(l=>st.completed.includes(l.id)).length}/${u.lessons.length}</span></div><div class="unit-items">${u.lessons.map((l,j)=>`<button class="unit-item ${st.practicePassed.includes(l.id)?'unit-verified':''}" data-nav="aula/${l.id}"><span class="unit-item-icon ${st.completed.includes(l.id)?'completed':''}">${st.completed.includes(l.id)?'✓':String(j+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.summary)}</small></span><span class="unit-item-right">${l.minutes} min ›</span></button>`).join('')}</div></div>`).join('')}</div></div></div>`;}
-function project(){return `<div class="project-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="project-hero">${pill('▤ PROJETO INTEGRADOR','hero-chip')}<h1>TaskFlow <span>— seu projeto evolutivo.</span></h1><p>Não é apenas uma série de exercícios. Você tem um produto próprio, que melhora conforme aprende. Todas as aulas compartilham o mesmo código no modo <strong>Projeto guiado</strong>.</p><button class="button-primary" data-nav="aula/${st.last}">⌘ Abrir meu código →</button></div><div class="project-stats">${stat('✓',st.milestones.length+'/'+allJsLessons.length,'marcos praticados')}${stat('⌘','HTML + CSS + JS','base do produto')}${stat('▣','Ao vivo','visualização da interface')}</div><div class="project-board"><div class="project-board-title"><span class="section-kicker">ROADMAP DO PRODUTO</span><h2>Implemente passo a passo</h2><p>Marque um marco depois de aplicar o conceito no seu projeto. A validação é manual.</p></div>${jsUnits.map((u,i)=>`<div class="project-unit"><div class="project-unit-head"><span class="project-stage">FASE ${String(i+1).padStart(2,'0')}</span><strong>${esc(u.title.replace(/^\d+\. /,''))}</strong></div><div class="project-todos">${u.lessons.map(l=>`<div class="project-todo"><button class="project-check ${st.milestones.includes(l.id)?'checked':''}" data-milestone="${l.id}" aria-label="${st.milestones.includes(l.id)?'Desmarcar':'Marcar'} marco">${st.milestones.includes(l.id)?'✓':''}</button><div><strong class="${st.milestones.includes(l.id)?'struck':''}">${esc(l.title)}</strong><p>${esc(l.project)}</p></div><button class="link-open" data-nav="aula/${l.id}">→</button></div>`).join('')}</div></div>`).join('')}<div class="project-unit"><div class="project-unit-head"><span class="project-stage ts-stage">PRÓXIMA FASE</span><strong>Melhorar o projeto com TypeScript</strong></div><p class="stage-desc">Depois de consolidar JS, modele tarefas com interfaces e tipifique suas funções.</p><button class="button-outline" data-nav="curso/typescript">Ir para TypeScript →</button></div></div></div>`;}
+function project(){return `<div class="project-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="project-hero">${pill('▤ PROJETO PRÁTICO','hero-chip')}<h1>TaskFlow <span>— seu projeto evolutivo.</span></h1><p>Não é apenas uma série de exercícios. Você tem um produto próprio, que melhora conforme aprende. Todas as aulas compartilham o mesmo código no modo <strong>Projeto guiado</strong>.</p><button class="button-primary" data-nav="aula/${st.last}">⌘ Abrir meu código →</button></div><div class="project-stats">${stat('✓',st.milestones.length+'/'+allJsLessons.length,'marcos praticados')}${stat('⌘','HTML + CSS + JS','base do produto')}${stat('▣','Ao vivo','visualização da interface')}</div><div class="project-board"><div class="project-board-title"><span class="section-kicker">ROADMAP DO PRODUTO</span><h2>Implemente passo a passo</h2><p>Marque um marco depois de aplicar o conceito no seu projeto. A validação é manual.</p></div>${jsUnits.map((u,i)=>`<div class="project-unit"><div class="project-unit-head"><span class="project-stage">FASE ${String(i+1).padStart(2,'0')}</span><strong>${esc(u.title.replace(/^\d+\. /,''))}</strong></div><div class="project-todos">${u.lessons.map(l=>`<div class="project-todo"><button class="project-check ${st.milestones.includes(l.id)?'checked':''}" data-milestone="${l.id}" aria-label="${st.milestones.includes(l.id)?'Desmarcar':'Marcar'} marco">${st.milestones.includes(l.id)?'✓':''}</button><div><strong class="${st.milestones.includes(l.id)?'struck':''}">${esc(l.title)}</strong><p>${esc(l.project)}</p></div><button class="link-open" data-nav="aula/${l.id}">→</button></div>`).join('')}</div></div>`).join('')}<div class="project-unit"><div class="project-unit-head"><span class="project-stage ts-stage">PRÓXIMA FASE</span><strong>Melhorar o projeto com TypeScript</strong></div><p class="stage-desc">Depois de consolidar JS, modele tarefas com interfaces e tipifique suas funções.</p><button class="button-outline" data-nav="curso/typescript">Ir para TypeScript →</button></div></div></div>`;}
 function activeDraft(l){return st.mode==='exercise' ? (st.exercises[l.id]||starterFor(l)) : (isTs(l)?st.projectTs:st.projectJs);}
 function activeTab(l){const valid=['html','css',isTs(l)?'ts':'js'];return valid.includes(st.tab)?st.tab:valid[2];}
 function syntax(code){
@@ -644,12 +994,12 @@ function syntax(code){
   return out+esc(src.slice(last))+'\n';
 }
 function lessonPage(l){let i=allLessons.findIndex(x=>x.id===l.id),prev=allLessons[i-1],next=allLessons[i+1],tab=activeTab(l),value=activeDraft(l)[tab]||'';
-return `<div class="lesson-page"><div class="lesson-topline"><button class="back-link" data-nav="curso/${isTs(l)?'typescript':'javascript'}">← ${isTs(l)?'TypeScript':'JavaScript'}</button><span class="lesson-counter">AULA ${String(l.lessonIndex+1).padStart(2,'0')} · ${l.minutes} MIN DE TEORIA</span></div><div class="lesson-heading"><div><span class="section-kicker">${esc(l.unitTitle.toUpperCase())}</span><h1>${esc(l.title)}</h1><p>${esc(l.summary)}</p></div><span class="complete-button ${st.completed.includes(l.id)?'is-complete':''}">${iconMark(st.completed.includes(l.id))} ${st.completed.includes(l.id)?'Aula concluída':'Conclua a prática para avançar'}</span></div>${learningNav(l)}<div class="lesson-layout"><section class="theory-pane">${st.step==='learn'?`<div class="lesson-card"><div class="card-kicker">▤ ENTENDA O CONCEITO</div><h2>Teoria essencial</h2>${l.theory.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="concept-list"><strong>O que você precisa dominar</strong><div>${l.concepts.map(c=>`<span>${esc(c)}</span>`).join('')}</div></div></div><div class="lesson-card code-example"><div class="card-kicker">⌘ EXEMPLO EXPLICADO</div><div class="sample-code"><div class="sample-top"><span>exemplo.${isTs(l)?'ts':'js'}</span><button data-action="copy-example" title="Copiar exemplo">▢</button></div><pre><code>${esc(l.example)}</code></pre></div><p class="hint-note">Leia cada linha, tente prever a saída e depois altere os valores.</p></div>`:''}${st.step==='practice'?`<div class="lesson-card challenge-card"><div class="card-kicker mint">✧ AGORA É SUA VEZ</div><h2>Desafio prático</h2><p>${esc(l.challenge)}</p><button class="hint-trigger" data-action="hint">${st.hintShown?'Ocultar dicas −':'Precisa de uma dica? +'}</button>${st.hintShown?`<ol>${l.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}<button class="challenge-cta" data-mode="exercise">▣ Abrir exercício no editor ↘</button></div>${validationSection(l)}`:''}${st.step==='build'?`<div class="lesson-card project-task"><div class="card-kicker purple">▤ APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>${esc(l.project)}</p><div class="project-lesson-actions"><button class="project-apply" data-mode="project">⌘ Abrir código compartilhado</button><button class="milestone-button ${st.milestones.includes(l.id)?'done':''}" data-milestone="${l.id}">${iconMark(st.milestones.includes(l.id))} ${st.milestones.includes(l.id)?'Marco feito':'Marcar marco'}</button></div><p class="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>` :''}${st.step==='learn'?quizSection(l):''}<div class="lesson-nav">${prev?`<button data-nav="aula/${prev.id}"><span>← <small>AULA ANTERIOR</small>${esc(prev.title)}</span></button>`:''}${next?`<button class="next-lesson" data-nav="aula/${next.id}"><span><small>PRÓXIMA AULA</small>${esc(next.title)} →</span></button>`:''}</div></section>
-<section class="lab-pane"><div class="lab-head"><div><span class="lab-live"><span></span> LABORATÓRIO INTERATIVO</span><h2>Seu ambiente de desenvolvimento</h2><p>Edite o código e veja o resultado ao lado, sem instalar nada.</p></div></div><div class="mode-switch"><button class="${st.mode==='exercise'?'active':''}" data-mode="exercise">⌘ Exercício da aula</button><button class="${st.mode==='project'?'active':''}" data-mode="project">▤ Projeto guiado</button></div><div class="workspace"><div class="workspace-bar"><span class="workspace-title"><span class="workspace-status"></span>${st.mode==='exercise'?'EXERCÍCIO · '+esc(l.title):'TASKFLOW · PROJETO COMPARTILHADO'}</span><span class="workspace-autosave">✓ Salvo automaticamente</span></div><div class="editor-tabs">${[{id:'html',name:'index.html'},{id:'css',name:'style.css'},{id:isTs(l)?'ts':'js',name:isTs(l)?'app.ts':'script.js'}].map(f=>`<button data-tab="${f.id}" class="file-tab ${tab===f.id?'tab-active':''}"><span class="file-icon ${f.id}">${f.id==='html'?'◇':f.id==='css'?'#':isTs(l)?'TS':'JS'}</span>${f.name}</button>`).join('')}<div class="tab-spacer"></div><button class="tab-tool" data-action="copy-code" title="Copiar arquivo">▢</button></div><div class="offline-editor"><div class="editor-gutter" id="editor-lines" aria-hidden="true">1</div><div class="editor-code"><pre aria-hidden="true" id="syntax-layer">${syntax(value)}</pre><textarea id="code-editor" aria-label="Editor de código" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off">${esc(value)}</textarea></div></div><div class="editor-actions"><span><span class="shortcut-dot"></span>${isTs(l)?'TypeScript compilado na prévia':'Prévia atualizada ao editar'}</span><div><button class="action-secondary" data-action="reset">↶ Restaurar</button><button class="action-secondary" data-action="export">⇩ Exportar</button><button class="run-button" data-action="run">▶ Executar</button></div></div></div>
+return `<div class="lesson-page"><div class="lesson-topline"><button class="back-link" data-nav="curso/${isTs(l)?'typescript':'javascript'}">← ${isTs(l)?'TypeScript':'JavaScript'}</button><span class="lesson-counter">AULA ${String(l.lessonIndex+1).padStart(2,'0')} · ${l.minutes} MIN DE TEORIA</span></div><div class="lesson-heading"><div><span class="section-kicker">${esc(l.unitTitle.toUpperCase())}</span><h1>${esc(l.title)}</h1><p>${esc(l.summary)}</p></div><span class="complete-button ${st.completed.includes(l.id)?'is-complete':''}">${iconMark(st.completed.includes(l.id))} ${st.completed.includes(l.id)?'Aula concluída':'Aula em andamento'}</span></div>${learningNav(l)}<div class="lesson-layout"><section class="theory-pane">${st.step==='learn'?`<div class="lesson-card"><div class="card-kicker">▤ ENTENDA O CONCEITO</div><h2>Teoria essencial</h2>${l.theory.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="concept-list"><strong>O que você precisa dominar</strong><div>${l.concepts.map(c=>`<span>${esc(c)}</span>`).join('')}</div></div></div><div class="lesson-card code-example"><div class="card-kicker">⌘ EXEMPLO EXPLICADO</div><div class="sample-code"><div class="sample-top"><span>exemplo.${isTs(l)?'ts':'js'}</span><button data-action="copy-example" title="Copiar exemplo">▢</button></div><pre><code>${esc(l.example)}</code></pre></div><p class="hint-note">Leia cada linha, tente prever a saída e depois altere os valores.</p></div>`:''}${st.step==='practice'?`<div class="lesson-card challenge-card"><div class="card-kicker mint">✧ AGORA É SUA VEZ</div><h2>Desafio prático</h2><p>${esc(l.challenge)}</p><button class="hint-trigger" data-action="hint">${st.hintShown?'Ocultar dicas −':'Precisa de uma dica? +'}</button>${st.hintShown?`<ol>${l.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}<button class="challenge-cta" data-mode="exercise">▣ Abrir exercício no editor ↘</button></div>${validationSection(l)}`:''}${st.step==='build'?`<div class="lesson-card project-task"><div class="card-kicker purple">▤ APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>${esc(l.project)}</p><div class="project-lesson-actions"><button class="project-apply" data-mode="project">⌘ Abrir código compartilhado</button><button class="milestone-button ${st.milestones.includes(l.id)?'done':''}" data-milestone="${l.id}">${iconMark(st.milestones.includes(l.id))} ${st.milestones.includes(l.id)?'Marco feito':'Marcar marco'}</button></div><p class="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>` :''}${st.step==='learn'?quizSection(l):''}<div class="lesson-nav">${prev?`<button data-nav="aula/${prev.id}"><span>← <small>AULA ANTERIOR</small>${esc(prev.title)}</span></button>`:''}${next?`<button class="next-lesson" data-nav="aula/${next.id}"><span><small>PRÓXIMA AULA</small>${esc(next.title)} →</span></button>`:''}</div></section>
+<section class="lab-pane"><div class="lab-head"><div><span class="lab-live"><span></span> EDITOR DE CÓDIGO</span><h2>Editor e pré-visualização</h2><p>Escreva, execute e observe o resultado.</p></div></div><div class="mode-switch"><button class="${st.mode==='exercise'?'active':''}" data-mode="exercise">Exercício</button><button class="${st.mode==='project'?'active':''}" data-mode="project">Projeto TaskFlow</button></div><div class="workspace"><div class="workspace-bar"><span class="workspace-title"><span class="workspace-status"></span>${st.mode==='exercise'?'EXERCÍCIO · '+esc(l.title):'TASKFLOW · PROJETO COMPARTILHADO'}</span><span class="workspace-autosave">Salvamento automático</span></div><div class="editor-tabs">${[{id:'html',name:'index.html'},{id:'css',name:'style.css'},{id:isTs(l)?'ts':'js',name:isTs(l)?'app.ts':'script.js'}].map(f=>`<button data-tab="${f.id}" class="file-tab ${tab===f.id?'tab-active':''}"><span class="file-icon ${f.id}">${f.id==='html'?'◇':f.id==='css'?'#':isTs(l)?'TS':'JS'}</span>${f.name}</button>`).join('')}<div class="tab-spacer"></div><button class="tab-tool" data-action="copy-code" title="Copiar arquivo">▢</button></div><div class="offline-editor"><div class="editor-gutter" id="editor-lines" aria-hidden="true">1</div><div class="editor-code"><pre aria-hidden="true" id="syntax-layer">${syntax(value)}</pre><textarea id="code-editor" aria-label="Editor de código" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off">${esc(value)}</textarea></div></div><div class="editor-actions"><span><span class="shortcut-dot"></span>${isTs(l)?'TypeScript compilado na prévia':'Prévia atualizada ao editar'}</span><div><button class="action-secondary" data-action="reset">↶ Restaurar</button><button class="action-secondary" data-action="export">⇩ Exportar</button><button class="run-button" data-action="run">▶ Executar</button></div></div></div>
 <div class="preview-wrap"><div class="preview-head"><div class="preview-heading">▣ <strong>Pré-visualização</strong></div><div class="preview-actions"><button data-device="desktop" title="Desktop" class="${st.device==='desktop'?'device-active':''}">▣</button><button data-device="mobile" title="Celular" class="${st.device==='mobile'?'device-active':''}">▯</button><span class="preview-separator"></span><button data-action="run" title="Atualizar">↻</button></div></div><div class="preview-surface ${st.device==='mobile'?'mobile-surface':''}"><iframe id="devlab-preview" title="Prévia de código isolada" sandbox="allow-scripts" class="${st.device==='mobile'?'frame-mobile':''}"></iframe></div><div class="preview-foot"><span><span class="preview-status"></span> Página em execução isolada</span><span>${st.device==='mobile'?'Modo celular · 375px':'Largura responsiva'}</span></div></div><div class="console-panel"><button class="console-toggle" data-action="console"><span>⌘ Console <span class="console-count" id="console-count">${st.logs.length}</span></span><span>${st.consoleOpen?'⌄':'›'}</span></button><div class="console-output" id="console-output" style="${st.consoleOpen?'':'display:none'}">${logLines()}</div></div><div class="lab-tip">ⓘ <p><strong>Dica:</strong> altere uma linha por vez. Os exercícios são independentes, mas o <strong>projeto guiado</strong> mantém o mesmo código entre todas as aulas. Tudo é salvo no navegador.</p></div></section></div></div>`;}
 function logLines(){return !st.logs.length?'<span class="console-empty">Sem mensagens. Experimente console.log("Olá!").</span>':st.logs.map(x=>`<div class="console-line console-${esc(x.level)}"><span>${x.level==='error'?'×':x.level==='warn'?'!':'›'}</span><code>${esc((x.args||[]).join(' '))}</code></div>`).join('');}
 function render(){const r=getRoute();if(r.page==='lesson'){st.last=currentLesson().id;save('last',st.last);if(!['js','ts'].includes(st.tab))st.tab=isTs(currentLesson())?'ts':'js';if(isTs(currentLesson())&&st.tab==='js')st.tab='ts';if(!isTs(currentLesson())&&st.tab==='ts')st.tab='js';}
- $('#root').innerHTML=`<div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu"></button>':''}<div class="main-pane">${topbar()}<main class="main-content ${r.page==='lesson'?'page-lesson':''}">${r.page==='home'?home():r.page==='course'?course(r.lang):r.page==='project'?project():lessonPage(currentLesson())}</main></div></div>`;
+ $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?'page-lesson':''}">${r.page==='home'?home():r.page==='course'?course(r.lang):r.page==='project'?project():lessonPage(currentLesson())}</main></div></div>`;
  if(r.page==='lesson'){refreshEditor();runPreview();}
 }
 function refreshEditor(){const editor=$('#code-editor');if(!editor)return;const value=editor.value;const el=$('#syntax-layer');if(el)el.innerHTML=syntax(value);const gutter=$('#editor-lines');if(gutter)gutter.textContent=Array.from({length:Math.max(1,value.split('\n').length)},(_,i)=>String(i+1)).join('\n');}
@@ -661,11 +1011,18 @@ function ensureTypeScript(){
  if(window.ts?.transpileModule)return Promise.resolve(window.ts);
  if(compilerPromise)return compilerPromise;
  compilerPromise=new Promise((resolve,reject)=>{
-   const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/typescript@5.9.3/lib/typescript.js';s.async=true;
-   s.onload=()=>window.ts?.transpileModule?resolve(window.ts):reject(new Error('Compilador TypeScript não encontrado.'));
-   s.onerror=()=>reject(new Error('Falha ao carregar o compilador TypeScript pela CDN. Verifique sua conexão.'));
-   document.head.appendChild(s);
- });
+   const sources=['./vendor/typescript.js','https://cdn.jsdelivr.net/npm/typescript@5.9.3/lib/typescript.js'];
+   const loadSource=(index)=>{
+     if(window.ts?.transpileModule){resolve(window.ts);return;}
+     if(index>=sources.length){reject(new Error('Compilador TypeScript indisponível. Verifique a conexão ou use o ZIP offline.'));return;}
+     const script=document.createElement('script');
+     script.src=sources[index];script.async=true;
+     script.onload=()=>window.ts?.transpileModule?resolve(window.ts):loadSource(index+1);
+     script.onerror=()=>loadSource(index+1);
+     document.head.appendChild(script);
+   };
+   loadSource(0);
+ }).catch(error=>{compilerPromise=null;throw error;});
  return compilerPromise;
 }
 async function runPreview(){const frame=$('#devlab-preview');if(!frame)return;const l=currentLesson(),draft=activeDraft(l),token=++st.token;st.logs=[];updateConsole();try{
@@ -729,6 +1086,12 @@ function action(name){const l=currentLesson(),draft=activeDraft(l);switch(name){
  case 'open-menu':st.mobileMenu=true;render();break;
  case 'close-menu':st.mobileMenu=false;render();break;
  }}
+window.addEventListener('keydown',event=>{
+  if(event.key==='Escape'&&st.mobileMenu){st.mobileMenu=false;render();return;}
+  if((event.ctrlKey||event.metaKey)&&event.key==='Enter'&&getRoute().page==='lesson'){
+    event.preventDefault();runPreview();toast('Prévia atualizada.');
+  }
+});
 window.addEventListener('click',event=>{let target=event.target.closest('[data-nav],[data-unit],[data-action],[data-mode],[data-tab],[data-device],[data-complete],[data-milestone],[data-answer],[data-stage]');if(!target)return;
  if(target.dataset.nav){st.mobileMenu=false;nav(target.dataset.nav);return;}
  if(target.dataset.unit){const id=target.dataset.unit;st.expanded=st.expanded.includes(id)?st.expanded.filter(x=>x!==id):[...st.expanded,id];save('expanded',st.expanded);render();return;}

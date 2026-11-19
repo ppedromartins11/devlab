@@ -42,7 +42,9 @@ assert(p.includes('window.addEventListener') && p.includes('console.error'), 'Ca
 const exported=makeExportHtml({html:projectStarter.html,css:projectStarter.css,js:projectStarter.js});
 assert(exported.includes('</script>') && exported.includes('<style>'), 'Exportação HTML incompleta');
 const standalone=fs.readFileSync(new URL('../offline/index.html', import.meta.url),'utf8');
-assert(standalone.includes('LABORATÓRIO INTERATIVO') && standalone.includes('function runPreview()'), 'Site offline não contém laboratório');
+assert(standalone.includes('EDITOR DE CÓDIGO') && standalone.includes('function runPreview()'), 'Site offline não contém laboratório');
 assert((standalone.match(/<\/script>/g)||[]).length===1, 'O JavaScript embutido não deve fechar a tag script antes do fim');
+assert(standalone.includes('workspace.css')===false && standalone.includes('--primary: #225d4c'), 'Sistema visual não incorporado ao HTML offline');
+assert(standalone.includes('cdn.jsdelivr.net/npm/typescript@5.9.3'), 'Fallback TypeScript online ausente');
 new vm.Script(standalone.slice(standalone.indexOf('<script>') + 8, standalone.lastIndexOf('</script>')));
 console.log('OK — 29 aulas, exemplos, exercícios, projeto evolutivo, TypeScript, exportação e HTML offline verificados.');

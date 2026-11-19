@@ -4,6 +4,20 @@ Plataforma de estudo pessoal de **JavaScript e TypeScript** com teoria em unidad
 
 O conteúdo, o design e o código são próprios. A organização em **curso → unidades → aulas** foi inspirada na estrutura pública de [mauriciodesouza.dev/estudo/cursos/csharp](https://mauriciodesouza.dev/estudo/cursos/csharp); não foi feita cópia de código, materiais didáticos ou identidade visual do site consultado.
 
+## DevLab 3.0 — interface de trabalho e skills do projeto
+
+A interface de produção recebeu um redesenho editorial: superfícies claras para leitura, um editor escuro com hierarquia própria, componentes mais discretos, controles focados em tarefas e rótulos diretos. A mudança visual foi implementada em `src/workspace.css` e incorporada na versão offline pelo gerador; não substitui nem apaga o armazenamento local usado para salvar o progresso.
+
+**Skills locais instaladas no repositório (compatíveis com agentes que leem `SKILL.md`):**
+
+- `.agents/skills/frontend-ui/SKILL.md` — direção visual, UX, acessibilidade e responsividade.
+- `.agents/skills/web-development/SKILL.md` — arquitetura, JavaScript/React, exercício, prévia segura e persistência.
+- `.agents/skills/web-quality/SKILL.md` — testes, integração e critérios de publicação.
+
+`AGENTS.md` aponta para as skills. São instruções de trabalho para agentes de código, não bibliotecas ou plugins de execução. A instalação automática de skills externas com `npx skills` foi tentada, mas o acesso ao registro npm falhou neste ambiente; estas skills locais foram escritas especificamente para o DevLab. A documentação visual está em [docs/DESIGN-SYSTEM.md](docs/DESIGN-SYSTEM.md).
+
+**Atalho:** `Ctrl+Enter` (ou `Cmd+Enter`) atualiza a prévia na aula. Em mobile, a navegação abre em um painel lateral e o menu fecha com `Esc` em teclados compatíveis.
+
 ## DevLab 2.0 — experiência inspirada no Mimo
 
 Esta versão traz o percurso **Aprender → Praticar → Construir**: teoria curta, quiz de fixação com feedback instantâneo, exercícios de código, verificação orientativa e aplicação ao projeto TaskFlow. O progresso conta XP e sequência de estudo, sem vidas, anúncios ou bloqueios artificiais. As 29 aulas possuem perguntas originais; 9 exercícios têm também testes observáveis no iframe.
@@ -86,7 +100,7 @@ Para alterar ou acrescentar aulas, edite **`src/course.js`**. Na versão offline
 node tests/smoke.mjs
 ```
 
-O teste valida contagem das aulas, conteúdo necessário, sintaxe dos exercícios JavaScript, compilação dos exercícios TypeScript, geração de prévia e exportação. O navegador não foi usado na validação automatizada devido a uma restrição do ambiente de execução; testes de interação devem ser refeitos após abrir o site no seu computador.
+O teste valida contagem das aulas, conteúdo necessário, sintaxe dos exercícios JavaScript, compilação dos exercícios TypeScript, geração de prévia e exportação. Nesta revisão, o Chromium com Playwright executou localmente os fluxos de página inicial, navegação, aula, quiz, editor, prévia e atalho nas larguras 390, 768 e 1440px. A validação visual precisa ser repetida no endereço final da Vercel quando o ambiente de navegação permitir.
 
 ## Limitações importantes
 

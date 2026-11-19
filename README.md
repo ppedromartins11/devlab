@@ -4,6 +4,20 @@ Plataforma de estudo pessoal de **JavaScript e TypeScript** com teoria em unidad
 
 O conteúdo, o design e o código são próprios. A organização em **curso → unidades → aulas** foi inspirada na estrutura pública de [mauriciodesouza.dev/estudo/cursos/csharp](https://mauriciodesouza.dev/estudo/cursos/csharp); não foi feita cópia de código, materiais didáticos ou identidade visual do site consultado.
 
+## DevLab 4.0 — revisão espaçada e desafios de produto
+
+A versão **publicada** agora possui duas áreas novas, organizadas a partir da análise de seis plataformas de ensino: **Revisão espaçada** e **Desafios independentes**. O estudo comparativo com links e decisões de design está em [`docs/REFERENCIAS-PEDAGOGICAS.md`](docs/REFERENCIAS-PEDAGOGICAS.md).
+
+- **Revisão ativa:** depois do acerto no quiz, uma revisão é agendada para o dia seguinte. Revele a resposta somente após tentar recordar e escolha *Preciso praticar*, *Lembrei* ou *Muito fácil*. O sistema reagenda em intervalos progressivos (1, 3, 7, 14 e 30 dias). A avaliação é feita pelo próprio aluno.
+- **Briefings com projeto próprio:** Conversor de temperatura, Rastreador de hábitos e Quiz de JavaScript, cada um com descrição, código inicial com `TODO`, critérios de aceitação e checklist de conferência **manual**.
+- **Três espaços de edição:** exercícios por aula, TaskFlow compartilhado e um código salvo individualmente para cada desafio, com abas HTML/CSS/JS e prévia em `iframe` isolado.
+- **Anotações por aula:** campo particular salvo automaticamente no navegador, sem cadastro e sem enviar para servidores externos.
+- **Correção de interface:** trocar para a aba HTML ou CSS não volta a selecionar JS ao renderizar.
+
+`npm test` inclui `tests/study-tools.mjs` para revisão, intervalos, validação de briefs e checklists. O projeto utiliza o mesmo `localStorage` de antes; o progresso anterior é preservado.
+
+**Nota de escopo:** as novas telas estão na versão estática que é enviada à Vercel. A variante React + Monaco permanece incluída no repositório, mas ainda não implementa esses novos módulos. A checklist e a classificação de recordação não são verificações automáticas de correção.
+
 ## DevLab 3.0 — interface de trabalho e skills do projeto
 
 A interface de produção recebeu um redesenho editorial: superfícies claras para leitura, um editor escuro com hierarquia própria, componentes mais discretos, controles focados em tarefas e rótulos diretos. A mudança visual foi implementada em `src/workspace.css` e incorporada na versão offline pelo gerador; não substitui nem apaga o armazenamento local usado para salvar o progresso.
@@ -75,12 +89,14 @@ devlab-javascript/
 ├── offline/
 │   ├── index.html              # site independente de pacotes
 │   ├── source/app.js           # lógica da versão offline
+│   ├── source/study.css         # telas de revisão e desafios
 │   ├── source/offline-extra.css
 │   ├── build_standalone.py     # recompila offline/index.html
 │   └── vendor/typescript.js    # compilador TS para a versão offline
 ├── src/
 │   ├── App.jsx                 # aplicação React
 │   ├── course.js               # unidades, aulas, exemplos, desafios, TaskFlow
+│   ├── study-tools.js           # plano de revisão e briefings independentes
 │   ├── preview.js              # construção da prévia segura
 │   ├── monacoSetup.js          # editor Monaco e workers locais
 │   ├── main.jsx

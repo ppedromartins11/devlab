@@ -1,0 +1,34 @@
+import assert from 'node:assert/strict';
+import { addDaysLocal, enrollReview, rateReview, reviewQueue, practiceBriefs, findBrief, checklistProgress } from '../src/study-tools.js';
+import { allLessons } from '../src/course.js';
+const today='2026-11-19';
+assert.equal(addDaysLocal('2026-12-31',1),'2027-01-01');
+assert.equal(addDaysLocal('2028-02-28',1),'2028-02-29');
+assert.throws(()=>addDaysLocal('ab',2),/Data inválida/);
+let review=enrollReview({},'primeiros-passos',today);
+assert.equal(review['primeiros-passos'].due,'2026-11-20');
+assert.equal(enrollReview(review,'primeiros-passos',today),review,'Reinscrição não reinicia revisão existente');
+assert.equal(reviewQueue(review,allLessons,'2026-11-19').length,0);
+assert.equal(reviewQueue(review,allLessons,'2026-11-20').length,1);
+review=rateReview(review,'primeiros-passos','good','2026-11-20');
+assert.equal(review['primeiros-passos'].due,'2026-11-23');
+assert.equal(review['primeiros-passos'].level,1);
+review=rateReview(review,'primeiros-passos','easy','2026-11-23');
+assert.equal(review['primeiros-passos'].due,'2026-12-07');
+review=rateReview(review,'primeiros-passos','again','2026-12-07');
+assert.equal(review['primeiros-passos'].due,'2026-12-08');
+assert.equal(review['primeiros-passos'].level,0);
+assert.equal(rateReview(review,'primeiros-passos','invalid',today),review);
+assert.equal(reviewQueue({'missing':{due:today}},allLessons,today).length,0);
+assert.equal(practiceBriefs.length,3);
+assert.equal(new Set(practiceBriefs.map(b=>b.id)).size,practiceBriefs.length);
+for(const brief of practiceBriefs) {
+ assert(findBrief(brief.id));
+ assert(allLessons.some(l=>l.id===brief.lesson));
+ assert(brief.html.includes('<main'));
+ assert(brief.css.length>20);
+ assert(brief.js.includes('TODO'),`O briefing ${brief.id} veio com solução pronta`);
+ assert(brief.checks.length>=3);
+ assert.deepEqual(checklistProgress([0,0,1,-1,100],brief.checks.length), {done:2,total:4,percentage:50});
+}
+console.log('OK — revisão espaçada, progressão, migração e três briefings independentes.');

@@ -1,3 +1,4 @@
+import { assessLessonBehavior } from './lesson-assessment.js';
 /** Gera uma página executada EXCLUSIVAMENTE num iframe sandbox="allow-scripts".
  *  O usuário pode editar HTML/CSS/JS/TS, mas não acessa a página hospedeira. */
 function jsonSafe(value) {
@@ -7,6 +8,7 @@ function jsonSafe(value) {
 export function buildPreview({ html, css, js, token, stored = {} }) {
   const cssSafe = String(css).replace(/<\/style/gi, '<\\/style');
   const script = String(js);
+  const assessmentFunction = assessLessonBehavior.toString();
   return `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${cssSafe}</style>
 <script>
@@ -47,37 +49,9 @@ export function buildPreview({ html, css, js, token, stored = {} }) {
   window.addEventListener('message', event => {
     const msg=event.data;
     if(event.source!==parent || !msg || msg.__devlab_check!==true || msg.token!==token)return;
-    const id=msg.id;
-    const report=(ok,detail)=>send('check-result',{id,ok,detail});
-    try {
-      const first=(selector)=>document.querySelector(selector);
-      if(id==='primeiros-passos') {
-        const title=first('#title'),result=first('#result'),button=first('#action');
-        if(!title||!result||!button)return report(false,'Não encontrei o botão, o título ou o resultado.');
-        const before=[title.textContent,result.textContent];button.click();
-        return report(title.textContent!==before[0]&&result.textContent!==before[1],'O clique precisa alterar o título E o texto do resultado.');
-      }
-      if(id==='operadores')return report(/37[.,]5/.test(first('#result')?.textContent||''),'O resultado esperado é 37,5% (3 de 8 tarefas).');
-      if(id==='debug-console')return report(observedLogs.some(x=>x.values.join(' ').includes('8')),'dobrar(4) deve retornar 8; confira o console.');
-      if(id==='loops')return report(document.querySelectorAll('#list li').length===5,'O loop deve gerar exatamente cinco itens na lista.');
-      if(id==='arrays')return report(document.querySelectorAll('#list li').length>=3,'Mostre ao menos três tarefas como itens da lista.');
-      if(id==='eventos') {
-        const input=first('#name'),result=first('#result');if(!input||!result)return report(false,'Input ou resultado não encontrado.');
-        input.value='Teste DevLab';input.dispatchEvent(new Event('input',{bubbles:true}));
-        return report((result.textContent||'').includes('Teste DevLab'),'O resultado deve reagir ao texto digitado.');
-      }
-      if(id==='formularios') {
-        const form=first('#task-form'),input=first('#task-title');if(!form||!input)return report(false,'Formulário ou campo não encontrado.');
-        const before=document.querySelectorAll('#list li').length;input.value='Nova tarefa';form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
-        return report(document.querySelectorAll('#list li').length>before,'Enviar uma tarefa precisa adicionar um item à lista.');
-      }
-      if(id==='renderizacao') {
-        const button=first('#action'),result=first('#result');if(!button||!result)return report(false,'Botão ou resultado não encontrado.');
-        const before=result.textContent;button.click();return report(result.textContent!==before,'Clicar no botão precisa atualizar o contador na tela.');
-      }
-      if(id==='api-json')return report(document.querySelectorAll('#list li').length>=2,'Renderize os dois títulos do JSON na lista.');
-      return report(true,'Verificação estrutural concluída.');
-    }catch(error){return report(false,'Erro durante o teste: '+toText(error));}
+    const report=(checks)=>send('check-result',{id:msg.id,nonce:msg.nonce,checks});
+    try { report((${assessmentFunction})(msg.id,document,observedLogs)); }
+    catch(error) { report([{label:'Erro ao executar os testes: '+toText(error),ok:false}]); }
   });
   send('ready', null);
 })();

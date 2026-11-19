@@ -1,3 +1,4 @@
+import { runtimeCheckedLessons } from './runtime-check.js';
 /** Checkpoints autorais do DevLab. Validação orientativa, nunca substitui testes reais. */
 const questions = [
  ['primeiros-passos','Qual tecnologia reage a cliques e altera elementos da página?',['CSS','JavaScript','HTML'],1,'HTML estrutura, CSS apresenta e JavaScript implementa comportamento.','addEventListener'],
@@ -67,12 +68,23 @@ export function inspectExercise(lesson, source) {
  const key=lesson.language==='ts'?'ts':'js';
  const before=lesson.starter.js || '';
  const after=source?.[key]||'';
+ const edited=normalized(after)!==normalized(before) ||
+   normalized(source?.html ?? lesson.starter.html)!==normalized(lesson.starter.html) ||
+   normalized(source?.css ?? lesson.starter.css)!==normalized(lesson.starter.css);
+ if(runtimeCheckedLessons.has(lesson.id)) {
+   const checks=[
+    {label:'O exercício possui uma implementação diferente do exemplo inicial.',ok:edited},
+    {label:'O código contém uma solução para executar.',ok:normalized(after).length>=12}
+   ];
+   if(lesson.id==='acessibilidade') checks.push({label:'O CSS contém um ajuste responsivo com @media.',ok:/@media\s*\(/.test(source?.css||'')});
+   return {passed:checks.every(x=>x.ok),checks,mode:'behavior'};
+ }
  const checks=[
   {label:'Você alterou o código inicial para resolver o desafio.',ok:normalized(after)!==normalized(before)},
   {label:`O código inclui o conceito esperado: ${checkpoints[lesson.id]?.focus||'JavaScript'}.`,ok:criteria[lesson.id]?.test(after)||false},
   {label:'O exercício contém código, não apenas comentários.',ok:normalized(after).length>=12}
  ];
- return {passed:checks.every(x=>x.ok),checks};
+ return {passed:checks.every(x=>x.ok),checks,mode:'guided'};
 }
 export function localDateKey(date=new Date()) {
  return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');

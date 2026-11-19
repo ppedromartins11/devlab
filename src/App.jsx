@@ -57,6 +57,7 @@ export default function App(){
   const xp=experiencePoints(quizPassed,practicePassed,milestones);
   const streak=streakDays(activityDates);
   const [exerciseDrafts,setExerciseDrafts]=useSavedState('exercises',{});
+  const [verifiedDrafts,setVerifiedDrafts]=useSavedState('verified-drafts',{});
   const [jsProject,setJsProject]=useSavedState('project-js',projectStarter);
   const [tsProject,setTsProject]=useSavedState('project-ts',typescriptProjectStarter);
   const [search,setSearch]=useState('');
@@ -124,7 +125,7 @@ export default function App(){
         {route.type==='inicio'&&<Dashboard completed={completed} jsPercent={jsPercent} tsPercent={tsPercent} jsCount={totalCompletedJs} tsCount={totalCompletedTs} jump={jump} lastId={lastId} xp={xp} streak={streak}/>}
         {route.type==='curso'&&<CoursePage lang={route.lang} completed={completed} progress={route.lang==='ts'?tsPercent:jsPercent} jump={jump}/>}
         {route.type==='projeto'&&<ProjectPage completed={completed} milestones={milestones} onToggle={toggleMile} jump={jump} onOpenEditor={()=>jump('aula/'+lastId)} />}
-        {route.type==='aula'&&<LessonPage key={lesson.id} lesson={lesson} completed={completed} toggleDone={toggleDone} milestones={milestones} toggleMile={toggleMile} jump={jump} exerciseDrafts={exerciseDrafts} setExerciseDrafts={setExerciseDrafts} jsProject={jsProject} setJsProject={setJsProject} tsProject={tsProject} setTsProject={setTsProject} quizPassed={quizPassed} setQuizPassed={setQuizPassed} practicePassed={practicePassed} setPracticePassed={setPracticePassed} recordActivity={recordActivity}/>}
+        {route.type==='aula'&&<LessonPage key={lesson.id} lesson={lesson} completed={completed} toggleDone={toggleDone} milestones={milestones} toggleMile={toggleMile} jump={jump} exerciseDrafts={exerciseDrafts} setExerciseDrafts={setExerciseDrafts} verifiedDrafts={verifiedDrafts} setVerifiedDrafts={setVerifiedDrafts} jsProject={jsProject} setJsProject={setJsProject} tsProject={tsProject} setTsProject={setTsProject} quizPassed={quizPassed} setQuizPassed={setQuizPassed} practicePassed={practicePassed} setPracticePassed={setPracticePassed} recordActivity={recordActivity}/>}
       </main>
     </div>
   </div>;
@@ -164,13 +165,14 @@ function ProjectPage({milestones,onToggle,jump,onOpenEditor}){
     </div></div>
 }
 
-function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exerciseDrafts,setExerciseDrafts,jsProject,setJsProject,tsProject,setTsProject,quizPassed,setQuizPassed,practicePassed,setPracticePassed,recordActivity}){
+function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exerciseDrafts,setExerciseDrafts,verifiedDrafts,setVerifiedDrafts,jsProject,setJsProject,tsProject,setTsProject,quizPassed,setQuizPassed,practicePassed,setPracticePassed,recordActivity}){
   const [mode,setMode]=useState('exercise');
   const [stage,setStage]=useState(()=>practicePassed.includes(lesson.id)?'build':quizPassed.includes(lesson.id)?'practice':'learn');
   const [answer,setAnswer]=useState(null);
   const [showHints,setShowHints]=useState(false);
   const [checkResult,setCheckResult]=useState(null);
   const pendingCheckRef=useRef(null);
+  const checkNonceRef=useRef(0);
   const question=checkpoints[lesson.id];
   const quizOk=quizPassed.includes(lesson.id);
   const practiceOk=practicePassed.includes(lesson.id);
@@ -202,10 +204,11 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
   const finishCheck=useCallback((inspection)=>{
     setCheckResult(inspection);
     if(!inspection.passed)return;
+    if(runtimeCheckedLessons.has(lesson.id))setVerifiedDrafts(prev=>({...prev,[lesson.id]:JSON.stringify(source)}));
     setPracticePassed(prev=>prev.includes(lesson.id)?prev:[...prev,lesson.id]);
     setCompleted(prev=>prev.includes(lesson.id)?prev:[...prev,lesson.id]);
-    recordActivity();setStage('build');alertToast('Desafio concluído! +30 XP');
-  },[lesson.id,setPracticePassed,setCompleted,recordActivity]);
+    recordActivity();setStage(inspection.mode==='behavior'?'practice':'build');alertToast('Desafio concluído! +30 XP');
+  },[lesson.id,source,setVerifiedDrafts,setPracticePassed,setCompleted,recordActivity]);
   const verifyExercise=()=>{
     if(mode!=='exercise'){alertToast('Selecione o exercício da aula.');return;}
     const inspection=inspectExercise(lesson,source);
@@ -214,8 +217,17 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
     inspection.passed=inspection.checks.every(x=>x.ok);
     if(!inspection.passed){setCheckResult(inspection);return;}
     if(runtimeCheckedLessons.has(lesson.id)){
-      pendingCheckRef.current={id:lesson.id,inspection};
-      iframeRef.current?.contentWindow?.postMessage({__devlab_check:true,id:lesson.id,token:tokenRef.current},'*');
+      if(pendingCheckRef.current)return;
+      const nonce=++checkNonceRef.current,token=tokenRef.current;
+      const pending={id:lesson.id,inspection,nonce,token,timer:null};
+      pendingCheckRef.current=pending;
+      pending.timer=window.setTimeout(()=>{
+        if(pendingCheckRef.current!==pending)return;
+        pendingCheckRef.current=null;
+        const checks=[...inspection.checks,{label:'O avaliador não respondeu; execute a prévia novamente.',ok:false}];
+        finishCheck({checks,passed:false});
+      },3000);
+      iframeRef.current?.contentWindow?.postMessage({__devlab_check:true,id:lesson.id,nonce,token},'*');
     }else finishCheck(inspection);
   };
   const chooseAnswer=(n)=>{
@@ -223,11 +235,20 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
     if(n===question.answer && !quizOk){setQuizPassed(prev=>[...prev,lesson.id]);recordActivity();}
   };
   const editSource=useCallback((value)=>{
+    if(pendingCheckRef.current){window.clearTimeout(pendingCheckRef.current.timer);pendingCheckRef.current=null;}
+    setCheckResult(null);
     const key=isTs && tab==='js'?'ts':tab;
-    if(mode==='exercise') setExerciseDrafts(prev=>({...prev,[lesson.id]:{...(prev[lesson.id]||lessonStarter),[key]:value??''}}));
+    if(mode==='exercise') {
+      const updated={...source,[key]:value??''};
+      if(verifiedDrafts[lesson.id] && verifiedDrafts[lesson.id]!==JSON.stringify(updated)){
+        setVerifiedDrafts(prev=>{const next={...prev};delete next[lesson.id];return next;});
+        setPracticePassed(prev=>prev.filter(id=>id!==lesson.id));
+      }
+      setExerciseDrafts(prev=>({...prev,[lesson.id]:{...(prev[lesson.id]||lessonStarter),[key]:value??''}}));
+    }
     else if(isTs) setTsProject(prev=>({...prev,[key]:value??''}));
     else setJsProject(prev=>({...prev,[key]:value??''}));
-  },[mode,tab,isTs,lesson.id,lessonStarter,setExerciseDrafts,setTsProject,setJsProject]);
+  },[mode,tab,isTs,lesson.id,lessonStarter,source,verifiedDrafts,setExerciseDrafts,setVerifiedDrafts,setPracticePassed,setTsProject,setJsProject]);
 
   useEffect(()=>{setTab(isTs?'ts':'js');setMode('exercise');setConsoleLines([]);},[lesson.id,isTs]);
 
@@ -264,7 +285,15 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
       if(!d || d.__devlab!==true || d.token!==tokenRef.current) return;
       if(d.kind==='log') setConsoleLines(prev=>[...prev.slice(-99),d.payload]);
       if(d.kind==='storage'){try { localStorage.setItem(bucket,JSON.stringify(d.payload)); } catch {/* limite armazenamento */}}
-      if(d.kind==='check-result'){const pending=pendingCheckRef.current;if(!pending||pending.id!==d.payload?.id)return;pendingCheckRef.current=null;const checks=[...pending.inspection.checks,{label:d.payload.detail,ok:!!d.payload.ok}];finishCheck({checks,passed:checks.every(x=>x.ok)});}
+      if(d.kind==='check-result'){
+        const pending=pendingCheckRef.current;
+        if(!pending||pending.id!==d.payload?.id||pending.nonce!==d.payload?.nonce||pending.token!==d.token)return;
+        window.clearTimeout(pending.timer);pendingCheckRef.current=null;
+        const cases=Array.isArray(d.payload?.checks)?d.payload.checks:[];
+        const checks=[...pending.inspection.checks,...cases.map(c=>({label:String(c.label||'Teste sem descrição'),ok:c.ok===true}))];
+        if(!cases.length)checks.push({label:'Nenhum teste retornado.',ok:false});
+        finishCheck({checks,passed:checks.every(x=>x.ok)});
+      }
     };
     window.addEventListener('message',onMessage);
     return()=>window.removeEventListener('message',onMessage);
@@ -272,7 +301,13 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
 
   const reset=()=>{
     if(!window.confirm('Restaurar os arquivos originais deste '+(mode==='exercise'?'exercício':'projeto')+'? Suas alterações nesse espaço serão perdidas.')) return;
-    if(mode==='exercise') setExerciseDrafts(prev=>{const next={...prev};delete next[lesson.id];return next;});
+    if(mode==='exercise') {
+      setExerciseDrafts(prev=>{const next={...prev};delete next[lesson.id];return next;});
+      if(verifiedDrafts[lesson.id]){
+        setVerifiedDrafts(prev=>{const next={...prev};delete next[lesson.id];return next;});
+        setPracticePassed(prev=>prev.filter(id=>id!==lesson.id));
+      }
+    }
     else if(isTs) setTsProject(typescriptProjectStarter);
     else setJsProject(projectStarter);
     alertToast('Código restaurado.');
@@ -298,7 +333,7 @@ function LessonPage({lesson,completed,toggleDone,milestones,toggleMile,jump,exer
     <div className="lesson-layout"><section className="theory-pane">{stage==='learn'&&<><div className="lesson-card"><div className="card-kicker"><BookOpen size={17}/> ENTENDA O CONCEITO</div><h2>Teoria essencial</h2>{lesson.theory.map((p,i)=><p key={i}>{p}</p>)}<div className="concept-list"><strong>O que você precisa dominar</strong><div>{lesson.concepts.map(c=><span key={c}>{c}</span>)}</div></div></div>
       <div className="lesson-card code-example"><div className="card-kicker"><Code2 size={17}/> EXEMPLO EXPLICADO</div><div className="sample-code"><div className="sample-top"><span>exemplo.{isTs?'ts':'js'}</span><button onClick={()=>{navigator.clipboard?.writeText(lesson.example).then(()=>alertToast('Exemplo copiado.')).catch(()=>alertToast('Não foi possível copiar.'));}} aria-label="Copiar exemplo"><Copy size={14}/></button></div><pre><code>{lesson.example}</code></pre></div><p className="hint-note">Leia cada linha, tente prever a saída e depois altere os valores no editor.</p></div>
       </>}{stage==='practice'&&<><div className="lesson-card challenge-card"><div className="card-kicker mint"><Lightbulb size={17}/> AGORA É SUA VEZ</div><h2>Desafio prático</h2><p>{lesson.challenge}</p><button className="hint-trigger" onClick={()=>setShowHints(v=>!v)}>{showHints?'Ocultar dicas −':'Precisa de uma dica? +'}</button>{showHints&&<ol>{lesson.steps.map((s,i)=><li key={i}>{s}</li>)}</ol>}<button className="challenge-cta" onClick={()=>switchMode('exercise')}><Terminal size={16}/> Abrir exercício no editor <ArrowDownRight size={16}/></button></div>
-      <div className="validation-box" aria-live="polite"><div className="validation-top"><span>⌘ Verificação de exercício</span><span className="validation-tag">+30 XP</span></div><p>Verifique os conceitos e o resultado do seu código. Para algumas aulas, o navegador também testa o comportamento da página.</p><button className="check-button" onClick={verifyExercise}>✓ Verificar solução</button>{checkResult&&<div className={'validation-result '+(checkResult.passed?'pass':'fail')}><strong>{checkResult.passed?'Muito bem! Continue no TaskFlow.':'Revise estes pontos:'}</strong>{checkResult.checks.map((c,i)=><div className="validation-row" key={i}>{c.ok?'✓':'○'} <span>{c.label}</span></div>)}</div>}{practiceOk&&!checkResult&&<div className="validation-result pass">✓ Exercício já verificado.</div>}</div></>}{stage==='build'&&<div className="lesson-card project-task"><div className="card-kicker purple"><FolderKanban size={17}/> APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>{lesson.project}</p><div className="project-lesson-actions"><button className="project-apply" onClick={()=>switchMode('project')}><Code2 size={16}/> Abrir código compartilhado</button><button className={'milestone-button '+(isMilestoneDone?'done':'')} onClick={()=>toggleMile(lesson.id)}>{isMilestoneDone?<CheckCircle2 size={16}/>:<Circle size={16}/>} {isMilestoneDone?'Marco feito':'Marcar marco'}</button></div><p className="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>
+      <div className="validation-box" aria-live="polite"><div className="validation-top"><span>⌘ Verificação de exercício</span><span className="validation-tag">+30 XP</span></div><p>{runtimeCheckedLessons.has(lesson.id)?'A verificação executa testes de comportamento real no navegador, com entradas variadas.':'Esta aula usa uma verificação orientativa por estrutura; experimente também as missões da Oficina.'}</p><button className="check-button" onClick={verifyExercise}>✓ Verificar solução</button>{checkResult&&<div className={'validation-result '+(checkResult.passed?'pass':'fail')}><strong>{checkResult.passed?`Aprovado: ${checkResult.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos:'}</strong>{checkResult.checks.map((c,i)=><div className="validation-row" key={i}>{c.ok?'✓':'○'} <span>{c.label}</span></div>)}{checkResult.passed&&<button className="challenge-cta" onClick={()=>setStage('build')}>Aplicar no projeto TaskFlow →</button>}</div>}{practiceOk&&!checkResult&&<div className="validation-result pass">✓ Exercício já verificado.</div>}</div></>}{stage==='build'&&<div className="lesson-card project-task"><div className="card-kicker purple"><FolderKanban size={17}/> APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>{lesson.project}</p><div className="project-lesson-actions"><button className="project-apply" onClick={()=>switchMode('project')}><Code2 size={16}/> Abrir código compartilhado</button><button className={'milestone-button '+(isMilestoneDone?'done':'')} onClick={()=>toggleMile(lesson.id)}>{isMilestoneDone?<CheckCircle2 size={16}/>:<Circle size={16}/>} {isMilestoneDone?'Marco feito':'Marcar marco'}</button></div><p className="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>
       }{stage==='learn'&&<div className="lesson-card quiz-card"><div className="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div className="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>{question.prompt}</h2><div className="quiz-choices">{question.choices.map((c,i)=><button key={i} className={'quiz-choice '+(quizOk&&i===question.answer?'correct ':'')+(answer===i&&!quizOk?'incorrect':'')} disabled={quizOk} onClick={()=>chooseAnswer(i)}><span className="choice-letter">{'ABC'[i]}</span>{c}<span className="choice-state">{quizOk&&i===question.answer?'✓':answer===i&&!quizOk?'×':''}</span></button>)}</div>{quizOk?<div className="feedback success"><strong>✓ Excelente! Resposta correta.</strong><p>{question.explanation}</p><button onClick={()=>setStage('practice')}>Ir para o exercício <ArrowRight size={14}/></button></div>:answer!==null?<div className="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>:<p className="quiz-foot">Escolha uma resposta para receber feedback imediato.</p>}</div>}
       <div className="lesson-nav">{prev&&<button onClick={()=>jump('aula/'+prev.id)}><ArrowLeft size={16}/><span><small>AULA ANTERIOR</small>{prev.title}</span></button>}{next&&<button onClick={()=>jump('aula/'+next.id)} className="next-lesson"><span><small>PRÓXIMA AULA</small>{next.title}</span><ArrowRight size={16}/></button>}</div>
     </section>

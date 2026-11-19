@@ -1,5 +1,19 @@
 # DevLab — Aprenda construindo
 
+## DevLab 6.0 — teste o comportamento, não apenas as palavras
+
+Aulas selecionadas agora possuem um **avaliador funcional no iframe da prévia**. Ao verificar a solução, o DevLab executa interações com DOM, eventos, formulários, estado e armazenamento e mostra quais critérios foram aprovados ou reprovados.
+
+- **12 aulas de JavaScript** com casos observáveis. Destaque: formulário recusa espaços, normaliza títulos, cadastra tarefas e limpa o campo; eventos são testados com dois nomes; contador deve incrementar duas vezes.
+- **17 aulas restantes** mantêm o teste orientativo que já existia. O app diferencia os dois tipos de avaliação.
+- A aprovação automática mais recente é invalidada se você alterar o código depois de passar; seus dados anteriores não são apagados.
+- A lista de testes fica visível após a aprovação, com ação explícita para continuar no TaskFlow.
+- Incluído teste Node independente e roteiro de teste no Chromium (`tests/e2e_lesson_assessment.py`).
+
+[Detalhes de arquitetura, cobertura e limites](docs/AVALIACAO-AULAS.md).
+
+
+
 Plataforma de estudo pessoal de **JavaScript e TypeScript** com teoria em unidades, exercícios por aula, editor de código, visualização da página em tempo real, console e projeto integrador TaskFlow.
 
 O conteúdo, o design e o código são próprios. A organização em **curso → unidades → aulas** foi inspirada na estrutura pública de [mauriciodesouza.dev/estudo/cursos/csharp](https://mauriciodesouza.dev/estudo/cursos/csharp); não foi feita cópia de código, materiais didáticos ou identidade visual do site consultado.

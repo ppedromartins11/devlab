@@ -895,6 +895,7 @@ const typescriptProjectStarter = {
   ts: `interface Tarefa {\n  id: number;\n  titulo: string;\n  concluida: boolean;\n}\n\nconst tarefas: Tarefa[] = [{ id: 1, titulo: 'Revisar JavaScript', concluida: true }];\nconst lista = document.querySelector('#list');\n\nfunction renderizar(): void {\n  if (!lista) return;\n  lista.replaceChildren();\n  for (const tarefa of tarefas) {\n    const li = document.createElement('li');\n    li.textContent = tarefa.titulo;\n    lista.append(li);\n  }\n}\n\ndocument.querySelector('#action')?.addEventListener('click', () => {\n  tarefas.push({ id: Date.now(), titulo: 'Praticar TypeScript', concluida: false });\n  renderizar();\n});\n\nrenderizar();`
 };
 
+
 /** Checkpoints autorais do DevLab. Validação orientativa, nunca substitui testes reais. */
 const questions = [
  ['primeiros-passos','Qual tecnologia reage a cliques e altera elementos da página?',['CSS','JavaScript','HTML'],1,'HTML estrutura, CSS apresenta e JavaScript implementa comportamento.','addEventListener'],
@@ -964,12 +965,23 @@ function inspectExercise(lesson, source) {
  const key=lesson.language==='ts'?'ts':'js';
  const before=lesson.starter.js || '';
  const after=source?.[key]||'';
+ const edited=normalized(after)!==normalized(before) ||
+   normalized(source?.html ?? lesson.starter.html)!==normalized(lesson.starter.html) ||
+   normalized(source?.css ?? lesson.starter.css)!==normalized(lesson.starter.css);
+ if(runtimeCheckedLessons.has(lesson.id)) {
+   const checks=[
+    {label:'O exercício possui uma implementação diferente do exemplo inicial.',ok:edited},
+    {label:'O código contém uma solução para executar.',ok:normalized(after).length>=12}
+   ];
+   if(lesson.id==='acessibilidade') checks.push({label:'O CSS contém um ajuste responsivo com @media.',ok:/@media\s*\(/.test(source?.css||'')});
+   return {passed:checks.every(x=>x.ok),checks,mode:'behavior'};
+ }
  const checks=[
   {label:'Você alterou o código inicial para resolver o desafio.',ok:normalized(after)!==normalized(before)},
   {label:`O código inclui o conceito esperado: ${checkpoints[lesson.id]?.focus||'JavaScript'}.`,ok:criteria[lesson.id]?.test(after)||false},
   {label:'O exercício contém código, não apenas comentários.',ok:normalized(after).length>=12}
  ];
- return {passed:checks.every(x=>x.ok),checks};
+ return {passed:checks.every(x=>x.ok),checks,mode:'guided'};
 }
 function localDateKey(date=new Date()) {
  return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');
@@ -986,10 +998,143 @@ function experiencePoints(quizPassed, exercisePassed, milestones) {
  return new Set(quizPassed).size*10+new Set(exercisePassed).size*30+new Set(milestones).size*15;
 }
 
-/** Exercícios com verificação observável dentro do iframe isolado. */
+/** Aulas com verificação de comportamento real no iframe isolado. */
 const runtimeCheckedLessons = new Set([
- 'primeiros-passos','operadores','debug-console','loops','arrays','eventos','formularios','renderizacao','api-json'
+  'primeiros-passos','operadores','debug-console','loops','arrays',
+  'dom-basico','eventos','formularios','renderizacao','api-json',
+  'storage','acessibilidade'
 ]);
+
+/**
+ * Verificações comportamentais da prévia isolada. Nenhuma solução é executada
+ * no contexto da aplicação principal; a função é serializada para o iframe.
+ * A validação é por resultados observáveis, sem exigir nomes de variáveis.
+ */
+const behaviorLessonIds = Object.freeze([
+  'primeiros-passos', 'operadores', 'debug-console', 'loops', 'arrays',
+  'dom-basico', 'eventos', 'formularios', 'renderizacao', 'api-json',
+  'storage', 'acessibilidade'
+]);
+
+function assessLessonBehavior(id, doc, observedLogs) {
+  const checks = [];
+  const add = (label, ok) => checks.push({label, ok: Boolean(ok)});
+  const one = selector => doc.querySelector(selector);
+  const many = selector => [...doc.querySelectorAll(selector)];
+  const text = selector => one(selector)?.textContent?.trim() ?? '';
+  const click = selector => {const el=one(selector);if(el)el.click();return Boolean(el);};
+  const input = (el, value) => { if (!el) return false;el.value=value;el.dispatchEvent(new Event('input',{bubbles:true}));return true; };
+  const submit = selector => {const el=one(selector);return el?.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));};
+  const count = () => many('#list li').length;
+  const resultValue = () => text('#result');
+  switch(id) {
+    case 'primeiros-passos': {
+      const beforeTitle=text('#title'),beforeResult=resultValue();
+      add('O botão existe e pode ser acionado.',click('#action'));
+      add('O clique altera o título.',text('#title')!==beforeTitle);
+      add('O clique altera a mensagem exibida.',resultValue()!==beforeResult);
+      break;
+    }
+    case 'operadores': {
+      add('O percentual de 3 tarefas em 8 é exibido corretamente.',/37[.,]5\s*%?/.test(resultValue()));
+      break;
+    }
+    case 'debug-console': {
+      add('A depuração mostra o resultado de dobrar 4 (= 8).',observedLogs.some(e=>e.level==='log'&&e.values.some(v=>/(?:^|\D)8(?:\D|$)/.test(v))));
+      break;
+    }
+    case 'loops': {
+      add('A lista tem exatamente cinco itens.',count()===5);
+      add('Os cinco itens possuem texto visível.',many('#list li').every(el=>el.textContent.trim().length>0));
+      break;
+    }
+    case 'arrays': {
+      const items=many('#list li').map(el=>el.textContent.trim());
+      add('Três tarefas estão renderizadas.',items.length>=3);
+      add('A lista não contém tarefas vazias.',items.length>0&&items.every(Boolean));
+      break;
+    }
+    case 'dom-basico': {
+      const title=one('#title'),button=one('#action');
+      if(!title||!button) {add('Título e botão estão presentes.',false);break;}
+      const beforeText=title.textContent, beforeClass=title.classList.contains('destaque');
+      button.click();
+      add('Clicar altera o texto do título.',title.textContent!==beforeText);
+      add('O clique alterna a classe destaque.',title.classList.contains('destaque')!==beforeClass);
+      button.click();
+      add('O segundo clique reverte a classe destaque.',title.classList.contains('destaque')===beforeClass);
+      break;
+    }
+    case 'eventos': {
+      const field=one('#name'),out=one('#result');
+      if(!field||!out){add('Campo e resultado estão presentes.',false);break;}
+      const before=out.textContent;
+      input(field,'Ada Lovelace');
+      add('A página responde ao primeiro texto digitado.',out.textContent.includes('Ada Lovelace'));
+      input(field,'Grace Hopper');
+      add('A página responde a um segundo texto, sem ficar com o antigo.',out.textContent.includes('Grace Hopper')&&!out.textContent.includes('Ada Lovelace'));
+      add('O resultado não permanece igual ao inicial.',out.textContent!==before);
+      break;
+    }
+    case 'formularios': {
+      const form=one('#task-form'),field=one('#task-title');
+      if(!form||!field){add('Formulário e campo estão presentes.',false);break;}
+      const start=count();
+      input(field,'  Estudar DOM  ');
+      const dispatched=submit('#task-form');
+      const items=many('#list li');
+      add('Enviar não provoca navegação ou recarga.',dispatched===false);
+      add('Enviar uma tarefa acrescenta um item na lista.',items.length===start+1);
+      add('O título da tarefa é exibido sem espaços extras.',items.some(el=>el.textContent.trim()==='Estudar DOM'));
+      add('O campo é limpo após cadastrar.',field.value==='');
+      input(field,'  ');submit('#task-form');
+      add('Uma tarefa vazia não pode ser cadastrada.',count()===start+1);
+      break;
+    }
+    case 'renderizacao': {
+      const out=one('#result'),button=one('#action');
+      if(!out||!button){add('Contador e botão estão presentes.',false);break;}
+      const before=out.textContent;
+      button.click();const first=out.textContent;
+      button.click();const second=out.textContent;
+      add('O primeiro clique atualiza o contador.',first!==before&&/\b1\b/.test(first));
+      add('O segundo clique incrementa novamente.',second!==first&&/\b2\b/.test(second));
+      break;
+    }
+    case 'api-json': {
+      const texts=many('#list li').map(el=>el.textContent.trim());
+      add('Duas tarefas são mostradas após interpretar o JSON.',texts.length===2);
+      add('A lista mostra os títulos de ambos os objetos.',texts.some(t=>t.includes('Ler documentação'))&&texts.some(t=>t.includes('Criar projeto')));
+      break;
+    }
+    case 'storage': {
+      const field=one('#result'),button=one('#action');
+      if(!field||!button){add('Botão e resultado estão disponíveis.',false);break;}
+      const raw=localStorage.getItem('contador');
+      const before=Number(raw||0);
+      button.click();
+      const saved=Number(localStorage.getItem('contador'));
+      add('O clique salva uma contagem incrementada.',Number.isFinite(saved)&&saved===before+1);
+      add('O valor salvo aparece na interface.',new RegExp('(?:^|\\D)'+saved+'(?:\\D|$)').test(field.textContent));
+      break;
+    }
+    case 'acessibilidade': {
+      const field=one('#name'),label=one('label[for="name"]'),status=one('#status'),form=one('#form');
+      add('Campo tem um label associado pelo id.',Boolean(field&&label&&label.control===field));
+      add('Mensagem de status utiliza aria-live.',Boolean(status&&['polite','assertive'].includes(status.getAttribute('aria-live'))));
+      if(!field||!form||!status){add('Formulário apresenta confirmação ao enviar.',false);break;}
+      const before=status.textContent;
+      input(field,'DevLab');submit('#form');
+      add('Formulário apresenta confirmação ao enviar.',status.textContent.trim().length>0&&status.textContent!==before);
+      break;
+    }
+    default: {
+      add('Esta aula ainda não tem testes comportamentais.',false);
+    }
+  }
+  return checks;
+}
+
 
 /** Gera uma página executada EXCLUSIVAMENTE num iframe sandbox="allow-scripts".
  *  O usuário pode editar HTML/CSS/JS/TS, mas não acessa a página hospedeira. */
@@ -1000,6 +1145,7 @@ function jsonSafe(value) {
 function buildPreview({ html, css, js, token, stored = {} }) {
   const cssSafe = String(css).replace(/<\/style/gi, '<\\/style');
   const script = String(js);
+  const assessmentFunction = assessLessonBehavior.toString();
   return `<!doctype html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${cssSafe}</style>
 <script>
@@ -1040,37 +1186,9 @@ function buildPreview({ html, css, js, token, stored = {} }) {
   window.addEventListener('message', event => {
     const msg=event.data;
     if(event.source!==parent || !msg || msg.__devlab_check!==true || msg.token!==token)return;
-    const id=msg.id;
-    const report=(ok,detail)=>send('check-result',{id,ok,detail});
-    try {
-      const first=(selector)=>document.querySelector(selector);
-      if(id==='primeiros-passos') {
-        const title=first('#title'),result=first('#result'),button=first('#action');
-        if(!title||!result||!button)return report(false,'Não encontrei o botão, o título ou o resultado.');
-        const before=[title.textContent,result.textContent];button.click();
-        return report(title.textContent!==before[0]&&result.textContent!==before[1],'O clique precisa alterar o título E o texto do resultado.');
-      }
-      if(id==='operadores')return report(/37[.,]5/.test(first('#result')?.textContent||''),'O resultado esperado é 37,5% (3 de 8 tarefas).');
-      if(id==='debug-console')return report(observedLogs.some(x=>x.values.join(' ').includes('8')),'dobrar(4) deve retornar 8; confira o console.');
-      if(id==='loops')return report(document.querySelectorAll('#list li').length===5,'O loop deve gerar exatamente cinco itens na lista.');
-      if(id==='arrays')return report(document.querySelectorAll('#list li').length>=3,'Mostre ao menos três tarefas como itens da lista.');
-      if(id==='eventos') {
-        const input=first('#name'),result=first('#result');if(!input||!result)return report(false,'Input ou resultado não encontrado.');
-        input.value='Teste DevLab';input.dispatchEvent(new Event('input',{bubbles:true}));
-        return report((result.textContent||'').includes('Teste DevLab'),'O resultado deve reagir ao texto digitado.');
-      }
-      if(id==='formularios') {
-        const form=first('#task-form'),input=first('#task-title');if(!form||!input)return report(false,'Formulário ou campo não encontrado.');
-        const before=document.querySelectorAll('#list li').length;input.value='Nova tarefa';form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
-        return report(document.querySelectorAll('#list li').length>before,'Enviar uma tarefa precisa adicionar um item à lista.');
-      }
-      if(id==='renderizacao') {
-        const button=first('#action'),result=first('#result');if(!button||!result)return report(false,'Botão ou resultado não encontrado.');
-        const before=result.textContent;button.click();return report(result.textContent!==before,'Clicar no botão precisa atualizar o contador na tela.');
-      }
-      if(id==='api-json')return report(document.querySelectorAll('#list li').length>=2,'Renderize os dois títulos do JSON na lista.');
-      return report(true,'Verificação estrutural concluída.');
-    }catch(error){return report(false,'Erro durante o teste: '+toText(error));}
+    const report=(checks)=>send('check-result',{id:msg.id,nonce:msg.nonce,checks});
+    try { report((${assessmentFunction})(msg.id,document,observedLogs)); }
+    catch(error) { report([{label:'Erro ao executar os testes: '+toText(error),ok:false}]); }
   });
   send('ready', null);
 })();
@@ -1382,7 +1500,7 @@ const isTs = l => l?.language==='ts';
 const currentLesson = () => allLessons.find(l => l.id === getRoute().id) || allJsLessons[0];
 const starterFor = l => isTs(l) ? {html:l.starter.html,css:l.starter.css,ts:l.starter.js} : {...l.starter};
 const getRoute = () => { const p=location.hash.replace(/^#\/?/,'') || 'inicio'; if(p.startsWith('aula/'))return {page:'lesson',id:p.slice(5)};if(p==='curso/typescript')return {page:'course',lang:'ts'};if(p==='curso/javascript')return {page:'course',lang:'js'};if(p==='projeto')return {page:'project'};if(p==='revisao')return {page:'review'};if(p==='desafios')return {page:'briefs'};if(p==='oficina')return {page:'missions'};if(p.startsWith('missao/'))return {page:'mission',id:p.slice(7)};return {page:'home'}; };
-const st = { missionDrafts:load('mission-drafts',{}),missionProgress:load('mission-progress',{}),missionResult:null,missionChecking:false,missionHint:false,missionAttempt:0, pendingCheck:null, reviews:load('reviews',{}), reviewSelected:null,reviewReveal:false,notes:load('notes',{}),activeBrief:load('active-brief','conversor'),briefDrafts:load('brief-drafts',{}),briefChecklist:load('brief-checklist',{}),openBriefIntent:false, quizPassed:load('quiz-passed',[]),practicePassed:load('practice-passed',[]),activityDates:load('activity-dates',[]),answers:{},step:'learn',hintShown:false,checkResult:null, completed:load('completed',[]),milestones:load('milestones',[]),exercises:load('exercises',{}), projectJs:load('project-js',structuredClone(projectStarter)),projectTs:load('project-ts',structuredClone(typescriptProjectStarter)),last:load('last','primeiros-passos'),mode:'exercise',tab:'js',device:'desktop',consoleOpen:false,logs:[],search:'',expanded:load('expanded',jsUnits.concat(tsUnits).map(x=>x.id)),mobileMenu:false,token:0 };
+const st = { missionDrafts:load('mission-drafts',{}),missionProgress:load('mission-progress',{}),missionResult:null,missionChecking:false,missionHint:false,missionAttempt:0, pendingCheck:null,checkRequestId:0,verifiedDrafts:load('verified-drafts',{}),reviews:load('reviews',{}), reviewSelected:null,reviewReveal:false,notes:load('notes',{}),activeBrief:load('active-brief','conversor'),briefDrafts:load('brief-drafts',{}),briefChecklist:load('brief-checklist',{}),openBriefIntent:false, quizPassed:load('quiz-passed',[]),practicePassed:load('practice-passed',[]),activityDates:load('activity-dates',[]),answers:{},step:'learn',hintShown:false,checkResult:null, completed:load('completed',[]),milestones:load('milestones',[]),exercises:load('exercises',{}), projectJs:load('project-js',structuredClone(projectStarter)),projectTs:load('project-ts',structuredClone(typescriptProjectStarter)),last:load('last','primeiros-passos'),mode:'exercise',tab:'js',device:'desktop',consoleOpen:false,logs:[],search:'',expanded:load('expanded',jsUnits.concat(tsUnits).map(x=>x.id)),mobileMenu:false,token:0 };
 let runnerTimer=0;
 function reviewsDue(){return reviewQueue(st.reviews,allLessons,localDateKey());}
 function reviewsAll(){return reviewQueue(st.reviews,allLessons,localDateKey(),true);}
@@ -1396,7 +1514,7 @@ function recordActivity(){const today=localDateKey();if(!st.activityDates.includ
 const stageButton=(stage,label,number,done)=>`<button class="stage-btn ${st.step===stage?'active':''} ${done?'finished':''}" data-stage="${stage}" aria-current="${st.step===stage?'step':'false'}"><span class="stage-no">${done?'✓':number}</span><span>${label}</span></button>`;
 function learningNav(l){const quiz=st.quizPassed.includes(l.id),code=st.practicePassed.includes(l.id),project=st.milestones.includes(l.id);return `<div class="lesson-stage"><div class="stage-heading"><span class="section-kicker">ETAPAS DA AULA</span><span>${[quiz,code,project].filter(Boolean).length}/3 etapas</span></div><div class="stage-track">${stageButton('learn','01 · Aprender',1,quiz)}<span class="stage-join"></span>${stageButton('practice','02 · Praticar',2,code)}<span class="stage-join"></span>${stageButton('build','03 · Construir',3,project)}</div></div>`;}
 function quizSection(l){const q=checkpoints[l.id],correct=st.quizPassed.includes(l.id),answer=st.answers[l.id],wrong=answer!==undefined&&answer!==q.answer;return `<div class="lesson-card quiz-card"><div class="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div class="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>${esc(q.prompt)}</h2><div class="quiz-choices">${q.choices.map((choice,i)=>`<button class="quiz-choice ${correct&&i===q.answer?'correct':''} ${wrong&&i===answer?'incorrect':''}" data-answer="${i}" ${correct?'disabled':''}><span class="choice-letter">${'ABC'[i]}</span>${esc(choice)}<span class="choice-state">${correct&&i===q.answer?'✓':wrong&&i===answer?'×':''}</span></button>`).join('')}</div>${correct?`<div class="feedback success" role="status"><strong>✓ Excelente! Resposta correta.</strong><p>${esc(q.explanation)}</p><button data-stage="practice">Ir para o exercício →</button></div>`:wrong?`<div class="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>`:'<p class="quiz-foot">Escolha uma resposta para receber feedback imediatamente.</p>'}</div>`;}
-function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. A verificação é orientativa: confirma estrutura e conceitos, mas não substitui testes de comportamento.</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?'Muito bem! Agora aplique no TaskFlow.':'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
+function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. ${runtimeCheckedLessons.has(l.id)?'O navegador executará testes reais de comportamento, com entradas diferentes e verificação de resultados.':'Esta aula ainda usa verificação orientativa por estrutura; avance à Oficina para testar lógica com casos-limite.'}</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?`Aprovado: ${result.checks.filter(c=>c.ok).length} verificações concluídas.`:'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}${result.passed?'<button class="challenge-cta" data-stage="build">Aplicar no projeto TaskFlow →</button>':''}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
 
 function nav(path){ location.hash='#/'+path; if(getRoute().page==='lesson' && path==='aula/'+getRoute().id) render(); window.scrollTo({top:0}); }
 function percent(lang){const a=lang==='ts'?allTsLessons:allJsLessons;return Math.round(100*a.filter(x=>st.completed.includes(x.id)).length/a.length);}
@@ -1477,7 +1595,7 @@ function render(){const r=getRoute();if(r.page==='lesson'){st.last=currentLesson
  if(r.page==='lesson'){refreshEditor();runPreview();}else if(r.page==='mission'){refreshEditor();}
 }
 function refreshEditor(){const editor=$('#code-editor');if(!editor)return;const value=editor.value;const el=$('#syntax-layer');if(el)el.innerHTML=syntax(value);const gutter=$('#editor-lines');if(gutter)gutter.textContent=Array.from({length:Math.max(1,value.split('\n').length)},(_,i)=>String(i+1)).join('\n');}
-function onEditorInput(){if(getRoute().page==='mission'){const id=getRoute().id;st.missionAttempt++;st.missionDrafts[id]=$('#code-editor').value;save('mission-drafts',st.missionDrafts);if(st.missionProgress[id]?.passed && st.missionProgress[id].passedCode!==st.missionDrafts[id]){st.missionProgress[id].passed=false;save('mission-progress',st.missionProgress);const status=$('.mission-status');if(status){status.textContent='Aguardando testes';status.classList.remove('is-passed');}const counter=$('.side-link[data-nav="oficina"] .side-count');if(counter)counter.textContent=missions.filter(m=>st.missionProgress[m.id]?.passed).length+'/'+missions.length;}st.missionResult=null;st.missionChecking=false;refreshEditor();return;}st.pendingCheck=null;st.checkResult=null;const l=currentLesson(),draft=activeDraft(l),tab=activeTab(l);draft[tab]=$('#code-editor').value;if(st.mode==='exercise'){st.exercises[l.id]=draft;save('exercises',st.exercises)}else if(st.mode==='brief'){st.briefDrafts[st.activeBrief]=draft;save('brief-drafts',st.briefDrafts)}else if(isTs(l))save('project-ts',st.projectTs);else save('project-js',st.projectJs);refreshEditor();clearTimeout(runnerTimer);runnerTimer=setTimeout(runPreview,650);}
+function onEditorInput(){if(getRoute().page==='mission'){const id=getRoute().id;st.missionAttempt++;st.missionDrafts[id]=$('#code-editor').value;save('mission-drafts',st.missionDrafts);if(st.missionProgress[id]?.passed && st.missionProgress[id].passedCode!==st.missionDrafts[id]){st.missionProgress[id].passed=false;save('mission-progress',st.missionProgress);const status=$('.mission-status');if(status){status.textContent='Aguardando testes';status.classList.remove('is-passed');}const counter=$('.side-link[data-nav="oficina"] .side-count');if(counter)counter.textContent=missions.filter(m=>st.missionProgress[m.id]?.passed).length+'/'+missions.length;}st.missionResult=null;st.missionChecking=false;refreshEditor();return;}if(st.pendingCheck){clearTimeout(st.pendingCheck.timer);st.pendingCheck=null;}st.checkResult=null;const l=currentLesson(),draft=activeDraft(l),tab=activeTab(l);draft[tab]=$('#code-editor').value;if(st.mode==='exercise'){st.exercises[l.id]=draft;save('exercises',st.exercises)}else if(st.mode==='brief'){st.briefDrafts[st.activeBrief]=draft;save('brief-drafts',st.briefDrafts)}else if(isTs(l))save('project-ts',st.projectTs);else save('project-js',st.projectJs);if(st.mode==='exercise' && st.verifiedDrafts[l.id] && st.verifiedDrafts[l.id]!==JSON.stringify(draft)){delete st.verifiedDrafts[l.id];save('verified-drafts',st.verifiedDrafts);st.practicePassed=st.practicePassed.filter(id=>id!==l.id);save('practice-passed',st.practicePassed);}refreshEditor();clearTimeout(runnerTimer);runnerTimer=setTimeout(runPreview,650);}
 function storageBucket(){let l=currentLesson();return PREFIX+'preview:'+(st.mode==='project'?(isTs(l)?'project-ts':'project-js'):st.mode==='brief'?'brief-'+st.activeBrief:'lesson-'+l.id);}
 function storageSnapshot(){try { const v=JSON.parse(localStorage.getItem(storageBucket())||'{}');return v && typeof v==='object'&&!Array.isArray(v)?v:{}; }catch{return {};}}
 let compilerPromise;
@@ -1515,10 +1633,13 @@ async function runPreview(){const frame=$('#devlab-preview');if(!frame)return;co
 function updateConsole(){const o=$('#console-output'),count=$('#console-count');if(o){o.innerHTML=logLines();o.scrollTop=o.scrollHeight;}if(count)count.textContent=String(st.logs.length);}
 window.addEventListener('message',event=>{const frame=$('#devlab-preview');if(!frame||event.source!==frame.contentWindow)return;const d=event.data;if(!d||d.__devlab!==true||d.token!==st.token)return;if(d.kind==='log'){st.logs.push(d.payload);if(st.logs.length>120)st.logs.shift();updateConsole();}else if(d.kind==='storage'){try{localStorage.setItem(storageBucket(),JSON.stringify(d.payload));}catch(error){console.warn(error);}}else if(d.kind==='check-result'){
  const pending=st.pendingCheck;
- if(!pending || pending.id!==d.payload?.id || st.mode!=='exercise')return;
+ if(!pending || pending.id!==d.payload?.id || pending.nonce!==d.payload?.nonce || pending.token!==st.token || st.mode!=='exercise')return;
  st.pendingCheck=null;
+ clearTimeout(pending.timer);
  const inspection=pending.inspection;
- inspection.checks.push({label:d.payload.detail,ok:!!d.payload.ok});
+ const cases=Array.isArray(d.payload.checks)?d.payload.checks:[];
+ inspection.checks.push(...cases.map(c=>({label:String(c.label||'Teste sem descrição'),ok:c.ok===true})));
+ if(!cases.length) inspection.checks.push({label:'Nenhum resultado foi retornado pelo avaliador.',ok:false});
  inspection.passed=inspection.checks.every(x=>x.ok);
  finishCheck(pending.id,inspection);
  }});
@@ -1526,12 +1647,13 @@ function downloadFile(name,content,type='text/html'){const blob=new Blob([conten
 async function clipboard(value){try{await navigator.clipboard.writeText(value);toast('Código copiado.');}catch{const textarea=$('#code-editor');textarea?.focus();textarea?.select();toast('Selecione e copie com Ctrl+C.');}}
 function finishCheck(id,inspection){
  st.checkResult=inspection;
+ if(inspection.passed && runtimeCheckedLessons.has(id)){st.verifiedDrafts[id]=JSON.stringify(activeDraft(currentLesson()));save('verified-drafts',st.verifiedDrafts);}
  if(inspection.passed && !st.practicePassed.includes(id)){
   st.practicePassed.push(id);save('practice-passed',st.practicePassed);
   if(!st.completed.includes(id)){st.completed.push(id);save('completed',st.completed);}
   recordActivity();
  }
- if(inspection.passed){st.step='build';toast('Desafio concluído! +30 XP');}
+ if(inspection.passed){st.step=inspection.mode==='behavior'?'practice':'build';toast('Desafio concluído! +30 XP');}
  render();
 }
 function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=findMission(id);if(!m)return;if(name==='run-tests'){evaluateMission();return;}if(name==='mission-hint'){st.missionHint=!st.missionHint;render();return;}if(name==='mission-reset'){if(!confirm('Restaurar o código da missão? Suas alterações serão perdidas.'))return;st.missionAttempt++;delete st.missionDrafts[id];save('mission-drafts',st.missionDrafts);st.missionResult=null;st.missionChecking=false;render();return;}if(name==='mission-export'){downloadFile(m.id+'.js',missionDraft(id),'text/javascript');return;}return;}const l=currentLesson(),draft=activeDraft(l);switch(name){
@@ -1545,15 +1667,20 @@ function action(name){if(getRoute().page==='mission'){const id=getRoute().id,m=f
    inspection.passed=inspection.checks.every(x=>x.ok);
    if(!inspection.passed){st.checkResult=inspection;render();break;}
    if(runtimeCheckedLessons.has(l.id)){
-     st.pendingCheck={id:l.id,inspection};
+     if(st.pendingCheck)return;
+     const nonce=++st.checkRequestId, token=st.token;
+     const pending={id:l.id,inspection,nonce,token,timer:null};
+     st.pendingCheck=pending;
      const frame=$('#devlab-preview');
-     if(frame?.contentWindow){frame.contentWindow.postMessage({__devlab_check:true,token:st.token,id:l.id},'*');}
-     else {inspection.checks.push({label:'Prévia indisponível. Execute o código novamente.',ok:false});inspection.passed=false;finishCheck(l.id,inspection);}
+     const checkButton=$('[data-action="check-exercise"]');if(checkButton){checkButton.disabled=true;checkButton.textContent='Executando testes…';}
+     pending.timer=setTimeout(()=>{if(st.pendingCheck!==pending)return;st.pendingCheck=null;inspection.checks.push({label:'O avaliador não respondeu. Execute a prévia e tente novamente.',ok:false});inspection.passed=false;finishCheck(l.id,inspection);},3000);
+     if(frame?.contentWindow){frame.contentWindow.postMessage({__devlab_check:true,token,nonce,id:l.id},'*');}
+     else {clearTimeout(pending.timer);st.pendingCheck=null;inspection.checks.push({label:'Prévia indisponível. Execute o código novamente.',ok:false});inspection.passed=false;finishCheck(l.id,inspection);}
    }else finishCheck(l.id,inspection);
    break;
  }
  case 'console':st.consoleOpen=!st.consoleOpen;const o=$('#console-output');if(o)o.style.display=st.consoleOpen?'block':'none';$('.console-toggle>span:last-child').textContent=st.consoleOpen?'⌄':'›';break;
- case 'reset':if(!confirm(`Restaurar o código do ${st.mode==='exercise'?'exercício':'projeto'}? Suas alterações serão perdidas.`))break;if(st.mode==='exercise'){delete st.exercises[l.id];save('exercises',st.exercises)}else if(st.mode==='brief'){delete st.briefDrafts[st.activeBrief];save('brief-drafts',st.briefDrafts)}else if(isTs(l)){st.projectTs=structuredClone(typescriptProjectStarter);save('project-ts',st.projectTs)}else{st.projectJs=structuredClone(projectStarter);save('project-js',st.projectJs)}render();toast('Arquivos restaurados.');break;
+ case 'reset':if(!confirm(`Restaurar o código do ${st.mode==='exercise'?'exercício':'projeto'}? Suas alterações serão perdidas.`))break;if(st.mode==='exercise'){delete st.exercises[l.id];save('exercises',st.exercises);if(st.verifiedDrafts[l.id]){delete st.verifiedDrafts[l.id];save('verified-drafts',st.verifiedDrafts);st.practicePassed=st.practicePassed.filter(id=>id!==l.id);save('practice-passed',st.practicePassed)}}else if(st.mode==='brief'){delete st.briefDrafts[st.activeBrief];save('brief-drafts',st.briefDrafts)}else if(isTs(l)){st.projectTs=structuredClone(typescriptProjectStarter);save('project-ts',st.projectTs)}else{st.projectJs=structuredClone(projectStarter);save('project-js',st.projectJs)}render();toast('Arquivos restaurados.');break;
  case 'export':if(isTs(l))downloadFile((st.mode==='project'?'taskflow-ts':l.id)+'.ts',draft.ts||'','text/plain');else downloadFile((st.mode==='project'?'taskflow':st.mode==='brief'?st.activeBrief:l.id)+'.html',makeExportHtml(draft));toast('Arquivo exportado.');break;
  case 'copy-code':clipboard(draft[activeTab(l)]||'');break;
  case 'copy-example':clipboard(l.example);break;

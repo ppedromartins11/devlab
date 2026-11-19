@@ -25,9 +25,17 @@ new Function(projectStarter.js);
 assert(projectStarter.js.includes('TODO'), 'Projeto inicial deve ser evolutivo');
 
 const context={};
-vm.createContext(context);
-vm.runInContext(fs.readFileSync(new URL('../offline/vendor/typescript.js', import.meta.url),'utf8'), context, {timeout:25000});
-assert(context.ts?.transpileModule, 'Compilador TypeScript offline disponível');
+const vendorFile=new URL('../offline/vendor/typescript.js', import.meta.url);
+if(fs.existsSync(vendorFile)) {
+  vm.createContext(context);
+  vm.runInContext(fs.readFileSync(vendorFile,'utf8'), context, {timeout:25000});
+} else {
+  // O compilador é incluído no ZIP offline, mas não no GitHub (arquivo de 9 MB).
+  // No CI, o pacote TypeScript instalado pelo workflow realiza a mesma verificação.
+  try { context.ts=await import('typescript'); }
+  catch { throw new Error('Compilador TS ausente. Execute npm install antes dos testes, ou use o ZIP offline.'); }
+}
+assert(context.ts?.transpileModule, 'Compilador TypeScript disponível para o teste');
 for (const l of allTsLessons) {
   for (const source of [l.starter.js,l.example]) {
     const result=context.ts.transpileModule(source,{fileName:'app.ts',reportDiagnostics:true,compilerOptions:{target:context.ts.ScriptTarget.ES2020,module:context.ts.ModuleKind.None}});

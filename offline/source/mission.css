@@ -1,0 +1,71 @@
+/* Oficina: contratos legíveis, editor focado e resultados objetivos. */
+.mission-promo{display:flex;justify-content:space-between;align-items:center;gap:24px;background:#eaf1ec;border:1px solid #d4e0d8;padding:21px 24px;margin:0 0 24px;border-radius:8px}
+.mission-promo h2{font-size:19px;letter-spacing:-.025em;margin:5px 0;color:var(--ink)}
+.mission-promo p{font-size:12px;max-width:590px;line-height:1.6;margin:0;color:var(--muted)}
+.mission-promo .button-primary{white-space:nowrap;border-radius:6px;font-size:12px;padding:12px 17px}
+.mission-stat{display:flex;align-items:baseline;gap:15px;padding:24px;margin:25px 0;background:#fff;border:1px solid var(--rule);border-radius:8px}
+.mission-stat strong{font-size:23px;color:var(--ink)}
+.mission-stat span{color:var(--muted);font-size:12px}
+.mission-category{margin:35px 0}
+.mission-category-head{display:flex;justify-content:space-between;gap:15px;align-items:end;margin-bottom:13px}
+.mission-category-head h2{font-size:18px;font-weight:650;color:var(--ink);margin:7px 0 0}
+.mission-category-head>span{font-size:12px;color:var(--muted);white-space:nowrap}
+.mission-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.mission-card{display:flex;flex-direction:column;padding:21px 22px;border:1px solid var(--rule);border-radius:8px;background:#fff;min-height:202px}
+.mission-card-meta{display:flex;justify-content:space-between;gap:14px;color:var(--muted);font-size:10px;font-weight:650}
+.mission-card h3{font-size:19px;letter-spacing:-.025em;margin:14px 0 7px;color:var(--ink)}
+.mission-card p{font-size:12px;line-height:1.6;color:var(--muted);margin:0 0 18px}
+.mission-card-foot{border-top:1px solid var(--rule);padding-top:14px;margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mission-card-foot span{color:var(--muted);font-size:11px}
+.mission-card-foot button{background:transparent;color:var(--primary);font-size:12px;font-weight:700;padding:7px}
+.mission-card-foot button:hover{text-decoration:underline}
+.mission-page{padding-bottom:50px}
+.mission-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:10px 0 22px}
+.mission-top>span{font-size:12px;color:var(--muted)}
+.mission-heading{display:flex;align-items:start;justify-content:space-between;gap:16px;margin-bottom:26px}
+.mission-heading h1{font-size:clamp(27px,3.1vw,37px);letter-spacing:-.035em;color:var(--ink);margin:7px 0 8px}
+.mission-heading p{max-width:650px;font-size:13px;line-height:1.65;color:var(--muted);margin:0}
+.mission-status{display:inline-block;border:1px solid var(--rule);background:#fff;color:var(--muted);font-size:11px;font-weight:650;padding:9px 12px;border-radius:6px;white-space:nowrap}
+.mission-status.is-passed{background:#edf6f0;border-color:#b7d6c0;color:#24694c}
+.mission-layout{display:grid;grid-template-columns:minmax(300px,0.81fr) minmax(450px,1.19fr);gap:19px;align-items:start}
+.mission-spec,.mission-workspace{border:1px solid var(--rule);border-radius:8px;background:#fff;overflow:hidden}
+.mission-section{padding:23px 24px;border-bottom:1px solid var(--rule)}
+.mission-section:last-child{border:0}
+.mission-section h2{font-size:18px;letter-spacing:-.025em;margin:7px 0 12px;color:var(--ink)}
+.mission-section p{font-size:12px;line-height:1.75;color:var(--muted);margin:0}
+.mission-section ul{padding-left:18px;margin:14px 0 0;display:grid;gap:11px}
+.mission-section li{font-size:12px;line-height:1.55;color:var(--ink)}
+.mission-section .signature{display:inline-block;background:#edf2ef;color:#21533e;padding:10px 12px;font-size:12px;border-radius:5px;white-space:normal;overflow-wrap:anywhere}
+.mission-test-names{display:grid;gap:8px;margin-top:14px}
+.mission-test-names span{font-size:11px;color:var(--ink);background:#f6f8f6;padding:9px 11px;border-radius:5px}
+.mission-guidance p{margin-top:10px}
+.mission-guidance details{margin-top:15px}
+.mission-guidance summary{cursor:pointer;font-size:12px;color:var(--primary);font-weight:650}
+.mission-workspace .workspace-bar{border-radius:0}
+.mission-workspace .editor-tabs{border-radius:0}
+.mission-workspace .offline-editor{border-radius:0}
+.mission-editor{min-height:355px;max-height:520px}
+.mission-editor textarea{min-height:355px}
+.mission-editor-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;border-top:1px solid #28323b;padding:13px 15px;background:#111a24}
+.mission-editor-actions>span{font-size:10px;color:#9eaebc}
+.mission-editor-actions>div{display:flex;gap:8px;flex-wrap:wrap}
+.mission-editor-actions button{font-size:11px;border-radius:5px;padding:10px 12px}
+.mission-editor-actions button:disabled{opacity:.6;cursor:progress}
+.mission-results{border-top:1px solid var(--rule);padding:23px 23px 18px}
+.mission-results-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mission-results-head h2{color:var(--ink);font-size:17px;margin:6px 0 12px}
+.mission-results>p{font-size:12px;line-height:1.6;color:var(--muted)}
+.mission-grade{font-size:10px;font-weight:750;white-space:nowrap;letter-spacing:.045em}
+.mission-grade.passed{color:#24694c}
+.mission-grade.failed{color:#a34f37}
+.mission-report{display:grid;gap:7px}
+.mission-result{display:flex;align-items:start;gap:10px;padding:12px 13px;background:#f7faf8;border:1px solid #e4ece6;border-radius:5px}
+.mission-result.fail{background:#fff8f4;border-color:#f1d8ce}
+.mission-result>span{font-size:15px;font-weight:800;color:#27794f}
+.mission-result.fail>span{color:#b3513a}
+.mission-result strong{font-size:12px;color:var(--ink)}
+.mission-result small{display:block;font-size:11px;color:#8b4b3b;margin-top:5px;overflow-wrap:anywhere;line-height:1.5}
+.mission-error{background:#fff4ef;color:#954f3b;border:1px solid #f0d3c6;padding:13px 14px;border-radius:6px;font-size:12px;line-height:1.55}
+.mission-success{color:#24694c!important;font-weight:650}
+@media(max-width:1180px){.mission-layout{grid-template-columns:1fr}.mission-spec{display:grid;grid-template-columns:1fr 1fr}.mission-section:nth-child(odd){border-right:1px solid var(--rule)}}
+@media(max-width:700px){.mission-grid{grid-template-columns:1fr}.mission-heading{display:block}.mission-status{margin-top:12px}.mission-stat{display:grid;gap:6px}.mission-spec{display:block}.mission-section:nth-child(odd){border-right:0}.mission-section{padding:18px}.mission-results{padding:18px}.mission-promo{display:block;padding:17px}.mission-promo .button-primary{margin-top:14px}.mission-editor-actions{align-items:stretch}.mission-editor-actions>div{width:100%;display:grid;grid-template-columns:1fr 1fr}.mission-editor-actions .run-button{grid-column:1/-1}.mission-category-head{display:block}.mission-category-head>span{display:block;margin-top:10px}}

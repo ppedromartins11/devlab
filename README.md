@@ -125,3 +125,11 @@ O teste valida contagem das aulas, conteúdo necessário, sintaxe dos exercício
 - A compilação TypeScript da prévia remove anotações de tipo, mas não substitui uma verificação completa `tsc` do projeto. O Monaco da versão React fornece diagnóstico de tipos no editor.
 - O compilador TypeScript incluído em `offline/vendor/` é distribuído sob Apache 2.0; veja `LICENSE-typescript.txt` ao lado dele.
 - Em navegação privada ou bloqueio de armazenamento local, o progresso pode não ser persistido.
+
+## DevLab 5.0 — Oficina de código
+
+A área **Oficina** (`#/oficina`) oferece seis missões que verificam saídas de funções JavaScript com 31 casos automatizados: duas implementações, dois bugs para corrigir e duas avaliações de autonomia com editor vazio. Os testes executam em um Worker dentro de um iframe de origem opaca, com timeout, feedback por caso e salvamento local independente das aulas.
+
+**Detalhes, limitações, arquitetura e testes:** [docs/OFICINA.md](docs/OFICINA.md).
+
+Rode `node tests/missions.mjs` para conferir os contratos das missões; o workflow do GitHub Actions inclui essa verificação.

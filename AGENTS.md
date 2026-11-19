@@ -18,3 +18,10 @@ npm test
 ```
 
 Configuração visual: `src/styles.css` contém a estrutura legada; `src/workspace.css` reúne os estilos do workspace atual. Prefira CSS organizado e decisões justificadas por usabilidade, não efeitos decorativos.
+
+## Oficina de código (DevLab 5)
+
+- Os contratos das missões vivem em `src/missions.js`; os testes de comportamento devem ser determinísticos, cobrindo casos-limite.
+- `src/mission-runner.js` executa código do aluno exclusivamente em um Worker de um iframe com origem opaca. Nunca mover `new Function` para o contexto principal.
+- Não considerar aprovada uma solução apenas pela presença de keywords. Não alterar as chaves antigas do armazenamento local.
+- Para publicar, gerar `offline/index.html` via `python offline/build_standalone.py`, rodar `node scripts/build-static.mjs` e executar os testes automatizados.

@@ -7,7 +7,7 @@
     "dev": "vite --host 0.0.0.0",
     "build": "vite build",
     "build:static": "node scripts/build-static.mjs",
-    "test": "node tests/smoke.mjs && node tests/learning.mjs && node tests/study-tools.mjs",
+    "test": "node tests/smoke.mjs && node tests/learning.mjs && node tests/study-tools.mjs && node tests/missions.mjs",
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {

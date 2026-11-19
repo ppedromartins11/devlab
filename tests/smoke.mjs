@@ -54,5 +54,7 @@ assert(standalone.includes('EDITOR DE CÓDIGO') && standalone.includes('function
 assert((standalone.match(/<\/script>/g)||[]).length===1, 'O JavaScript embutido não deve fechar a tag script antes do fim');
 assert(standalone.includes('workspace.css')===false && standalone.includes('--primary: #225d4c'), 'Sistema visual não incorporado ao HTML offline');
 assert(standalone.includes('cdn.jsdelivr.net/npm/typescript@5.9.3'), 'Fallback TypeScript online ausente');
+assert(standalone.includes('function missionEditorPage()') && standalone.includes('function runMissionInSandbox('), 'Oficina e executor isolado ausentes no HTML offline');
+assert(standalone.includes('sandbox","allow-scripts') || standalone.includes("sandbox','allow-scripts"), 'Worker precisa de iframe sandbox');
 new vm.Script(standalone.slice(standalone.indexOf('<script>') + 8, standalone.lastIndexOf('</script>')));
 console.log('OK — 29 aulas, exemplos, exercícios, projeto evolutivo, TypeScript, exportação e HTML offline verificados.');

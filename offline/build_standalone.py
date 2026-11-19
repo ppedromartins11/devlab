@@ -7,13 +7,16 @@ preview = (src/'preview.js').read_text()
 learning = (src/'learning.js').read_text()
 runtime = (src/'runtime-check.js').read_text()
 study = (src/'study-tools.js').read_text()
+missions = (src/'missions.js').read_text()
+mission_runner = (src/'mission-runner.js').read_text()
 app = (root/'source'/'app.js').read_text()
 css = (src/'styles.css').read_text()
 css = re.sub(r'^@import[^\n]*\n?', '', css, count=1)
 css += '\n' + (root/'source'/'offline-extra.css').read_text()
 css += '\n' + (src/'workspace.css').read_text()
 css += '\n' + (root/'source'/'study.css').read_text()
-js = course.replace('export const ', 'const ') + '\n' + learning.replace('export const ', 'const ').replace('export function ', 'function ') + '\n' + runtime.replace('export const ', 'const ') + '\n' + preview.replace('export function ','function ') + '\n' + study.replace('export const ','const ').replace('export function ','function ') + '\n' + app
+css += '\n' + (root/'source'/'mission.css').read_text()
+js = course.replace('export const ', 'const ') + '\n' + learning.replace('export const ', 'const ').replace('export function ', 'function ') + '\n' + runtime.replace('export const ', 'const ') + '\n' + preview.replace('export function ','function ') + '\n' + study.replace('export const ','const ').replace('export function ','function ') + '\n' + missions.replace('export const ','const ') + '\n' + mission_runner.replace('export function ','function ') + '\n' + app
 # Never close the host <script> when embedded JavaScript strings mention it.
 js = re.sub(r'</script', r'<\\/script', js, flags=re.I)
 html = '''<!doctype html>

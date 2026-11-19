@@ -19,4 +19,5 @@ jobs:
       - run: node tests/smoke.mjs
       - run: node tests/learning.mjs
       - run: node tests/study-tools.mjs
+      - run: node tests/missions.mjs
       - run: node scripts/build-static.mjs

@@ -1,0 +1,7 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "node scripts/build-static.mjs",
+  "installCommand": "echo 'DevLab offline: sem instalação de dependências no deploy'",
+  "outputDirectory": "dist"
+}

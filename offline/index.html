@@ -1,0 +1,754 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#080c14"><meta name="description" content="DevLab - Curso prático de JavaScript e TypeScript com editor e prévia."><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
+.app-layout{display:flex;min-height:100vh}.sidebar{width:274px;min-width:274px;height:100vh;position:sticky;top:0;display:flex;flex-direction:column;background:#0c111c;border-right:1px solid #1a2332;z-index:10}.sidebar-top{padding:26px 20px 27px;border-bottom:1px solid #1a2332;display:flex;align-items:center;justify-content:space-between}.brand-button{display:flex;align-items:center;gap:11px;background:none;color:white;padding:0;text-align:left}.logo-symbol{height:37px;width:37px;display:grid;place-items:center;border-radius:11px;color:#061b1a;background:linear-gradient(145deg,#77eed4,#37b9b0);box-shadow:0 5px 20px #20d4b326}.brand-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.3px;line-height:1}.brand-text>span{color:#63e3c8}.brand-text small{display:block;margin-top:7px;font:700 8px 'DM Sans',sans-serif;color:#74839c;letter-spacing:1.65px}.sidebar-scroll{overflow:auto;flex:1;padding:21px 13px 15px}.sidebar-group{margin-bottom:22px}.sidebar-label{color:#687991;letter-spacing:1.35px;font-size:10px;font-weight:800;margin:0 11px 11px}.side-link,.course-link,.unit-toggle,.lesson-link{width:100%;display:flex;align-items:center;text-align:left;background:transparent;color:#99a8c0}.side-link{gap:13px;padding:11px 12px;border-radius:8px;font-size:13px;font-weight:600}.side-link svg{color:#8191ab}.side-link:hover,.side-link.selected{color:#e8fff9;background:#172934}.side-link.selected svg{color:#6fe6ce}.side-count{margin-left:auto;font-size:10px;color:#66748a}.side-search{border:1px solid #253044;border-radius:9px;height:38px;padding:0 10px;display:flex;align-items:center;gap:8px;margin:6px 8px 24px;color:#687991;background:#101724}.side-search input{width:100%;min-width:0;outline:none;border:0;background:none;color:#dce6f6;font-size:12px}.side-search input::placeholder{color:#647189}.course-link{padding:9px 10px;gap:10px;border-radius:10px;margin-bottom:10px;color:white}.course-link:hover,.selected-course{background:#151f31}.course-link>span:nth-child(2){flex:1;font-size:13px;font-weight:750}.course-link small{display:block;color:#7d8ba6;margin-top:5px;font-size:10px;font-weight:500}.course-link>svg{color:#596980}.js-logo,.ts-logo{width:31px;height:31px;border-radius:7px;display:grid;place-items:center;color:#292500;background:#f7df1e;font-weight:900;font-size:12px}.ts-logo{background:#3178c6;color:white}.nav-unit{margin:0 0 7px 11px;border-left:1px solid #253045}.unit-toggle{justify-content:space-between;font-size:11px;color:#8c9bb4;padding:10px 10px;font-weight:700}.unit-toggle:hover{color:#e6eefd}.unit-lessons{padding-bottom:7px}.lesson-link{gap:8px;padding:7px 9px 7px 12px;font-size:11.5px;line-height:1.4;border-radius:7px;margin-left:2px;width:calc(100% - 3px)}.lesson-link>span:last-child{flex:1}.lesson-link:hover{color:#e4f5fa;background:#152134}.lesson-link.active-lesson{color:#6fe6ce;background:#102e30;font-weight:700}.lesson-status{display:flex;align-items:center;justify-content:center;min-width:13px;color:#485670}.lesson-status.done{color:#5cddbc}.ts-nav{margin-top:26px}.sidebar-bottom{padding:15px 18px;display:flex;gap:10px;align-items:center;border-top:1px solid #1a2332}.avatar{width:33px;height:33px;border:1px solid #354c64;border-radius:50%;display:grid;place-items:center;color:#72e5ce;background:#1b3640;font-weight:800}.sidebar-bottom>div:nth-child(2){flex:1}.sidebar-bottom strong{display:block;font-size:12px}.sidebar-bottom small{display:block;color:#687991;font-size:9.5px;margin-top:4px}.online-dot,.sync-dot,.welcome-dot,.workspace-status,.preview-status{width:7px;height:7px;display:inline-block;background:#61e3b8;border-radius:50%;box-shadow:0 0 12px #2ce1aa55}.close-sidebar,.mobile-menu-btn,.mobile-overlay{display:none!important}
+.main-pane{flex:1;min-width:0;background:radial-gradient(circle at 75% -10%,#17223a 0%,transparent 32%),#080c14}.topbar{height:71px;position:sticky;top:0;z-index:5;background:#080c14ed;backdrop-filter:blur(16px);border-bottom:1px solid #202838;display:flex;align-items:center;justify-content:space-between;padding:0 39px;gap:15px}.topbar-left,.topbar-right,.breadcrumbs{display:flex;align-items:center;gap:11px}.breadcrumbs{color:#75849f;font-size:11px;min-width:0;flex-wrap:wrap}.breadcrumbs button{background:none;color:#8b9bb5;padding:0}.breadcrumbs button:hover{color:white}.breadcrumbs span{color:#d5dfed;max-width:230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sync-label{color:#8190a7;font-size:10.5px}.sync-label .sync-dot{margin-right:7px}.topbar-project{border:1px solid #314057;background:#162033;color:#d8e4f5;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}.topbar-project:hover{background:#1d3041}.main-content{max-width:1600px;padding:42px 46px 72px;margin:0 auto}.section-kicker{color:#67dfc6;letter-spacing:1.7px;font-size:10px;font-weight:800}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.section-heading h2{font-size:24px;margin:9px 0}.section-heading p{color:#8998b2;font-size:13px;margin:0}.back-link{display:flex;align-items:center;gap:8px;color:#94a4bd;background:none;padding:0;margin-bottom:22px;font-size:12px;font-weight:650}.back-link:hover{color:#5fe4c4}
+.welcome-overline{display:flex;align-items:center;gap:9px;color:#9da9bf;letter-spacing:2px;font-size:10px;font-weight:800;margin-bottom:17px}.hero-banner{min-height:348px;border:1px solid #24324b;border-radius:18px;overflow:hidden;background:radial-gradient(circle at 93% 5%,#173d49 0%,transparent 45%),linear-gradient(115deg,#17253e 2%,#121b2e 55%,#11252f 100%);display:flex;justify-content:space-between;gap:10px;padding:45px 50px;position:relative}.hero-banner::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,#8fa9ca0e 1px,transparent 1px),linear-gradient(#8fa9ca0e 1px,transparent 1px);background-size:43px 43px;mask-image:linear-gradient(90deg,transparent,#000)}.hero-text{position:relative;z-index:1;max-width:650px}.pill{display:inline-flex;align-items:center;gap:7px;color:#89abbd;border:1px solid #344459;background:#1b273c;padding:7px 10px;border-radius:6px;font-size:9px;font-weight:850;letter-spacing:.8px;white-space:nowrap}.hero-chip{color:#5ee5c7;border-color:#2a655e;background:#1c4545}.soft-blue{background:#1e3551;border-color:#2c5284;color:#7bb7ff}.hero-banner h1{font-size:clamp(29px,3.2vw,45px);line-height:1.24;margin:25px 0 14px;color:#f6f9ff;letter-spacing:-1.7px}.hero-banner h1 em{font-style:normal;color:#67e2c5}.hero-text>p{font-size:13px;color:#aabbd2;line-height:1.85;max-width:570px}.hero-buttons{display:flex;align-items:center;gap:12px;margin-top:26px}.button-primary{background:#69e6c8;color:#092621;border:1px solid #69e6c8;border-radius:9px;padding:12px 16px;display:inline-flex;align-items:center;justify-content:center;gap:11px;font-weight:850;font-size:12px;box-shadow:0 6px 30px #1ddeab20}.button-primary:hover{background:#86f5da}.button-ghost{border:1px solid #40536c;color:#d4e0ef;background:#ffffff08;border-radius:9px;padding:12px 15px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:750;font-size:12px}.button-ghost:hover{background:#ffffff15}.hero-art{min-width:305px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}.hero-code-card{width:325px;height:225px;border:1px solid #52647a;background:#0a101bbf;box-shadow:0 15px 70px #0008;border-radius:12px;transform:rotate(5deg);overflow:hidden}.window-dots{border-bottom:1px solid #28394b;height:32px;display:flex;align-items:center;gap:6px;padding:0 13px}.window-dots i{width:7px;height:7px;border-radius:50%;background:#f27979}.window-dots i:nth-child(2){background:#ffca70}.window-dots i:nth-child(3){background:#69dbab}.hero-code-lines{padding:20px 19px;display:flex;flex-direction:column;gap:10px;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;color:#c5d6f5}.hero-code-lines b{color:#b6a5fa}.hero-code-lines strong{color:#9fe8b8;font-weight:400}.hero-code-lines .hero-comment{color:#53647d;margin-top:5px}.hero-float{position:absolute;background:#63e1c0;color:#06322c;border-radius:12px;padding:12px 14px;bottom:45px;left:12px;font-weight:950;font-size:23px;box-shadow:0 12px 35px #12d7a833}.stats-grid,.project-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:22px}.stat{border:1px solid #253044;background:#111824;border-radius:12px;padding:17px 19px;min-height:102px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}.stat-icon{color:#64e4c4;display:inline-flex;margin-bottom:5px}.stat strong{color:#edf4ff;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;letter-spacing:-.5px}.stat>span:last-child{font-size:11px;color:#8a9ab3}.section-block{margin-top:45px}.tracks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.track-card{border:1px solid #263246;border-radius:14px;background:linear-gradient(160deg,#111c2b,#101723 80%);padding:25px;min-height:358px;display:flex;flex-direction:column}.track-top{display:flex;justify-content:space-between;align-items:flex-start}.track-symbol{width:45px;height:45px;border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:950}.js-track-symbol{color:#212316;background:#f7df1e}.ts-track-symbol{color:white;background:#3178c6}.track-card h3{font-size:24px;margin:21px 0 10px}.track-card>p{color:#92a2ba;font-size:12.5px;line-height:1.75;max-width:480px;min-height:67px}.track-meta{display:flex;gap:18px;color:#8fa0ba;font-size:11px}.track-meta span{display:flex;gap:7px;align-items:center}.track-bottom{margin-top:auto;padding-top:24px}.progress-copy{display:flex;justify-content:space-between;color:#9aabc2;font-size:11px;margin-bottom:9px}.progress-copy strong{color:#cedaed}.progress-track{height:6px;border-radius:10px;background:#263448;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,#37bca8,#80f1cd);border-radius:10px;transition:width .25s}.track-bottom>button{display:flex;align-items:center;gap:8px;background:none;color:#6be8cb;font-size:12px;font-weight:750;padding:19px 0 0}.track-bottom>button:hover{color:#a2ffea}.project-feature{display:flex;align-items:center;gap:21px;background:linear-gradient(110deg,#17263b,#172139);border:1px solid #30415b;border-radius:13px;padding:25px;margin-top:32px}.feature-icon{flex:none;background:#1f3e48;color:#69e5c5;border-radius:12px;padding:14px}.project-feature>div:nth-child(2){flex:1}.project-feature h3{font-size:19px;margin:8px 0}.project-feature p{color:#91a2bb;font-size:12px;margin:0;max-width:720px}.button-outline{display:inline-flex;align-items:center;gap:8px;border:1px solid #3b5871;color:#d8e7f8;background:transparent;border-radius:9px;padding:11px 14px;font-size:12px;font-weight:700;white-space:nowrap}.button-outline:hover{border-color:#6ee6cc;color:#79edd5}.footer-note{font-size:10px;color:#61708a;margin-top:40px}
+/* course */.course-hero{display:flex;align-items:center;gap:24px;border:1px solid #263147;border-radius:15px;background:linear-gradient(110deg,#121f34,#14202e);padding:35px 38px}.course-badge{height:84px;width:84px;display:grid;place-items:center;border-radius:17px;font-size:31px;font-weight:950;flex:none}.badge-js{background:#f7df1e;color:#1d251b}.badge-ts{background:#3178c6;color:#fff}.course-hero h1{font-size:37px;margin:7px 0 7px}.course-hero p{font-size:13px;color:#a4b3c9;max-width:770px;margin:0}.course-metrics{display:flex;gap:22px;margin-top:17px;color:#8495ae;font-size:11px;flex-wrap:wrap}.course-metrics span{display:flex;align-items:center;gap:7px}.course-progress{background:#111925;border:1px solid #243349;border-radius:12px;padding:19px 22px;margin:20px 0 34px}.course-progress-top{display:flex;justify-content:space-between;gap:12px;margin-bottom:13px;font-size:12px}.course-progress-top>span{color:#8293aa}.course-progress-top>span strong{margin-left:12px;color:#61e5c4}.course-hint{display:flex;gap:12px;align-items:flex-start;border:1px solid #314e70;background:#10223a;border-radius:9px;color:#a0c3e8;padding:14px 16px;margin-top:15px;font-size:12px;line-height:1.6}.course-hint svg{flex:none}.unit-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.unit-card{background:#121924;border:1px solid #253145;border-radius:13px;overflow:hidden}.unit-card-head{display:flex;align-items:flex-start;gap:14px;padding:23px 22px;border-bottom:1px solid #263246;min-height:114px}.unit-number{background:#1d3b45;border:1px solid #2b6c69;border-radius:9px;color:#68e4c2;font-size:15px;font-weight:900;min-width:42px;height:42px;display:grid;place-items:center}.unit-card-head>div:nth-child(2){flex:1}.unit-card-head h3{font-size:15px;margin:3px 0 7px}.unit-card-head p{font-size:11px;color:#8b9bb5;margin:0;line-height:1.5}.unit-meta{font-size:11px;background:#1b2635;border-radius:20px;padding:6px 9px;color:#97a8c0}.unit-items{padding:9px 10px}.unit-item{display:flex;align-items:center;width:100%;gap:12px;padding:12px;border-radius:8px;text-align:left;background:transparent;color:#d7e0ee}.unit-item:hover{background:#1c293a}.unit-item-icon{width:29px;height:29px;display:grid;place-items:center;border:1px solid #38465a;color:#8190a8;border-radius:50%;font-size:10px;flex:none}.unit-item-icon.completed{border-color:#247963;background:#17433d;color:#5ee4bc}.unit-item>span:nth-child(2){min-width:0;flex:1}.unit-item strong{display:block;font-size:12px;font-weight:700}.unit-item small{display:block;color:#72849c;font-size:10.5px;line-height:1.5;margin-top:4px}.unit-item-right{display:flex;align-items:center;gap:6px;flex:none;font-size:10px;color:#63758e}
+/* project */.project-hero{border:1px solid #2c4855;background:radial-gradient(circle at 95% 0%,#244c54,transparent 44%),linear-gradient(115deg,#15273c,#11202f);border-radius:15px;padding:38px}.project-hero h1{font-size:34px;margin:18px 0 9px}.project-hero h1 span{color:#69e3c7}.project-hero p{font-size:13px;color:#a4b4c9;max-width:850px;margin-bottom:21px}.project-stats{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:34px}.project-board{border:1px solid #2a3648;background:#101721;border-radius:14px;padding:29px}.project-board-title h2{font-size:25px;margin:8px 0}.project-board-title p{color:#94a2b8;font-size:12px}.project-unit{padding:18px 0 15px;border-bottom:1px solid #283347}.project-unit:last-child{border:0}.project-unit-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}.project-unit-head strong{font-size:14px}.project-stage{padding:6px 9px;background:#1b4042;color:#62e1c1;border-radius:5px;letter-spacing:1px;font-size:9px;font-weight:900}.ts-stage{background:#243a61;color:#8bbcff}.project-todo{display:flex;align-items:flex-start;gap:12px;border:1px solid #242e3d;background:#131c29;border-radius:9px;padding:14px;margin-bottom:9px}.project-check{border:1px solid #54627a;background:transparent;width:22px;height:22px;border-radius:6px;color:#061f1c;display:grid;place-items:center;flex:none}.project-check.checked{background:#6ce5c6;border-color:#6ce5c6}.project-todo>div{flex:1}.project-todo strong{font-size:12px}.struck{text-decoration:line-through;color:#7a8a9f}.project-todo p{font-size:11.5px;color:#8c9bb0;margin:6px 0 0}.link-open{display:grid;place-items:center;background:none;color:#8090a8;padding:4px}.link-open:hover{color:#69e7cb}.stage-desc{font-size:12px;color:#8ea2bd;margin-bottom:17px}
+/* lesson */.main-content.page-lesson{max-width:1750px;padding:28px 32px 65px}.lesson-topline{display:flex;justify-content:space-between;align-items:center}.lesson-topline .back-link{margin-bottom:18px}.lesson-counter{color:#7d8ba3;font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:18px}.lesson-heading{display:flex;justify-content:space-between;align-items:center;gap:25px;margin-bottom:28px}.lesson-heading h1{font-size:clamp(25px,2.9vw,38px);margin:8px 0}.lesson-heading p{font-size:12px;color:#8293ad;margin:0}.complete-button{display:flex;align-items:center;gap:9px;background:#172435;color:#dbe6f7;border:1px solid #34475b;padding:11px 14px;border-radius:9px;font-size:11px;font-weight:750;white-space:nowrap}.complete-button:hover,.complete-button.is-complete{background:#173d39;border-color:#3f9683;color:#7ef0d1}.lesson-layout{display:grid;grid-template-columns:minmax(300px,0.78fr) minmax(440px,1.22fr);gap:21px;align-items:start}.theory-pane{min-width:0}.lesson-card{background:#111926;border:1px solid #273246;border-radius:12px;padding:25px;margin-bottom:17px}.card-kicker{display:flex;align-items:center;gap:8px;color:#6ce6cb;font-size:10px;font-weight:800;letter-spacing:1px;margin-bottom:17px}.card-kicker.mint{color:#f6cf79}.card-kicker.purple{color:#aeafff}.lesson-card h2{font-size:19px;margin-bottom:15px}.lesson-card>p{font-size:12.5px;color:#abbad0;line-height:1.85;margin-bottom:14px}.lesson-card>p:last-child{margin-bottom:0}.concept-list{background:#162436;border:1px solid #2b4056;border-radius:9px;padding:16px;margin-top:20px}.concept-list>strong{display:block;font-size:11px;margin-bottom:11px}.concept-list>div{display:flex;flex-wrap:wrap;gap:7px}.concept-list span{padding:6px 9px;border:1px solid #355168;color:#99d8d3;background:#193139;border-radius:5px;font-size:10px}.sample-code{background:#090f1b;border:1px solid #273649;border-radius:9px;overflow:hidden}.sample-top{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #29364a;color:#8b9bb6;font-size:11px;padding:9px 12px}.sample-top button{background:none;color:#8294af;padding:0;display:grid;place-items:center}.sample-top button:hover{color:white}.sample-code pre{overflow:auto;padding:18px 15px;margin:0;color:#a9e1cc;font-size:11px;line-height:1.7}.code-example .hint-note{font-size:11px;color:#879ab5;margin-top:14px}.challenge-card ol{padding-left:21px;margin:0 0 18px}.challenge-card li{color:#aab9d1;font-size:12px;line-height:1.8;margin-bottom:6px;padding-left:5px}.challenge-cta,.project-apply{color:#f2d992;background:#383322;border:1px solid #7b6233;padding:10px 12px;border-radius:8px;font-size:11px;font-weight:750;display:inline-flex;align-items:center;gap:8px}.challenge-cta:hover{background:#4c4329}.project-apply{background:#2b2842;border-color:#524a75;color:#d4ccff}.project-apply:hover{background:#3a3459}.project-lesson-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.milestone-button{display:inline-flex;align-items:center;gap:7px;background:#1e2939;border:1px solid #3c4b61;color:#adb9ca;border-radius:8px;padding:10px 12px;font-size:11px;font-weight:700}.milestone-button.done{background:#1a433d;border-color:#388678;color:#77ebcd}.mini-help{font-size:10.5px!important;color:#7588a3!important;margin-top:11px}.lesson-nav{display:flex;justify-content:space-between;gap:10px}.lesson-nav button{display:flex;gap:8px;align-items:center;max-width:48%;min-height:64px;text-align:left;background:#132031;border:1px solid #28374b;border-radius:9px;color:#c4d2e7;padding:12px}.lesson-nav .next-lesson{margin-left:auto;text-align:right}.lesson-nav small{display:block;color:#66e0c3;font-size:8.5px;font-weight:850;letter-spacing:1px;margin-bottom:6px}.lesson-nav span{font-size:11px;font-weight:700}.lesson-nav button:hover{border-color:#62d9c0}
+/* workspace */.lab-pane{min-width:0;position:sticky;top:87px;align-self:start;max-height:calc(100vh - 105px);overflow:auto;padding-right:1px}.lab-head{display:flex;justify-content:space-between;gap:10px;margin-bottom:15px}.lab-live{display:flex;align-items:center;gap:7px;color:#6fe6cb;letter-spacing:1px;font-size:10px;font-weight:800}.lab-live span{height:7px;width:7px;border-radius:50%;background:#6ce5bf;box-shadow:0 0 12px #24e1b780}.lab-head h2{font-size:18px;margin:8px 0 5px}.lab-head p{color:#7e8fa9;font-size:11px;margin:0}.mode-switch{display:flex;gap:6px;background:#111b29;border:1px solid #27354a;border-radius:9px;padding:5px;margin-bottom:12px}.mode-switch button{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;background:transparent;color:#8193ae;padding:10px 5px;border-radius:6px;font-size:11px;font-weight:750}.mode-switch button.active{color:#7debd0;background:#20413f;box-shadow:0 2px 12px #0003}.workspace,.preview-wrap,.console-panel{border:1px solid #2d384e;background:#0e1521;border-radius:10px;overflow:hidden}.workspace-bar{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#172131;border-bottom:1px solid #2c3a50;padding:11px 13px}.workspace-title{color:#aab8cd;font-size:10px;font-weight:800;letter-spacing:.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.workspace-status{margin-right:6px;width:6px;height:6px}.workspace-autosave{color:#7c9d9a;font-size:9px;display:flex;align-items:center;gap:5px;white-space:nowrap}.editor-tabs{display:flex;background:#111a27;border-bottom:1px solid #2a3548;height:37px;align-items:stretch;overflow:auto}.file-tab{padding:0 13px;background:#131e2b;color:#7c90a8;border-right:1px solid #2a3548;display:flex;align-items:center;gap:6px;font-size:10px;white-space:nowrap}.file-tab.tab-active{background:#0c111c;color:#eff7ff;border-top:2px solid #63e5c5;padding-top:0}.file-icon{font-weight:900;color:#e89d69;font-size:11px}.file-icon.css{color:#66bafa}.file-icon.js{color:#f3dc48}.file-icon.ts{color:#64aaf9}.tab-spacer{flex:1}.tab-tool{background:transparent;color:#71839e;padding:0 14px}.tab-tool:hover{color:white}.editor-area{height:265px;background:#0c111c}.editor-loading{padding:30px;color:#90a2bc;font-size:12px}.editor-actions{padding:10px 11px;display:flex;justify-content:space-between;align-items:center;gap:7px;border-top:1px solid #2d384d;background:#131b29}.editor-actions>span{color:#8496ae;font-size:9px;display:flex;align-items:center;gap:6px}.shortcut-dot{width:5px;height:5px;background:#58d6b8;border-radius:50%}.editor-actions>div{display:flex;gap:5px}.action-secondary,.run-button{background:#1d293a;color:#bdcbdc;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid #36455a;border-radius:6px;padding:8px 9px;font-size:10px;font-weight:750}.action-secondary:hover{background:#27374c}.run-button{background:#65dfc1;border-color:#65dfc1;color:#092b24}.run-button:hover{background:#87efd6}.preview-wrap{margin-top:11px}.preview-head{height:43px;display:flex;justify-content:space-between;align-items:center;padding:0 13px;background:#142131;border-bottom:1px solid #2d3c50}.preview-heading{display:flex;align-items:center;gap:8px;font-size:11px;color:#d1deee}.preview-heading svg{color:#7c91ab}.compiling{font-size:9px;color:#dfbf7d}.preview-actions{display:flex;gap:5px;align-items:center}.preview-actions button{display:grid;place-items:center;height:27px;width:28px;border-radius:5px;background:none;color:#7788a2}.preview-actions button:hover,.preview-actions button.device-active{background:#29413f;color:#76e7cd}.preview-separator{height:16px;width:1px;background:#314059;margin:0 3px}.preview-surface{height:226px;background:#d5dfe9;display:flex;align-items:stretch;justify-content:center;overflow:auto}.preview-surface iframe{border:0;width:100%;height:100%;background:white}.preview-surface.mobile-surface{background:#1e293b;padding:10px;height:255px}.preview-surface .frame-mobile{width:375px;max-width:100%;height:100%;border-radius:4px;box-shadow:0 2px 13px #0007}.preview-foot{display:flex;justify-content:space-between;background:#101925;color:#8190a4;font-size:9px;padding:9px 12px;border-top:1px solid #293647}.preview-foot span:first-child{display:flex;align-items:center;gap:6px}.preview-status{width:6px;height:6px}.console-panel{margin-top:9px}.console-toggle{height:40px;width:100%;padding:0 13px;display:flex;align-items:center;justify-content:space-between;color:#abbed3;background:#121d2c}.console-toggle>span{display:flex;align-items:center;gap:8px;font-size:11px;font-weight:750}.console-count{background:#2c3e53;color:#93abc6;border-radius:5px;padding:2px 5px;font-size:9px}.console-output{max-height:130px;overflow:auto;background:#0b121d;padding:11px}.console-empty{color:#6b7d96;font-size:10px}.console-line{display:flex;gap:10px;font-size:11px;padding:5px 0;color:#a8c3d3;border-bottom:1px solid #1a2b3b}.console-line>span{color:#67d8ba}.console-line code{white-space:pre-wrap;word-break:break-word}.console-line.console-error{color:#f8aaaa}.console-line.console-error>span{color:#f07e7e}.console-line.console-warn{color:#efd292}.clear-console{display:block;margin:8px 0 0 auto;color:#8195ae;background:none;font-size:10px}.lab-tip{display:flex;gap:10px;align-items:flex-start;border:1px solid #29404e;background:#132932;border-radius:9px;padding:12px;margin-top:9px}.lab-tip svg{flex:none;color:#62dfc1}.lab-tip p{font-size:10.5px;color:#9cbdc8;margin:0;line-height:1.6}.lab-tip strong{color:#ccf5e9}.toast{position:fixed;bottom:22px;right:22px;z-index:50;background:#225145;border:1px solid #59c6aa;border-radius:9px;color:#dffdf6;display:flex;gap:9px;align-items:center;padding:12px 16px;font-size:12px;box-shadow:0 15px 50px #0007}
+@media(max-width:1440px){.hero-banner{padding:37px}.hero-art{min-width:270px}.hero-code-card{width:260px;height:215px}.hero-code-lines{font-size:10.5px}.main-content{padding-left:32px;padding-right:32px}.main-content.page-lesson{padding:22px}.lesson-layout{grid-template-columns:minmax(290px,.8fr) minmax(425px,1.2fr)}}
+@media(max-width:1160px){.sidebar{min-width:230px;width:230px}.hero-art{display:none}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.project-feature{align-items:flex-start;flex-wrap:wrap}.project-feature .button-outline{margin-left:75px}.lesson-layout{grid-template-columns:1fr}.lab-pane{position:static;max-height:none;overflow:visible}.theory-pane{display:contents}.lesson-layout>.lab-pane{grid-row:2}.lesson-layout>.theory-pane{grid-row:1}.lab-pane .editor-area{height:340px}}
+@media(max-width:860px){.sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);transition:transform .25s;min-width:270px;width:270px;z-index:30}.sidebar.sidebar-open{transform:translateX(0)}.mobile-overlay{display:block!important;position:fixed;inset:0;background:#0009;z-index:20}.close-sidebar,.mobile-menu-btn{display:grid!important;place-items:center}.icon-button{background:none;color:#a9b9d1;border-radius:7px;padding:5px}.topbar{padding:0 22px}.main-content{padding:28px 24px 70px}.main-content.page-lesson{padding:24px}.unit-cards{grid-template-columns:1fr}}
+@media(max-width:660px){.topbar{height:60px;padding:0 15px}.breadcrumbs{font-size:10px;gap:6px}.breadcrumbs span{max-width:120px}.topbar-project{font-size:0;padding:9px}.topbar-project svg:last-child{display:none}.sync-label{display:none}.main-content,.main-content.page-lesson{padding:21px 14px 50px}.hero-banner{padding:28px 21px;min-height:auto}.hero-banner h1{font-size:30px;letter-spacing:-1.2px}.hero-buttons{flex-wrap:wrap}.button-primary,.button-ghost{width:100%}.stats-grid{gap:9px}.stat{padding:14px 12px}.stat strong{font-size:16px}.tracks-grid{grid-template-columns:1fr}.track-card{min-height:330px}.section-heading h2{font-size:21px}.project-feature{padding:19px;gap:12px}.project-feature>div:nth-child(2){flex:1 1 220px}.project-feature .button-outline{margin-left:0}.course-hero{padding:22px;align-items:flex-start;gap:15px}.course-badge{width:53px;height:53px;min-width:53px;font-size:21px;border-radius:11px}.course-hero h1{font-size:28px}.course-metrics{gap:8px}.course-metrics span{flex:1 1 120px}.unit-card-head{padding:18px 15px}.unit-item{padding:12px 8px;gap:9px}.unit-item-right{font-size:0}.project-hero{padding:24px 20px}.project-hero h1{font-size:27px}.project-stats{grid-template-columns:1fr}.project-board{padding:19px 12px}.project-todo{gap:8px}.project-unit-head{align-items:flex-start;flex-direction:column;gap:8px}.lesson-heading{align-items:flex-start;flex-direction:column;gap:16px}.complete-button{align-self:flex-start}.lesson-layout{grid-template-columns:minmax(0,1fr);gap:16px}.lesson-card{padding:20px 17px}.lesson-counter{font-size:9px}.lab-pane{min-width:0}.editor-actions{align-items:flex-start;flex-direction:column;gap:9px}.editor-actions>div{width:100%}.editor-actions>div button{flex:1}.editor-area{height:300px!important}.mode-switch button{font-size:10px}.workspace-autosave{font-size:0}.workspace-autosave svg{font-size:10px}.lesson-nav{flex-direction:column}.lesson-nav button{max-width:100%;width:100%}.preview-surface{height:230px}.project-lesson-actions{flex-direction:column;align-items:flex-start}}
+/* Ordenação previsível no tablet: teoria primeiro, laboratório depois. */
+@media(max-width:1160px){.lesson-layout{display:flex;flex-direction:column;align-items:stretch}.lesson-layout>.theory-pane{display:block;width:100%}.lesson-layout>.lab-pane{width:100%;position:static;grid-row:auto}}
+
+/* DevLab 2.0 — fluxo Aprender / Praticar / Construir e checkpoints */
+.lesson-stage{background:linear-gradient(125deg,#18223b,#16172c);border:1px solid #394065;border-radius:17px;padding:18px 22px;margin:0 0 22px;box-shadow:0 12px 40px #0002}
+.stage-heading{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}.stage-heading>span:last-child{font-size:11px;color:#b5b9dd;font-weight:750}
+.stage-track{display:flex;align-items:center;gap:9px}.stage-btn{flex:1;display:flex;gap:9px;align-items:center;padding:13px 12px;min-width:0;border:1px solid #3c4664;border-radius:11px;color:#c6cce3;background:#202b44;font-weight:800;font-size:11px;text-align:left;transition:background .2s,border .2s}.stage-btn:hover{border-color:#8883ef}.stage-btn.active{border-color:#aa9aff;background:#473c70;color:#fff;box-shadow:inset 0 0 0 1px #7f6af7}.stage-btn.finished{color:#9ce8d1}.stage-no{width:25px;height:25px;min-width:25px;border-radius:50%;display:grid;place-items:center;background:#343e5e;color:#d5d9f2;font-size:11px}.stage-btn.active .stage-no{background:#a995ff;color:#211c39}.stage-btn.finished .stage-no{background:#286c62;color:#bdffdf}.stage-join{height:2px;width:12px;background:#515777;flex:none}
+.quiz-card{border:1px solid #514b80;background:#1b2135}.quiz-progress{font-size:10px;font-weight:800;letter-spacing:1px;color:#a89df3;display:flex;justify-content:space-between;margin:12px 0}.quiz-progress span{color:#d6b677}.quiz-card h2{font-size:20px;line-height:1.45;margin-bottom:17px}.quiz-choices{display:grid;gap:9px}.quiz-choice{width:100%;border-radius:11px;display:flex;gap:12px;align-items:center;text-align:left;background:#273049;color:#d9e1f2;border:1px solid #414e69;padding:13px 15px;min-height:52px;font-size:13px;font-weight:650}.quiz-choice:hover{background:#3c4263;border-color:#9290f5}.quiz-choice:focus-visible{outline:2px solid #b6a4ff;outline-offset:3px}.quiz-choice.correct{border-color:#52d8aa;background:#1b4c42;color:#d4fff2}.quiz-choice.incorrect{border-color:#f0a4a4;background:#543044;color:#ffe5e4}.quiz-choice:disabled{cursor:default}.choice-letter{width:27px;height:27px;display:grid;place-items:center;background:#384767;color:#b7c5e2;border-radius:7px;font-size:11px;flex:none}.choice-state{margin-left:auto;font-weight:900;font-size:17px}.feedback{border-radius:10px;padding:14px;margin-top:16px;font-size:12px;line-height:1.6}.feedback p{color:inherit;margin:5px 0 9px}.feedback.success{background:#14382f;color:#baf1d9;border:1px solid #387963}.feedback.issue{background:#3c293b;color:#f4cdd7;border:1px solid #705164}.feedback button{background:#48b99a;color:#05271f;border-radius:8px;padding:10px 13px;font-size:12px;font-weight:800}.quiz-foot{font-size:11px;color:#8b9cb5;margin-top:13px}.hint-trigger{display:inline-flex;margin:5px 0 9px;background:#303a5b;color:#ddd3ff;padding:10px 12px;border-radius:8px;font-size:12px;font-weight:750;border:1px solid #625a96}.validation-box{border:1px solid #46576d;background:#162435;border-radius:13px;padding:18px;margin:0 0 16px}.validation-top{display:flex;justify-content:space-between;gap:10px;color:#d3e1ec;font-weight:800;font-size:12px}.validation-tag{color:#f2cd6e}.validation-box>p{font-size:12px;color:#a5b7c9;line-height:1.65;margin:12px 0}.check-button{background:#8166ea;color:#fff;border-radius:8px;padding:11px 17px;font-size:12px;font-weight:850}.check-button:hover{background:#977ff6}.validation-result{border-radius:9px;padding:12px;margin-top:14px;font-size:12px}.validation-result.pass{background:#1b4138;color:#b7edd9}.validation-result.fail{background:#392c40;color:#f5d1df}.validation-row{display:flex;align-items:flex-start;gap:7px;margin-top:9px}.validation-row span{line-height:1.5}.micro-session{margin:0 0 34px;padding:22px 25px;border-radius:14px;border:1px solid #484475;background:linear-gradient(110deg,#232341,#19283d);display:flex;align-items:center;gap:20px;justify-content:space-between}.micro-session h2{font-size:18px;color:#f0eaff;margin:6px 0}.micro-session p{font-size:12px;color:#a9b7ce;line-height:1.5;margin:0}.micro-session .button-primary{flex:none}.topbar-xp{font-size:12px;font-weight:850;color:#e4ca76;background:#302e30;padding:7px 12px;border:1px solid #575047;border-radius:18px;white-space:nowrap}
+.unit-path-card{border-left:3px solid #7765cd}.unit-verified{background:#182c32}.unit-verified .unit-item-icon{border-color:#51be9d}
+@media(max-width:760px){.stage-track{gap:4px}.stage-btn{padding:9px 6px;flex-direction:column;text-align:center;font-size:10px;gap:6px}.stage-join{width:4px}.lesson-stage{padding:13px}.micro-session{flex-wrap:wrap}.micro-session .button-primary{width:100%}.topbar-xp{padding:6px 8px;font-size:10px}}
+@media(max-width:425px){.topbar-xp{display:none}.stage-btn{font-size:9px}.quiz-choice{padding:11px 10px}}
+
+/* Complementos do editor sem dependências - acessível, com linhas, realce e autoindentação. */
+.sidebar .side-link>span:first-child{min-width:17px;font-size:17px}.logo-symbol{font-size:23px;font-weight:900}.offline-editor{height:300px;display:flex;background:#0c111c;overflow:hidden;font:12px/20px ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;letter-spacing:0;tab-size:2}.editor-gutter{flex:none;width:47px;text-align:right;padding:16px 10px 16px 4px;white-space:pre;overflow:hidden;user-select:none;color:#52617b;background:#0d1420;border-right:1px solid #263248}.editor-code{position:relative;min-width:0;flex:1}.editor-code pre,.editor-code textarea{position:absolute;inset:0;margin:0;padding:16px 18px;box-sizing:border-box;width:100%;height:100%;font:inherit;letter-spacing:inherit;line-height:inherit;tab-size:inherit;white-space:pre;overflow:auto;word-break:normal;border:0;outline:0}.editor-code pre{color:#d7e1f3;pointer-events:none;overflow:hidden;z-index:0}.editor-code textarea{resize:none;background:transparent;z-index:1;color:transparent;-webkit-text-fill-color:transparent;caret-color:#a4f4e2;overflow:auto;scrollbar-color:#354359 #0c111c}.editor-code textarea::selection{background:#345c7f70;-webkit-text-fill-color:transparent}.syntax-keyword{color:#d1a0ff}.syntax-string{color:#b0e9ba}.syntax-comment{color:#73829a}.syntax-number{color:#f3c17c}.hero-art .hero-code-card{transform:rotate(4deg)}.console-output{min-height:70px}.offline-editor:focus-within{box-shadow:inset 0 0 0 1px #2c6f72}.lab-pane .offline-editor{height:300px}.course-link{justify-content:flex-start}.course-link>.js-logo,.course-link>.ts-logo{flex:none}.course-link>span:nth-child(2){flex:1}.sidebar .course-link{font-size:15px;font-weight:700}.lab-tip{color:#60ddbf}.sidebar .side-link{font-weight:650}.sidebar .lesson-link{padding:9px 10px}.project-page .project-stats .stat strong{font-size:16px}
+@media(max-width:660px){.lab-pane .offline-editor{height:270px}.editor-code pre,.editor-code textarea{padding:13px 10px}.editor-gutter{width:35px;padding:13px 6px 13px 2px}.hero-art{display:none}}
+</style></head><body><div id="root"></div><script>/** Conteúdo autoral. A estrutura em unidades foi inspirada em plataformas de estudo,
+ *  mas todos os textos, exemplos e desafios abaixo são próprios deste projeto. */
+const baseHtml = `<main class="app">
+  <span class="eyebrow">Meu laboratório</span>
+  <h1 id="title">Aprendendo a programar</h1>
+  <p id="result">Altere o código e clique em Executar.</p>
+  <button id="action">Experimentar</button>
+  <ul id="list"></ul>
+</main>`;
+
+const baseCss = `* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: #f1f5f9; color: #162237; }
+.app { max-width: 700px; margin: 40px auto; padding: 32px; background: #fff; border-radius: 18px; box-shadow: 0 14px 50px #10234512; }
+.eyebrow { color: #0f766e; font-size: 12px; letter-spacing: 0.12em; font-weight: 800; text-transform: uppercase; }
+h1 { margin: 12px 0; font-size: clamp(24px, 5vw, 36px); }
+p { line-height: 1.6; color: #526179; }
+button { background: #2563eb; color: #fff; border: 0; border-radius: 9px; padding: 12px 18px; font-weight: 700; cursor: pointer; }
+button:hover { background: #1d4ed8; }
+li { padding: 8px 0; }`;
+
+function lesson(id, title, summary, minutes, theory, concepts, example, challenge, steps, js = '', html = baseHtml, css = baseCss, project = '') {
+  return { id, title, summary, minutes, theory, concepts, example, challenge, steps, project, starter: { html, css, js } };
+}
+
+const jsUnits = [
+  {
+    id:'fundamentos', title:'01. Fundamentos da programação', subtitle:'Entenda a web e aprenda a pensar com código.',
+    lessons:[
+      lesson('primeiros-passos','O que são HTML, CSS e JavaScript','Como o navegador transforma arquivos em uma página.',12,
+        ['HTML define a estrutura da página, CSS controla a aparência e JavaScript adiciona comportamento. Os três trabalham juntos: não são linguagens intercambiáveis.', 'O navegador interpreta o HTML e cria o DOM, aplica as regras CSS e executa seu JavaScript. Pequenas mudanças no código podem ser verificadas na prévia ao lado.', 'Comece pensando em entradas, processamento e saídas. Por exemplo: uma pessoa clica em um botão (entrada), seu programa decide o que fazer (processamento) e altera a tela (saída).'],
+        ['HTML = estrutura','CSS = estilo','JavaScript = comportamento','DOM = representação da página'],
+        `document.querySelector('#action').addEventListener('click', () => {\n  document.querySelector('#result').textContent = 'Funcionou!';\n});`,
+        'Transforme o botão em uma ação que altere o texto e também o título da página.',
+        ['Encontre o botão pelo seu id.', 'Escute o evento click.', 'Altere textContent de #result e #title.'],
+        `const botao = document.querySelector('#action');\n\n// TODO: escute o clique e altere dois textos.\nconsole.log('JavaScript carregado!');`,undefined,undefined,
+        'Dê um nome ao produto no cabeçalho e crie a estrutura inicial do seu TaskFlow.'),
+      lesson('variaveis','Variáveis, const, let e tipos','Guarde informações e compreenda strings, números e booleanos.',16,
+        ['Uma variável dá nome a um valor armazenado durante a execução. Use const quando a referência não será reatribuída e let quando o valor precisa mudar.', 'JavaScript possui tipos como string, number, boolean, undefined e null, além de objetos. typeof ajuda a investigar o tipo de uma expressão.', 'Os nomes de variáveis devem revelar sua intenção. prefira totalDeTarefas a x; não use var no código novo.'],
+        ['const e let','string, number e boolean','typeof','template literals'],
+        `const nome = 'Ana';\nlet pontos = 10;\npontos += 5;\nconsole.log(\`Olá, \${nome}! Você tem \${pontos} pontos.\`);`,
+        'Crie nome, pontos e ativo; mostre uma mensagem usando template literal.',
+        ['Use const para nome.', 'Use let para pontos e some 5.', 'Mostre a frase em #result e um console.log.'],
+        `const nome = 'Pessoa estudante';\nlet pontos = 0;\nconst ativo = true;\n\n// TODO: atualize pontos e mostre uma frase na página.`,undefined,undefined,
+        'Defina o nome do aplicativo, uma mensagem de boas-vindas e uma contagem inicial de tarefas.'),
+      lesson('operadores','Operadores e expressões','Faça cálculos, comparações e combinações lógicas.',18,
+        ['Operadores aritméticos incluem +, -, *, / e %. Comparações retornam booleanos: >, <, >=, <= e ===. Prefira === a == para evitar conversões inesperadas.', 'Operadores lógicos &&, || e ! permitem combinar regras. Uma tarefa pode estar concluída E ser urgente, por exemplo.', 'A ordem das operações importa. Use parênteses para tornar o raciocínio explícito.'],
+        ['Aritmética e módulo','=== versus ==','&&, || e !','precedência'],
+        `const feitas = 3;\nconst total = 5;\nconst porcentagem = (feitas / total) * 100;\nconsole.log(porcentagem >= 50 && total > 0);`,
+        'Calcule a porcentagem de 8 tarefas, sendo 3 concluídas, e mostre um indicador na tela.',
+        ['Crie total e concluidas.', 'Calcule a porcentagem.', 'Exiba a porcentagem no elemento #result.'],
+        `const total = 8;\nconst concluidas = 3;\n\n// TODO: calcule o percentual e exiba em #result.`,undefined,undefined,
+        'Adicione um indicador de progresso (%) na interface do TaskFlow.'),
+      lesson('debug-console','Console, erros e depuração','Descubra por que o código não está funcionando.',14,
+        ['console.log mostra valores durante a execução; console.error registra problemas. No laboratório, a aba Console captura essas mensagens.', 'Erros de sintaxe impedem que o programa execute. Erros de lógica são mais difíceis: o código executa, mas produz resultados incorretos.', 'Para depurar, reproduza o problema, observe entradas e saídas, teste uma hipótese por vez e remova os logs temporários antes de finalizar.'],
+        ['console.log / warn / error','erros de sintaxe','erros de lógica','debug passo a passo'],
+        `function dobrar(n) { return n * 2; }\nconsole.log('Entrada:', 4);\nconsole.log('Saída:', dobrar(4));`,
+        'Identifique o erro lógico na função e registre entrada e saída no console.',
+        ['Execute e abra Console.', 'A função deveria calcular o dobro, não o triplo.', 'Corrija e confirme com 4 e 7.'],
+        `function dobrar(numero) {\n  return numero * 3; // BUG proposital\n}\nconsole.log('Resultado de 4:', dobrar(4));`,undefined,undefined,
+        'Teste o estado inicial do projeto com console.log e confira os elementos da página.')
+    ]
+  },
+  {
+    id:'logica',title:'02. Lógica de programação',subtitle:'Resolva problemas com decisões, repetições e funções.',
+    lessons:[
+      lesson('condicionais','if, else e operador ternário','Transforme regras em decisões.',18,
+        ['Use if quando um trecho de código só deve ser executado se uma condição for verdadeira. else define o caminho alternativo e else if acrescenta outras condições.', 'Um operador ternário (condicao ? valorA : valorB) é adequado para expressões pequenas, mas condições complexas costumam ficar mais legíveis com if/else.', 'Tente descrever a regra em português antes de traduzi-la: “se há tarefas concluídas, mostre progresso; caso contrário, incentive o primeiro passo”.'],
+        ['if / else if / else','booleanos em condições','ternário','regras de negócio'],
+        `const tarefas = 4;\nconst mensagem = tarefas > 0 ? 'Você já começou!' : 'Hora de começar';\nconsole.log(mensagem);`,
+        'Crie uma mensagem diferente para zero, poucas ou muitas tarefas concluídas.',
+        ['Use uma variável concluidas.', 'Teste os casos 0, entre 1 e 4, e 5 ou mais.', 'Mostre a mensagem em #result.'],
+        `const concluidas = 3;\nlet mensagem = '';\n\n// TODO: use if/else if/else para definir mensagem.`,undefined,undefined,
+        'Faça o aviso de “nenhuma tarefa” aparecer somente quando a lista estiver vazia.'),
+      lesson('switch','switch e múltiplos estados','Organize vários caminhos possíveis.',14,
+        ['switch é útil quando você compara uma expressão com vários valores conhecidos. Cada case define um caminho e break normalmente evita passar ao próximo.', 'Um default é o resultado quando nenhum case corresponde. Também é possível usar objetos como tabelas de consulta.', 'Prefira if/else para condições com intervalos (ex.: nota >= 7).'],
+        ['switch / case','break','default','estados de interface'],
+        `switch ('progresso') {\n  case 'feito': console.log('Concluída'); break;\n  case 'progresso': console.log('Em andamento'); break;\n  default: console.log('Pendente');\n}`,
+        'Mostre uma etiqueta diferente para os estados pendente, fazendo e concluida.',
+        ['Altere status três vezes para testar.', 'Use switch com default.', 'Escreva o resultado em #result.'],
+        `const status = 'fazendo';\nlet legenda = '';\n\n// TODO: use switch e mostre a legenda.`,undefined,undefined,
+        'Defina estados visuais: pendente, em andamento e concluída.'),
+      lesson('loops','for, while e repetições','Gere conteúdo sem repetir código manualmente.',20,
+        ['Um laço executa uma instrução várias vezes. O for é apropriado quando há uma contagem conhecida; while executa enquanto uma condição permanecer verdadeira.', 'Evite laços infinitos: garanta que a condição possa se tornar falsa. Use break para interromper e continue para pular uma iteração.', 'Laços são essenciais para desenhar listas, totalizar valores e processar coleções de dados.'],
+        ['for e while','contador e condição','break e continue','laços em listas'],
+        `for (let i = 1; i <= 3; i++) {\n  console.log('Etapa', i);\n}`, 
+        'Crie dinamicamente cinco itens de lista, numerados de 1 a 5.',
+        ['Selecione #list.', 'Use for de 1 a 5.', 'Crie <li> via createElement e append.'],
+        `const lista = document.querySelector('#list');\n\n// TODO: crie 5 elementos <li> usando for.`,undefined,undefined,
+        'Comece a renderizar a lista de tarefas a partir de dados, não de HTML repetido.'),
+      lesson('funcoes','Funções, parâmetros e retorno','Divida problemas em partes reutilizáveis.',22,
+        ['Uma função agrupa instruções para executar uma responsabilidade. Parâmetros recebem dados de entrada e return devolve um resultado.', 'Uma função pequena e bem nomeada é fácil de testar. Procure separar o cálculo da manipulação da interface.', 'Funções de seta são outra sintaxe. Elas se comportam de forma diferente em relação a this, mas para exercícios simples são bastante práticas.'],
+        ['function','parâmetros','return','arrow functions','reutilização'],
+        `function percentual(parte, total) {\n  if (total === 0) return 0;\n  return Math.round((parte / total) * 100);\n}\nconsole.log(percentual(2, 5));`,
+        'Implemente uma função percentual(concluidas, total), tratando divisão por zero.',
+        ['Receba dois parâmetros.', 'Se total for zero, retorne zero.', 'Exiba percentual(3, 8) em #result.'],
+        `function percentual(concluidas, total) {\n  // TODO: implemente o cálculo com retorno.\n}\n\nconsole.log('Percentual:', percentual(3, 8));`,undefined,undefined,
+        'Extraia o cálculo de progresso para uma função independente e reutilizável.')
+    ]
+  },
+  {
+    id:'dados',title:'03. Dados e organização',subtitle:'Modele informações e trabalhe com coleções.',
+    lessons:[
+      lesson('arrays','Arrays e índices','Armazene vários valores em uma lista.',19,
+        ['Arrays representam sequências: const tarefas = ["Estudar", "Praticar"]. Seus índices começam em zero. length informa quantos itens existem.', 'push acrescenta no fim, pop remove do fim e includes verifica existência. Cuidado com alterações inesperadas em um array compartilhado.', 'Na prática web, arrays são usados para cards, produtos, tarefas, mensagens e resultados de APIs.'],
+        ['[] e índices','length','push/pop','includes'],
+        `const tarefas = ['Estudar', 'Revisar'];\ntarefas.push('Praticar');\nconsole.log(tarefas[0], tarefas.length);`,
+        'Cadastre três tarefas em um array e mostre cada uma como item da lista.',
+        ['Crie array tarefas.', 'Use push para adicionar a terceira.', 'Percorra o array e monte a lista.'],
+        `const tarefas = ['Estudar JS', 'Resolver desafios'];\nconst lista = document.querySelector('#list');\n\n// TODO: adicione mais uma tarefa e renderize as três.`,undefined,undefined,
+        'Troque as tarefas escritas diretamente no HTML por um array de strings.'),
+      lesson('objetos','Objetos e modelagem de dados','Representações do mundo real em JavaScript.',20,
+        ['Objetos armazenam pares de chave e valor. Uma tarefa pode ter id, titulo, concluida e prioridade.', 'Leia propriedades com tarefa.titulo ou tarefa["titulo"]. Prefira objetos para dados relacionados e arrays para coleções de objetos.', 'Modelo de dados significa decidir quais informações são necessárias e em que formato. Bons modelos tornam a interface mais simples.'],
+        ['objetos literais','propriedades','array de objetos','modelagem'],
+        `const tarefa = { id: 1, titulo: 'Estudar', concluida: false };\nconsole.log(tarefa.titulo);`,
+        'Monte um array com três objetos de tarefa e exiba título e prioridade.',
+        ['Cada tarefa deve ter id, titulo, prioridade e concluida.', 'Percorra o array.', 'Mostre titulo e prioridade em cada <li>.'],
+        `const tarefas = [\n  { id: 1, titulo: 'Estudar', prioridade: 'alta', concluida: false },\n];\n// TODO: adicione dois objetos e renderize a lista.`,undefined,undefined,
+        'Evolua seu array: cada tarefa passa a ter id, título, status e prioridade.'),
+      lesson('metodos-array','map, filter, find e reduce','Transforme coleções de forma expressiva.',24,
+        ['map gera um novo array transformando cada item. filter cria um array apenas com itens que passam por uma condição. find retorna o primeiro item correspondente.', 'reduce acumula valores, como somar o preço de produtos ou contar tarefas concluídas. Não é necessário usá-lo quando um loop simples é mais legível.', 'Esses métodos recebem callbacks, funções executadas para cada item. Em geral, não alteram o array original.'],
+        ['map','filter','find','reduce','callbacks'],
+        `const numeros = [1, 2, 3];\nconsole.log(numeros.map(n => n * 2));\nconsole.log(numeros.filter(n => n > 1));`,
+        'Filtre tarefas não concluídas e conte quantas já foram feitas.',
+        ['Use filter para pendentes.', 'Use filter ou reduce para concluídas.', 'Mostre as pendentes em #list e a contagem em #result.'],
+        `const tarefas = [\n  { titulo: 'Revisar', concluida: false },\n  { titulo: 'Praticar', concluida: true },\n  { titulo: 'Publicar', concluida: false },\n];\n// TODO: filtre, conte e renderize.`,undefined,undefined,
+        'Crie filtros “Todas”, “Pendentes” e “Concluídas” usando filter.'),
+      lesson('strings-numeros','Strings, números e datas','Prepare informações para exibir ao usuário.',19,
+        ['Strings podem ser transformadas com trim, toLowerCase, includes, slice e replace. Normalizar entradas ajuda na busca e evita cadastrar apenas espaços.', 'Number converte entradas numéricas; Number.isNaN detecta resultados inválidos. Use toFixed com cuidado: ele devolve uma string.', 'Intl.DateTimeFormat e Intl.NumberFormat formatam datas e números sem precisar de bibliotecas adicionais.'],
+        ['trim e lowercase','includes','Number','Intl','validação'],
+        `const nome = '  JAVASCRIPT  '.trim().toLowerCase();\nconst data = new Intl.DateTimeFormat('pt-BR').format(new Date());\nconsole.log(nome, data);`,
+        'Normalize um título digitado e mostre a data atual em português.',
+        ['Remova espaços extras com trim.', 'Impeça título vazio.', 'Formate a data com Intl.DateTimeFormat.'],
+        `const tituloDigitado = '  Aprender JavaScript   ';\n// TODO: normalize o texto e formate a data atual.`,undefined,undefined,
+        'Valide títulos de tarefas e registre a data de criação de cada item.')
+    ]
+  },
+  {
+    id:'dom',title:'04. Interfaces e DOM',subtitle:'Conecte sua lógica à página e aos usuários.',
+    lessons:[
+      lesson('dom-basico','Selecionar e alterar elementos','Manipule o DOM de forma segura.',22,
+        ['document.querySelector seleciona o primeiro elemento que corresponde a um seletor CSS. querySelectorAll retorna uma coleção de elementos.', 'textContent escreve texto sem interpretar HTML, o que é importante quando os dados vêm de usuários. Evite injetar texto digitado com innerHTML.', 'Classes CSS podem ser modificadas com classList.add, remove e toggle para representar estados da interface.'],
+        ['querySelector','textContent','classList','DOM seguro'],
+        `const titulo = document.querySelector('#title');\ntitulo.textContent = 'Nova página';\ntitulo.classList.add('destaque');`,
+        'Quando clicar, mude o título e alterne uma classe visual no cartão.',
+        ['Selecione #action e #title.', 'No clique, use textContent.', 'Alterne a classe destaque no título.'],
+        `const titulo = document.querySelector('#title');\nconst botao = document.querySelector('#action');\n// TODO: evento e classList.toggle('destaque')`,undefined,baseCss+`\n.destaque { color: #0f766e; text-decoration: underline; }`,
+        'Separe as classes de apresentação de lógica: JS muda classes, CSS decide a aparência.'),
+      lesson('eventos','Eventos e interação','Reaja a cliques, teclas e mudanças.',20,
+        ['addEventListener conecta uma função a um evento. Os eventos mais frequentes são click, input, change e submit.', 'O objeto event descreve o que ocorreu; event.target aponta para o elemento envolvido. Use preventDefault em formulários para evitar recarregar a página.', 'Delegação de eventos permite escutar um elemento pai e tratar cliques em itens adicionados depois.'],
+        ['addEventListener','event.target','preventDefault','delegação'],
+        `document.querySelector('#action').addEventListener('click', event => {\n  console.log('Clicou em:', event.target.id);\n});`,
+        'Adicione um input e mostre o texto digitado imediatamente na prévia.',
+        ['Use o input #name.', 'Escute o evento input.', 'Atualize #result a cada digitação.'],
+        `const nome = document.querySelector('#name');\n// TODO: escute o evento input e atualize #result.`,
+        `<main class="app"><span class="eyebrow">Eventos</span><h1 id="title">Digite seu nome</h1><input id="name" placeholder="Seu nome" /><p id="result">Seu texto aparece aqui.</p></main>`,baseCss+`\ninput { padding: 12px; border: 1px solid #cbd5e1; border-radius: 9px; width: 100%; }`,
+        'Crie um formulário para cadastrar novas tarefas usando submit e preventDefault.'),
+      lesson('formularios','Formulários e validação','Receba dados corretamente.',25,
+        ['Um formulário semântico contém label, input e button type="submit". O atributo required ajuda, mas validação JavaScript ainda é útil.', 'Leia input.value, remova espaços e informe ao usuário quando houver erro. Não confie só na validação do navegador em aplicações com backend.', 'Use mensagens acessíveis: aria-live="polite" permite anunciar feedback sem interromper o usuário.'],
+        ['form e submit','required','value e trim','feedback acessível'],
+        `form.addEventListener('submit', (event) => {\n  event.preventDefault();\n  if (!input.value.trim()) return;\n  console.log(input.value.trim());\n});`,
+        'Ao enviar o formulário, insira uma tarefa na lista sem recarregar a página.',
+        ['Use preventDefault.', 'Recuse títulos vazios.', 'Crie um <li> e depois limpe o campo.'],
+        `const form = document.querySelector('#task-form');\nconst input = document.querySelector('#task-title');\nconst lista = document.querySelector('#list');\n\n// TODO: implemente o submit.`,
+        `<main class="app"><span class="eyebrow">Formulários</span><h1>Cadastrar tarefa</h1><form id="task-form"><label for="task-title">Nome da tarefa</label><div class="form-row"><input id="task-title" required placeholder="Ex.: estudar funções" /><button type="submit">Adicionar</button></div></form><p id="result" aria-live="polite"></p><ul id="list"></ul></main>`,
+        baseCss+`\n.form-row{display:flex;gap:8px;margin:12px 0}.form-row input{flex:1;min-width:0;padding:12px;border:1px solid #cbd5e1;border-radius:9px}`, 
+        'Conecte o formulário do TaskFlow ao array de tarefas e implemente criação de itens.'),
+      lesson('renderizacao','Renderização e estado','Mantenha dados e tela sincronizados.',26,
+        ['Estado é o conjunto de dados que descreve a interface em um dado momento. A renderização transforma esse estado em elementos visuais.', 'Em vez de editar HTML em vários lugares, crie uma função renderizar() que lê o array de tarefas e atualiza a lista.', 'A sequência é: evento → atualização do estado → renderização. Essa ideia será útil depois com React e outras bibliotecas.'],
+        ['estado','render()','evento → estado → tela','separação de responsabilidades'],
+        `let contador = 0;\nfunction renderizar() {\n  resultado.textContent = \`Total: \${contador}\`;\n}\nrenderizar();`,
+        'Crie um contador com botão de incremento e uma função renderizar separada.',
+        ['Crie let contador = 0.', 'No clique, incremente o valor.', 'Chame renderizar após a mudança.'],
+        `let contador = 0;\nconst resultado = document.querySelector('#result');\n// TODO: implemente renderizar() e evento no botão.`,undefined,undefined,
+        'Centralize a atualização de tela do projeto em uma função renderizarTarefas().')
+    ]
+  },
+  {
+    id:'web',title:'05. JavaScript para web real',subtitle:'Armazenamento, APIs, assincronia e qualidade.',
+    lessons:[
+      lesson('assincrono','Promises, async e await','Trabalhe com tarefas que demoram para terminar.',25,
+        ['JavaScript executa seu código principal em uma thread, mas pode agendar operações assíncronas. Uma Promise representa um resultado futuro.', 'async define uma função assíncrona e await espera o resultado de uma Promise sem bloquear permanentemente a interface.', 'Use try/catch para tratar falhas. Mostre estados de carregamento e erro, porque usuários precisam saber o que está acontecendo.'],
+        ['Promise','async/await','try/catch','estado de carregamento'],
+        `async function buscar() {\n  try {\n    const valor = await Promise.resolve('Carregado!');\n    console.log(valor);\n  } catch (erro) { console.error(erro); }\n}`, 
+        'Simule um carregamento de dados por 1 segundo e mostre o resultado ao concluir.',
+        ['Mostre "Carregando..." imediatamente.', 'Use await new Promise(resolve => setTimeout(resolve, 1000)).', 'Atualize #result ao terminar.'],
+        `async function carregar() {\n  // TODO: simule a espera e mude #result.\n}\ndocument.querySelector('#action').addEventListener('click', carregar);`,undefined,undefined,
+        'Adicione indicador de carregamento na interface ao simular operações assíncronas.'),
+      lesson('api-json','HTTP, APIs, fetch e JSON','Entenda como frontend conversa com serviços.',26,
+        ['APIs HTTP permitem que o frontend peça e envie dados. GET normalmente consulta; POST cria; PUT/PATCH atualizam; DELETE remove.', 'fetch retorna uma Promise com Response. Verifique response.ok antes de usar response.json(). O formato JSON é texto estruturado; JSON.stringify e JSON.parse convertem representações.', 'O exemplo funciona offline usando dados simulados. Quando consumir uma API real, trate conexão indisponível e nunca exponha chaves secretas no frontend.'],
+        ['GET/POST/PATCH/DELETE','fetch','response.ok','JSON.parse/stringify','erros de rede'],
+        `const objeto = { titulo: 'Estudar', concluida: false };\nconst json = JSON.stringify(objeto);\nconsole.log(JSON.parse(json).titulo);`,
+        'Converta um JSON de tarefas em objetos e renderize seus títulos.',
+        ['Use JSON.parse.', 'Percorra as tarefas.', 'Mostre cada título em #list.'],
+        `const respostaDaApi = '[{"id":1,"titulo":"Ler documentação"},{"id":2,"titulo":"Criar projeto"}]';\n// TODO: transforme o JSON em objetos e renderize.`,undefined,undefined,
+        'Separe a lógica que obtém os dados da lógica que os apresenta.'),
+      lesson('storage','localStorage e persistência','Mantenha informações entre visitas.',24,
+        ['localStorage oferece getItem, setItem e removeItem para pares de strings persistidos no navegador. Para salvar arrays e objetos, use JSON.stringify; para restaurá-los, JSON.parse.', 'O laboratório executa a prévia em um iframe isolado. Para o exercício, ele fornece um armazenamento compatível com localStorage e sincronizado com a aplicação principal.', 'localStorage é ótimo para estudos e preferências, mas não é adequado para segredos, autenticação segura ou dados sensíveis. Em sistemas multiusuário use backend e permissões adequadas.'],
+        ['setItem/getItem','JSON.stringify','JSON.parse','limites de segurança'],
+        `localStorage.setItem('tema', 'escuro');\nconsole.log(localStorage.getItem('tema'));`,
+        'Crie um contador persistente que aumente a cada clique, mesmo após executar de novo.',
+        ['Leia a contagem salva com getItem.', 'Converta para Number.', 'Salve com setItem e atualize #result.'],
+        `let contador = Number(localStorage.getItem('contador') || 0);\n// TODO: mostre a contagem e salve cada clique.`,undefined,undefined,
+        'Persista o array de tarefas do projeto em localStorage e recupere-o ao abrir.'),
+      lesson('acessibilidade','Acessibilidade e interfaces responsivas','Construa para pessoas e dispositivos diferentes.',21,
+        ['HTML semântico facilita teclado, leitores de tela e manutenção. Botões devem ser botões e campos devem ter labels associadas.', 'Use estados de foco visíveis, contraste adequado e aria-live para mensagens dinâmicas. Teste seu produto sem mouse.', 'Responsividade começa com layouts flexíveis e unidades fluidas. Use media queries para adaptar a experiência a telas menores.'],
+        ['semântica','labels','teclado e foco','aria-live','media queries'],
+        `document.querySelector('#status').textContent = 'Alteração salva';\n// O elemento possui aria-live="polite".`,
+        'Crie um formulário com label, feedback acessível e layout que se adapta a telas pequenas.',
+        ['Associe label ao input pelo for/id.', 'Use aria-live="polite" no status.', 'Adicione uma media query ao CSS.'],
+        `const form = document.querySelector('#form');\nform.addEventListener('submit', e => {\n  e.preventDefault();\n  document.querySelector('#status').textContent = 'Salvo!';\n});`,
+        `<main class="app"><h1>Formulário acessível</h1><form id="form"><label for="name">Seu nome</label><input id="name" /><button type="submit">Salvar</button></form><p id="status" aria-live="polite"></p></main>`,
+        baseCss + `\nlabel { display:block; margin-bottom:8px } input{display:block;width:100%;padding:12px;margin-bottom:12px;border:1px solid #64748b;border-radius:8px}button:focus-visible,input:focus-visible{outline:3px solid #f59e0b;outline-offset:3px}\n/* TODO: ajuste para telas menores */`,
+        'Revise TaskFlow no celular, usando teclado e com mensagens acessíveis.')
+    ]
+  },
+  {
+    id:'projeto-final',title:'06. Construção de um projeto real',subtitle:'Integre os conhecimentos e publique com confiança.',
+    lessons:[
+      lesson('arquitetura','Organização em funções e módulos','Estruture um projeto que cresce sem virar bagunça.',24,
+        ['Separe responsabilidades: dados, regras e interface. Evite misturar leitura de armazenamento, validação e criação de HTML na mesma função enorme.', 'Em projetos maiores, import e export permitem dividir o código entre arquivos. Neste laboratório de arquivo único, organize por funções, preparando a transição para módulos.', 'Nomes consistentes, responsabilidades claras e pequenas funções costumam ajudar mais que padrões complexos aplicados cedo demais.'],
+        ['funções pequenas','separação de responsabilidades','import/export','organização'],
+        `function validar(titulo) { return titulo.trim().length > 0; }\nfunction criarTarefa(titulo) { return { id: Date.now(), titulo, concluida: false }; }`,
+        'Separe validação, criação e renderização em três funções.',
+        ['Implemente validarTitulo.', 'Implemente criarTarefa.', 'Implemente renderizarTarefas.'],
+        `let tarefas = [];\n// TODO: escreva 3 funções independentes.`,undefined,undefined,
+        'Refatore TaskFlow para separar dados, regras de negócio e DOM.'),
+      lesson('testes','Testes e tratamento de erros','Verifique se a lógica funciona antes de publicar.',24,
+        ['Teste funções puras com entradas e saídas previsíveis. Considere casos normais, limites e entradas inválidas.', 'Uma asserção compara um resultado real com o esperado. Frameworks como Vitest e Jest automatizam isso em projetos maiores.', 'Trate erros de forma visível e compreensível; não esconda um problema somente no console.'],
+        ['casos de teste','asserções','casos de borda','feedback de erro'],
+        `function somar(a, b) { return a + b; }\nconsole.assert(somar(2, 3) === 5, 'Soma incorreta');`,
+        'Crie e teste uma função que não aceite títulos de tarefa em branco.',
+        ['A função deve receber string.', 'Retorne false para espaços em branco.', 'Use console.assert em três entradas.'],
+        `function tituloValido(texto) {\n  // TODO: retorne true somente para títulos preenchidos.\n}\nconsole.assert(tituloValido('Estudar') === true);\nconsole.assert(tituloValido('   ') === false);`,undefined,undefined,
+        'Teste cadastro vazio, conclusão, filtros e recarregamento do TaskFlow.'),
+      lesson('projeto-integrador','Projeto final: TaskFlow completo','Conclua um gerenciador de tarefas funcional.',35,
+        ['Seu projeto deve apresentar um fluxo completo: criar tarefa, listar, concluir, filtrar e salvar. Esse conjunto cobre eventos, arrays, objetos, funções, DOM e armazenamento.', 'Pense nos estados vazios, feedback de erros, dados persistidos e experiência em telas pequenas. Esses detalhes fazem a diferença entre um exercício isolado e um produto utilizável.', 'Use o modo Projeto guiado à direita: o mesmo código continua disponível em todas as aulas. Revise os marcos anteriores e documente o que você aprendeu.'],
+        ['CRUD local','DOM e eventos','persistência','responsividade','revisão'],
+        `// Checklist: cadastrar, concluir, filtrar, excluir e persistir.\n// Implemente cada funcionalidade no projeto compartilhado.`,
+        'Finalize e demonstre o TaskFlow: uma aplicação de tarefas de ponta a ponta.',
+        ['Cadastre, conclua e exclua tarefas.', 'Filtre por status e persista dados.', 'Teste na prévia em modo mobile.'],
+        `console.log('Vá até a aba PROJETO GUIADO para desenvolver o TaskFlow completo.');`,undefined,undefined,
+        'Conclua o produto com funcionalidades reais e teste cada fluxo.'),
+      lesson('proximos-passos','Git, publicação e caminho para TypeScript','Transforme o aprendizado em portfólio.',20,
+        ['Git registra versões do seu projeto; GitHub permite hospedar o repositório. Antes de publicar, garanta que segredos não estejam no código.', 'Um site estático pode ser publicado com GitHub Pages, Vercel ou Netlify. Confira base de caminhos, build e comportamento em dispositivos reais.', 'Depois de dominar JavaScript, TypeScript acrescenta tipos ao processo de desenvolvimento. Ele melhora feedback de erros e manutenção, mas não substitui a compreensão de JS.'],
+        ['Git e commits','README','deploy estático','portfólio','TypeScript'],
+        `// Próxima etapa: extrair funções, versionar no Git\n// e transformar seu projeto em portfólio.`,
+        'Escreva um pequeno README do TaskFlow e faça uma lista de melhorias futuras.',
+        ['Descreva propósito e funcionalidades.', 'Liste como executar localmente.', 'Escolha 3 melhorias para uma versão 2.0.'],
+        `document.querySelector('#result').textContent = 'Meu próximo passo: publicar um projeto autoral!';`,undefined,undefined,
+        'Prepare uma apresentação de 2 minutos mostrando o problema, a solução e o código.')
+    ]
+  }
+];
+
+const tsUnits = [
+  { id:'ts-fundamentos',title:'01. TypeScript depois do JavaScript',subtitle:'Tipagem como ferramenta para sistemas maiores.',lessons:[
+    lesson('ts-intro','Por que TypeScript?','Entenda a relação entre JS, TS e compilação.',16,
+      ['TypeScript é JavaScript com um sistema de tipos estáticos. O navegador não executa anotações de tipo diretamente: o código TS é convertido em JavaScript antes da execução.', 'A tipagem ajuda a detectar erros durante o desenvolvimento. Ela não garante que os dados recebidos de APIs sejam válidos em tempo de execução.', 'Neste laboratório, a aba app.ts é transpilada automaticamente para JavaScript e executada na prévia.'],
+      ['compilação','tipos estáticos','JS versus TS','checagem'],
+      `const nome: string = 'Ana';\nconst idade: number = 25;\nconsole.log(nome, idade);`,
+      'Defina variáveis tipadas e exiba uma apresentação com nome e horas de estudo.',
+      ['Use string e number.', 'Monte um template literal.', 'Altere #result com a mensagem.'],
+      `const nome: string = 'Pessoa estudante';\nconst horas: number = 2;\n// TODO: exiba a mensagem tipada no #result.`,undefined,undefined,
+      'Crie uma cópia tipada do modelo de tarefas, sem apagar o projeto JavaScript.'),
+    lesson('ts-tipos','Tipos, arrays e inferência','Descreva dados de forma segura.',19,
+      ['TypeScript pode inferir o tipo a partir do valor inicial. Anotações explícitas são úteis nas fronteiras do programa, sobretudo em parâmetros e retornos.', 'Arrays podem ser number[] ou Array<number>. Union types permitem vários formatos: number | null.', 'Evite any, porque ele desativa verificações. unknown requer validação antes do uso.'],
+      ['inferência','tipos primitivos','arrays tipados','union','unknown'],
+      `const pontos: number[] = [8, 10, 7];\nconst media: number = pontos.reduce((s, n) => s + n, 0) / pontos.length;`,
+      'Crie um array de notas tipado e calcule a média.',
+      ['Use number[].', 'Implemente o cálculo.', 'Exiba o resultado na página.'],
+      `const notas: number[] = [8, 9, 10];\n// TODO: calcule a média.`,undefined,undefined,
+      'Tipifique os estados e arrays usados no TaskFlow.'),
+    lesson('ts-interfaces','type, interface e objetos','Modele contratos de dados.',22,
+      ['type e interface descrevem a estrutura de valores. Para modelos de objetos, as duas construções funcionam bem na maioria dos casos.', 'Propriedades opcionais recebem ?, e unions restringem valores possíveis, como status: "pendente" | "concluida".', 'Modelos claros ajudam seu editor a sugerir propriedades e apontar erros de digitação.'],
+      ['type','interface','? opcional','union de literais'],
+      `interface Tarefa { id: number; titulo: string; concluida: boolean; }\nconst tarefa: Tarefa = { id: 1, titulo: 'Estudar', concluida: false };`,
+      'Declare uma interface Tarefa e mostre na tela os objetos criados a partir dela.',
+      ['Declare interface Tarefa.', 'Crie Tarefa[].', 'Use forEach e exiba títulos.'],
+      `interface Tarefa { id: number; titulo: string; concluida: boolean; }\nconst tarefas: Tarefa[] = [{ id: 1, titulo: 'Estudar TS', concluida: false }];\n// TODO: renderize os títulos.`,undefined,undefined,
+      'Defina a interface Tarefa e o tipo de prioridade do projeto.'),
+    lesson('ts-funcoes','Funções tipadas e DOM','Proteja entradas e saídas.',24,
+      ['Tipar parâmetros e retornos mostra o contrato de uma função. Uma função que não retorna valor costuma usar void.', 'querySelector pode devolver null, porque o elemento pode não existir. Faça verificação antes de acessar textContent ou addEventListener.', 'Use narrowing (typeof, if, instanceof) para trabalhar com valores que podem ter mais de um tipo.'],
+      ['param: type','return type','null checks','narrowing','DOM'],
+      `function dobro(numero: number): number { return numero * 2; }\nconst campo = document.querySelector('#result');\nif (campo) campo.textContent = String(dobro(3));`,
+      'Crie uma função tipada que calcula percentual e atualize o DOM com verificação de null.',
+      ['Tipifique parâmetros e retorno.', 'Evite divisão por zero.', 'Verifique se #result existe.'],
+      `function percentual(parte: number, total: number): number {\n  // TODO: implemente\n  return 0;\n}\nconst elemento = document.querySelector('#result');\n// TODO: atualize somente se existir.`,undefined,undefined,
+      'Migre as funções principais do TaskFlow de JavaScript para TypeScript.'),
+    lesson('ts-generics','Generics e próximos passos','Reutilize funções preservando os tipos.',24,
+      ['Generics permitem escrever funções reutilizáveis sem perder informações de tipo. A função identidade<T>(valor: T): T devolve o mesmo tipo recebido.', 'O TypeScript também oferece utility types como Partial<T>, Pick<T, K> e Omit<T, K> para reutilizar modelos.', 'Quando estiver confortável, avance para TypeScript com React, APIs tipadas, testes e validação de dados no backend.'],
+      ['generics <T>','Partial','Pick','tipagem de APIs'],
+      `function primeiro<T>(itens: T[]): T | undefined { return itens[0]; }\nconsole.log(primeiro([1, 2, 3]));`,
+      'Crie uma função genérica que retorne o primeiro item de um array ou undefined.',
+      ['Use <T>.', 'Tipifique o argumento como T[].', 'Teste com strings e números.'],
+      `function primeiro<T>(itens: T[]): T | undefined {\n  // TODO: retorne o primeiro item\n  return undefined;\n}\nconsole.log(primeiro<string>(['JS', 'TS']));`,undefined,undefined,
+      'Prepare o TaskFlow tipado para ser dividido em módulos e futuramente integrado a um backend.')
+  ]}
+];
+
+const allJsLessons = jsUnits.flatMap(unit => unit.lessons.map((item,i) => ({ ...item, unitId:unit.id, unitTitle:unit.title, unitIndex: jsUnits.indexOf(unit), lessonIndex:i, language:'js' })));
+const allTsLessons = tsUnits.flatMap(unit => unit.lessons.map((item,i) => ({ ...item, unitId:unit.id, unitTitle:unit.title, unitIndex:tsUnits.indexOf(unit), lessonIndex:i, language:'ts' })));
+const allLessons = [...allJsLessons, ...allTsLessons];
+
+const projectStarter = {
+  html: `<div class="shell">\n  <header class="header">\n    <div class="brand">◈ <span>TaskFlow</span></div>\n    <span class="pill">Meu primeiro produto web</span>\n  </header>\n  <main>\n    <section class="intro">\n      <p class="kicker">FOCO NO QUE IMPORTA</p>\n      <h1>Um dia de cada vez.</h1>\n      <p>Organize suas tarefas e transforme planos em progresso.</p>\n    </section>\n    <section class="panel">\n      <div class="panel-header"><h2>Minhas tarefas</h2><strong id="count">0 tarefas</strong></div>\n      <form id="task-form">\n        <label class="sr-only" for="task-input">Nova tarefa</label>\n        <input id="task-input" placeholder="O que você precisa fazer?" required />\n        <button type="submit">Adicionar</button>\n      </form>\n      <p id="feedback" aria-live="polite"></p>\n      <div class="filters">\n        <button type="button" class="active" data-filter="todas">Todas</button>\n        <button type="button" data-filter="pendentes">Pendentes</button>\n        <button type="button" data-filter="concluidas">Concluídas</button>\n      </div>\n      <ul id="tasks"></ul>\n      <p id="empty">Nenhuma tarefa neste filtro. Que tal começar?</p>\n    </section>\n  </main>\n</div>`,
+  css: `*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:#f2f5fb;color:#16213c}button,input{font:inherit}.shell{max-width:900px;margin:0 auto;padding:24px}.header{display:flex;justify-content:space-between;align-items:center;padding:15px 0 28px}.brand{font-weight:900;font-size:22px;color:#3159de}.brand span{color:#16213c}.pill{background:#e2eafc;color:#3159de;border-radius:20px;padding:8px 12px;font-size:12px;font-weight:700}.intro{margin-bottom:25px}.kicker{color:#3159de;font-weight:800;letter-spacing:2px;font-size:11px}.intro h1{font-size:clamp(30px,6vw,48px);margin:8px 0}.intro p{color:#68778f}.panel{background:#fff;padding:25px;border-radius:18px;box-shadow:0 15px 45px #1724490c}.panel-header{display:flex;align-items:center;justify-content:space-between}.panel h2{margin:0 0 20px}.panel strong{color:#64748b;font-size:13px}form{display:flex;gap:9px}input{flex:1;min-width:0;padding:13px 14px;border:1px solid #cad4e4;border-radius:9px}form button{border:0;background:#3159de;color:#fff;border-radius:9px;padding:12px 18px;font-weight:750;cursor:pointer}.filters{display:flex;gap:8px;margin:22px 0 10px}.filters button{border:1px solid #e4e9f4;background:#fff;border-radius:8px;padding:8px 11px;cursor:pointer}.filters button.active{background:#e8edff;color:#3159de;border-color:#c7d3ff}ul{padding:0;list-style:none}li{display:flex;align-items:center;justify-content:space-between;gap:8px;border-bottom:1px solid #eef1f7;padding:12px 4px}li.done .label{text-decoration:line-through;color:#9aa6b7}.task-actions{display:flex;gap:6px}.task-actions button{border:1px solid #e2e8f0;background:#fff;padding:6px 9px;border-radius:7px;cursor:pointer}#empty{color:#94a3b8;text-align:center;padding:25px 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}@media(max-width:600px){.shell{padding:14px}.panel{padding:18px}.pill{display:none}form{flex-direction:column}}`,
+  js: `// TaskFlow · projeto guiado e evolutivo
+// Este é o PONTO DE PARTIDA, não a solução final.
+// Você implementará novas funcionalidades conforme avança nas aulas.
+
+// FASE 1: defina informações básicas e explore o console.
+const nomeDoProjeto = 'TaskFlow';
+console.log(nomeDoProjeto, 'foi carregado!');
+
+// FASE 2: crie funções para suas regras e cálculos.
+function mensagemDeBoasVindas() {
+  return 'Bem-vindo ao ' + nomeDoProjeto;
+}
+
+// FASE 3: comece com um array, depois use objetos.
+let tarefas = [];
+let filtroAtual = 'todas';
+
+// FASE 4: renderize cada tarefa no DOM.
+function renderizarTarefas() {
+  const lista = document.querySelector('#tasks');
+  lista.replaceChildren();
+
+  // TODO (Arrays + DOM): percorra tarefas e crie os elementos <li>.
+  // TODO (Funções): conte tarefas concluídas.
+  document.querySelector('#count').textContent = tarefas.length + ' tarefa(s)';
+  document.querySelector('#empty').hidden = tarefas.length > 0;
+}
+
+// FASE 4: conecte o formulário ao array de tarefas.
+document.querySelector('#task-form').addEventListener('submit', (evento) => {
+  evento.preventDefault();
+  const titulo = document.querySelector('#task-input').value.trim();
+  if (!titulo) return;
+
+  // TODO (Objetos + Eventos): adicione uma nova tarefa ao array.
+  // TODO (Persistência): salve no localStorage.
+  document.querySelector('#feedback').textContent =
+    'Próxima missão: implemente o cadastro em JavaScript!';
+});
+
+// FASE 4: faça os botões controlarem o filtro.
+document.querySelectorAll('[data-filter]').forEach((botao) => {
+  botao.addEventListener('click', () => {
+    filtroAtual = botao.dataset.filter;
+    document.querySelectorAll('[data-filter]')
+      .forEach(item => item.classList.remove('active'));
+    botao.classList.add('active');
+    // TODO (filter): exiba apenas as tarefas do filtro selecionado.
+    renderizarTarefas();
+  });
+});
+
+// FASE 5: persista os dados e trate falhas.
+// TODO: criar salvarTarefas() e carregarTarefas().
+
+renderizarTarefas();`
+};
+
+const typescriptProjectStarter = {
+  html: `<main class="app"><span class="eyebrow">TypeScript</span><h1 id="title">TaskFlow tipado</h1><p id="result">Uma nova etapa do seu projeto.</p><ul id="list"></ul><button id="action">Adicionar tarefa</button></main>`,
+  css: baseCss,
+  ts: `interface Tarefa {\n  id: number;\n  titulo: string;\n  concluida: boolean;\n}\n\nconst tarefas: Tarefa[] = [{ id: 1, titulo: 'Revisar JavaScript', concluida: true }];\nconst lista = document.querySelector('#list');\n\nfunction renderizar(): void {\n  if (!lista) return;\n  lista.replaceChildren();\n  for (const tarefa of tarefas) {\n    const li = document.createElement('li');\n    li.textContent = tarefa.titulo;\n    lista.append(li);\n  }\n}\n\ndocument.querySelector('#action')?.addEventListener('click', () => {\n  tarefas.push({ id: Date.now(), titulo: 'Praticar TypeScript', concluida: false });\n  renderizar();\n});\n\nrenderizar();`
+};
+
+/** Checkpoints autorais do DevLab. Validação orientativa, nunca substitui testes reais. */
+const questions = [
+ ['primeiros-passos','Qual tecnologia reage a cliques e altera elementos da página?',['CSS','JavaScript','HTML'],1,'HTML estrutura, CSS apresenta e JavaScript implementa comportamento.','addEventListener'],
+ ['variaveis','Qual declaração permite reatribuir o valor de uma variável?',['let','const','import'],0,'Use let quando o valor precisa mudar; prefira const nos demais casos.','textContent'],
+ ['operadores','Qual é o valor de 3 / 8 * 100?',['37,5','26,6','62,5'],0,'Divida a parte pelo total e depois multiplique por 100.','/'],
+ ['debug-console','Qual ferramenta mostra mensagens durante a execução?',['console.log','querySelector','localStorage'],0,'O console ajuda a observar valores e identificar bugs.','* 2'],
+ ['condicionais','Qual instrução executa um bloco somente se a condição for verdadeira?',['for','if','return'],1,'if testa condições; else cobre os outros casos.','if'],
+ ['switch','Quando usar switch?',['Ao repetir uma ação','Ao escolher entre vários valores de um estado','Ao selecionar HTML'],1,'switch é útil quando você compara uma expressão com diversos casos.','switch'],
+ ['loops','Como repetir código um número definido de vezes?',['for','const','throw'],0,'O laço for mantém inicialização, condição e atualização.','for'],
+ ['funcoes','Como uma função devolve um resultado?',['console.log','return','import'],1,'return envia o resultado para quem chamou a função.','return'],
+ ['arrays','Qual método adiciona um item ao final de um array?',['push','filter','slice'],0,'push modifica o array adicionando o item.','push'],
+ ['objetos','Como acessar a propriedade titulo de uma tarefa?',['tarefa.titulo','tarefa->titulo','tarefa(titulo)'],0,'A notação de ponto acessa propriedades de objetos.','titulo'],
+ ['metodos-array','Qual método cria um novo array apenas com os itens que passam no teste?',['filter','find','reduce'],0,'filter mantém somente os elementos que atendem ao predicado.','filter'],
+ ['strings-numeros','Qual método remove espaços no início e fim do texto?',['trim','split','push'],0,'trim é ideal para normalizar campos de formulário.','trim'],
+ ['dom-basico','Qual propriedade altera somente o conteúdo textual de um elemento?',['innerHTML','textContent','styleSheets'],1,'textContent não interpreta HTML e é mais seguro para texto simples.','classList'],
+ ['eventos','Qual evento acompanha a digitação em um campo?',['input','load','submit'],0,'input é disparado quando o valor digitado muda.','input'],
+ ['formularios','Como impedir o recarregamento automático ao enviar um formulário?',['event.preventDefault()','event.stop()','return null'],0,'O método preventDefault impede a ação padrão do navegador.','preventDefault'],
+ ['renderizacao','Qual é a sequência correta numa interface reativa?',['Tela → evento → estado','Evento → estado → renderização','Estado → CSS → API'],1,'Primeiro o evento atualiza os dados; depois você renderiza a tela.','render'],
+ ['assincrono','Qual palavra-chave aguarda a resolução de uma Promise?',['await','for','yield'],0,'await pausa a execução daquela função async até a Promise terminar.','await'],
+ ['api-json','Como converter uma string JSON em objetos JavaScript?',['JSON.stringify','JSON.parse','String.from'],1,'JSON.parse transforma texto JSON válido em dados JavaScript.','JSON.parse'],
+ ['storage','Onde guardar pequenos dados do navegador entre recargas?',['session.log','localStorage','document.title'],1,'localStorage guarda strings no navegador; evite colocar segredos nele.','setItem'],
+ ['acessibilidade','Qual elemento associa um nome acessível a um campo?',['label','span','div'],0,'Use um label associado ao id do input.','aria-live'],
+ ['arquitetura','Por que separar validação, criação e renderização em funções?',['Para esconder a lógica','Para facilitar manutenção e testes','Para evitar parâmetros'],1,'Funções com responsabilidade clara são mais fáceis de testar e reutilizar.','function'],
+ ['testes','O que significa um teste falhar?',['O código sempre travou','O resultado obtido não correspondeu ao esperado','O código tem comentários'],1,'Um teste compara comportamento real com uma expectativa verificável.','return'],
+ ['projeto-integrador','O que caracteriza um projeto completo de estudo?',['Só uma tela bonita','Fluxos funcionais e conceitos aplicados','Muitos arquivos sem interação'],1,'Seu projeto deve demonstrar funcionalidades, validações e estado.','projeto'],
+ ['proximos-passos','Qual arquivo explica como executar e utilizar um projeto?',['README.md','favicon.ico','package-lock.json'],0,'Um README organiza objetivo, instalação, recursos e melhorias.','README'],
+ ['ts-intro','O que TypeScript acrescenta ao JavaScript?',['Tipos estáticos','Um novo navegador','HTML automático'],0,'TypeScript verifica tipos e é compilado para JavaScript.','number'],
+ ['ts-tipos','Qual tipo representa uma lista de números?',['number[]','string','number?'],0,'number[] é um array de números.','number[]'],
+ ['ts-interfaces','Qual recurso define o formato de um objeto em TypeScript?',['interface','await','console'],0,'Interfaces descrevem propriedades e seus respectivos tipos.','interface'],
+ ['ts-funcoes','Como especificar o tipo de retorno de uma função TS?',['Depois dos parâmetros, com : tipo','Usando somente const','Usando HTML'],0,'Ex.: function soma(a: number): number { ... }.','number'],
+ ['ts-generics','O que um tipo genérico <T> oferece?',['Tipos reutilizáveis sem perder informação','Execução mais rápida','Dados globais'],0,'Generics permitem escrever funções reutilizáveis mantendo tipos específicos.','<T>']
+];
+const criteria = {
+ 'primeiros-passos': /addEventListener|onclick/,
+ 'variaveis': /textContent|console\.log/,
+ 'operadores': /\/\s*(?:total|8)|\/\s*8/,
+ 'debug-console': /\*\s*2/,
+ 'condicionais': /\bif\s*\(/,
+ 'switch': /\bswitch\s*\(/,
+ 'loops': /\bfor\s*\(/,
+ 'funcoes': /\breturn\b/,
+ 'arrays': /\.push\s*\(/,
+ 'objetos': /\btitulo\s*:/,
+ 'metodos-array': /\.filter\s*\(/,
+ 'strings-numeros': /\.trim\s*\(/,
+ 'dom-basico': /\.classList\./,
+ 'eventos': /addEventListener\s*\(\s*['"]input/,
+ 'formularios': /preventDefault\s*\(/,
+ 'renderizacao': /function\s+render|const\s+render/,
+ 'assincrono': /\bawait\b/,
+ 'api-json': /JSON\.parse\s*\(/,
+ 'storage': /localStorage\.setItem\s*\(/,
+ 'acessibilidade': /aria-live|setAttribute\s*\(\s*['"]aria/,
+ 'arquitetura': /function\s+\w+|=>/,
+ 'testes': /console\.assert|throw\s+new\s+Error/,
+ 'projeto-integrador': /addEventListener|querySelector/,
+ 'proximos-passos': /README|Git|publica/i,
+ 'ts-intro': /:\s*(?:number|string|boolean)/,
+ 'ts-tipos': /:\s*number\[\]/,
+ 'ts-interfaces': /\binterface\s+\w+/,
+ 'ts-funcoes': /\):\s*number/,
+ 'ts-generics': /<T>/
+};
+const checkpoints = Object.fromEntries(questions.map(([id,prompt,choices,answer,explanation,focus])=>[id,{id,prompt,choices,answer,explanation,focus}]));
+function normalized(value) {return String(value||'').replace(/\/\/[^\n]*/g,'').replace(/\/\*[\s\S]*?\*\//g,'').replace(/\s+/g,'').trim();}
+function inspectExercise(lesson, source) {
+ const key=lesson.language==='ts'?'ts':'js';
+ const before=lesson.starter.js || '';
+ const after=source?.[key]||'';
+ const checks=[
+  {label:'Você alterou o código inicial para resolver o desafio.',ok:normalized(after)!==normalized(before)},
+  {label:`O código inclui o conceito esperado: ${checkpoints[lesson.id]?.focus||'JavaScript'}.`,ok:criteria[lesson.id]?.test(after)||false},
+  {label:'O exercício contém código, não apenas comentários.',ok:normalized(after).length>=12}
+ ];
+ return {passed:checks.every(x=>x.ok),checks};
+}
+function localDateKey(date=new Date()) {
+ return [date.getFullYear(),String(date.getMonth()+1).padStart(2,'0'),String(date.getDate()).padStart(2,'0')].join('-');
+}
+function streakDays(days, now=new Date()) {
+ const set=new Set(days);
+ let day=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+ if(!set.has(localDateKey(day))) day.setDate(day.getDate()-1);
+ let total=0;
+ while(set.has(localDateKey(day))){total++;day.setDate(day.getDate()-1);}
+ return total;
+}
+function experiencePoints(quizPassed, exercisePassed, milestones) {
+ return new Set(quizPassed).size*10+new Set(exercisePassed).size*30+new Set(milestones).size*15;
+}
+
+/** Exercícios com verificação observável dentro do iframe isolado. */
+const runtimeCheckedLessons = new Set([
+ 'primeiros-passos','operadores','debug-console','loops','arrays','eventos','formularios','renderizacao','api-json'
+]);
+
+/** Gera uma página executada EXCLUSIVAMENTE num iframe sandbox="allow-scripts".
+ *  O usuário pode editar HTML/CSS/JS/TS, mas não acessa a página hospedeira. */
+function jsonSafe(value) {
+  return JSON.stringify(value).replace(/</g, '\\u003c').replace(/\u2028|\u2029/g, ' ');
+}
+
+function buildPreview({ html, css, js, token, stored = {} }) {
+  const cssSafe = String(css).replace(/<\/style/gi, '<\\/style');
+  const script = String(js);
+  return `<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>${cssSafe}</style>
+<script>
+(() => {
+  const token = ${jsonSafe(token)};
+  const memoria = ${jsonSafe(stored)};
+  const send = (kind, payload) => parent.postMessage({ __devlab: true, token, kind, payload }, '*');
+  const toText = (value) => {
+    if (typeof value === 'string') return value;
+    if (value instanceof Error) return value.message;
+    try { return JSON.stringify(value); } catch { return String(value); }
+  };
+  const storage = {
+    get length() { return Object.keys(memoria).length; },
+    key(i) { return Object.keys(memoria)[i] ?? null; },
+    getItem(k) { return Object.hasOwn(memoria, String(k)) ? memoria[String(k)] : null; },
+    setItem(k, v) { memoria[String(k)] = String(v); send('storage', memoria); },
+    removeItem(k) { delete memoria[String(k)]; send('storage', memoria); },
+    clear() { for (const key of Object.keys(memoria)) delete memoria[key]; send('storage', memoria); }
+  };
+  try { Object.defineProperty(window, 'localStorage', { configurable: true, value: storage }); }
+  catch (error) { send('log', { level: 'warn', args: ['Armazenamento virtual indisponível: ' + error.message] }); }
+  for (const level of ['log', 'warn', 'error', 'info', 'debug']) {
+    const native = console[level]?.bind(console);
+    console[level] = (...args) => {
+      send('log', { level, args: args.map(toText) });
+      native?.(...args);
+    };
+  }
+  window.addEventListener('error', event => send('log', {level:'error', args:[event.message]}));
+  window.addEventListener('unhandledrejection', event => send('log', {level:'error',args:[toText(event.reason)]}));
+  const observedLogs=[];
+  // A verificação executa no iframe, nunca na origem da plataforma.
+  for (const level of ['log','error']) {
+    const previous = console[level];
+    console[level] = (...args) => { observedLogs.push({level,values:args.map(toText)}); previous(...args); };
+  }
+  window.addEventListener('message', event => {
+    const msg=event.data;
+    if(event.source!==parent || !msg || msg.__devlab_check!==true || msg.token!==token)return;
+    const id=msg.id;
+    const report=(ok,detail)=>send('check-result',{id,ok,detail});
+    try {
+      const first=(selector)=>document.querySelector(selector);
+      if(id==='primeiros-passos') {
+        const title=first('#title'),result=first('#result'),button=first('#action');
+        if(!title||!result||!button)return report(false,'Não encontrei o botão, o título ou o resultado.');
+        const before=[title.textContent,result.textContent];button.click();
+        return report(title.textContent!==before[0]&&result.textContent!==before[1],'O clique precisa alterar o título E o texto do resultado.');
+      }
+      if(id==='operadores')return report(/37[.,]5/.test(first('#result')?.textContent||''),'O resultado esperado é 37,5% (3 de 8 tarefas).');
+      if(id==='debug-console')return report(observedLogs.some(x=>x.values.join(' ').includes('8')),'dobrar(4) deve retornar 8; confira o console.');
+      if(id==='loops')return report(document.querySelectorAll('#list li').length===5,'O loop deve gerar exatamente cinco itens na lista.');
+      if(id==='arrays')return report(document.querySelectorAll('#list li').length>=3,'Mostre ao menos três tarefas como itens da lista.');
+      if(id==='eventos') {
+        const input=first('#name'),result=first('#result');if(!input||!result)return report(false,'Input ou resultado não encontrado.');
+        input.value='Teste DevLab';input.dispatchEvent(new Event('input',{bubbles:true}));
+        return report((result.textContent||'').includes('Teste DevLab'),'O resultado deve reagir ao texto digitado.');
+      }
+      if(id==='formularios') {
+        const form=first('#task-form'),input=first('#task-title');if(!form||!input)return report(false,'Formulário ou campo não encontrado.');
+        const before=document.querySelectorAll('#list li').length;input.value='Nova tarefa';form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));
+        return report(document.querySelectorAll('#list li').length>before,'Enviar uma tarefa precisa adicionar um item à lista.');
+      }
+      if(id==='renderizacao') {
+        const button=first('#action'),result=first('#result');if(!button||!result)return report(false,'Botão ou resultado não encontrado.');
+        const before=result.textContent;button.click();return report(result.textContent!==before,'Clicar no botão precisa atualizar o contador na tela.');
+      }
+      if(id==='api-json')return report(document.querySelectorAll('#list li').length>=2,'Renderize os dois títulos do JSON na lista.');
+      return report(true,'Verificação estrutural concluída.');
+    }catch(error){return report(false,'Erro durante o teste: '+toText(error));}
+  });
+  send('ready', null);
+})();
+<\/script></head><body>${html}
+<script>
+try {
+  const runUserCode = new Function(${jsonSafe(script)});
+  runUserCode();
+} catch (error) { console.error(error instanceof Error ? error.message : String(error)); }
+<\/script></body></html>`;
+}
+
+function loadStorageBucket(bucket) {
+  try { const value = JSON.parse(localStorage.getItem(bucket) || '{}'); return value && typeof value === 'object' && !Array.isArray(value) ? value : {}; }
+  catch { return {}; }
+}
+
+function makeExportHtml({html,css,js}) {
+  return `<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>Meu projeto - DevLab</title>\n<style>\n${String(css).replace(/<\/style/gi,'<\\/style')}\n</style>\n</head>\n<body>\n${html}\n<script>\n${String(js).replace(/<\/script/gi,'<\\/script')}\n<\/script>\n</body>\n</html>`;
+}
+
+/* DevLab Offline - interface sem dependências, para uso pessoal e local. */
+const $ = (selector, root=document) => root.querySelector(selector);
+const $$ = (selector, root=document) => [...root.querySelectorAll(selector)];
+const PREFIX = 'devlab-offline-v1:';
+const save = (key, value) => { try { localStorage.setItem(PREFIX+key, JSON.stringify(value)); } catch (error) { console.warn('Não foi possível salvar no navegador', error); } };
+const load = (key, fallback) => { try { const v=localStorage.getItem(PREFIX+key); return v === null ? fallback : JSON.parse(v); } catch {return fallback;} };
+const esc = (x) => String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const isTs = l => l?.language==='ts';
+const currentLesson = () => allLessons.find(l => l.id === getRoute().id) || allJsLessons[0];
+const starterFor = l => isTs(l) ? {html:l.starter.html,css:l.starter.css,ts:l.starter.js} : {...l.starter};
+const getRoute = () => { const p=location.hash.replace(/^#\/?/,'') || 'inicio'; if(p.startsWith('aula/'))return {page:'lesson',id:p.slice(5)};if(p==='curso/typescript')return {page:'course',lang:'ts'};if(p==='curso/javascript')return {page:'course',lang:'js'};if(p==='projeto')return {page:'project'};return {page:'home'}; };
+const st = { pendingCheck:null, quizPassed:load('quiz-passed',[]),practicePassed:load('practice-passed',[]),activityDates:load('activity-dates',[]),answers:{},step:'learn',hintShown:false,checkResult:null, completed:load('completed',[]),milestones:load('milestones',[]),exercises:load('exercises',{}), projectJs:load('project-js',structuredClone(projectStarter)),projectTs:load('project-ts',structuredClone(typescriptProjectStarter)),last:load('last','primeiros-passos'),mode:'exercise',tab:'js',device:'desktop',consoleOpen:false,logs:[],search:'',expanded:load('expanded',jsUnits.concat(tsUnits).map(x=>x.id)),mobileMenu:false,token:0 };
+let runnerTimer=0;
+const xp=()=>experiencePoints(st.quizPassed,st.practicePassed,st.milestones);
+const streak=()=>streakDays(st.activityDates);
+function recordActivity(){const today=localDateKey();if(!st.activityDates.includes(today)){st.activityDates.push(today);save('activity-dates',st.activityDates);}}
+const stageButton=(stage,label,number,done)=>`<button class="stage-btn ${st.step===stage?'active':''} ${done?'finished':''}" data-stage="${stage}" aria-current="${st.step===stage?'step':'false'}"><span class="stage-no">${done?'✓':number}</span><span>${label}</span></button>`;
+function learningNav(l){const quiz=st.quizPassed.includes(l.id),code=st.practicePassed.includes(l.id),project=st.milestones.includes(l.id);return `<div class="lesson-stage"><div class="stage-heading"><span class="section-kicker">SUA JORNADA NESTA AULA</span><span>${[quiz,code,project].filter(Boolean).length}/3 etapas</span></div><div class="stage-track">${stageButton('learn','01 · Aprender',1,quiz)}<span class="stage-join"></span>${stageButton('practice','02 · Praticar',2,code)}<span class="stage-join"></span>${stageButton('build','03 · Construir',3,project)}</div></div>`;}
+function quizSection(l){const q=checkpoints[l.id],correct=st.quizPassed.includes(l.id),answer=st.answers[l.id],wrong=answer!==undefined&&answer!==q.answer;return `<div class="lesson-card quiz-card"><div class="card-kicker">◈ VERIFIQUE O QUE APRENDEU</div><div class="quiz-progress">PERGUNTA 1 DE 1 <span>+10 XP</span></div><h2>${esc(q.prompt)}</h2><div class="quiz-choices">${q.choices.map((choice,i)=>`<button class="quiz-choice ${correct&&i===q.answer?'correct':''} ${wrong&&i===answer?'incorrect':''}" data-answer="${i}" ${correct?'disabled':''}><span class="choice-letter">${'ABC'[i]}</span>${esc(choice)}<span class="choice-state">${correct&&i===q.answer?'✓':wrong&&i===answer?'×':''}</span></button>`).join('')}</div>${correct?`<div class="feedback success" role="status"><strong>✓ Excelente! Resposta correta.</strong><p>${esc(q.explanation)}</p><button data-stage="practice">Ir para o exercício →</button></div>`:wrong?`<div class="feedback issue" role="status"><strong>Essa ainda não é a resposta.</strong><p>Releia o exemplo e tente outra alternativa.</p></div>`:'<p class="quiz-foot">Escolha uma resposta para receber feedback imediatamente.</p>'}</div>`;}
+function validationSection(l){const result=st.checkResult,done=st.practicePassed.includes(l.id);return `<div class="validation-box" aria-live="polite"><div class="validation-top"><span>⌘ Verificação de exercício</span><span class="validation-tag">+30 XP</span></div><p>Escreva sua solução e clique em <strong>Verificar solução</strong>. A verificação é orientativa: confirma estrutura e conceitos, mas não substitui testes de comportamento.</p><button class="check-button" data-action="check-exercise">${done?'✓ Verificar novamente':'✓ Verificar solução'}</button>${result?`<div class="validation-result ${result.passed?'pass':'fail'}"><strong>${result.passed?'Muito bem! Agora aplique no TaskFlow.':'Revise estes pontos para continuar:'}</strong>${result.checks.map(c=>`<div class="validation-row">${c.ok?'✓':'○'} <span>${esc(c.label)}</span></div>`).join('')}</div>`:done?'<div class="validation-result pass"><strong>✓ Exercício já verificado!</strong></div>':''}</div>`;}
+
+function nav(path){ location.hash='#/'+path; if(getRoute().page==='lesson' && path==='aula/'+getRoute().id) render(); window.scrollTo({top:0}); }
+function percent(lang){const a=lang==='ts'?allTsLessons:allJsLessons;return Math.round(100*a.filter(x=>st.completed.includes(x.id)).length/a.length);}
+function progress(v){return `<div class="progress-track"><div class="progress-fill" style="width:${v}%"></div></div>`;}
+function pill(s,c=''){return `<span class="pill ${c}">${s}</span>`;}
+function iconMark(checked){return checked?'✓':'○';}
+function toast(message){ const old=$('.toast');if(old)old.remove();const div=document.createElement('div');div.className='toast';div.setAttribute('role','status');div.textContent='✓  '+message;document.body.append(div);setTimeout(()=>div.remove(),2600); }
+function sidebar(){
+  const renderUnits=(units,lang)=> units.map(unit=>{
+    const f=unit.lessons.filter(l=>(l.title+' '+l.summary).toLowerCase().includes(st.search.toLowerCase()));
+    if(st.search && !f.length)return '';
+    const open=st.expanded.includes(unit.id) || st.search;
+    return `<div class="nav-unit"><button class="unit-toggle" data-unit="${unit.id}"><span>${esc(unit.title.replace(/^\d+\. /,''))}</span><span>${open?'⌄':'›'}</span></button>${open?`<div class="unit-lessons">${f.map(l=>`<button class="lesson-link ${getRoute().id===l.id?'active-lesson':''}" data-nav="aula/${l.id}"><span class="lesson-status ${st.completed.includes(l.id)?'done':''}">${iconMark(st.completed.includes(l.id))}</span><span>${esc(l.title)}</span></button>`).join('')}</div>`:''}</div>`;
+  }).join('');
+  return `<aside class="sidebar ${st.mobileMenu?'sidebar-open':''}"><div class="sidebar-top"><button class="brand-button" data-nav="inicio"><span class="logo-symbol">⌘</span><span class="brand-text">dev<span>lab</span><small>APRENDA CONSTRUINDO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu">✕</button></div><div class="sidebar-scroll"><div class="sidebar-group"><div class="sidebar-label">ESPAÇO DE ESTUDO</div><button class="side-link ${getRoute().page==='home'?'selected':''}" data-nav="inicio"><span>▦</span> Visão geral</button><button class="side-link ${getRoute().page==='project'?'selected':''}" data-nav="projeto"><span>▤</span> Projeto TaskFlow <span class="side-count">${st.milestones.length}/${allJsLessons.length}</span></button></div><div class="side-search"><span>⌕</span><input id="lesson-search" aria-label="Buscar aulas" placeholder="Buscar aulas..." value="${esc(st.search)}" /></div><div class="sidebar-group sidebar-course"><div class="sidebar-label">TRILHAS DE APRENDIZADO</div><button class="course-link" data-nav="curso/javascript"><span class="js-logo">JS</span><span>JavaScript<small>${allJsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allJsLessons.length} aulas</small></span>›</button>${renderUnits(jsUnits,'js')}<button class="course-link ts-nav" data-nav="curso/typescript"><span class="ts-logo">TS</span><span>TypeScript<small>${allTsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allTsLessons.length} aulas · trilha 2</small></span>›</button>${renderUnits(tsUnits,'ts')}</div></div><div class="sidebar-bottom"><div class="avatar">P</div><div><strong>Meu espaço</strong><small>★ ${xp()} XP · 🔥 ${streak()} dia(s) seguidos</small></div><span class="online-dot"></span></div></aside>`;
+}
+function topbar(){let r=getRoute(),l=currentLesson();let bread=r.page==='home'?'Visão geral':r.page==='project'?'Projeto TaskFlow':r.page==='course'?(r.lang==='ts'?'TypeScript':'JavaScript'):`${isTs(l)?'TypeScript':'JavaScript'} / ${l.title}`;return `<header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu">☰</button><span class="breadcrumbs"><button data-nav="inicio">Meu aprendizado</button><span>› ${esc(bread)}</span></span></div><div class="topbar-right"><span class="topbar-xp">★ ${xp()} XP</span><span class="sync-label"><span class="sync-dot"></span> Salvamento local</span><button class="topbar-project" data-nav="projeto">▤ &nbsp; Meu projeto ↗</button></div></header>`;}
+function stat(sym,value,label){return `<div class="stat"><span class="stat-icon">${sym}</span><strong>${esc(value)}</strong><span>${esc(label)}</span></div>`;}
+function home(){return `<div class="home-page"><div class="welcome-overline"><span class="welcome-dot"></span> SEU ESPAÇO DE EVOLUÇÃO</div><div class="hero-banner"><div class="hero-text">${pill('✦ TRILHA COMPLETA · DO ZERO À WEB','hero-chip')}<h1>Aprenda de verdade.<br/><em>Construa enquanto aprende.</em></h1><p>Do primeiro console.log ao seu próprio sistema web. Teoria direta, editor de código integrado e um projeto que cresce junto com você.</p><div class="hero-buttons"><button class="button-primary" data-nav="aula/${st.last}">▶ ${st.completed.length?'Continuar estudando':'Começar a aprender'} →</button><button class="button-ghost" data-nav="projeto">▤ Ver projeto guiado</button></div></div><div class="hero-art"><div class="hero-code-card"><div class="window-dots"><i></i><i></i><i></i></div><div class="hero-code-lines"><span><b>const</b> projeto = &#123;</span><span>&nbsp;&nbsp;objetivo: <strong>'aprender'</strong>,</span><span>&nbsp;&nbsp;pratica: <strong>true</strong>,</span><span>&nbsp;&nbsp;resultado: <strong>'construir'</strong></span><span>&#125;;</span><span class="hero-comment">// Seu progresso começa aqui_</span></div></div><div class="hero-float">&lt;/&gt;</div></div></div><section class="stats-grid">${stat('▤',st.completed.length+'/'+allLessons.length,'aulas concluídas')}${stat('★',xp()+' XP','experiência conquistada')}${stat('🔥',streak()+' dias','sequência de estudos')}${stat('◈',percent('js')+'%','avanço em JavaScript')}</section><section class="micro-session"><div><span class="section-kicker">SESSÃO RÁPIDA</span><h2>5 minutos de prática fazem diferença.</h2><p>Revise uma ideia, resolva o desafio e avance seu projeto. Sem limite de erros e sem perder progresso.</p></div><button class="button-primary" data-nav="aula/${st.last}">Continuar a trilha →</button></section><section class="section-block"><div class="section-heading"><div><span class="section-kicker">TRILHAS DE APRENDIZADO</span><h2>Escolha por onde continuar</h2><p>Uma sequência progressiva para desenvolver raciocínio e autonomia.</p></div></div><div class="tracks-grid">${trackCard('js')}${trackCard('ts')}</div></section><section class="project-feature"><div class="feature-icon">▤</div><div><span class="section-kicker">PROJETO INTEGRADOR</span><h3>TaskFlow — seu primeiro produto funcional</h3><p>Construa um gerenciador de tarefas aplicando cada conceito da teoria. Edite HTML, CSS e JavaScript com prévia ao vivo.</p></div><button class="button-outline" data-nav="projeto">Conhecer projeto →</button></section><footer class="footer-note">DevLab · Projeto pessoal · Não requer login ou serviços externos para funcionar.</footer></div>`;}
+function trackCard(lang){const js=lang==='js',value=percent(lang);const lessons=js?allJsLessons:allTsLessons;return `<div class="track-card"><div class="track-top"><div class="track-symbol ${js?'js-track-symbol':'ts-track-symbol'}">${js?'JS':'TS'}</div>${pill(js?'TRILHA PRINCIPAL':'ETAPA 2',js?'':'soft-blue')}</div><h3>${js?'JavaScript':'TypeScript'}</h3><p>${js?'Lógica, arrays, funções, DOM, APIs, armazenamento e aplicações completas.':'Tipagem, interfaces, funções seguras e modelos de dados para projetos maiores.'}</p><div class="track-meta"><span>▤ ${lessons.length} aulas</span><span>⌘ Editor + prévia</span></div><div class="track-bottom"><div class="progress-copy"><span>Seu progresso</span><strong>${lessons.filter(x=>st.completed.includes(x.id)).length}/${lessons.length}</strong></div>${progress(value)}<button data-nav="curso/${js?'javascript':'typescript'}">Explorar trilha →</button></div></div>`;}
+function course(lang){let units=lang==='ts'?tsUnits:jsUnits, lessons=lang==='ts'?allTsLessons:allJsLessons,done=lessons.filter(x=>st.completed.includes(x.id)).length;return `<div class="course-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="course-hero"><div class="course-badge ${lang==='ts'?'badge-ts':'badge-js'}">${lang==='ts'?'TS':'JS'}</div><div><span class="section-kicker">${lang==='ts'?'TRILHA 02 · PRÓXIMO PASSO':'TRILHA 01 · SUA BASE'}</span><h1>${lang==='ts'?'TypeScript':'JavaScript'}</h1><p>${lang==='ts'?'Adicione tipos à sua base de JavaScript e aprenda a criar sistemas mais seguros.':'Do zero à prática: desenvolva lógica, entenda o navegador e construa interfaces reais sem pular fundamentos.'}</p><div class="course-metrics"><span>▤ ${units.length} unidades</span><span>⌘ ${lessons.length} aulas</span><span>▶ Laboratório integrado</span></div></div></div>${lang==='ts'?'<div class="course-hint">ⓘ Recomendação: estude JavaScript antes de começar. O editor compila TypeScript e executa a página na prévia.</div>':''}<div class="course-progress"><div class="course-progress-top"><strong>Seu progresso na trilha</strong><span>${done}/${lessons.length} aulas · <strong>${percent(lang)}%</strong></span></div>${progress(percent(lang))}</div><div class="unit-section"><div class="section-heading"><div><span class="section-kicker">CONTEÚDO DO CURSO</span><h2>Unidades e aulas</h2><p>Estude em ordem ou abra a aula que quiser revisar.</p></div></div><div class="unit-cards">${units.map((u,i)=>`<div class="unit-card unit-path-card"><div class="unit-card-head"><div class="unit-number">${String(i+1).padStart(2,'0')}</div><div><h3>${esc(u.title.replace(/^\d+\. /,''))}</h3><p>${esc(u.subtitle)}</p></div><span class="unit-meta">${u.lessons.filter(l=>st.completed.includes(l.id)).length}/${u.lessons.length}</span></div><div class="unit-items">${u.lessons.map((l,j)=>`<button class="unit-item ${st.practicePassed.includes(l.id)?'unit-verified':''}" data-nav="aula/${l.id}"><span class="unit-item-icon ${st.completed.includes(l.id)?'completed':''}">${st.completed.includes(l.id)?'✓':String(j+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.summary)}</small></span><span class="unit-item-right">${l.minutes} min ›</span></button>`).join('')}</div></div>`).join('')}</div></div></div>`;}
+function project(){return `<div class="project-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="project-hero">${pill('▤ PROJETO INTEGRADOR','hero-chip')}<h1>TaskFlow <span>— seu projeto evolutivo.</span></h1><p>Não é apenas uma série de exercícios. Você tem um produto próprio, que melhora conforme aprende. Todas as aulas compartilham o mesmo código no modo <strong>Projeto guiado</strong>.</p><button class="button-primary" data-nav="aula/${st.last}">⌘ Abrir meu código →</button></div><div class="project-stats">${stat('✓',st.milestones.length+'/'+allJsLessons.length,'marcos praticados')}${stat('⌘','HTML + CSS + JS','base do produto')}${stat('▣','Ao vivo','visualização da interface')}</div><div class="project-board"><div class="project-board-title"><span class="section-kicker">ROADMAP DO PRODUTO</span><h2>Implemente passo a passo</h2><p>Marque um marco depois de aplicar o conceito no seu projeto. A validação é manual.</p></div>${jsUnits.map((u,i)=>`<div class="project-unit"><div class="project-unit-head"><span class="project-stage">FASE ${String(i+1).padStart(2,'0')}</span><strong>${esc(u.title.replace(/^\d+\. /,''))}</strong></div><div class="project-todos">${u.lessons.map(l=>`<div class="project-todo"><button class="project-check ${st.milestones.includes(l.id)?'checked':''}" data-milestone="${l.id}" aria-label="${st.milestones.includes(l.id)?'Desmarcar':'Marcar'} marco">${st.milestones.includes(l.id)?'✓':''}</button><div><strong class="${st.milestones.includes(l.id)?'struck':''}">${esc(l.title)}</strong><p>${esc(l.project)}</p></div><button class="link-open" data-nav="aula/${l.id}">→</button></div>`).join('')}</div></div>`).join('')}<div class="project-unit"><div class="project-unit-head"><span class="project-stage ts-stage">PRÓXIMA FASE</span><strong>Melhorar o projeto com TypeScript</strong></div><p class="stage-desc">Depois de consolidar JS, modele tarefas com interfaces e tipifique suas funções.</p><button class="button-outline" data-nav="curso/typescript">Ir para TypeScript →</button></div></div></div>`;}
+function activeDraft(l){return st.mode==='exercise' ? (st.exercises[l.id]||starterFor(l)) : (isTs(l)?st.projectTs:st.projectJs);}
+function activeTab(l){const valid=['html','css',isTs(l)?'ts':'js'];return valid.includes(st.tab)?st.tab:valid[2];}
+function syntax(code){
+  const src=String(code||'');const pattern=/(\/\*[\s\S]*?\*\/|\/\/[^\n]*|`(?:\\[\s\S]|[^`])*`|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|\b(?:const|let|var|function|return|if|else|for|while|switch|case|break|async|await|try|catch|throw|new|class|interface|type|export|import|true|false|null|undefined|number|string|boolean|void|unknown)\b|\b\d+(?:\.\d+)?\b)/g;
+  let out='',last=0,match;
+  while((match=pattern.exec(src))){out+=esc(src.slice(last,match.index));const s=match[0];let cls=s.startsWith('//')||s.startsWith('/*')?'syntax-comment':s[0]==='"'||s[0]==="'"||s[0]==='`'?'syntax-string':/^\d/.test(s)?'syntax-number':'syntax-keyword';out+=`<span class="${cls}">${esc(s)}</span>`;last=pattern.lastIndex;}
+  return out+esc(src.slice(last))+'\n';
+}
+function lessonPage(l){let i=allLessons.findIndex(x=>x.id===l.id),prev=allLessons[i-1],next=allLessons[i+1],tab=activeTab(l),value=activeDraft(l)[tab]||'';
+return `<div class="lesson-page"><div class="lesson-topline"><button class="back-link" data-nav="curso/${isTs(l)?'typescript':'javascript'}">← ${isTs(l)?'TypeScript':'JavaScript'}</button><span class="lesson-counter">AULA ${String(l.lessonIndex+1).padStart(2,'0')} · ${l.minutes} MIN DE TEORIA</span></div><div class="lesson-heading"><div><span class="section-kicker">${esc(l.unitTitle.toUpperCase())}</span><h1>${esc(l.title)}</h1><p>${esc(l.summary)}</p></div><span class="complete-button ${st.completed.includes(l.id)?'is-complete':''}">${iconMark(st.completed.includes(l.id))} ${st.completed.includes(l.id)?'Aula concluída':'Conclua a prática para avançar'}</span></div>${learningNav(l)}<div class="lesson-layout"><section class="theory-pane">${st.step==='learn'?`<div class="lesson-card"><div class="card-kicker">▤ ENTENDA O CONCEITO</div><h2>Teoria essencial</h2>${l.theory.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="concept-list"><strong>O que você precisa dominar</strong><div>${l.concepts.map(c=>`<span>${esc(c)}</span>`).join('')}</div></div></div><div class="lesson-card code-example"><div class="card-kicker">⌘ EXEMPLO EXPLICADO</div><div class="sample-code"><div class="sample-top"><span>exemplo.${isTs(l)?'ts':'js'}</span><button data-action="copy-example" title="Copiar exemplo">▢</button></div><pre><code>${esc(l.example)}</code></pre></div><p class="hint-note">Leia cada linha, tente prever a saída e depois altere os valores.</p></div>`:''}${st.step==='practice'?`<div class="lesson-card challenge-card"><div class="card-kicker mint">✧ AGORA É SUA VEZ</div><h2>Desafio prático</h2><p>${esc(l.challenge)}</p><button class="hint-trigger" data-action="hint">${st.hintShown?'Ocultar dicas −':'Precisa de uma dica? +'}</button>${st.hintShown?`<ol>${l.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}<button class="challenge-cta" data-mode="exercise">▣ Abrir exercício no editor ↘</button></div>${validationSection(l)}`:''}${st.step==='build'?`<div class="lesson-card project-task"><div class="card-kicker purple">▤ APLIQUE NO SEU PROJETO</div><h2>Marco do TaskFlow</h2><p>${esc(l.project)}</p><div class="project-lesson-actions"><button class="project-apply" data-mode="project">⌘ Abrir código compartilhado</button><button class="milestone-button ${st.milestones.includes(l.id)?'done':''}" data-milestone="${l.id}">${iconMark(st.milestones.includes(l.id))} ${st.milestones.includes(l.id)?'Marco feito':'Marcar marco'}</button></div><p class="mini-help">Seu projeto é salvo separadamente dos exercícios.</p></div>` :''}${st.step==='learn'?quizSection(l):''}<div class="lesson-nav">${prev?`<button data-nav="aula/${prev.id}"><span>← <small>AULA ANTERIOR</small>${esc(prev.title)}</span></button>`:''}${next?`<button class="next-lesson" data-nav="aula/${next.id}"><span><small>PRÓXIMA AULA</small>${esc(next.title)} →</span></button>`:''}</div></section>
+<section class="lab-pane"><div class="lab-head"><div><span class="lab-live"><span></span> LABORATÓRIO INTERATIVO</span><h2>Seu ambiente de desenvolvimento</h2><p>Edite o código e veja o resultado ao lado, sem instalar nada.</p></div></div><div class="mode-switch"><button class="${st.mode==='exercise'?'active':''}" data-mode="exercise">⌘ Exercício da aula</button><button class="${st.mode==='project'?'active':''}" data-mode="project">▤ Projeto guiado</button></div><div class="workspace"><div class="workspace-bar"><span class="workspace-title"><span class="workspace-status"></span>${st.mode==='exercise'?'EXERCÍCIO · '+esc(l.title):'TASKFLOW · PROJETO COMPARTILHADO'}</span><span class="workspace-autosave">✓ Salvo automaticamente</span></div><div class="editor-tabs">${[{id:'html',name:'index.html'},{id:'css',name:'style.css'},{id:isTs(l)?'ts':'js',name:isTs(l)?'app.ts':'script.js'}].map(f=>`<button data-tab="${f.id}" class="file-tab ${tab===f.id?'tab-active':''}"><span class="file-icon ${f.id}">${f.id==='html'?'◇':f.id==='css'?'#':isTs(l)?'TS':'JS'}</span>${f.name}</button>`).join('')}<div class="tab-spacer"></div><button class="tab-tool" data-action="copy-code" title="Copiar arquivo">▢</button></div><div class="offline-editor"><div class="editor-gutter" id="editor-lines" aria-hidden="true">1</div><div class="editor-code"><pre aria-hidden="true" id="syntax-layer">${syntax(value)}</pre><textarea id="code-editor" aria-label="Editor de código" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off">${esc(value)}</textarea></div></div><div class="editor-actions"><span><span class="shortcut-dot"></span>${isTs(l)?'TypeScript compilado na prévia':'Prévia atualizada ao editar'}</span><div><button class="action-secondary" data-action="reset">↶ Restaurar</button><button class="action-secondary" data-action="export">⇩ Exportar</button><button class="run-button" data-action="run">▶ Executar</button></div></div></div>
+<div class="preview-wrap"><div class="preview-head"><div class="preview-heading">▣ <strong>Pré-visualização</strong></div><div class="preview-actions"><button data-device="desktop" title="Desktop" class="${st.device==='desktop'?'device-active':''}">▣</button><button data-device="mobile" title="Celular" class="${st.device==='mobile'?'device-active':''}">▯</button><span class="preview-separator"></span><button data-action="run" title="Atualizar">↻</button></div></div><div class="preview-surface ${st.device==='mobile'?'mobile-surface':''}"><iframe id="devlab-preview" title="Prévia de código isolada" sandbox="allow-scripts" class="${st.device==='mobile'?'frame-mobile':''}"></iframe></div><div class="preview-foot"><span><span class="preview-status"></span> Página em execução isolada</span><span>${st.device==='mobile'?'Modo celular · 375px':'Largura responsiva'}</span></div></div><div class="console-panel"><button class="console-toggle" data-action="console"><span>⌘ Console <span class="console-count" id="console-count">${st.logs.length}</span></span><span>${st.consoleOpen?'⌄':'›'}</span></button><div class="console-output" id="console-output" style="${st.consoleOpen?'':'display:none'}">${logLines()}</div></div><div class="lab-tip">ⓘ <p><strong>Dica:</strong> altere uma linha por vez. Os exercícios são independentes, mas o <strong>projeto guiado</strong> mantém o mesmo código entre todas as aulas. Tudo é salvo no navegador.</p></div></section></div></div>`;}
+function logLines(){return !st.logs.length?'<span class="console-empty">Sem mensagens. Experimente console.log("Olá!").</span>':st.logs.map(x=>`<div class="console-line console-${esc(x.level)}"><span>${x.level==='error'?'×':x.level==='warn'?'!':'›'}</span><code>${esc((x.args||[]).join(' '))}</code></div>`).join('');}
+function render(){const r=getRoute();if(r.page==='lesson'){st.last=currentLesson().id;save('last',st.last);if(!['js','ts'].includes(st.tab))st.tab=isTs(currentLesson())?'ts':'js';if(isTs(currentLesson())&&st.tab==='js')st.tab='ts';if(!isTs(currentLesson())&&st.tab==='ts')st.tab='js';}
+ $('#root').innerHTML=`<div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu"></button>':''}<div class="main-pane">${topbar()}<main class="main-content ${r.page==='lesson'?'page-lesson':''}">${r.page==='home'?home():r.page==='course'?course(r.lang):r.page==='project'?project():lessonPage(currentLesson())}</main></div></div>`;
+ if(r.page==='lesson'){refreshEditor();runPreview();}
+}
+function refreshEditor(){const editor=$('#code-editor');if(!editor)return;const value=editor.value;const el=$('#syntax-layer');if(el)el.innerHTML=syntax(value);const gutter=$('#editor-lines');if(gutter)gutter.textContent=Array.from({length:Math.max(1,value.split('\n').length)},(_,i)=>String(i+1)).join('\n');}
+function onEditorInput(){st.pendingCheck=null;st.checkResult=null;const l=currentLesson(),draft=activeDraft(l),tab=activeTab(l);draft[tab]=$('#code-editor').value;if(st.mode==='exercise'){st.exercises[l.id]=draft;save('exercises',st.exercises)}else if(isTs(l))save('project-ts',st.projectTs);else save('project-js',st.projectJs);refreshEditor();clearTimeout(runnerTimer);runnerTimer=setTimeout(runPreview,650);}
+function storageBucket(){let l=currentLesson();return PREFIX+'preview:'+(st.mode==='project'?(isTs(l)?'project-ts':'project-js'):'lesson-'+l.id);}
+function storageSnapshot(){try { const v=JSON.parse(localStorage.getItem(storageBucket())||'{}');return v && typeof v==='object'&&!Array.isArray(v)?v:{}; }catch{return {};}}
+let compilerPromise;
+function ensureTypeScript(){
+ if(window.ts?.transpileModule)return Promise.resolve(window.ts);
+ if(compilerPromise)return compilerPromise;
+ compilerPromise=new Promise((resolve,reject)=>{
+   const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/typescript@5.9.3/lib/typescript.js';s.async=true;
+   s.onload=()=>window.ts?.transpileModule?resolve(window.ts):reject(new Error('Compilador TypeScript não encontrado.'));
+   s.onerror=()=>reject(new Error('Falha ao carregar o compilador TypeScript pela CDN. Verifique sua conexão.'));
+   document.head.appendChild(s);
+ });
+ return compilerPromise;
+}
+async function runPreview(){const frame=$('#devlab-preview');if(!frame)return;const l=currentLesson(),draft=activeDraft(l),token=++st.token;st.logs=[];updateConsole();try{
+ let js=draft.js||'';
+ if(isTs(l)){
+    const ts=await ensureTypeScript();
+    if(token!==st.token)return;
+    const output=ts.transpileModule(draft.ts||'',{fileName:'app.ts',reportDiagnostics:true,compilerOptions:{target:ts.ScriptTarget.ES2020,module:ts.ModuleKind.None,strict:true}});
+    const errors=(output.diagnostics||[]).filter(d=>d.category===ts.DiagnosticCategory.Error);
+    st.logs.push(...errors.map(d=>({level:'error',args:[ts.flattenDiagnosticMessageText(d.messageText,' ')]})));
+    js=output.outputText;
+ }
+ if(token!==st.token)return;
+ frame.srcdoc=buildPreview({html:draft.html||'',css:draft.css||'',js,token,stored:storageSnapshot()});updateConsole();
+ }catch(error){st.logs.push({level:'error',args:[error.message]});updateConsole();}}
+function updateConsole(){const o=$('#console-output'),count=$('#console-count');if(o){o.innerHTML=logLines();o.scrollTop=o.scrollHeight;}if(count)count.textContent=String(st.logs.length);}
+window.addEventListener('message',event=>{const frame=$('#devlab-preview');if(!frame||event.source!==frame.contentWindow)return;const d=event.data;if(!d||d.__devlab!==true||d.token!==st.token)return;if(d.kind==='log'){st.logs.push(d.payload);if(st.logs.length>120)st.logs.shift();updateConsole();}else if(d.kind==='storage'){try{localStorage.setItem(storageBucket(),JSON.stringify(d.payload));}catch(error){console.warn(error);}}else if(d.kind==='check-result'){
+ const pending=st.pendingCheck;
+ if(!pending || pending.id!==d.payload?.id || st.mode!=='exercise')return;
+ st.pendingCheck=null;
+ const inspection=pending.inspection;
+ inspection.checks.push({label:d.payload.detail,ok:!!d.payload.ok});
+ inspection.passed=inspection.checks.every(x=>x.ok);
+ finishCheck(pending.id,inspection);
+ }});
+function downloadFile(name,content,type='text/html'){const blob=new Blob([content],{type:type+';charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),3000);}
+async function clipboard(value){try{await navigator.clipboard.writeText(value);toast('Código copiado.');}catch{const textarea=$('#code-editor');textarea?.focus();textarea?.select();toast('Selecione e copie com Ctrl+C.');}}
+function finishCheck(id,inspection){
+ st.checkResult=inspection;
+ if(inspection.passed && !st.practicePassed.includes(id)){
+  st.practicePassed.push(id);save('practice-passed',st.practicePassed);
+  if(!st.completed.includes(id)){st.completed.push(id);save('completed',st.completed);}
+  recordActivity();
+ }
+ if(inspection.passed){st.step='build';toast('Desafio concluído! +30 XP');}
+ render();
+}
+function action(name){const l=currentLesson(),draft=activeDraft(l);switch(name){
+ case 'run':runPreview();break;
+ case 'hint':st.hintShown=!st.hintShown;render();break;
+ case 'check-exercise':{
+   if(st.mode!=='exercise'){toast('Selecione o exercício da aula para verificar.');break;}
+   const inspection=inspectExercise(l,draft);
+   if(st.logs.some(x=>x.level==='error'))inspection.checks.push({label:'Resolva primeiro os erros do console.',ok:false});
+   if(!st.quizPassed.includes(l.id))inspection.checks.push({label:'Responda ao quiz em Aprender.',ok:false});
+   inspection.passed=inspection.checks.every(x=>x.ok);
+   if(!inspection.passed){st.checkResult=inspection;render();break;}
+   if(runtimeCheckedLessons.has(l.id)){
+     st.pendingCheck={id:l.id,inspection};
+     const frame=$('#devlab-preview');
+     if(frame?.contentWindow){frame.contentWindow.postMessage({__devlab_check:true,token:st.token,id:l.id},'*');}
+     else {inspection.checks.push({label:'Prévia indisponível. Execute o código novamente.',ok:false});inspection.passed=false;finishCheck(l.id,inspection);}
+   }else finishCheck(l.id,inspection);
+   break;
+ }
+ case 'console':st.consoleOpen=!st.consoleOpen;const o=$('#console-output');if(o)o.style.display=st.consoleOpen?'block':'none';$('.console-toggle>span:last-child').textContent=st.consoleOpen?'⌄':'›';break;
+ case 'reset':if(!confirm(`Restaurar o código do ${st.mode==='exercise'?'exercício':'projeto'}? Suas alterações serão perdidas.`))break;if(st.mode==='exercise'){delete st.exercises[l.id];save('exercises',st.exercises)}else if(isTs(l)){st.projectTs=structuredClone(typescriptProjectStarter);save('project-ts',st.projectTs)}else{st.projectJs=structuredClone(projectStarter);save('project-js',st.projectJs)}render();toast('Arquivos restaurados.');break;
+ case 'export':if(isTs(l))downloadFile((st.mode==='project'?'taskflow-ts':l.id)+'.ts',draft.ts||'','text/plain');else downloadFile((st.mode==='project'?'taskflow':l.id)+'.html',makeExportHtml(draft));toast('Arquivo exportado.');break;
+ case 'copy-code':clipboard(draft[activeTab(l)]||'');break;
+ case 'copy-example':clipboard(l.example);break;
+ case 'open-menu':st.mobileMenu=true;render();break;
+ case 'close-menu':st.mobileMenu=false;render();break;
+ }}
+window.addEventListener('click',event=>{let target=event.target.closest('[data-nav],[data-unit],[data-action],[data-mode],[data-tab],[data-device],[data-complete],[data-milestone],[data-answer],[data-stage]');if(!target)return;
+ if(target.dataset.nav){st.mobileMenu=false;nav(target.dataset.nav);return;}
+ if(target.dataset.unit){const id=target.dataset.unit;st.expanded=st.expanded.includes(id)?st.expanded.filter(x=>x!==id):[...st.expanded,id];save('expanded',st.expanded);render();return;}
+ if(target.dataset.action){action(target.dataset.action);return;}
+ if(target.dataset.stage){st.step=target.dataset.stage;st.checkResult=null;render();return;}
+ if(target.dataset.answer!==undefined){const l=currentLesson(),id=l.id,q=checkpoints[id],i=Number(target.dataset.answer);if(st.quizPassed.includes(id))return;st.answers[id]=i;if(i===q.answer){st.quizPassed.push(id);save('quiz-passed',st.quizPassed);recordActivity();}render();return;}
+ if(target.dataset.mode){st.mode=target.dataset.mode;render();return;}
+ if(target.dataset.tab){st.tab=target.dataset.tab;render();return;}
+ if(target.dataset.device){st.device=target.dataset.device;render();return;}
+ if(target.dataset.complete){const id=target.dataset.complete;st.completed=st.completed.includes(id)?st.completed.filter(x=>x!==id):[...st.completed,id];save('completed',st.completed);render();toast(st.completed.includes(id)?'Aula marcada como concluída.':'Aula desmarcada.');return;}
+ if(target.dataset.milestone){const id=target.dataset.milestone;st.milestones=st.milestones.includes(id)?st.milestones.filter(x=>x!==id):[...st.milestones,id];save('milestones',st.milestones);if(st.milestones.includes(id))recordActivity();render();return;}
+});
+window.addEventListener('input',event=>{if(event.target?.id==='code-editor')onEditorInput();if(event.target?.id==='lesson-search'){const p=event.target.selectionStart;st.search=event.target.value;render();const input=$('#lesson-search');input?.focus();input?.setSelectionRange(p,p);}});
+window.addEventListener('scroll',event=>{if(event.target?.id==='code-editor'){
+  const a=event.target;const pre=$('#syntax-layer'),g=$('#editor-lines');if(pre){pre.scrollTop=a.scrollTop;pre.scrollLeft=a.scrollLeft;}if(g)g.scrollTop=a.scrollTop;
+}},true);
+window.addEventListener('keydown',event=>{const target=event.target;if(target?.id!=='code-editor')return;if(event.key==='Tab'){
+ event.preventDefault();const s=target.selectionStart,e=target.selectionEnd;target.value=target.value.slice(0,s)+'  '+target.value.slice(e);target.selectionStart=target.selectionEnd=s+2;onEditorInput();
+ }else if((event.ctrlKey||event.metaKey)&&event.key==='Enter'){event.preventDefault();runPreview();}});
+window.addEventListener('hashchange',()=>{st.mode='exercise';st.tab=isTs(currentLesson())?'ts':'js';st.consoleOpen=false;st.mobileMenu=false;st.step=st.practicePassed.includes(currentLesson().id)?'build':st.quizPassed.includes(currentLesson().id)?'practice':'learn';st.checkResult=null;st.pendingCheck=null;st.hintShown=false;render();});
+st.step=st.practicePassed.includes(currentLesson().id)?'build':st.quizPassed.includes(currentLesson().id)?'practice':'learn';
+render();
+</script></body></html>

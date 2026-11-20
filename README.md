@@ -1,5 +1,13 @@
 # DevLab — Aprenda construindo
 
+## DevLab 11.0 — Jornada profissional e portfólio
+
+A rota `#/carreira` agora reúne **3 projetos integradores**, **laboratório Git simulado** e **portfólio exportável**. Projetos frontend podem abrir no Workspace; os starters Node.js são ZIPs para executar no VS Code com `npm test`. O portfólio pode ser exportado como HTML ou Markdown.
+
+**Limite pedagógico:** checklists e evidências são autodeclarados, não certificados ou auditorias de segurança. A simulação de Git não executa comandos reais nem publica no GitHub. Os dados ficam no navegador e não são sincronizados.
+
+[Arquitetura, exemplos e validação da Sprint 11](docs/SPRINT-11.md).
+
 ## DevLab 10.0 — Formação Backend e Full-Stack
 
 A Sprint 10 acrescenta **25 aulas em cinco percursos**: Node.js, HTTP/REST, PostgreSQL, autenticação/autorização e testes/deploy/full-stack. A formação está disponível em `#/backend`; o laboratório HTTP em `#/backend/lab`. No total, o DevLab passa a ter **79 aulas** (29 originais + 25 de frontend + 25 de backend), além de missões e projetos.

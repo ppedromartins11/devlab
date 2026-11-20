@@ -61,3 +61,10 @@ test('exportação ZIP válida, com diretórios e UTF-8',async()=>{
  assert.ok(exported.includes('Olá! ✅'));
  fs.rmSync(dir,{recursive:true,force:true});
 });
+
+test('README.md pode ser editado e exportado sem ser executado como módulo',()=>{
+ let p=createWorkspace();p=workspaceAdd(p,'README.md','# Instruções\n');
+ assert.equal(validateWorkspace(p),true);
+ assert.ok(p.files['README.md'].includes('Instruções'));
+ assert.ok(buildWorkspacePreview(p,'test').includes('@devlab/src/main.js'));
+});

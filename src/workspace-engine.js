@@ -2,7 +2,7 @@
 export const WORKSPACE_MAX_FILES = 32;
 export const WORKSPACE_MAX_FILE_BYTES = 100_000;
 export const WORKSPACE_MAX_TOTAL_BYTES = 480_000;
-export const WORKSPACE_EXTENSIONS = ['html', 'css', 'js', 'mjs', 'json'];
+export const WORKSPACE_EXTENSIONS = ['html', 'css', 'js', 'mjs', 'json', 'md'];
 
 const makeId = () => 'ws-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 7);
 const utf8Bytes = value => new TextEncoder().encode(String(value)).length;

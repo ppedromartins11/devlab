@@ -20,7 +20,7 @@ function workspaceUpdate(updated, selected=updated.selected){
   updated.updated=Date.now(); updated.selected=selected; validateWorkspace(updated);
   wst.projects[updated.id]=updated;wst.selected=selected;workspaceSave();
 }
-function workspaceType(path){return path.endsWith('.html')?'HTML':path.endsWith('.css')?'CSS':path.endsWith('.json')?'JSON':'JS';}
+function workspaceType(path){return path.endsWith('.html')?'HTML':path.endsWith('.css')?'CSS':path.endsWith('.json')?'JSON':path.endsWith('.md')?'Markdown':'JS';}
 function workspaceTree(project){
   const files=Object.keys(project.files).sort((a,b)=>a.localeCompare(b,'pt-BR'));
   const folders=[...new Set([...(project.folders||[]),...files.flatMap(path=>path.split('/').slice(0,-1).map((_,i)=>path.split('/').slice(0,i+1).join('/')))])].sort();
@@ -29,7 +29,7 @@ function workspaceTree(project){
     const depth=node.path.split('/').length-1;
     if(node.folder)return `<div class="ws-tree-folder" style="--depth:${depth}"><span aria-hidden="true">⌄</span> ${esc(node.path.split('/').at(-1))}</div>`;
     const active=node.path===wst.selected;
-    return `<button role="treeitem" aria-selected="${active}" class="ws-tree-file ${active?'active':''}" style="--depth:${depth}" data-ws-file="${esc(node.path)}" title="${esc(node.path)}"><span class="ws-file-ext ext-${workspaceType(node.path).toLowerCase()}">${workspaceType(node.path)==='HTML'?'◇':workspaceType(node.path)==='CSS'?'#':workspaceType(node.path)==='JSON'?'{}':'JS'}</span><span>${esc(node.path.split('/').at(-1))}</span>${node.path===project.entry?'<small>●</small>':''}</button>`;
+    return `<button role="treeitem" aria-selected="${active}" class="ws-tree-file ${active?'active':''}" style="--depth:${depth}" data-ws-file="${esc(node.path)}" title="${esc(node.path)}"><span class="ws-file-ext ext-${workspaceType(node.path).toLowerCase()}">${workspaceType(node.path)==='HTML'?'◇':workspaceType(node.path)==='CSS'?'#':workspaceType(node.path)==='JSON'?'{}':workspaceType(node.path)==='Markdown'?'MD':'JS'}</span><span>${esc(node.path.split('/').at(-1))}</span>${node.path===project.entry?'<small>●</small>':''}</button>`;
   }).join('');
 }
 function workspacePage(){

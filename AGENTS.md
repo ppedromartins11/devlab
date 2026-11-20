@@ -33,3 +33,11 @@ Configuração visual: `src/styles.css` contém a estrutura legada; `src/workspa
 - Nunca apresentar simulações de usuário como autorização de produção. As funções PostgreSQL e de sessão são exercícios ainda não conectados à API básica.
 - Novas chaves `backend-*` são independentes; não renomear `frontend-*`, `mission-*` e outras chaves legadas.
 - Antes do deploy: `node --test tests/backend.mjs`, `npm test`, `node scripts/build-static.mjs` e os testes de navegador que o ambiente permitir.
+
+## Sprint 11
+
+- `src/career.js`: contratos, progresso autodeclarado, exportação segura de portfólio, estados Git simulados.
+- `offline/source/career-ui.js` e `career-v11.css`: experiência da rota `#/carreira`.
+- `docs/SPRINT-11.md`: escopo, limitações e instruções para Git real.
+- Para alterar esta área, rode `node --test tests/career.mjs`, `npm test`, `python offline/build_standalone.py` e os testes opcionais de navegador.
+- Não confundir o simulador Git com integração remota. Não tratar checklists como certificação automática.

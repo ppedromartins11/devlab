@@ -26,4 +26,5 @@ jobs:
       - run: node --test tests/workspace.mjs
       - run: node --test tests/frontend.mjs
       - run: node --test tests/backend.mjs
+      - run: node --test tests/career.mjs
       - run: node scripts/build-static.mjs

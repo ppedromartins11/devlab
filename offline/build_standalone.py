@@ -17,9 +17,13 @@ workspace_ui = (root/'source'/'workspace-ui.js').read_text()
 frontend_ui = (root/'source'/'frontend-ui.js').read_text()
 frontend_curriculum = (src/'frontend-curriculum.js').read_text()
 frontend_starters = (src/'frontend-starters.js').read_text()
+backend_curriculum = (src/'backend-curriculum.js').read_text()
+backend_starters = (src/'backend-starters.js').read_text()
+backend_http_lab = (src/'backend-http-lab.js').read_text()
+backend_ui = (root/'source'/'backend-ui.js').read_text()
 # Insere a interface antes da inicialização do app, preservando todas as rotas existentes.
 assert app.rstrip().endswith('render();')
-app = app.rstrip()[:-len('render();')] + '\n' + workspace_ui + '\n' + frontend_ui + '\nrender();\n'
+app = app.rstrip()[:-len('render();')] + '\n' + workspace_ui + '\n' + frontend_ui + '\n' + backend_ui + '\nrender();\n'
 workspace_engine = re.sub(r'^export (const|function) (WORKSPACE_MAX_FILES|WORKSPACE_MAX_FILE_BYTES|WORKSPACE_MAX_TOTAL_BYTES|WORKSPACE_EXTENSIONS|workspacePath|validateWorkspace|createWorkspace|workspaceAdd|workspaceRename|workspaceDelete|workspaceAddFolder|workspaceRewriteImports|buildWorkspacePreview|workspaceZip|archiveTextFiles)\b', r'\1 \2', (src/'workspace-engine.js').read_text(), flags=re.M)
 css = (src/'styles.css').read_text()
 css = re.sub(r'^@import[^\n]*\n?', '', css, count=1)
@@ -29,7 +33,8 @@ css += '\n' + (root/'source'/'study.css').read_text()
 css += '\n' + (root/'source'/'mission.css').read_text()
 css += '\n' + (root/'source'/'workspace-v8.css').read_text()
 css += '\n' + (root/'source'/'frontend-v9.css').read_text()
-js = re.sub(r'^export (const|function) (frontendTracks|frontendLessons|findFrontendTrack|findFrontendLesson|frontendTrackProgress)\b',r'\1 \2',frontend_curriculum,flags=re.M) + '\n' + re.sub(r'^export function (frontendStarterFiles|frontendWorkspaceStarter)\b',r'function \1',frontend_starters,flags=re.M) + '\n' + guard.replace('export function ','function ') + '\n' + contracts.replace('export const ','const ').replace('export function ','function ') + '\n' + course.replace('export const ', 'const ') + '\n' + learning.replace("import { runtimeCheckedLessons } from './runtime-check.js';",'').replace('export const ', 'const ').replace('export function ', 'function ') + '\n' + runtime.replace('export const ', 'const ') + '\n' + assessment.replace('export const ', 'const ').replace('export function ','function ') + '\n' + preview.replace("import { assessLessonBehavior } from './lesson-assessment.js';",'').replace('export function ','function ') + '\n' + study.replace('export const ','const ').replace('export function ','function ') + '\n' + missions.replace('export const ','const ') + '\n' + mission_runner.replace('export function ','function ') + '\n' + workspace_engine + '\n' + app
+css += '\n' + (root/'source'/'backend-v10.css').read_text()
+js = re.sub(r'^export (const|function) (backendTracks|backendLessons|findBackendTrack|findBackendLesson|backendTrackProgress)\b',r'\1 \2',backend_curriculum,flags=re.M) + '\n' + backend_starters.replace('export function ','function ') + '\n' + backend_http_lab.replace('export const ','const ').replace('export function ','function ') + '\n' + re.sub(r'^export (const|function) (frontendTracks|frontendLessons|findFrontendTrack|findFrontendLesson|frontendTrackProgress)\b',r'\1 \2',frontend_curriculum,flags=re.M) + '\n' + re.sub(r'^export function (frontendStarterFiles|frontendWorkspaceStarter)\b',r'function \1',frontend_starters,flags=re.M) + '\n' + guard.replace('export function ','function ') + '\n' + contracts.replace('export const ','const ').replace('export function ','function ') + '\n' + course.replace('export const ', 'const ') + '\n' + learning.replace("import { runtimeCheckedLessons } from './runtime-check.js';",'').replace('export const ', 'const ').replace('export function ', 'function ') + '\n' + runtime.replace('export const ', 'const ') + '\n' + assessment.replace('export const ', 'const ').replace('export function ','function ') + '\n' + preview.replace("import { assessLessonBehavior } from './lesson-assessment.js';",'').replace('export function ','function ') + '\n' + study.replace('export const ','const ').replace('export function ','function ') + '\n' + missions.replace('export const ','const ') + '\n' + mission_runner.replace('export function ','function ') + '\n' + workspace_engine + '\n' + app
 # Never close the host <script> when embedded JavaScript strings mention it.
 js = re.sub(r'</script', r'<\\/script', js, flags=re.I)
 html = '''<!doctype html>

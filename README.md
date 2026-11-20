@@ -1,5 +1,18 @@
 # DevLab — Aprenda construindo
 
+## DevLab 10.0 — Formação Backend e Full-Stack
+
+A Sprint 10 acrescenta **25 aulas em cinco percursos**: Node.js, HTTP/REST, PostgreSQL, autenticação/autorização e testes/deploy/full-stack. A formação está disponível em `#/backend`; o laboratório HTTP em `#/backend/lab`. No total, o DevLab passa a ter **79 aulas** (29 originais + 25 de frontend + 25 de backend), além de missões e projetos.
+
+- Cada aula contém teoria, exemplo, pergunta com feedback, tarefa prática e checklist **manual**.
+- O simulador HTTP permite inspecionar status, JSON, autorização por recurso e identidades fictícias. **Não é uma API real**.
+- Cada aula exporta um ZIP com **API Node executável**, testes HTTP com `node:test`, validações e CRUD em memória. O percurso final inclui frontend que faz `fetch` real à API local.
+- Os projetos avançados incluem SQL com relações e consultas parametrizadas, funções seguras de hashing e sessões testadas isoladamente. **PostgreSQL e login não estão ligados às rotas da API inicial**; a integração é parte do exercício, e os starters não são sistemas seguros para produção.
+- Progresso, quiz e anotações usam chaves novas no armazenamento local. Nenhuma chave anterior foi migrada ou apagada.
+- O deploy continua sendo a versão HTML estática. Para executar Node e PostgreSQL, extraia o projeto ZIP no VS Code e siga o README do starter.
+
+[Arquitetura, escopo e roteiro de testes da Sprint 10](docs/SPRINT-10.md).
+
 ## Sprint 9 — Formação frontend (HTML, CSS, JavaScript, TypeScript e React)
 
 A versão 9 acrescenta **25 aulas em 5 percursos** com teoria original, exemplos curtos, pergunta de fixação, tarefa prática, checklist de revisão e anotações por aula. As **29 aulas de JavaScript e TypeScript anteriores permanecem preservadas**, assim como a Oficina, o TaskFlow e o Workspace. São 54 aulas no catálogo total, distribuídas entre o currículo anterior (29) e a formação complementar (25).

@@ -25,3 +25,11 @@ Configuração visual: `src/styles.css` contém a estrutura legada; `src/workspa
 - `src/mission-runner.js` executa código do aluno exclusivamente em um Worker de um iframe com origem opaca. Nunca mover `new Function` para o contexto principal.
 - Não considerar aprovada uma solução apenas pela presença de keywords. Não alterar as chaves antigas do armazenamento local.
 - Para publicar, gerar `offline/index.html` via `python offline/build_standalone.py`, rodar `node scripts/build-static.mjs` e executar os testes automatizados.
+
+## Sprint 10 — Backend
+
+- `src/backend-curriculum.js` é a fonte das 25 aulas; `src/backend-starters.js` exporta projetos Node reais; `src/backend-http-lab.js` implementa somente um **simulador didático**, não autenticação real.
+- `offline/source/backend-ui.js` e `backend-v10.css` compõem a interface publicada; `offline/build_standalone.py` incorpora esses módulos.
+- Nunca apresentar simulações de usuário como autorização de produção. As funções PostgreSQL e de sessão são exercícios ainda não conectados à API básica.
+- Novas chaves `backend-*` são independentes; não renomear `frontend-*`, `mission-*` e outras chaves legadas.
+- Antes do deploy: `node --test tests/backend.mjs`, `npm test`, `node scripts/build-static.mjs` e os testes de navegador que o ambiente permitir.

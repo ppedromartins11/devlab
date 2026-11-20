@@ -39,3 +39,16 @@ Requisitos ao final da trilha JavaScript:
 - Testar casos comuns, limites e estados vazios.
 
 O TaskFlow é iniciado como scaffold com comentários `TODO`, para que o aluno escreva o comportamento gradualmente, em vez de simplesmente receber uma solução pronta.
+
+
+## Formação backend — Sprint 10
+
+| Percurso | Competência principal |
+| --- | --- |
+| Node.js | Runtime, módulos, variáveis de ambiente, assincronia e testes. |
+| HTTP e REST | Status, métodos, rotas, JSON, CRUD e consumo com fetch. |
+| PostgreSQL | Modelagem, constraints, SQL parametrizado, transações e migrações. |
+| Segurança | Senhas com salt, sessões, autorização por objeto e testes negativos. |
+| Integração | Testes HTTP, documentação, deploy e aplicação full-stack. |
+
+A prática usa um laboratório HTTP simulado no navegador e projetos ZIP reais para VS Code. Banco e autenticação exigem integração pelo aluno; somente o servidor Node em memória está executável de imediato. Ver `docs/SPRINT-10.md`.

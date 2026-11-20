@@ -163,7 +163,7 @@ export function archiveTextFiles(files) {
   if (!entries.length || entries.length>WORKSPACE_MAX_FILES) throw new Error('Quantidade de arquivos inválida.');
   let total=0;
   for(const [path,source] of entries){
-    if(workspacePath(path)!==path || !/\.(html|css|js|jsx|ts|tsx|json|md)$/.test(path)) throw new Error('Arquivo inválido: '+path);
+    if(workspacePath(path)!==path || !/\.(html|css|js|jsx|ts|tsx|json|md|sql|txt)$/.test(path)) throw new Error('Arquivo inválido: '+path);
     if(typeof source!=='string' || utf8Bytes(source)>WORKSPACE_MAX_FILE_BYTES) throw new Error('Arquivo grande ou inválido: '+path);
     total+=utf8Bytes(source);
   }

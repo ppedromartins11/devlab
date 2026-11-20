@@ -25,4 +25,5 @@ jobs:
       - run: node tests/preview-guard.mjs
       - run: node --test tests/workspace.mjs
       - run: node --test tests/frontend.mjs
+      - run: node --test tests/backend.mjs
       - run: node scripts/build-static.mjs

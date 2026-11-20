@@ -1,5 +1,21 @@
 # DevLab — Aprenda construindo
 
+## Sprint 9 — Formação frontend (HTML, CSS, JavaScript, TypeScript e React)
+
+A versão 9 acrescenta **25 aulas em 5 percursos** com teoria original, exemplos curtos, pergunta de fixação, tarefa prática, checklist de revisão e anotações por aula. As **29 aulas de JavaScript e TypeScript anteriores permanecem preservadas**, assim como a Oficina, o TaskFlow e o Workspace. São 54 aulas no catálogo total, distribuídas entre o currículo anterior (29) e a formação complementar (25).
+
+- Rota publicada: [`#/frontend`](https://devlab-zeta.vercel.app/#/frontend).
+- HTML, CSS e JavaScript avançado: crie um projeto separado diretamente no Workspace, com HTML, CSS e módulos JS.
+- TypeScript e React: baixe um **starter ZIP Vite** com README, arquivos `.ts`/`.jsx`, scripts npm e instruções para abrir no VS Code. Esses projetos **não executam TSX/React no Workspace estático**.
+- Quiz com correção imediata; checklist de verificação **manual** — não é avaliação automática do código do aluno.
+- Progresso da Formação salvo em novas chaves de `localStorage`, sem apagar as aulas existentes.
+- Também foi corrigido o gerador estático, que removia acidentalmente `export` em algumas funções escritas dentro de strings dos starters do Workspace.
+
+[Documentação da Sprint 9](docs/SPRINT-9.md).
+
+---
+
+
 ## DevLab 8.0 — Workspace profissional (arquivos reais)
 
 O novo caminho `#/workspace` abre um ambiente com **explorador de arquivos**, pastas, abas, editor, prévia, console e projetos separados. O projeto inicial TaskFlow modular tem `index.html`, CSS e dois módulos JavaScript conectados com `import/export`. É possível adicionar/renomear/excluir arquivos, editar e executar o projeto, copiar o TaskFlow das aulas para outro projeto e **exportar ZIP** para o VS Code.

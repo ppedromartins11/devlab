@@ -24,4 +24,5 @@ jobs:
       - run: node tests/lesson-contracts.mjs
       - run: node tests/preview-guard.mjs
       - run: node --test tests/workspace.mjs
+      - run: node --test tests/frontend.mjs
       - run: node scripts/build-static.mjs

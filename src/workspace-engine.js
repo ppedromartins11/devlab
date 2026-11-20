@@ -154,16 +154,30 @@ const crcTable = Array.from({length:256},(_,n)=>{let c=n;for(let i=0;i<8;i++)c=c
 const crc32 = data => {let c=0xffffffff;for(const byte of data)c=crcTable[(c^byte)&255]^(c>>>8);return (c^0xffffffff)>>>0;};
 export function workspaceZip(project) {
   validateWorkspace(project);
+  return archiveTextFiles(project.files);
+}
+// Empacotador compartilhado para starters TypeScript/React (não executáveis no iframe HTML/JS).
+export function archiveTextFiles(files) {
+  if (!files || typeof files !== 'object' || Array.isArray(files)) throw new Error('Arquivos inválidos.');
+  const entries=Object.entries(files);
+  if (!entries.length || entries.length>WORKSPACE_MAX_FILES) throw new Error('Quantidade de arquivos inválida.');
+  let total=0;
+  for(const [path,source] of entries){
+    if(workspacePath(path)!==path || !/\.(html|css|js|jsx|ts|tsx|json|md)$/.test(path)) throw new Error('Arquivo inválido: '+path);
+    if(typeof source!=='string' || utf8Bytes(source)>WORKSPACE_MAX_FILE_BYTES) throw new Error('Arquivo grande ou inválido: '+path);
+    total+=utf8Bytes(source);
+  }
+  if(total>WORKSPACE_MAX_TOTAL_BYTES)throw new Error('Projeto acima do limite de 480 KB.');
   const encoder=new TextEncoder(), parts=[], central=[];let offset=0;
   const u16=(arr,i,v)=>{arr[i]=v&255;arr[i+1]=(v>>>8)&255};
   const u32=(arr,i,v)=>{u16(arr,i,v);u16(arr,i+2,v>>>16)};
-  for(const [path,source] of Object.entries(project.files)){
+  for(const [path,source] of entries){
     const name=encoder.encode(path),data=encoder.encode(source),crc=crc32(data);
     const head=new Uint8Array(30);u32(head,0,0x04034b50);u16(head,4,20);u16(head,6,0x800);u16(head,8,0);u32(head,14,crc);u32(head,18,data.length);u32(head,22,data.length);u16(head,26,name.length);
     parts.push(head,name,data);
     const center=new Uint8Array(46);u32(center,0,0x02014b50);u16(center,4,20);u16(center,6,20);u16(center,8,0x800);u32(center,16,crc);u32(center,20,data.length);u32(center,24,data.length);u16(center,28,name.length);u32(center,42,offset);
     central.push(center,name);offset+=head.length+name.length+data.length;
   }
-  const centralSize=central.reduce((sum,b)=>sum+b.length,0),end=new Uint8Array(22);u32(end,0,0x06054b50);u16(end,8,Object.keys(project.files).length);u16(end,10,Object.keys(project.files).length);u32(end,12,centralSize);u32(end,16,offset);
+  const centralSize=central.reduce((sum,b)=>sum+b.length,0),end=new Uint8Array(22);u32(end,0,0x06054b50);u16(end,8,entries.length);u16(end,10,entries.length);u32(end,12,centralSize);u32(end,16,offset);
   return new Blob([...parts,...central,end],{type:'application/zip'});
 }

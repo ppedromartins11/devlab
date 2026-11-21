@@ -26,8 +26,8 @@ def scenario(browser,width,name):
  errors=[]
  page.on('pageerror', lambda error: errors.append(str(error)))
  page.set_content(html)
- assert page.locator('[data-nav="frontend"]').count()>0
- page.locator('.cl-track-item[data-nav="frontend"]').click()
+ assert page.locator('.rp-main-card[data-nav="trilha/frontend"]').count()>0
+ page.evaluate("location.hash='#/frontend'")
  page.locator('.ft-track-card').first.wait_for()
  assert page.locator('.ft-track-card').count()==5
  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), 'Overflow no catálogo'

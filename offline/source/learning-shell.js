@@ -10,7 +10,10 @@ function learningCatalogEntries(){
   ...allJsLessons.map(l=>({title:l.title,summary:l.summary,area:'JavaScript',route:'aula/'+l.id})),
   ...allTsLessons.map(l=>({title:l.title,summary:l.summary,area:'TypeScript',route:'aula/'+l.id})),
   ...frontendLessons.map(l=>({title:l.title,summary:l.objective,area:'Frontend',route:'frontend/aula/'+l.id})),
-  ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id}))
+  ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id})),
+  ...pathwayTracks.map(t=>({title:t.title,summary:t.subtitle,area:'Trilhas profissionais',route:'trilha/'+t.id})),
+  ...languageCatalog.map(l=>({title:l.name,summary:l.description,area:'Biblioteca de linguagens',route:'linguagem/'+l.id})),
+  ...Object.values(guidedLanguageLessons).flat().map(l=>({title:l.title,summary:l.goal,area:l.id.startsWith('py-')?'Python':'Java',route:'linguagem/aula/'+l.id}))
  ];
 }
 function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}
@@ -24,7 +27,7 @@ function updateSidebarSearch(){
 }
 function cleanSidebar(){
  const current=location.hash.replace(/^#\/?/,'')||'inicio';
- const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
+ const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')||(item.route==='trilhas'&&current.startsWith('trilha/'))||(item.route==='linguagens'&&current.startsWith('linguagem/'))?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
  const total=allLessons.length+frontendLessons.length+backendLessons.length;
  const done=st.completed.length+frontendSummary().done+backendSummary().done;
  const value=Math.min(100,Math.round(done/total*100));
@@ -37,29 +40,12 @@ function cleanSidebar(){
  </aside>`;
 }
 function cleanTopbar(){
- const route=getRoute(), names={home:'Início',course:'Trilha de estudo',lesson:'Aula','frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP',workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
+ const route=getRoute(), names={pathways:'Trilhas profissionais',pathway:'Trilha',languages:'Linguagens',language:'Linguagem','language-lesson':'Aula de linguagem',home:'Início',course:'Trilha de estudo',lesson:'Aula','frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP',workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
  return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div>
  <div class="cl-top-search"><label class="sr-only" for="lesson-search">Buscar aulas e projetos</label><span class="cl-search-mark" aria-hidden="true">⌕</span><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Buscar aulas e trilhas..." value="${esc(st.search)}" autocomplete="off" aria-controls="cl-search-results" aria-expanded="${st.search.trim()?'true':'false'}"><span class="cl-search-shortcut" aria-hidden="true">Ctrl K</span><div id="cl-search-results" class="cl-search-results" role="region" aria-label="Resultados da busca" aria-live="polite" ${st.search.trim()?'':'hidden'}>${st.search.trim()?searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries())):''}</div></div>
  <div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Salvo neste navegador</span></div></header>`;
 }
-function cleanHome(){
- const next=allLessons.find(l=>l.id===st.last)||allJsLessons[0];
- const total=allLessons.length+frontendLessons.length+backendLessons.length;
- const done=st.completed.length+frontendSummary().done+backendSummary().done;
- const value=Math.min(100,Math.round(done/total*100));
- const tracks=[
-  {title:'JavaScript',meta:'24 aulas',route:'curso/javascript',detail:'Lógica e fundamentos para a web.',glyph:'JS',percent:percent('js')},
-  {title:'Frontend',meta:'25 aulas',route:'frontend',detail:'HTML, CSS, TypeScript e React.',glyph:'&lt;/&gt;',percent:Math.round(frontendSummary().done/frontendLessons.length*100)},
-  {title:'TypeScript',meta:'5 aulas',route:'curso/typescript',detail:'Tipos, interfaces e código seguro.',glyph:'TS',percent:percent('ts')},
-  {title:'Backend',meta:'25 aulas',route:'backend',detail:'Node.js, APIs, SQL e autenticação.',glyph:'{ }',percent:Math.round(backendSummary().done/backendLessons.length*100)}
- ];
- return `<div class="cl-home v13-home">
-  <div class="v13-home-top"><header class="cl-welcome"><div class="v13-hero-text"><span class="section-kicker">SEU AMBIENTE DE APRENDIZAGEM</span><h1>Aprenda a programar.<br>Construa de verdade.</h1><p>Estude um conceito por vez, resolva desafios e desenvolva aplicações no seu ritmo.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">▶ &nbsp; Continuar estudando</button><button class="cl-secondary" data-nav="frontend">Ver trilhas</button></div></div><div class="v13-hero-code" aria-hidden="true"><span>&lt;/&gt;</span></div></header>
-  <aside class="v13-home-stats" aria-label="Resumo do seu progresso"><div class="v13-progress-card"><span class="v13-card-label">Seu progresso</span><div class="v13-progress-inner"><div class="v13-ring" style="--progress:${value}%"><span>${value}%</span></div><div><strong>${done} de ${total} aulas</strong><p>Registradas no navegador</p></div></div></div><div class="v13-next-card"><span class="v13-card-label">Continue de onde parou</span><strong>${esc(next.title)}</strong><p>JavaScript / TypeScript</p><button data-nav="aula/${esc(next.id)}">Abrir aula →</button></div></aside></div>
-  <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Trilhas de aprendizagem</h2></div><p>Escolha uma área e avance por módulos.</p></div><div class="cl-track-grid">${tracks.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="v13-track-icon" aria-hidden="true">${x.glyph}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="v13-track-bottom"><small>${esc(x.meta)}</small><small>${x.percent}%</small></span><span class="cl-progress-track" aria-hidden="true"><span style="width:${x.percent}%"></span></span></button>`).join('')}</div></section>
-  <section class="cl-section v13-practice"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR E CONSTRUIR</span><h2>Seu próximo desafio</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Trabalhe com arquivos, módulos e prévia</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Fixe conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="carreira"><strong>Projetos e portfólio</strong><span>Planeje, teste e documente suas entregas</span><span aria-hidden="true">→</span></button></div></section>
- </div>`;
-}
+function cleanHome(){return pathwayHome();}
 
 function studyStepNav(kind,id,labels){
  const key=kind+':'+id, active=normalizeStudyStep(studyUi.active[key],labels.length);

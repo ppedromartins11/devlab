@@ -1,20 +1,18 @@
 /** Navegação curricular independente da renderização e do armazenamento. */
 export const learningAreas = Object.freeze([
-  {id:'learn', label:'Aprender', routes:Object.freeze([
-    {route:'curso/javascript',label:'JavaScript',note:'24 aulas'},
-    {route:'curso/typescript',label:'TypeScript',note:'5 aulas'},
-    {route:'frontend',label:'Formação frontend',note:'25 aulas'},
-    {route:'backend',label:'Formação backend',note:'25 aulas'}
+  {id:'learn',label:'Aprender',routes:Object.freeze([
+    {route:'trilhas',label:'Trilhas profissionais',note:'Frontend · Backend · Full-Stack'},
+    {route:'linguagens',label:'Linguagens',note:'JS, TS, Python, Java e SQL'}
   ])},
   {id:'practice',label:'Praticar',routes:Object.freeze([
-    {route:'oficina',label:'Oficina de código',note:'6 missões'},
-    {route:'revisao',label:'Revisões',note:'Memorização'},
-    {route:'desafios',label:'Desafios',note:'3 desafios'}
+    {route:'oficina',label:'Oficina de código',note:'Testes automáticos'},
+    {route:'revisao',label:'Revisões',note:'Memorização ativa'},
+    {route:'desafios',label:'Desafios',note:'Projetos curtos'}
   ])},
   {id:'build',label:'Construir',routes:Object.freeze([
-    {route:'workspace',label:'Workspace',note:'Projetos'},
+    {route:'workspace',label:'Workspace',note:'Editor de projetos'},
     {route:'projeto',label:'TaskFlow',note:'Projeto guiado'},
-    {route:'carreira',label:'Jornada profissional',note:'Portfólio'}
+    {route:'carreira',label:'Jornada profissional',note:'Portfólio e Git'}
   ])}
 ]);
 

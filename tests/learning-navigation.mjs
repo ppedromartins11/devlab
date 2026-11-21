@@ -5,10 +5,11 @@ import {learningAreas,searchLearningCatalog,normalizeStudyStep} from '../src/lea
 test('navegação separa aprender, praticar e construir sem árvore lateral',()=>{
  assert.deepEqual(learningAreas.map(x=>x.id),['learn','practice','build']);
  const all=learningAreas.flatMap(x=>x.routes);
- assert.equal(all.length,10);
+ assert.equal(all.length,8);
  assert.equal(new Set(all.map(x=>x.route)).size,all.length);
  assert.ok(all.some(x=>x.route==='workspace'));
- assert.ok(all.some(x=>x.route==='backend'));
+ assert.ok(all.some(x=>x.route==='trilhas'));
+ assert.ok(all.some(x=>x.route==='linguagens'));
 });
 
 test('busca encontra aulas por termos independentes e não altera o catálogo original',()=>{
@@ -34,5 +35,5 @@ test('etapas inválidas não pulam ou bloqueiam o estudo',()=>{
 test('o build estático inclui navegação limpa e módulos de estudo',async()=>{
  const fs=await import('node:fs');
  const html=fs.readFileSync(new URL('../offline/index.html',import.meta.url),'utf8');
- for(const value of ['cl-study-tabs','cl-nav-groups','cl-track-item','learningCatalogEntries','mountCareerModules','studyUi'])assert.ok(html.includes(value),value);
+ for(const value of ['cl-study-tabs','cl-nav-groups','rp-main-card','learningCatalogEntries','mountCareerModules','studyUi'])assert.ok(html.includes(value),value);
 });

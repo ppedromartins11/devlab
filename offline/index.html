@@ -1053,23 +1053,81 @@ body a:hover{color:#e3dfff}
 :is(.study-empty,.study-figures,.review-card,.learning-tools) :is(h2,h3,strong){color:#f1f2f8!important}
 :is(.mission-workspace,.mission-spec,.study-empty,.project-board){border-radius:10px}
 .ws-toolbar>button:not(.ws-outline):not(.ws-main-button),.ws-header-actions>button:not(.ws-outline):not(.ws-main-button){background:#252937!important;border:1px solid #424857!important;color:#e8e9f2!important}
+
+/* DevLab 14: trilhas e linguagens, mesmo tema escuro aprovado. */
+.rp-page,.rp-home{max-width:1180px;margin-inline:auto;color:#f0f1f6;padding:10px 0 64px;min-width:0}
+.rp-page button,.rp-home button{font:inherit;cursor:pointer}
+.rp-page-head{padding:14px 0 28px;max-width:860px}
+.rp-page-head h1{font-size:clamp(28px,4vw,42px);letter-spacing:-.045em;margin:12px 0 14px;line-height:1.15}
+.rp-page-head p{font-size:14px;line-height:1.8;color:#a5aab9;max-width:720px;margin:0}
+.rp-page .back-link{margin-bottom:20px}
+.rp-section{margin-top:40px;min-width:0}.rp-section-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 18px}.rp-section-heading h2{font-size:22px;letter-spacing:-.035em;margin:7px 0}.rp-section-heading p{font-size:13px;margin:0;color:#9da4b3;line-height:1.6}
+.rp-main-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.rp-main-card{min-width:0;min-height:266px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:11px;padding:24px;border:1px solid #303441;background:#161920;border-radius:13px;color:#f2f2f7;transition:border-color .15s,background .15s;box-shadow:none}
+.rp-main-card:hover{border-color:#827ab7;background:#1b1d28}.rp-main-card:focus-visible{outline:2px solid #aaa0fa;outline-offset:3px}
+.rp-card-eyebrow{font-size:10px;font-weight:650;text-transform:uppercase;letter-spacing:.095em;color:#949bad}
+.rp-card-glyph{font:700 24px/1 ui-monospace,Consolas,monospace;color:#dedcec;letter-spacing:-.08em;height:36px}
+.rp-main-card h3{font-size:19px;letter-spacing:-.035em;margin:0;color:#f3f4f8}.rp-main-card p{font-size:12.5px;line-height:1.65;color:#a5abbb;margin:0 0 8px;min-height:40px}
+.rp-card-meta,.rp-inline-row{display:flex;justify-content:space-between;gap:10px;align-items:center;width:100%;font-size:11px;color:#afb4c2;margin-top:auto}
+.rp-bar{height:5px;display:block;width:100%;background:#303340;border-radius:9px;overflow:hidden}.rp-bar>span{display:block;height:100%;background:#a9a0f4;border-radius:9px}
+.rp-card-open{font-size:12px;font-weight:650;color:#dedafc;margin-top:5px}
+.rp-home-top{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(240px,.78fr);gap:16px}
+.rp-welcome,.rp-next{border:1px solid #2e323e;background:#151820;border-radius:13px;min-width:0;padding:33px 36px}
+.rp-welcome h1{font-size:clamp(27px,3vw,39px);line-height:1.18;letter-spacing:-.045em;margin:13px 0 15px;color:#f5f5fa}.rp-welcome>p{font-size:13px;line-height:1.75;color:#a7adba;max-width:530px;margin:0}
+.rp-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:24px}
+.rp-actions button,.rp-primary,.rp-secondary,.rp-next button,.rp-soft-note button,.rp-guided-footer button{border:1px solid #3a3d4c;background:#222630;border-radius:8px;padding:11px 16px;font-size:12.5px;font-weight:650;color:#eeeef8}
+.rp-actions .button-primary,.rp-primary{background:#f1f2f8!important;border-color:#f1f2f8!important;color:#10131b!important}
+.rp-next{display:flex;flex-direction:column;align-items:flex-start;gap:9px;padding:26px}.rp-next>strong{font-size:18px;line-height:1.4;color:#f2f2f8}.rp-next>span:not(.section-kicker){font-size:11px;color:#9aa1b0}.rp-next>button{margin-top:6px}.rp-next-progress{width:100%;margin-top:auto;padding-top:17px;border-top:1px solid #303440}.rp-next-progress small{font-size:10px;line-height:1.6;color:#8e96a4;display:block;margin-top:8px}.rp-next-progress .rp-inline-row{margin-bottom:9px;font-size:10.5px}
+.rp-language-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}.rp-language-strip button{min-width:0;text-align:left;background:#171a22;border:1px solid #2f333f;border-radius:10px;padding:18px;display:flex;align-items:flex-start;flex-direction:column;gap:9px;min-height:115px;color:#f3f4f8}.rp-language-strip button:hover,.rp-fast-grid button:hover,.rp-language-card:hover{border-color:#857cbd;background:#1d202b}.rp-language-strip strong{font-size:15px}.rp-language-strip span:nth-child(2){font-size:11px;line-height:1.4;color:#a2a8b7}.rp-language-strip span:last-child{margin-top:auto;color:#a9a1f3;font-size:12px}
+.rp-text-link{background:transparent;border:0;color:#bdb7f3;font-size:12px}
+.rp-fast-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.rp-fast-grid button{border:1px solid #2f333f;border-radius:10px;padding:19px;background:#171a22;text-align:left;display:flex;flex-direction:column;gap:8px;color:#f3f4f8}.rp-fast-grid strong{font-size:14px}.rp-fast-grid small{font-size:11px;color:#9fa7b6}
+.rp-soft-note{border:1px solid #303440;border-radius:12px;background:#171a22;padding:22px 24px;margin-top:26px;display:flex;flex-direction:column;align-items:flex-start;gap:7px}.rp-soft-note strong{font-size:14px;color:#e9eaf4}.rp-soft-note p{margin:0;color:#a5adbb;font-size:12.5px;line-height:1.7}.rp-soft-note button{margin-top:11px}
+.rp-source-note{color:#858d9c;font-size:11px;line-height:1.65;margin-top:26px}.rp-source-note a,.rp-stage-resource{color:#c8c1ff}
+.rp-detail-hero{padding:27px 32px;border-radius:13px;border:1px solid #343744;background:#171a22;display:flex;flex-direction:column;gap:12px;align-items:flex-start}.rp-detail-hero h1{font-size:clamp(26px,3vw,36px);margin:2px 0;color:#f4f4fa;letter-spacing:-.04em}.rp-detail-hero>p{max-width:710px;color:#aeb4c1;font-size:13px;margin:0;line-height:1.65}
+.rp-detail-summary{width:100%;display:flex;gap:20px;align-items:center;color:#aeb4c1;font-size:12px;margin-top:8px;flex-wrap:wrap}.rp-detail-summary strong{margin-left:auto;color:#f2f2fa}.rp-detail-hero .rp-primary{margin-top:7px}
+.rp-intro{margin:20px 0 35px;background:#13161d;border-left:2px solid #8c83c6;padding:16px 22px}.rp-intro strong{font-size:13px}.rp-intro p{font-size:13px;margin:7px 0;color:#c5c8d2}.rp-intro span{font-size:11px;color:#8e95a5}
+.rp-stage-list{display:grid;gap:10px}.rp-stage{border:1px solid #323642;border-radius:11px;background:#161920;overflow:hidden}.rp-stage[open]{border-color:#56546f}.rp-stage>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;min-height:80px;padding:17px 21px}.rp-stage>summary::-webkit-details-marker{display:none}
+.rp-stage-number{font-size:15px;font-weight:700;color:#c5c0ff;background:#292733;border:1px solid #3b3a4c;padding:10px;border-radius:8px;min-width:49px;text-align:center}
+.rp-stage-title{flex:1;display:flex;flex-direction:column;gap:6px;min-width:0}.rp-stage-title strong{font-size:14px;color:#f0f1f7}.rp-stage-title small{font-size:11.5px;line-height:1.5;color:#979fad}.rp-stage-counter{font-size:11px;color:#b2b6c6;white-space:nowrap}.rp-stage-chevron{color:#b0aac8;font-size:20px;transition:transform .15s}.rp-stage[open] .rp-stage-chevron{transform:rotate(180deg)}
+.rp-stage-content{border-top:1px solid #303441;padding:22px 24px 25px;display:grid;grid-template-columns:1fr 1.2fr;gap:20px}.rp-stage-topics,.rp-stage-lessons,.rp-stage-project{min-width:0}.rp-stage-content strong{color:#e4e6ef;font-size:13px}.rp-stage-topics ul{padding-left:21px;margin:10px 0;color:#afb5c1;font-size:12px;line-height:2}
+.rp-lesson-link{display:flex;gap:11px;align-items:center;width:100%;background:transparent;color:#dbdee9;text-align:left;padding:9px 0;border:0;border-bottom:1px solid #292d36;font-size:12px;min-width:0}.rp-lesson-link span:nth-child(2){flex:1;min-width:0;line-height:1.4}.rp-lesson-link small{color:#989ead;font-size:10px;white-space:nowrap}.rp-lesson-link:hover{color:#c9c3ff}.rp-lesson-dot{border:1px solid #474a57;width:23px;height:23px;display:inline-grid;place-items:center;border-radius:50%;font-size:11px;flex-shrink:0}.rp-lesson-dot.done{background:#33344a;color:#d6d2ff;border-color:#7770ad}
+.rp-stage-project{grid-column:1/-1;background:#1c2028;border:1px solid #353944;padding:20px;border-radius:9px}.rp-stage-project h3{font-size:17px;letter-spacing:-.02em;margin:9px 0}.rp-stage-project p{color:#b4bac7;font-size:12.5px;line-height:1.65;margin:0 0 14px}.rp-stage-project>strong{font-size:12px;line-height:1.6;display:block;color:#e2e3ed}
+.rp-check-label{display:flex;gap:11px;align-items:flex-start;padding-top:14px;margin-top:14px;border-top:1px solid #353944;font-size:11.5px;color:#c3c8d4;cursor:pointer;line-height:1.5}.rp-check-label input{width:17px;height:17px;flex-shrink:0;accent-color:#a89fff}
+.rp-stage-resource{grid-column:1/-1;font-size:11px;text-decoration:none}.rp-stage-resource:hover{text-decoration:underline}
+.rp-languages-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.rp-language-card{display:flex;flex-direction:column;align-items:flex-start;gap:11px;text-align:left;min-height:226px;background:#171a22;border:1px solid #303542;border-radius:12px;padding:24px;color:#f0f1f6}
+.rp-language-mark{display:grid;place-items:center;background:#282a37;border:1px solid #464354;border-radius:9px;color:#d5d0ff;font:700 17px/1 ui-monospace,monospace;padding:12px;min-width:54px;height:48px}.rp-language-card>strong{font-size:20px;letter-spacing:-.035em}.rp-language-card>span:nth-last-child(2){color:#a9b0bd;font-size:12px;line-height:1.55;flex:1}.rp-language-meta{display:flex;justify-content:space-between;width:100%;font-size:11px;color:#b7b5cb;padding-top:10px;border-top:1px solid #343845}
+.rp-course-progress{margin-top:20px;display:grid;gap:8px;width:min(410px,100%);font-size:11px;color:#aeb6c3}.rp-language-list{border:1px solid #343845;border-radius:11px;overflow:hidden}.rp-language-lesson{display:flex;align-items:center;gap:14px;width:100%;background:#171a22;color:#eff0f6;text-align:left;border:0;padding:19px 22px;border-bottom:1px solid #30333d}.rp-language-lesson:last-child{border:0}.rp-language-lesson:hover{background:#222530}.rp-language-lesson>span:nth-child(2){display:flex;flex:1;flex-direction:column;gap:5px;min-width:0}.rp-language-lesson strong{font-size:13px}.rp-language-lesson small{font-size:11px;color:#9ea5b5;line-height:1.5}.rp-language-lesson>span:last-child{color:#bbb5f2}
+.rp-lesson-status{display:inline-block;margin-top:10px;padding:7px 11px;border:1px solid #393746;border-radius:7px;color:#c2bdd8;font-size:11px}
+.rp-lesson-tabs{display:flex;gap:8px;padding:5px;border:1px solid #333743;background:#151820;border-radius:10px;margin:0 0 18px}.rp-lesson-tabs button{flex:1;padding:12px 10px;border:0;background:transparent;color:#aeb4c2;border-radius:8px;font-size:12px}.rp-lesson-tabs button.active{background:#303040;color:#fff}
+.rp-guided-panel{background:#171a22;border:1px solid #323643;border-radius:11px;padding:28px;max-width:100%;min-width:0}.rp-guided-panel[hidden]{display:none!important}.rp-guided-panel h2{font-size:22px;letter-spacing:-.03em;margin:0 0 18px}.rp-guided-panel>p{font-size:13px;line-height:1.8;color:#b0b7c5;margin-bottom:15px}.rp-guided-panel>.rp-primary{margin-top:15px}
+.rp-guided-code{border:1px solid #353a48;border-radius:10px;background:#0c1017;overflow:hidden;margin:22px 0}.rp-guided-code-top{display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:1px solid #303543;padding:12px 15px;color:#aaaeba;font-size:11px}.rp-guided-code-top button{border:1px solid #454957;padding:6px 10px;color:#d0d2de;background:#222633;border-radius:6px;font-size:10px}.rp-guided-code pre{overflow:auto;padding:17px;margin:0;color:#e2e5f1;font:12px/1.85 ui-monospace,Consolas,monospace}.rp-disclaimer{font-size:11px!important;color:#8d95a6!important;line-height:1.65!important}
+.rp-answers{display:grid;gap:9px}.rp-answers button{border:1px solid #363a47;background:#1d212b;color:#e9ebf4;border-radius:8px;padding:15px;display:flex;gap:13px;align-items:center;text-align:left;font-size:12.5px;line-height:1.6}.rp-answers button:hover:not(:disabled){border-color:#8f87c5}.rp-answers button.correct{border-color:#837cb3;background:#2b2a3a}.rp-answers button span{font-weight:800;color:#aaa3e2}.rp-answer-feedback{border:1px solid #53506a;background:#292839;padding:16px;border-radius:8px;margin:16px 0;color:#dedcf4;font-size:12px}.rp-answer-feedback p{font-size:12px;line-height:1.7;margin:6px 0 0;color:#bbbaca}
+.rp-guided-checks{display:grid;gap:8px;margin:20px 0}.rp-guided-checks label{display:flex;align-items:start;gap:10px;font-size:12px;color:#cbd0da;border:1px solid #353945;border-radius:8px;padding:13px;cursor:pointer}.rp-guided-checks input{accent-color:#a9a0fa;width:17px;height:17px}.rp-guided-panel label[for="rp-language-note"]{display:block;font-size:12px;margin:15px 0 10px}.rp-guided-panel textarea{width:100%;background:#0f121a;border:1px solid #434756;border-radius:8px;color:#f1f1f7;padding:14px;font-size:12.5px;line-height:1.6;resize:vertical}
+.rp-guided-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:20px 0}.rp-guided-footer a{font-size:12px;color:#bdb8ff}.rp-guided-footer button{margin-left:auto}
+@media(max-width:1100px){.rp-main-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rp-languages-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.rp-language-strip{grid-template-columns:repeat(3,minmax(0,1fr))}.rp-home-top{grid-template-columns:1fr}}
+@media(max-width:760px){.rp-main-grid,.rp-languages-grid,.rp-fast-grid{grid-template-columns:1fr}.rp-language-strip{grid-template-columns:repeat(2,minmax(0,1fr))}.rp-section-heading{align-items:start}.rp-welcome,.rp-next{padding:23px}.rp-page-head{padding:12px 0 22px}.rp-detail-hero{padding:23px}.rp-stage-content{grid-template-columns:1fr}.rp-stage-topics,.rp-stage-lessons{grid-column:1}.rp-stage>summary{padding:15px;gap:10px}.rp-stage-counter{font-size:10px}.rp-stage-title small{font-size:10.5px}.rp-guided-panel{padding:20px}.rp-lesson-tabs button{font-size:11px}.rp-section{margin-top:32px}}
+@media(max-width:440px){.rp-page,.rp-home{padding-inline:1px}.rp-language-strip{grid-template-columns:1fr 1fr}.rp-language-strip button{padding:14px}.rp-stage-number{min-width:38px;padding:8px;font-size:12px}.rp-stage-counter{display:none}.rp-lesson-link{flex-wrap:wrap}.rp-lesson-link small{margin-left:auto}.rp-detail-summary{gap:8px}.rp-detail-summary strong{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.rp-main-card,.rp-stage-chevron{transition:none}.rp-main-card:hover{transform:none}}
+/* Links de navegação agora contêm nomes longos; nunca cortar o título ou a observação. */
+.cl-sidebar .cl-nav-link{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:4px!important;width:100%;white-space:normal!important;text-align:left!important;min-width:0}
+.cl-sidebar .cl-nav-link small{display:block!important;margin:0!important;max-width:100%;min-width:0;white-space:normal!important;overflow-wrap:anywhere;font-size:10px!important;line-height:1.4!important;color:#8f95a4!important}
+.cl-sidebar .cl-nav-link.active small{color:#b4b1cc!important}
+.rp-content-note{font-size:11px;color:#929aaa;line-height:1.6;margin:8px 0 0}
 </style></head><body><div id="root"></div><script>/** Navegação curricular independente da renderização e do armazenamento. */
 const learningAreas = Object.freeze([
-  {id:'learn', label:'Aprender', routes:Object.freeze([
-    {route:'curso/javascript',label:'JavaScript',note:'24 aulas'},
-    {route:'curso/typescript',label:'TypeScript',note:'5 aulas'},
-    {route:'frontend',label:'Formação frontend',note:'25 aulas'},
-    {route:'backend',label:'Formação backend',note:'25 aulas'}
+  {id:'learn',label:'Aprender',routes:Object.freeze([
+    {route:'trilhas',label:'Trilhas profissionais',note:'Frontend · Backend · Full-Stack'},
+    {route:'linguagens',label:'Linguagens',note:'JS, TS, Python, Java e SQL'}
   ])},
   {id:'practice',label:'Praticar',routes:Object.freeze([
-    {route:'oficina',label:'Oficina de código',note:'6 missões'},
-    {route:'revisao',label:'Revisões',note:'Memorização'},
-    {route:'desafios',label:'Desafios',note:'3 desafios'}
+    {route:'oficina',label:'Oficina de código',note:'Testes automáticos'},
+    {route:'revisao',label:'Revisões',note:'Memorização ativa'},
+    {route:'desafios',label:'Desafios',note:'Projetos curtos'}
   ])},
   {id:'build',label:'Construir',routes:Object.freeze([
-    {route:'workspace',label:'Workspace',note:'Projetos'},
+    {route:'workspace',label:'Workspace',note:'Editor de projetos'},
     {route:'projeto',label:'TaskFlow',note:'Projeto guiado'},
-    {route:'carreira',label:'Jornada profissional',note:'Portfólio'}
+    {route:'carreira',label:'Jornada profissional',note:'Portfólio e Git'}
   ])}
 ]);
 
@@ -1083,6 +1141,200 @@ function normalizeStudyStep(value, count=5){
   const step=Number(value);
   return Number.isInteger(step)&&step>=0&&step<count?step:0;
 }
+
+/** Trilhas originais do DevLab. Temas e ordem comparados com roadmap.sh;
+ * não reproduzem os textos, diagramas ou exercícios daquele site. */
+const R = (kind,id) => ({kind,id});
+const stage = (id,title,summary,topics,practice,deliverable,lessons,reference) => ({id,title,summary,topics,practice,deliverable,lessons,reference});
+
+const pathwayTracks = [
+  {
+    id:'frontend',title:'Desenvolvedor Frontend',subtitle:'Construa a parte do sistema que as pessoas utilizam.',level:'Do início ao intermediário',
+    outcome:'Criar uma aplicação responsiva, acessível, testada e publicada.',
+    audience:'Para quem quer criar sites, interfaces e aplicações no navegador.',
+    reference:'https://roadmap.sh/frontend',
+    stages:[
+      stage('web','01 · Entenda a Web','Descubra como navegador, servidor e arquivos trabalham juntos.',
+        ['HTTP, URLs, DNS e navegador','DevTools e estrutura de um projeto','Git e GitHub como ferramentas de trabalho'],
+        'Abra uma página nas ferramentas de desenvolvimento, identifique HTML/CSS/JS e registre uma alteração em Git.',
+        'Página simples versionada e explicação do caminho de uma requisição.',[R('js','primeiros-passos'),R('js','debug-console'),R('backend','api-http')],'https://roadmap.sh/frontend'),
+      stage('html','02 · Estruture com HTML','Comece pelo significado do conteúdo antes de estilizar.',
+        ['HTML semântico e hierarquia','Links, imagens e textos alternativos','Formulários e validação acessível'],
+        'Crie uma página de apresentação com navegação, lista de projetos e formulário utilizável somente por teclado.',
+        'Página acessível, sem dependência de JavaScript.',[R('frontend','html-documento'),R('frontend','html-semantica'),R('frontend','html-links'),R('frontend','html-formularios'),R('frontend','html-a11y')],'https://roadmap.sh/html'),
+      stage('css','03 · Construa layouts responsivos','Aprenda a explicar cada decisão de layout.',
+        ['Cascata, box model e unidades','Flexbox e CSS Grid','Media queries e responsividade'],
+        'Transforme sua página em um layout que funcione em 390, 768 e 1440 px, com foco visível.',
+        'Layout sem rolagem horizontal e três tamanhos testados.',[R('frontend','css-seletores'),R('frontend','css-box'),R('frontend','css-flex'),R('frontend','css-grid'),R('frontend','css-responsive')],'https://roadmap.sh/css'),
+      stage('javascript','04 · Dê comportamento às páginas','Domine os fundamentos antes de depender de bibliotecas.',
+        ['Variáveis, funções, arrays e objetos','DOM, eventos e formulários','Promises, fetch, JSON e armazenamento'],
+        'Crie um gerenciador de tarefas com validação, filtros e persistência no navegador.',
+        'Aplicação interativa que funciona sem copiar a solução pronta.',[R('js','variaveis'),R('js','funcoes'),R('js','arrays'),R('js','dom-basico'),R('js','eventos'),R('js','formularios'),R('js','assincrono'),R('js','api-json'),R('js','storage')],'https://roadmap.sh/javascript'),
+      stage('typed-react','05 · Componentes e TypeScript','Separe responsabilidades e trabalhe com estados previsíveis.',
+        ['TypeScript, tipos e narrowing','React, props, estado e hooks','Formulários, listas e efeitos'],
+        'Reconstrua uma aplicação pequena em React, com componentes tipados, estados de erro e carregamento.',
+        'Aplicação React executada no VS Code com tipos e componentes testados.',[R('frontend','ts-modelos'),R('frontend','ts-narrowing'),R('frontend','react-componentes'),R('frontend','react-estado'),R('frontend','react-formularios'),R('frontend','react-efeitos')],'https://roadmap.sh/react'),
+      stage('quality','06 · Teste e publique','Sua entrega precisa funcionar fora da sua máquina.',
+        ['Acessibilidade, performance e SEO','Testes unitários e de interface','GitHub, build, deploy e revisão'],
+        'Escreva testes para regras importantes, corrija um bug documentado e publique o projeto.',
+        'URL publicada, README, testes e evidências de acessibilidade.',[R('frontend','js-testes'),R('js','acessibilidade'),R('js','testes'),R('js','proximos-passos')],'https://roadmap.sh/frontend-performance')
+    ]
+  },
+  {
+    id:'backend',title:'Desenvolvedor Backend',subtitle:'Construa APIs, regras de negócio e dados persistentes.',level:'Do início ao intermediário',
+    outcome:'Criar uma API com validação, banco de dados, testes e controles de acesso.',
+    audience:'Para quem quer desenvolver o que acontece atrás da interface.',
+    reference:'https://roadmap.sh/backend',
+    stages:[
+      stage('foundations','01 · Fundamentos e linguagem','Entenda HTTP, lógica, terminal e versionamento.',
+        ['Internet, HTTP, DNS e servidores','Lógica, funções e assincronia','Terminal, Git e módulos'],
+        'Execute um script no Node.js, teste uma função e versione seu primeiro commit.',
+        'Script com testes e repositório Git.',[R('js','funcoes'),R('js','assincrono'),R('backend','node-runtime'),R('backend','node-modules')],'https://roadmap.sh/backend'),
+      stage('node','02 · Desenvolvimento com Node.js','Organize código em módulos pequenos e com responsabilidade única.',
+        ['Node.js, npm e configuração','Promises, erros e módulos ES','Testes nativos e variáveis de ambiente'],
+        'Separe uma regra de validação do servidor HTTP e prove seu resultado com testes.',
+        'Servidor e funções testáveis sem conexão de rede.',[R('backend','node-env'),R('backend','node-async'),R('backend','node-test')],'https://roadmap.sh/nodejs'),
+      stage('apis','03 · APIs REST e integração','Aprenda a definir contratos e respostas previsíveis.',
+        ['GET, POST, PATCH e DELETE','Status, JSON, validação e CORS','CRUD, paginação e documentação'],
+        'Implemente uma API de tarefas que responda com códigos corretos para dados válidos e inválidos.',
+        'API CRUD com documentação dos endpoints e testes HTTP.',[R('backend','api-http'),R('backend','api-routes'),R('backend','api-json'),R('backend','api-crud'),R('backend','api-client')],'https://roadmap.sh/api-design'),
+      stage('database','04 · PostgreSQL e persistência','Proteja dados com um modelo relacional coerente.',
+        ['SQL, chaves e relacionamentos','Normalização, índices e joins','Queries parametrizadas, transações e migrações'],
+        'Substitua o armazenamento em memória por PostgreSQL, com filtros por proprietário.',
+        'Schema SQL, migrações e consultas parametrizadas verificadas.',[R('backend','db-relational'),R('backend','db-normal'),R('backend','db-queries'),R('backend','db-transactions'),R('backend','db-migrations')],'https://roadmap.sh/postgresql-dba'),
+      stage('security','05 · Identidade e segurança','Autenticar não é o mesmo que autorizar.',
+        ['Hash seguro de senhas e sessões','Cookies, autenticação e autorização','OWASP, CORS e proteção de recursos'],
+        'Crie testes para impedir que um usuário leia ou altere tarefas pertencentes a outro.',
+        'Testes de acesso 401, 403 e propriedade dos dados.',[R('backend','auth-identidade'),R('backend','auth-password'),R('backend','auth-sessions'),R('backend','auth-ownership'),R('backend','auth-threats')],'https://roadmap.sh/backend'),
+      stage('production','06 · Qualidade e entrega','Uma API não termina quando responde no seu computador.',
+        ['Testes unitários e de integração','CI/CD, deploy e monitoramento','Logs, cache e observabilidade básica'],
+        'Prepare README, testes, variáveis seguras e uma implantação com logs verificáveis.',
+        'Serviço entregue com testes e instruções reproduzíveis.',[R('backend','quality-unit'),R('backend','quality-integration'),R('backend','quality-docs'),R('backend','quality-deploy'),R('backend','quality-final')],'https://roadmap.sh/backend')
+    ]
+  },
+  {
+    id:'fullstack',title:'Desenvolvedor Full-Stack',subtitle:'Integre frontend, backend e banco em um só produto.',level:'Jornada integrada',
+    outcome:'Planejar, construir, testar e publicar uma aplicação web completa.',
+    audience:'Para quem quer acompanhar todo o caminho de uma aplicação, da tela ao servidor.',
+    reference:'https://roadmap.sh/full-stack',
+    stages:[
+      stage('web','01 · Base da Web','Aprenda como uma interface conversa com o servidor.',
+        ['HTML, CSS e JavaScript','HTTP e APIs','Git e versionamento'],
+        'Crie uma página simples e faça um diagrama do fluxo navegador → API → dados.',
+        'Página publicada e fluxo de dados documentado.',[R('frontend','html-documento'),R('frontend','css-responsive'),R('js','primeiros-passos'),R('backend','api-http')],'https://roadmap.sh/full-stack'),
+      stage('frontend','02 · Frontend interativo','Transforme uma página em uma interface responsiva.',
+        ['DOM, eventos e formulários','Estado e consumo de APIs','React e TypeScript'],
+        'Construa uma lista de tarefas que lida com carregamento, lista vazia e erro de rede.',
+        'Aplicação frontend com componentes e tratamento de erros.',[R('js','dom-basico'),R('js','formularios'),R('frontend','js-fetch'),R('frontend','react-componentes'),R('frontend','react-estado'),R('frontend','ts-modelos')],'https://roadmap.sh/frontend'),
+      stage('backend','03 · API de verdade','Dê responsabilidades específicas ao servidor.',
+        ['Node.js e módulos','Endpoints REST e validação','Testes de contrato HTTP'],
+        'Crie uma API CRUD e documente como o frontend deve consumi-la.',
+        'Endpoints testados para sucesso, dados inválidos e registros ausentes.',[R('backend','node-runtime'),R('backend','node-modules'),R('backend','api-routes'),R('backend','api-json'),R('backend','api-crud')],'https://roadmap.sh/backend'),
+      stage('database','04 · Banco e identidade','Persistência e autorização fazem parte das regras de negócio.',
+        ['Modelagem PostgreSQL','SQL parametrizado e transações','Sessões e propriedade dos recursos'],
+        'Implemente persistência e verifique que contas diferentes enxergam apenas seus registros.',
+        'Schema SQL, migração e testes de isolamento entre usuários.',[R('backend','db-relational'),R('backend','db-queries'),R('backend','db-migrations'),R('backend','auth-sessions'),R('backend','auth-ownership')],'https://roadmap.sh/full-stack'),
+      stage('integration','05 · Integre as camadas','Resolva os problemas que só aparecem quando as peças trabalham juntas.',
+        ['fetch e contratos API','Loading, errors e validação','Testes end-to-end e segurança'],
+        'Ligue os formulários React à API e teste um fluxo completo de criação e edição.',
+        'Fluxo navegador → API → banco → navegador comprovado.',[R('backend','api-client'),R('frontend','react-formularios'),R('backend','quality-integration'),R('backend','auth-threats')],'https://roadmap.sh/full-stack'),
+      stage('delivery','06 · Projeto final e deploy','Aprender também inclui entregar e manter.',
+        ['Git e revisão de código','CI/CD, build e publicação','Logs, monitoramento e documentação'],
+        'Publique uma aplicação full-stack de tarefas com README, testes, histórico Git e evidências.',
+        'Projeto online, repositório, pipeline e documentação.',[R('backend','quality-docs'),R('backend','quality-deploy'),R('backend','quality-final'),R('js','proximos-passos')],'https://roadmap.sh/full-stack')
+    ]
+  }
+];
+
+const languageCatalog = [
+ {id:'javascript',name:'JavaScript',label:'Linguagem da web',description:'Lógica, funções, arrays, DOM e APIs em 24 aulas com editor e prévia.',roadmap:'https://roadmap.sh/javascript',kind:'existing',route:'curso/javascript',count:24},
+ {id:'typescript',name:'TypeScript',label:'JavaScript tipado',description:'Tipos, interfaces, funções e generics em cinco aulas com compilação.',roadmap:'https://roadmap.sh/typescript',kind:'existing',route:'curso/typescript',count:5},
+ {id:'python',name:'Python',label:'Fundamentos de programação',description:'Sintaxe, coleções, funções, arquivos e testes. Prática no VS Code.',roadmap:'https://roadmap.sh/python',kind:'guided',count:5},
+ {id:'java',name:'Java',label:'Orientação a objetos',description:'Tipos, classes, coleções, exceções e testes. Prática com JDK local.',roadmap:'https://roadmap.sh/java',kind:'guided',count:5},
+ {id:'sql',name:'SQL',label:'Linguagem de consultas',description:'Consultas, JOIN, modelagem e transações pelas aulas de PostgreSQL.',roadmap:'https://roadmap.sh/sql',kind:'linked',route:'backend/trilha/postgres',count:5}
+];
+
+const findPathway = id => pathwayTracks.find(t=>t.id===id);
+const findLanguage = id => languageCatalog.find(t=>t.id===id);
+function pathwayLessonRoute(item){
+ const prefix={js:'aula/',frontend:'frontend/aula/',backend:'backend/aula/',ts:'aula/'}[item.kind];
+ return prefix?prefix+item.id:null;
+}
+function pathwayLessonIds(pathway){
+ return [...new Set((pathway?.stages||[]).flatMap(s=>s.lessons.map(l=>l.kind+':'+l.id)))];
+}
+
+/** Miniaulas autorais: exemplos para praticar localmente, sem executar Python/Java no navegador. */
+const guidedLanguageLessonFactory=(id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs)=>({id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs});
+const guidedLanguageLessons={
+ python:[
+  guidedLanguageLessonFactory('py-intro','Variáveis e tipos','Identificar tipos e imprimir informações sem concatenar tudo.',
+   ['Python organiza instruções por linhas e usa indentação significativa. int, float, str e bool são tipos comuns; as variáveis não exigem declaração prévia do tipo.','Use f-strings para montar mensagens legíveis. Execute o arquivo com python main.py no terminal e observe erros, sem tentar memorizar cada comando.'],
+   'nome = "Ada"\npontos = 12\nativo = True\nprint(f"{nome}: {pontos} pontos")',
+   'Qual valor representa um booleano verdadeiro em Python?',['true','True','"true"'],1,'Em Python, os literais booleanos são True e False.',
+   'Crie um arquivo perfil.py com nome, idade e um booleano estudando. Imprima uma mensagem usando f-string.',
+   ['Execute o arquivo no terminal.','Use int, str e bool em variáveis distintas.','Modifique uma entrada e confirme a saída.'],'https://docs.python.org/3/tutorial/introduction.html'),
+  guidedLanguageLessonFactory('py-decisions','Condições e repetições','Escrever regras claras e laços que terminam.',
+   ['if, elif e else definem caminhos conforme condições. O bloco é marcado pela indentação; misturar espaços pode resultar em erro.','for percorre coleções ou intervalos produzidos por range. while repete enquanto a condição for verdadeira: garanta uma condição de término.'],
+   'notas = [6, 8, 10]\nfor nota in notas:\n    if nota >= 7:\n        print("Aprovada:", nota)',
+   'Qual estrutura percorre cada elemento de uma lista?',['for nota in notas:','if nota in notas:','return notas'],0,'for item in colecao percorre os elementos em sequência.',
+   'Calcule quantas notas são maiores ou iguais a 7 e imprima o total.',
+   ['Teste com lista vazia.','Teste uma lista com todas as notas abaixo de 7.','Explique por que o laço termina.'],'https://docs.python.org/3/tutorial/controlflow.html'),
+  guidedLanguageLessonFactory('py-data','Listas e dicionários','Modelar coleções sem repetir variáveis.',
+   ['Listas preservam a ordem e permitem acessar elementos por índice. Dicionários relacionam chaves a valores: são adequados para representar uma tarefa com título e estado.','Evite modificar uma coleção dentro de uma iteração sem pensar no resultado. Quando necessário, produza uma lista filtrada e mantenha o dado original intacto.'],
+   'tarefas = [{"titulo": "Estudar", "feito": False}, {"titulo": "Testar", "feito": True}]\npendentes = [t for t in tarefas if not t["feito"]]\nprint(pendentes)',
+   'Qual expressão cria uma lista filtrada?',['[t for t in tarefas if not t["feito"]]','{t: tarefas}','tarefas = True'],0,'Uma compreensão de lista produz uma nova coleção filtrada.',
+   'Crie três tarefas com dicionários e retorne apenas os títulos pendentes.',
+   ['Preserve a ordem original.','Não modifique a lista original.','Teste uma lista sem tarefas pendentes.'],'https://docs.python.org/3/tutorial/datastructures.html'),
+  guidedLanguageLessonFactory('py-functions','Funções e exceções','Separar cálculo de interface e tratar entradas inválidas.',
+   ['def define funções e return devolve um resultado. Funções pequenas, com entradas e saídas claras, são mais fáceis de testar.','ValueError pode representar uma entrada inválida. Use try/except quando for possível tomar uma decisão útil sobre o erro; não esconda problemas com except sem tratamento.'],
+   'def percentual(parte, total):\n    if total <= 0:\n        raise ValueError("total deve ser positivo")\n    return round(parte / total * 100, 2)',
+   'O que uma função usa para devolver um resultado ao chamador?',['print','return','pass'],1,'return devolve o valor; print apenas escreve na saída.',
+   'Escreva uma função calcular_media(notas) que rejeite listas vazias com ValueError.',
+   ['Teste três médias conhecidas.','Teste lista vazia.','Evite print dentro da função de cálculo.'],'https://docs.python.org/3/tutorial/errors.html'),
+  guidedLanguageLessonFactory('py-test','Arquivos, módulos e testes','Construir e testar uma pequena aplicação executável.',
+   ['Separe regras em um módulo e testes em outro. A biblioteca pathlib lida com caminhos; arquivos de texto exigem encoding apropriado.','O módulo unittest oferece asserções. Um teste deve verificar o comportamento esperado e casos-limite, não apenas conferir que o script não gerou erros.'],
+   'import unittest\n\ndef dobrar(valor):\n    return valor * 2\n\nclass Testes(unittest.TestCase):\n    def test_dobrar(self):\n        self.assertEqual(dobrar(4), 8)',
+   'Qual comando executa a descoberta de testes unittest?',['python -m unittest discover','python import all','python run tests'],0,'O comando unittest discover encontra testes seguindo o padrão do módulo.',
+   'Crie um pequeno gerenciador de tarefas em memória com três testes e um README para executar.',
+   ['Teste um fluxo válido e um inválido.','Inclua comando de execução no README.','Execute o conjunto completo de testes.'],'https://docs.python.org/3/library/unittest.html')
+ ],
+ java:[
+  guidedLanguageLessonFactory('java-intro','JDK, tipos e método main','Compilar e executar uma classe Java básica.',
+   ['Java usa classes e tipos explícitos para muitas declarações. O JDK oferece o compilador javac e o comando java para executar programas.','O método main é um ponto de entrada comum. Strings são objetos e números inteiros usam int, enquanto boolean representa verdadeiro ou falso.'],
+   'public class Main {\n    public static void main(String[] args) {\n        String nome = "Ada";\n        int pontos = 12;\n        System.out.println(nome + ": " + pontos);\n    }\n}',
+   'Qual comando normalmente compila Main.java?',['node Main.java','javac Main.java','python Main.java'],1,'javac transforma o código Java em bytecode.',
+   'Crie Main.java com nome, idade e uma mensagem, compile e execute pelo terminal.',
+   ['Verifique java -version e javac -version.','Compile sem erros.','Altere um valor e execute novamente.'],'https://dev.java/learn/getting-started/'),
+  guidedLanguageLessonFactory('java-control','Condições e loops','Implementar decisões e repetições com casos-limite.',
+   ['if/else decide qual bloco executar. Comparações booleanas usam == para tipos primitivos; strings devem ser comparadas pelo conteúdo com equals.','for percorre intervalos e coleções. Evite loops que não alteram o contador e use nomes que expressem sua intenção.'],
+   'int[] notas = {6, 8, 10};\nint aprovadas = 0;\nfor (int nota : notas) {\n    if (nota >= 7) aprovadas++;\n}\nSystem.out.println(aprovadas);',
+   'Como comparar conteúdo de duas Strings Java?',['textoA == textoB','textoA.equals(textoB)','textoA = textoB'],1,'equals compara conteúdo; == em objetos compara referências.',
+   'Conte notas acima de 7 e diferencie intervalo fechado de aberto.',
+   ['Teste zero elementos.','Teste limites 6, 7 e 8.','Explique diferença entre == e equals em String.'],'https://dev.java/learn/language-basics/'),
+  guidedLanguageLessonFactory('java-objects','Classes, objetos e encapsulamento','Modelar uma tarefa com comportamento consistente.',
+   ['Uma classe combina estado e comportamento. Um objeto é uma instância com valores próprios. Encapsulamento protege invariantes, em vez de expor todos os campos livremente.','Um construtor pode validar argumentos. Prefira métodos de intenção como concluir() a alterar campos arbitrariamente em todo o sistema.'],
+   'public class Tarefa {\n    private String titulo;\n    private boolean concluida;\n    public Tarefa(String titulo) {\n        if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException();\n        this.titulo = titulo;\n    }\n    public void concluir() { concluida = true; }\n}',
+   'O que impede alteração direta de um campo por outras classes?',['private','public','static'],0,'private restringe acesso direto ao campo a sua própria classe.',
+   'Implemente uma classe Tarefa com validação de título e método concluir().',
+   ['Rejeite título vazio.','Use campos privados.','Crie duas tarefas independentes para testar estado.'],'https://dev.java/learn/classes-objects/'),
+  guidedLanguageLessonFactory('java-collections','Listas, generics e exceções','Trabalhar com coleções de maneira tipada.',
+   ['List<T> representa uma sequência de elementos do tipo T. Generics ajudam a encontrar erros durante a compilação e reduzem conversões inseguras.','Exceções devem comunicar problemas que o chamador consegue tratar. Para recursos que precisam ser fechados, use try-with-resources.'],
+   'import java.util.List;\nimport java.util.ArrayList;\nList<String> titulos = new ArrayList<>();\ntitulos.add("Estudar");\nfor (String titulo : titulos) System.out.println(titulo);',
+   'Qual tipo representa uma lista de textos com generics?',['List<String>','List<int, String>','String[]<>'],0,'List<String> informa ao compilador o tipo de cada elemento.',
+   'Implemente um catálogo de tarefas com List<Tarefa> e operações de adicionar e listar.',
+   ['Use generics.','Teste lista vazia.','Não retorne coleções internas mutáveis sem necessidade.'],'https://dev.java/learn/api/collections-framework/'),
+  guidedLanguageLessonFactory('java-tests','Organização e testes','Verificar comportamento e documentar uma pequena aplicação.',
+   ['Organize classes de domínio sem depender diretamente da apresentação. Testes focam entradas, saídas e invariantes. O JUnit é uma opção comum, instalada via build tool como Maven ou Gradle.','Uma compilação bem-sucedida não garante o resultado certo. Teste títulos inválidos, mudanças de estado e itens ausentes, e documente como executar o projeto.'],
+   'import static org.junit.jupiter.api.Assertions.*;\nimport org.junit.jupiter.api.Test;\nclass TarefaTest {\n    @Test void rejeitaTituloVazio() {\n        assertThrows(IllegalArgumentException.class, () -> new Tarefa(""));\n    }\n}',
+   'Qual ferramenta é usada para escrever testes automatizados Java?',['JUnit','HTML','JSON'],0,'JUnit é uma biblioteca de testes usada em projetos Java.',
+   'Crie testes para a classe Tarefa e registre no README os comandos Maven ou Gradle do seu projeto.',
+   ['Cubra entrada inválida.','Teste criação e conclusão.','Execute testes no terminal e corrija as falhas.'],'https://junit.org/junit5/docs/current/user-guide/')
+ ]
+};
+
+const findGuidedLesson = id => Object.values(guidedLanguageLessons).flat().find(l=>l.id===id);
+const guidedLessonsFor = id => guidedLanguageLessons[id]||[];
 
 /** Sprint 11 — trilha profissional. Dados autorais e estado de aprendizagem local. */
 const careerProjects = Object.freeze([
@@ -3082,7 +3334,7 @@ const esc = (x) => String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repl
 const isTs = l => l?.language==='ts';
 const currentLesson = () => allLessons.find(l => l.id === getRoute().id) || allJsLessons[0];
 const starterFor = l => isTs(l) ? {html:l.starter.html,css:l.starter.css,ts:l.starter.js} : {...l.starter};
-const getRoute = () => { const p=location.hash.replace(/^#\/?/,'') || 'inicio'; if(p.startsWith('aula/'))return {page:'lesson',id:p.slice(5)};if(p==='curso/typescript')return {page:'course',lang:'ts'};if(p==='curso/javascript')return {page:'course',lang:'js'};if(p==='projeto')return {page:'project'};if(p==='backend')return {page:'backend-home'};if(p==='backend/lab')return {page:'backend-lab'};if(p.startsWith('backend/trilha/'))return {page:'backend-track',id:p.slice(15)};if(p.startsWith('backend/aula/'))return {page:'backend-lesson',id:p.slice(13)};if(p==='frontend')return {page:'frontend-home'};if(p.startsWith('frontend/trilha/'))return {page:'frontend-track',id:p.slice(16)};if(p.startsWith('frontend/aula/'))return {page:'frontend-lesson',id:p.slice(14)};if(p==='workspace')return {page:'workspace'};if(p==='carreira')return {page:'career'};if(p==='revisao')return {page:'review'};if(p==='desafios')return {page:'briefs'};if(p==='oficina')return {page:'missions'};if(p.startsWith('missao/'))return {page:'mission',id:p.slice(7)};return {page:'home'}; };
+const getRoute = () => { const p=location.hash.replace(/^#\/?/,'') || 'inicio'; if(p.startsWith('aula/'))return {page:'lesson',id:p.slice(5)};if(p==='curso/typescript')return {page:'course',lang:'ts'};if(p==='curso/javascript')return {page:'course',lang:'js'};if(p==='projeto')return {page:'project'};if(p==='backend')return {page:'backend-home'};if(p==='backend/lab')return {page:'backend-lab'};if(p.startsWith('backend/trilha/'))return {page:'backend-track',id:p.slice(15)};if(p.startsWith('backend/aula/'))return {page:'backend-lesson',id:p.slice(13)};if(p==='frontend')return {page:'frontend-home'};if(p.startsWith('frontend/trilha/'))return {page:'frontend-track',id:p.slice(16)};if(p.startsWith('frontend/aula/'))return {page:'frontend-lesson',id:p.slice(14)};if(p==='trilhas')return {page:'pathways'};if(p.startsWith('trilha/'))return {page:'pathway',id:p.slice(7)};if(p==='linguagens')return {page:'languages'};if(p.startsWith('linguagem/aula/'))return {page:'language-lesson',id:p.slice(15)};if(p.startsWith('linguagem/'))return {page:'language',id:p.slice(10)};if(p==='workspace')return {page:'workspace'};if(p==='carreira')return {page:'career'};if(p==='revisao')return {page:'review'};if(p==='desafios')return {page:'briefs'};if(p==='oficina')return {page:'missions'};if(p.startsWith('missao/'))return {page:'mission',id:p.slice(7)};return {page:'home'}; };
 const st = { missionDrafts:load('mission-drafts',{}),missionProgress:load('mission-progress',{}),missionResult:null,missionChecking:false,missionHint:false,missionAttempt:0, pendingCheck:null,checkRequestId:0,verifiedDrafts:load('verified-drafts',{}),reviews:load('reviews',{}), reviewSelected:null,reviewReveal:false,notes:load('notes',{}),activeBrief:load('active-brief','conversor'),briefDrafts:load('brief-drafts',{}),briefChecklist:load('brief-checklist',{}),openBriefIntent:false, quizPassed:load('quiz-passed',[]),practicePassed:load('practice-passed',[]),activityDates:load('activity-dates',[]),answers:{},step:'learn',hintShown:false,checkResult:null, completed:load('completed',[]),milestones:load('milestones',[]),exercises:load('exercises',{}), projectJs:load('project-js',structuredClone(projectStarter)),projectTs:load('project-ts',structuredClone(typescriptProjectStarter)),last:load('last','primeiros-passos'),mode:'exercise',tab:'js',device:'desktop',consoleOpen:false,logs:[],search:'',expanded:load('expanded',jsUnits.concat(tsUnits).map(x=>x.id)),mobileMenu:false,token:0 };
 let runnerTimer=0;
 function reviewsDue(){return reviewQueue(st.reviews,allLessons,localDateKey());}
@@ -3169,7 +3421,7 @@ async function evaluateMission(){
 }
 
 function render(){const r=getRoute();if(r.page==='lesson'){st.last=currentLesson().id;save('last',st.last);if(!['html','css','js','ts'].includes(st.tab))st.tab=isTs(currentLesson())?'ts':'js';if(isTs(currentLesson())&&st.tab==='js')st.tab='ts';if(!isTs(currentLesson())&&st.tab==='ts')st.tab='js';}
- $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu" aria-label="Fechar navegação"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?`page-lesson ${st.step==='learn'?'cl-lesson-learn':''}`:r.page==='workspace'?'page-workspace':''}">${r.page==='home'?home():r.page==='career'?careerPage():r.page==='backend-home'?backendHomePage():r.page==='backend-track'?backendTrackPage(r.id):r.page==='backend-lesson'?backendLessonPage(r.id):r.page==='backend-lab'?backendHttpLabPage():r.page==='frontend-home'?frontendHomePage():r.page==='frontend-track'?frontendTrackPage(r.id):r.page==='frontend-lesson'?frontendLessonPage(r.id):r.page==='workspace'?workspacePage():r.page==='course'?course(r.lang):r.page==='project'?project():r.page==='review'?reviewPage():r.page==='briefs'?briefsPage():r.page==='missions'?missionHubPage():r.page==='mission'?missionEditorPage():lessonPage(currentLesson())}</main></div></div>`;
+ $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu" aria-label="Fechar navegação"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?`page-lesson ${st.step==='learn'?'cl-lesson-learn':''}`:r.page==='workspace'?'page-workspace':''}">${r.page==='home'?home():r.page==='pathways'?pathwayCatalogPage():r.page==='pathway'?pathwayDetailPage(r.id):r.page==='languages'?languagesCatalogPage():r.page==='language'?languageCoursePage(r.id):r.page==='language-lesson'?languageLessonPage(r.id):r.page==='career'?careerPage():r.page==='backend-home'?backendHomePage():r.page==='backend-track'?backendTrackPage(r.id):r.page==='backend-lesson'?backendLessonPage(r.id):r.page==='backend-lab'?backendHttpLabPage():r.page==='frontend-home'?frontendHomePage():r.page==='frontend-track'?frontendTrackPage(r.id):r.page==='frontend-lesson'?frontendLessonPage(r.id):r.page==='workspace'?workspacePage():r.page==='course'?course(r.lang):r.page==='project'?project():r.page==='review'?reviewPage():r.page==='briefs'?briefsPage():r.page==='missions'?missionHubPage():r.page==='mission'?missionEditorPage():lessonPage(currentLesson())}</main></div></div>`;
  if(r.page==='lesson'){refreshEditor();runPreview();}else if(r.page==='mission'){refreshEditor();}else if(r.page==='workspace'){workspaceMount();}
  mountCleanInterface();
 }
@@ -3792,7 +4044,10 @@ function learningCatalogEntries(){
   ...allJsLessons.map(l=>({title:l.title,summary:l.summary,area:'JavaScript',route:'aula/'+l.id})),
   ...allTsLessons.map(l=>({title:l.title,summary:l.summary,area:'TypeScript',route:'aula/'+l.id})),
   ...frontendLessons.map(l=>({title:l.title,summary:l.objective,area:'Frontend',route:'frontend/aula/'+l.id})),
-  ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id}))
+  ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id})),
+  ...pathwayTracks.map(t=>({title:t.title,summary:t.subtitle,area:'Trilhas profissionais',route:'trilha/'+t.id})),
+  ...languageCatalog.map(l=>({title:l.name,summary:l.description,area:'Biblioteca de linguagens',route:'linguagem/'+l.id})),
+  ...Object.values(guidedLanguageLessons).flat().map(l=>({title:l.title,summary:l.goal,area:l.id.startsWith('py-')?'Python':'Java',route:'linguagem/aula/'+l.id}))
  ];
 }
 function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}
@@ -3806,7 +4061,7 @@ function updateSidebarSearch(){
 }
 function cleanSidebar(){
  const current=location.hash.replace(/^#\/?/,'')||'inicio';
- const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
+ const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')||(item.route==='trilhas'&&current.startsWith('trilha/'))||(item.route==='linguagens'&&current.startsWith('linguagem/'))?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
  const total=allLessons.length+frontendLessons.length+backendLessons.length;
  const done=st.completed.length+frontendSummary().done+backendSummary().done;
  const value=Math.min(100,Math.round(done/total*100));
@@ -3819,29 +4074,12 @@ function cleanSidebar(){
  </aside>`;
 }
 function cleanTopbar(){
- const route=getRoute(), names={home:'Início',course:'Trilha de estudo',lesson:'Aula','frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP',workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
+ const route=getRoute(), names={pathways:'Trilhas profissionais',pathway:'Trilha',languages:'Linguagens',language:'Linguagem','language-lesson':'Aula de linguagem',home:'Início',course:'Trilha de estudo',lesson:'Aula','frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP',workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
  return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div>
  <div class="cl-top-search"><label class="sr-only" for="lesson-search">Buscar aulas e projetos</label><span class="cl-search-mark" aria-hidden="true">⌕</span><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Buscar aulas e trilhas..." value="${esc(st.search)}" autocomplete="off" aria-controls="cl-search-results" aria-expanded="${st.search.trim()?'true':'false'}"><span class="cl-search-shortcut" aria-hidden="true">Ctrl K</span><div id="cl-search-results" class="cl-search-results" role="region" aria-label="Resultados da busca" aria-live="polite" ${st.search.trim()?'':'hidden'}>${st.search.trim()?searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries())):''}</div></div>
  <div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Salvo neste navegador</span></div></header>`;
 }
-function cleanHome(){
- const next=allLessons.find(l=>l.id===st.last)||allJsLessons[0];
- const total=allLessons.length+frontendLessons.length+backendLessons.length;
- const done=st.completed.length+frontendSummary().done+backendSummary().done;
- const value=Math.min(100,Math.round(done/total*100));
- const tracks=[
-  {title:'JavaScript',meta:'24 aulas',route:'curso/javascript',detail:'Lógica e fundamentos para a web.',glyph:'JS',percent:percent('js')},
-  {title:'Frontend',meta:'25 aulas',route:'frontend',detail:'HTML, CSS, TypeScript e React.',glyph:'&lt;/&gt;',percent:Math.round(frontendSummary().done/frontendLessons.length*100)},
-  {title:'TypeScript',meta:'5 aulas',route:'curso/typescript',detail:'Tipos, interfaces e código seguro.',glyph:'TS',percent:percent('ts')},
-  {title:'Backend',meta:'25 aulas',route:'backend',detail:'Node.js, APIs, SQL e autenticação.',glyph:'{ }',percent:Math.round(backendSummary().done/backendLessons.length*100)}
- ];
- return `<div class="cl-home v13-home">
-  <div class="v13-home-top"><header class="cl-welcome"><div class="v13-hero-text"><span class="section-kicker">SEU AMBIENTE DE APRENDIZAGEM</span><h1>Aprenda a programar.<br>Construa de verdade.</h1><p>Estude um conceito por vez, resolva desafios e desenvolva aplicações no seu ritmo.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">▶ &nbsp; Continuar estudando</button><button class="cl-secondary" data-nav="frontend">Ver trilhas</button></div></div><div class="v13-hero-code" aria-hidden="true"><span>&lt;/&gt;</span></div></header>
-  <aside class="v13-home-stats" aria-label="Resumo do seu progresso"><div class="v13-progress-card"><span class="v13-card-label">Seu progresso</span><div class="v13-progress-inner"><div class="v13-ring" style="--progress:${value}%"><span>${value}%</span></div><div><strong>${done} de ${total} aulas</strong><p>Registradas no navegador</p></div></div></div><div class="v13-next-card"><span class="v13-card-label">Continue de onde parou</span><strong>${esc(next.title)}</strong><p>JavaScript / TypeScript</p><button data-nav="aula/${esc(next.id)}">Abrir aula →</button></div></aside></div>
-  <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Trilhas de aprendizagem</h2></div><p>Escolha uma área e avance por módulos.</p></div><div class="cl-track-grid">${tracks.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="v13-track-icon" aria-hidden="true">${x.glyph}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="v13-track-bottom"><small>${esc(x.meta)}</small><small>${x.percent}%</small></span><span class="cl-progress-track" aria-hidden="true"><span style="width:${x.percent}%"></span></span></button>`).join('')}</div></section>
-  <section class="cl-section v13-practice"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR E CONSTRUIR</span><h2>Seu próximo desafio</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Trabalhe com arquivos, módulos e prévia</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Fixe conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="carreira"><strong>Projetos e portfólio</strong><span>Planeje, teste e documente suas entregas</span><span aria-hidden="true">→</span></button></div></section>
- </div>`;
-}
+function cleanHome(){return pathwayHome();}
 
 function studyStepNav(kind,id,labels){
  const key=kind+':'+id, active=normalizeStudyStep(studyUi.active[key],labels.length);
@@ -3913,6 +4151,83 @@ window.addEventListener('keydown',event=>{
 });
 
 window.addEventListener('click',event=>{if(event.target.closest('[data-nav]'))st.search='';},true);
+
+/* DevLab 14 — trilhas de carreira e biblioteca independente de linguagens.
+ * As aulas antigas são reutilizadas; não altere seus IDs/chaves de progresso. */
+const pathwayState = {
+ checkpoint:load('pathway-checkpoints',{}),
+ langQuiz:load('language-quiz',{}),
+ langChecks:load('language-checks',{}),
+ langNotes:load('language-notes',{}),
+ langTab:0
+};
+function pathwayData(item){
+ if(item.kind==='js'||item.kind==='ts'){const l=allLessons.find(v=>v.id===item.id);return {title:l?.title||item.id,done:st.completed.includes(item.id),summary:l?.summary||''};}
+ if(item.kind==='frontend'){const l=findFrontendLesson(item.id);return {title:l?.title||item.id,done:!!l&&frontendDone(l),summary:l?.objective||''};}
+ const l=findBackendLesson(item.id);return {title:l?.title||item.id,done:!!l&&backendDone(l),summary:l?.objective||''};
+}
+function pathwayStageStats(stage){const items=stage.lessons.map(pathwayData);return {total:items.length,done:items.filter(x=>x.done).length};}
+function pathwayTrackStats(track){const ids=pathwayLessonIds(track);return {total:ids.length,done:ids.filter(key=>{const sep=key.indexOf(':'),item={kind:key.slice(0,sep),id:key.slice(sep+1)};return pathwayData(item).done;}).length};}
+function pathwayPercent(track){const s=pathwayTrackStats(track);return s.total?Math.round(s.done/s.total*100):0;}
+function pathwayMainCard(track){const count=pathwayTrackStats(track),pct=pathwayPercent(track);return `<button type="button" class="rp-main-card" data-nav="trilha/${esc(track.id)}">
+ <span class="rp-card-eyebrow">${esc(track.level)}</span><span class="rp-card-glyph" aria-hidden="true">${track.id==='frontend'?'&lt;/&gt;':track.id==='backend'?'[_]':'{...}'}</span><h3>${esc(track.title)}</h3><p>${esc(track.subtitle)}</p>
+ <span class="rp-card-meta"><span>${track.stages.length} etapas · ${count.total} aulas relacionadas</span><span>${pct}%</span></span><span class="rp-bar"><span style="width:${pct}%"></span></span><span class="rp-card-open">Explorar trilha <span aria-hidden="true">→</span></span></button>`;}
+function pathwayHome(){
+ const total=allLessons.length+frontendLessons.length+backendLessons.length;
+ const done=st.completed.length+frontendSummary().done+backendSummary().done;
+ const pct=Math.min(100,Math.round(done/total*100));
+ const latest=allLessons.find(l=>l.id===st.last)||allJsLessons[0];
+ return `<div class="rp-home v13-home cl-home"><div class="v13-home-top rp-home-top">
+ <section class="rp-welcome"><span class="section-kicker">APRENDA · PRATIQUE · CONSTRUA</span><h1>Escolha o caminho.<br>Aprenda construindo.</h1><p>Formações organizadas por carreira e uma biblioteca de linguagens para estudar separadamente. Uma etapa de cada vez.</p><div class="rp-actions"><button class="button-primary" data-nav="trilhas">Explorar trilhas →</button><button class="rp-secondary" data-nav="linguagens">Estudar linguagens</button></div></section>
+ <aside class="rp-next"><span class="section-kicker">CONTINUE SEU ESTUDO</span><strong>${esc(latest.title)}</strong><span>JavaScript / TypeScript</span><button data-nav="aula/${esc(latest.id)}">Retomar aula →</button><div class="rp-next-progress"><div class="rp-inline-row"><span>Progresso das 79 aulas existentes</span><b>${pct}%</b></div><span class="rp-bar"><span style="width:${pct}%"></span></span><small>${done} de ${total} aulas registradas · sem reiniciar seu progresso</small></div></aside></div>
+ <section class="rp-section"><div class="rp-section-heading"><div><span class="section-kicker">ESCOLHA SUA FORMAÇÃO</span><h2>Trilhas profissionais</h2><p>Estude os fundamentos, aplique em projetos e avance por competências.</p></div></div><div class="rp-main-grid">${pathwayTracks.map(pathwayMainCard).join('')}</div></section>
+ <section class="rp-section rp-language-preview"><div class="rp-section-heading"><div><span class="section-kicker">APRENDA NO SEU RITMO</span><h2>Linguagens separadas</h2><p>Aprenda uma linguagem sem precisar escolher uma carreira primeiro.</p></div><button class="rp-text-link" data-nav="linguagens">Ver biblioteca →</button></div><div class="rp-language-strip">${languageCatalog.map(l=>`<button data-nav="linguagem/${esc(l.id)}"><strong>${esc(l.name)}</strong><span>${esc(l.label)}</span><span aria-hidden="true">→</span></button>`).join('')}</div></section>
+ <section class="rp-section rp-practice-mini"><div class="rp-section-heading"><div><span class="section-kicker">COLOQUE EM PRÁTICA</span><h2>Laboratórios e projetos</h2></div></div><div class="rp-fast-grid"><button data-nav="oficina"><strong>Oficina de código</strong><small>Problemas com testes automáticos</small></button><button data-nav="workspace"><strong>Workspace</strong><small>Arquivos e módulos JavaScript</small></button><button data-nav="carreira"><strong>Projetos integradores</strong><small>Do briefing ao portfólio</small></button></div></section>
+ </div>`;
+}
+function pathwayCatalogPage(){return `<div class="rp-page"><button class="back-link" data-nav="inicio">← Início</button><header class="rp-page-head"><span class="section-kicker">FORMAÇÃO POR CARREIRA</span><h1>Qual caminho você quer seguir?</h1><p>Você não precisa estudar todas as tecnologias de uma vez. Escolha uma trilha e complete os módulos na sequência recomendada. As aulas são compartilhadas entre trilhas e mantêm o progresso que você já registrou.</p></header><div class="rp-main-grid">${pathwayTracks.map(pathwayMainCard).join('')}</div><div class="rp-soft-note"><strong>Preferiu começar por uma linguagem?</strong><p>JavaScript, TypeScript, Python, Java e SQL ficam em uma biblioteca separada.</p><button data-nav="linguagens">Abrir biblioteca de linguagens →</button></div><p class="rp-source-note">Organização inspirada nos temas públicos de <a href="https://roadmap.sh/" target="_blank" rel="noopener noreferrer">roadmap.sh</a>. Textos, checkpoints e atividades são autorais do DevLab.</p></div>`;}
+function pathwayDetailPage(id){
+ const t=findPathway(id);if(!t)return `<div class="rp-page"><h1>Trilha não encontrada</h1><button data-nav="trilhas">Ver trilhas</button></div>`;
+ const s=pathwayTrackStats(t),pct=pathwayPercent(t);
+ const firstIncomplete=t.stages.find(v=>{const state=pathwayStageStats(v);return state.done<state.total;})||t.stages[0];
+ return `<div class="rp-page"><button class="back-link" data-nav="trilhas">← Todas as trilhas</button><header class="rp-detail-hero"><span class="section-kicker">TRILHA PROFISSIONAL · ${esc(t.level)}</span><h1>${esc(t.title)}</h1><p>${esc(t.audience)}</p><div class="rp-detail-summary"><span>${t.stages.length} etapas práticas</span><span>${s.done}/${s.total} aulas relacionadas</span><strong>${pct}%</strong></div><span class="rp-bar"><span style="width:${pct}%"></span></span><button class="rp-primary" data-rp-expand="${esc(firstIncomplete.id)}">Ver próxima etapa →</button></header>
+ <div class="rp-intro"><strong>Resultado esperado</strong><p>${esc(t.outcome)}</p><span>Aulas concluídas contam em todas as trilhas que as utilizam. A conclusão dos projetos e checklists é registrada separadamente.</span></div>
+ <div class="rp-section-heading"><div><span class="section-kicker">SEU PLANO DE ESTUDO</span><h2>Etapas do aprendizado</h2><p>Abra uma etapa, estude as aulas relacionadas e execute o projeto proposto.</p></div></div>
+ <div class="rp-stage-list">${t.stages.map((stage,i)=>{
+  const stat=pathwayStageStats(stage),complete=!!pathwayState.checkpoint[t.id+':'+stage.id];
+  return `<details class="rp-stage" data-stage-id="${esc(stage.id)}" ${stage.id===firstIncomplete.id?'open':''}><summary><span class="rp-stage-number">${String(i+1).padStart(2,'0')}</span><span class="rp-stage-title"><strong>${esc(stage.title)}</strong><small>${esc(stage.summary)}</small></span><span class="rp-stage-counter">${stat.done}/${stat.total} aulas</span><span class="rp-stage-chevron" aria-hidden="true">⌄</span></summary><div class="rp-stage-content"><div class="rp-stage-topics"><strong>Tópicos para estudar</strong><p class="rp-content-note">Alguns tópicos possuem aulas aqui; os complementares estão nas referências.</p><ul>${stage.topics.map(topic=>`<li>${esc(topic)}</li>`).join('')}</ul></div><div class="rp-stage-lessons"><strong>Aulas para estudar</strong>${stage.lessons.map(item=>{const info=pathwayData(item);return `<button data-nav="${esc(pathwayLessonRoute(item))}" class="rp-lesson-link"><span class="rp-lesson-dot ${info.done?'done':''}" aria-hidden="true">${info.done?'✓':'○'}</span><span>${esc(info.title)}</span><small>${info.done?'Concluída':'Abrir aula'} →</small></button>`;}).join('')}</div><div class="rp-stage-project"><span class="section-kicker">CHECKPOINT PRÁTICO</span><h3>Agora é com você</h3><p>${esc(stage.practice)}</p><strong>Entrega: ${esc(stage.deliverable)}</strong><label class="rp-check-label"><input type="checkbox" data-rp-check="${esc(t.id+':'+stage.id)}" ${complete?'checked':''}><span>Realizei a atividade e conferi os critérios acima (autodeclaração)</span></label></div><a class="rp-stage-resource" href="${esc(stage.reference)}" target="_blank" rel="noopener noreferrer">Consultar conteúdo complementar no roadmap.sh ↗</a></div></details>`;
+ }).join('')}</div><div class="rp-soft-note"><strong>Quer trabalhar em um projeto com vários arquivos?</strong><p>Abra o Workspace ou a Jornada Profissional. As aulas de backend exigem Node e PostgreSQL no seu computador.</p><div class="rp-actions"><button data-nav="workspace">Abrir Workspace</button><button data-nav="carreira">Projetos integradores</button></div></div><p class="rp-source-note">Sequência adaptada de <a href="${esc(t.reference)}" target="_blank" rel="noopener noreferrer">roadmap.sh</a>; não é uma certificação do site de referência.</p></div>`;
+}
+function guidedLanguageComplete(lesson){return !!pathwayState.langQuiz[lesson.id] && (pathwayState.langChecks[lesson.id]||[]).length===lesson.checks.length;}
+function languagesCatalogPage(){return `<div class="rp-page"><button class="back-link" data-nav="inicio">← Início</button><header class="rp-page-head"><span class="section-kicker">BIBLIOTECA DE LINGUAGENS</span><h1>Aprenda uma linguagem por vez.</h1><p>Aqui você estuda a linguagem em si, com fundamentos, exemplos e prática. Frontend, Backend e Full-Stack ficam em trilhas profissionais separadas.</p></header><div class="rp-languages-grid">${languageCatalog.map(l=>{const count=l.kind==='guided'?guidedLessonsFor(l.id).filter(guidedLanguageComplete).length:l.id==='javascript'?allJsLessons.filter(v=>st.completed.includes(v.id)).length:l.id==='typescript'?allTsLessons.filter(v=>st.completed.includes(v.id)).length:backendTracks.find(t=>t.id==='postgres').lessons.filter(backendDone).length;return `<button class="rp-language-card" data-nav="linguagem/${esc(l.id)}"><span class="rp-language-mark">${esc({javascript:'JS',typescript:'TS',python:'PY',java:'JV',sql:'SQL'}[l.id])}</span><strong>${esc(l.name)}</strong><span>${esc(l.description)}</span><span class="rp-language-meta">${count}/${l.count} ${l.kind==='guided'?'práticas revisadas':'aulas registradas'} <span aria-hidden="true">→</span></span></button>`;}).join('')}</div><div class="rp-soft-note"><strong>Como estudar melhor?</strong><p>Leia o conceito, tente explicar sem consultar, implemente a atividade e rode os testes no VS Code. As perguntas conferem compreensão; os checklists são autodeclarados.</p></div><p class="rp-source-note">Referências por linguagem indicadas nos cards. Conteúdo redigido para o DevLab.</p></div>`;}
+function languageCoursePage(id){
+ const t=findLanguage(id);if(!t)return `<div class="rp-page"><h1>Linguagem não encontrada</h1><button data-nav="linguagens">Voltar</button></div>`;
+ const lessons=t.kind==='guided'?guidedLessonsFor(id):id==='javascript'?allJsLessons:id==='typescript'?allTsLessons:backendTracks.find(v=>v.id==='postgres').lessons;
+ const items=lessons.map((l,i)=>{const done=t.kind==='guided'?guidedLanguageComplete(l):id==='javascript'||id==='typescript'?st.completed.includes(l.id):backendDone(l);const route=t.kind==='guided'?'linguagem/aula/'+l.id:id==='sql'?'backend/aula/'+l.id:'aula/'+l.id;return `<button class="rp-language-lesson" data-nav="${esc(route)}"><span class="rp-lesson-dot ${done?'done':''}">${done?'✓':String(i+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.goal||l.summary||l.objective||'Abra a aula e pratique o conceito.')}</small></span><span aria-hidden="true">→</span></button>`;}).join('');
+ const done=lessons.filter(l=>t.kind==='guided'?guidedLanguageComplete(l):id==='sql'?backendDone(l):st.completed.includes(l.id)).length;
+ return `<div class="rp-page"><button class="back-link" data-nav="linguagens">← Biblioteca de linguagens</button><header class="rp-page-head"><span class="section-kicker">ESTUDO DE LINGUAGEM</span><h1>${esc(t.name)}</h1><p>${esc(t.description)}</p><div class="rp-course-progress"><span>${done} de ${lessons.length} aulas${t.kind==='guided'?' revisadas':''}</span><span class="rp-bar"><span style="width:${Math.round(done/Math.max(1,lessons.length)*100)}%"></span></span></div></header>${t.kind==='guided'?'<div class="rp-soft-note"><strong>Prática no seu computador</strong><p>Essas aulas ensinam conceitos, mas não executam Python ou Java no navegador. Copie o exemplo, crie um arquivo no VS Code e execute com Python ou JDK instalado.</p></div>':''}<section class="rp-section"><div class="rp-section-heading"><div><span class="section-kicker">SEQUÊNCIA SUGERIDA</span><h2>Aulas desta linguagem</h2></div></div><div class="rp-language-list">${items}</div></section><a class="rp-stage-resource" href="${esc(t.roadmap)}" target="_blank" rel="noopener noreferrer">Ver o roadmap público desta linguagem ↗</a></div>`;
+}
+function languageLessonPage(id){
+ const l=findGuidedLesson(id);if(!l)return `<div class="rp-page"><h1>Aula não encontrada</h1><button data-nav="linguagens">Voltar</button></div>`;
+ const lang=id.startsWith('py-')?'python':'java',lessons=guidedLessonsFor(lang),index=lessons.indexOf(l),correct=pathwayState.langQuiz[l.id],answers=pathwayState.langChecks[l.id]||[],done=guidedLanguageComplete(l);
+ const tabs=['Entender','Responder','Praticar'];const current=Math.max(0,Math.min(pathwayState.langTab,2));
+ return `<div class="rp-page rp-guided-lesson"><button class="back-link" data-nav="linguagem/${lang}">← ${lang==='python'?'Python':'Java'}</button><header class="rp-page-head"><span class="section-kicker">LINGUAGEM ${lang.toUpperCase()} · AULA ${index+1} DE ${lessons.length}</span><h1>${esc(l.title)}</h1><p>${esc(l.goal)}</p><span class="rp-lesson-status">${done?'✓ Revisão registrada':'Estudo guiado · execução externa no VS Code'}</span></header>
+ <nav class="rp-lesson-tabs" aria-label="Etapas da aula">${tabs.map((label,i)=>`<button data-lang-step="${i}" class="${current===i?'active':''}" ${current===i?'aria-current="step"':''}>${i+1}. ${label}</button>`).join('')}</nav>
+ <div class="rp-guided-body"><section class="rp-guided-panel" ${current!==0?'hidden':''}><h2>Entenda o conceito</h2>${l.theory.map(x=>`<p>${esc(x)}</p>`).join('')}<div class="rp-guided-code"><div class="rp-guided-code-top"><span>${lang==='python'?'exemplo.py':'Main.java'}</span><button data-lang-copy="${esc(l.id)}">Copiar exemplo</button></div><pre><code>${esc(l.example)}</code></pre></div><p class="rp-disclaimer">Código de referência: execute em Python ou no JDK local. A prévia do DevLab não interpreta essa linguagem.</p><button class="rp-primary" data-lang-step="1">Responder à pergunta →</button></section>
+ <section class="rp-guided-panel" ${current!==1?'hidden':''}><h2>Explique com suas palavras</h2><p>${esc(l.question)}</p><div class="rp-answers">${l.choices.map((option,i)=>`<button data-lang-answer="${i}" data-lang-id="${esc(l.id)}" ${correct?'disabled':''} class="${correct&&i===l.answer?'correct':''}"><span>${'ABC'[i]}</span>${esc(option)}</button>`).join('')}</div>${correct?`<div class="rp-answer-feedback"><strong>✓ Resposta correta</strong><p>${esc(l.explanation)}</p></div>`:'<p class="rp-disclaimer">Tente responder antes de rever o exemplo. Respostas incorretas não registram aprovação.</p>'}<button class="rp-primary" data-lang-step="2">Ir para a prática →</button></section>
+ <section class="rp-guided-panel" ${current!==2?'hidden':''}><h2>Pratique no VS Code</h2><p>${esc(l.task)}</p><div class="rp-guided-checks">${l.checks.map((criterion,i)=>`<label><input type="checkbox" data-lang-check="${esc(l.id+':'+i)}" ${answers.includes(i)?'checked':''}><span>${esc(criterion)}</span></label>`).join('')}</div><label for="rp-language-note"><strong>Anotações desta aula</strong></label><textarea id="rp-language-note" rows="4" data-lang-note="${esc(l.id)}" placeholder="O que você entendeu? Qual erro encontrou?">${esc(pathwayState.langNotes[l.id]||'')}</textarea><p class="rp-disclaimer">${correct?'Pergunta correta.':'Responda à pergunta para concluir a revisão.'} Marcar critérios significa que você os verificou manualmente, não que o DevLab executou seu código.</p>${done?'<p class="rp-answer-feedback">✓ Revisão registrada no navegador.</p>':''}</section></div><nav class="rp-guided-footer"><a href="${esc(l.docs)}" target="_blank" rel="noopener noreferrer">Documentação oficial ↗</a>${lessons[index+1]?`<button data-nav="linguagem/aula/${esc(lessons[index+1].id)}">Próxima aula →</button>`:`<button data-nav="linguagem/${lang}">Voltar às aulas →</button>`}</nav></div>`;
+}
+window.addEventListener('click',event=>{
+ const target=event.target.closest('[data-rp-check],[data-rp-expand],[data-lang-step],[data-lang-answer],[data-lang-check],[data-lang-copy]');if(!target)return;
+ if(target.dataset.rpCheck!==undefined){const key=target.dataset.rpCheck;pathwayState.checkpoint[key]=target.checked;save('pathway-checkpoints',pathwayState.checkpoint);return;}
+ if(target.dataset.rpExpand){const details=document.querySelector(`.rp-stage[data-stage-id="${target.dataset.rpExpand}"]`);if(details){details.open=true;details.scrollIntoView({behavior:'smooth',block:'start'});}return;}
+ if(target.dataset.langStep!==undefined){pathwayState.langTab=Number(target.dataset.langStep);const route=getRoute();if(route.page==='language-lesson')render();return;}
+ if(target.dataset.langAnswer!==undefined){const l=findGuidedLesson(target.dataset.langId);if(!l||pathwayState.langQuiz[l.id])return;if(Number(target.dataset.langAnswer)===l.answer){pathwayState.langQuiz[l.id]=true;save('language-quiz',pathwayState.langQuiz);recordActivity();toast('Resposta correta. Continue a prática.');}else toast('Revise o conceito e tente novamente.');render();return;}
+ if(target.dataset.langCheck!==undefined){const [id,index]=target.dataset.langCheck.split(':');const l=findGuidedLesson(id),i=Number(index);if(!l||!Number.isInteger(i)||i<0||i>=l.checks.length)return;const prev=pathwayState.langChecks[id]||[];pathwayState.langChecks[id]=target.checked?[...new Set([...prev,i])]:prev.filter(x=>x!==i);save('language-checks',pathwayState.langChecks);const input=document.querySelector('[data-lang-note]');if(input)pathwayState.langNotes[id]=input.value;render();return;}
+ if(target.dataset.langCopy){const l=findGuidedLesson(target.dataset.langCopy);if(l)clipboard(l.example);return;}
+});
+window.addEventListener('input',event=>{if(event.target?.dataset.langNote){const id=event.target.dataset.langNote;pathwayState.langNotes[id]=event.target.value;save('language-notes',pathwayState.langNotes);}});
+window.addEventListener('hashchange',()=>{pathwayState.langTab=0;});
 
 render();
 </script></body></html>

@@ -1,3 +1,15 @@
+# DevLab 14.0 — Trilhas profissionais e linguagens independentes
+
+O início agora separa três **trilhas por objetivo profissional** — Frontend, Backend e Full-Stack — de uma **biblioteca de linguagens**: JavaScript, TypeScript, Python, Java e SQL. A arquitetura usa a estrutura pública de competências do [roadmap.sh](https://roadmap.sh/) como referência, com textos e atividades originais. Os checkpoints levam a projetos práticos, e cada etapa mostra aulas existentes, competências e referência complementar.
+
+- Aulas compartilhadas entre carreiras usam o **mesmo progresso existente** (79 aulas anteriores); não exigem repetição e não foram apagadas.
+- Python e Java têm **cinco novas aulas introdutórias cada**, com conceitos, exemplos, perguntas e exercícios. O programa deve ser executado no VS Code com Python/JDK: o navegador não avalia essa execução.
+- Checklists dos projetos e das novas aulas de Python/Java são **revisão manual**, não testes automáticos da solução.
+- O tema escuro, o Workspace, a Oficina, o TaskFlow e a Jornada Profissional foram preservados.
+- Documentação curricular e detalhes técnicos: [Sprint 14 — Trilhas e roadmap](docs/SPRINT-14-TRILHAS-ROADMAP.md).
+
+---
+
 # DevLab 13.0 — identidade dark minimalista
 
 A interface publicada agora usa fundo grafite em todo o aplicativo, logotipo tipográfico `</>` e detalhes lilás discretos somente para seleção, foco e progresso. A página inicial traz um resumo real das 79 aulas (29 JS/TS + 25 frontend + 25 backend), trilhas e acesso à Oficina, Workspace, Revisões e Jornada Profissional. O campo de busca global foi movido para a barra superior e responde a `Ctrl+K`/`Cmd+K`.

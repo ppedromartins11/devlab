@@ -5,3 +5,5 @@ import './styles.css';
 import './workspace.css';
 
 createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
+
+import '../offline/source/dark-v13.css';

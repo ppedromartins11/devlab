@@ -4,16 +4,18 @@
 
 A interface deve parecer um ambiente de estudo de programação — não um catálogo de cards de marketing. Priorize leitura, editor, retorno de execução e progresso significativo.
 
-## Direção visual
+## Direção visual — DevLab 13.0 (dark)
 
-- Superfície de leitura: `#f7f7f5`, branco `#ffffff` e texto `#1e2827`.
-- Cor funcional: verde escuro `#225d4c` para ações, seleção e progresso; feedback negativo tem cor própria.
-- Editor: `#111821`; manter a prévia branca, como uma página web.
-- Sem gradientes decorativos, brilhos neon, sombras flutuantes ou botões sem função.
-- Tipografia: fontes nativas do sistema, hierarquia por tamanho, peso e espaço.
-- Borda de 1px, raio de 6–9px, divisões discretas; não transformar toda informação em card.
-- Rótulos sempre escritos para o estudante: “Editor e pré-visualização”, “Exercício”, “Projeto TaskFlow”.
-- Contraste e foco devem funcionar no teclado. Respeitar `prefers-reduced-motion`.
+- **Canvas:** `#0B0D12`; **sidebar:** `#0E1016`; **superfície:** `#171A22`; **superfície elevada:** `#20232D`; **borda:** `#30343F`.
+- **Texto primário:** `#F2F3F7`; **texto secundário:** `#A7ADBB`; **texto auxiliar:** `#858E9F`.
+- **Acento único:** lilás claro `#AAA0FA`, restrito a foco, seleção, progresso e links funcionais.
+- **Ação primária:** branco quase neutro `#F1F2F7` com texto grafite. Não adicionar gradientes, efeitos neon, padrões decorativos nem cores por categoria.
+- **Marca:** `DevLab` em tipografia sem serifa, símbolo original `</>` em branco sobre fundo grafite. Favicon SVG simplificado com os sinais de código.
+- **Componentes:** cards grafite com borda de 1 px, contraste acessível, hierarquia espacial e um único painel educativo por etapa.
+- **Editor:** permanece escuro; a prévia em iframe exibe a cor definida pelo próprio projeto do estudante, inclusive branco se o projeto especificar.
+- **Tipografia:** fontes de sistema e monoespaçadas no código; foco visível por teclado e modo `prefers-reduced-motion`.
+
+Implementação centralizada em `offline/source/dark-v13.css`, importada depois dos estilos anteriores pelo gerador estático e pela entrada React.
 
 ## Fluxo principal
 

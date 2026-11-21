@@ -15,41 +15,50 @@ function learningCatalogEntries(){
 }
 function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}
 function updateSidebarSearch(){
- const has=!!st.search.trim(),results=document.querySelector('#cl-search-results'),groups=document.querySelector('#cl-nav-groups');
- if(!results||!groups)return;
- results.hidden=!has;groups.hidden=has;
+ const results=document.querySelector('#cl-search-results');
+ if(!results)return;
+ const has=!!st.search.trim();
+ results.hidden=!has;
  if(has)results.innerHTML=searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries()));
+ document.querySelector('#lesson-search')?.setAttribute('aria-expanded',String(has));
 }
 function cleanSidebar(){
  const current=location.hash.replace(/^#\/?/,'')||'inicio';
- const results=searchLearningCatalog(st.search,learningCatalogEntries());
  const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
+ const total=allLessons.length+frontendLessons.length+backendLessons.length;
+ const done=st.completed.length+frontendSummary().done+backendSummary().done;
+ const value=Math.min(100,Math.round(done/total*100));
  return `<aside id="cl-sidebar-nav" class="sidebar cl-sidebar ${st.mobileMenu?'sidebar-open':''}" aria-label="Navegação do DevLab">
-  <div class="sidebar-top"><button class="brand-button" data-nav="inicio" aria-label="Página inicial do DevLab"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>APRENDA FAZENDO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu" aria-label="Fechar menu">✕</button></div>
+  <div class="sidebar-top"><button class="brand-button" data-nav="inicio" aria-label="Página inicial do DevLab"><span class="logo-symbol" aria-hidden="true">&lt;/&gt;</span><span class="brand-text">DevLab<small>APRENDA · PRATIQUE · CONSTRUA</small></span></button><button class="icon-button close-sidebar" data-action="close-menu" aria-label="Fechar menu">✕</button></div>
   <div class="sidebar-scroll"><div class="cl-side-inner">
-   <button class="cl-home-link ${getRoute().page==='home'?'active':''}" data-nav="inicio">Visão geral <span aria-hidden="true">→</span></button>
-   <label class="cl-search-label" for="lesson-search">Buscar aula</label><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Ex.: formulário, React..." value="${esc(st.search)}" autocomplete="off">
-   <div id="cl-search-results" class="cl-search-results" aria-live="polite" ${st.search.trim()?'':'hidden'}>${searchResultsHtml(results)}</div>
-   <div id="cl-nav-groups" ${st.search.trim()?'hidden':''}>${learningAreas.map(group).join('')}</div>
-  </div></div><div class="sidebar-bottom"><div class="avatar" aria-hidden="true">DL</div><div><strong>Seu progresso</strong><small>${xp()} XP · salvo localmente</small></div></div>
+   <button class="cl-home-link ${getRoute().page==='home'?'active':''}" data-nav="inicio"><span>Início</span><span aria-hidden="true">⌂</span></button>
+   <div id="cl-nav-groups">${learningAreas.map(group).join('')}</div>
+  </div></div><div class="sidebar-bottom cl-sidebar-progress"><div class="cl-sidebar-progress-head"><span>Seu progresso</span><strong>${value}%</strong></div><div class="cl-progress-track" role="progressbar" aria-label="Aulas registradas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"><span style="width:${value}%"></span></div><small>${done} de ${total} aulas registradas</small></div>
  </aside>`;
 }
 function cleanTopbar(){
- const route=getRoute(), names={home:'Visão geral',course:'Trilha de estudo',lesson:'Aula', 'frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP', workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
- return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div><div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Progresso local</span></div></header>`;
+ const route=getRoute(), names={home:'Início',course:'Trilha de estudo',lesson:'Aula','frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP',workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
+ return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div>
+ <div class="cl-top-search"><label class="sr-only" for="lesson-search">Buscar aulas e projetos</label><span class="cl-search-mark" aria-hidden="true">⌕</span><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Buscar aulas e trilhas..." value="${esc(st.search)}" autocomplete="off" aria-controls="cl-search-results" aria-expanded="${st.search.trim()?'true':'false'}"><span class="cl-search-shortcut" aria-hidden="true">Ctrl K</span><div id="cl-search-results" class="cl-search-results" role="region" aria-label="Resultados da busca" aria-live="polite" ${st.search.trim()?'':'hidden'}>${st.search.trim()?searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries())):''}</div></div>
+ <div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Salvo neste navegador</span></div></header>`;
 }
 function cleanHome(){
  const next=allLessons.find(l=>l.id===st.last)||allJsLessons[0];
- const choices=[
-  {title:'JavaScript',meta:'24 aulas · fundamentos',route:'curso/javascript',detail:'Lógica, funções e interação com a página.'},
-  {title:'Frontend',meta:'25 aulas · cinco percursos',route:'frontend',detail:'HTML, CSS, React e interfaces completas.'},
-  {title:'TypeScript',meta:'5 aulas · tipagem',route:'curso/typescript',detail:'Escreva JavaScript mais seguro e organizado.'},
-  {title:'Backend',meta:'25 aulas · cinco percursos',route:'backend',detail:'Node.js, APIs, SQL e autenticação.'}
+ const total=allLessons.length+frontendLessons.length+backendLessons.length;
+ const done=st.completed.length+frontendSummary().done+backendSummary().done;
+ const value=Math.min(100,Math.round(done/total*100));
+ const tracks=[
+  {title:'JavaScript',meta:'24 aulas',route:'curso/javascript',detail:'Lógica e fundamentos para a web.',glyph:'JS',percent:percent('js')},
+  {title:'Frontend',meta:'25 aulas',route:'frontend',detail:'HTML, CSS, TypeScript e React.',glyph:'&lt;/&gt;',percent:Math.round(frontendSummary().done/frontendLessons.length*100)},
+  {title:'TypeScript',meta:'5 aulas',route:'curso/typescript',detail:'Tipos, interfaces e código seguro.',glyph:'TS',percent:percent('ts')},
+  {title:'Backend',meta:'25 aulas',route:'backend',detail:'Node.js, APIs, SQL e autenticação.',glyph:'{ }',percent:Math.round(backendSummary().done/backendLessons.length*100)}
  ];
- return `<div class="cl-home"><header class="cl-welcome"><div><span class="section-kicker">SEU ESPAÇO DE ESTUDOS</span><h1>Aprenda programação,<br>um passo de cada vez.</h1><p>Uma aula, um exercício e um projeto. Escolha por onde continuar.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">Continuar: ${esc(next.title)} <span aria-hidden="true">→</span></button><button class="cl-secondary" data-nav="frontend">Ver percursos</button></div></div><div class="cl-home-progress"><strong>${st.completed.length}<span>/${allLessons.length}</span></strong><span>Aulas da trilha JS/TS concluídas</span><div class="cl-progress-track"><span style="width:${Math.round(st.completed.length/allLessons.length*100)}%"></span></div></div></header>
- <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Escolha uma trilha</h2></div><p>Estude conceitos em sequência, sem distrações.</p></div><div class="cl-track-grid">${choices.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="cl-track-meta">${esc(x.meta)}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="cl-track-arrow" aria-hidden="true">Ver aulas →</span></button>`).join('')}</div></section>
- <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR</span><h2>Consolide o aprendizado</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Retome conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Desenvolva em arquivos e módulos de verdade</span><span aria-hidden="true">→</span></button></div></section>
- <section class="cl-home-footer"><p>Pronto para desenvolver um projeto completo?</p><button data-nav="carreira">Abrir Jornada Profissional →</button></section></div>`;
+ return `<div class="cl-home v13-home">
+  <div class="v13-home-top"><header class="cl-welcome"><div class="v13-hero-text"><span class="section-kicker">SEU AMBIENTE DE APRENDIZAGEM</span><h1>Aprenda a programar.<br>Construa de verdade.</h1><p>Estude um conceito por vez, resolva desafios e desenvolva aplicações no seu ritmo.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">▶ &nbsp; Continuar estudando</button><button class="cl-secondary" data-nav="frontend">Ver trilhas</button></div></div><div class="v13-hero-code" aria-hidden="true"><span>&lt;/&gt;</span></div></header>
+  <aside class="v13-home-stats" aria-label="Resumo do seu progresso"><div class="v13-progress-card"><span class="v13-card-label">Seu progresso</span><div class="v13-progress-inner"><div class="v13-ring" style="--progress:${value}%"><span>${value}%</span></div><div><strong>${done} de ${total} aulas</strong><p>Registradas no navegador</p></div></div></div><div class="v13-next-card"><span class="v13-card-label">Continue de onde parou</span><strong>${esc(next.title)}</strong><p>JavaScript / TypeScript</p><button data-nav="aula/${esc(next.id)}">Abrir aula →</button></div></aside></div>
+  <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Trilhas de aprendizagem</h2></div><p>Escolha uma área e avance por módulos.</p></div><div class="cl-track-grid">${tracks.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="v13-track-icon" aria-hidden="true">${x.glyph}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="v13-track-bottom"><small>${esc(x.meta)}</small><small>${x.percent}%</small></span><span class="cl-progress-track" aria-hidden="true"><span style="width:${x.percent}%"></span></span></button>`).join('')}</div></section>
+  <section class="cl-section v13-practice"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR E CONSTRUIR</span><h2>Seu próximo desafio</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Trabalhe com arquivos, módulos e prévia</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Fixe conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="carreira"><strong>Projetos e portfólio</strong><span>Planeje, teste e documente suas entregas</span><span aria-hidden="true">→</span></button></div></section>
+ </div>`;
 }
 
 function studyStepNav(kind,id,labels){
@@ -115,3 +124,10 @@ window.addEventListener('keydown',event=>{
  const current=Number(tab.dataset.studySwitch),next=event.key==='Home'?0:event.key==='End'?count-1:(current+(event.key==='ArrowRight'?1:-1)+count)%count;
  if(kind==='career')studyUi.careerPhase=next;setStudyStep(kind,id,next,true);
 });
+
+window.addEventListener('keydown',event=>{
+ if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();document.getElementById('lesson-search')?.focus();}
+ if(event.key==='Escape'&&document.activeElement?.id==='lesson-search'){st.search='';document.activeElement.value='';updateSidebarSearch();document.activeElement.blur();}
+});
+
+window.addEventListener('click',event=>{if(event.target.closest('[data-nav]'))st.search='';},true);

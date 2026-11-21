@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f7f5"><meta name="description" content="DevLab - Curso prático de JavaScript e TypeScript com editor e prévia."><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d12"><meta name="description" content="DevLab - Curso prático de JavaScript e TypeScript com editor e prévia."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101217%22%2F%3E%3Cpath%20d%3D%22M21%2022%2010%2032l11%2010M43%2022l11%2010-11%2010M38%2014%2026%2050%22%20stroke%3D%22%23f5f5fb%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E"><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
 .app-layout{display:flex;min-height:100vh}.sidebar{width:274px;min-width:274px;height:100vh;position:sticky;top:0;display:flex;flex-direction:column;background:#0c111c;border-right:1px solid #1a2332;z-index:10}.sidebar-top{padding:26px 20px 27px;border-bottom:1px solid #1a2332;display:flex;align-items:center;justify-content:space-between}.brand-button{display:flex;align-items:center;gap:11px;background:none;color:white;padding:0;text-align:left}.logo-symbol{height:37px;width:37px;display:grid;place-items:center;border-radius:11px;color:#061b1a;background:linear-gradient(145deg,#77eed4,#37b9b0);box-shadow:0 5px 20px #20d4b326}.brand-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.3px;line-height:1}.brand-text>span{color:#63e3c8}.brand-text small{display:block;margin-top:7px;font:700 8px 'DM Sans',sans-serif;color:#74839c;letter-spacing:1.65px}.sidebar-scroll{overflow:auto;flex:1;padding:21px 13px 15px}.sidebar-group{margin-bottom:22px}.sidebar-label{color:#687991;letter-spacing:1.35px;font-size:10px;font-weight:800;margin:0 11px 11px}.side-link,.course-link,.unit-toggle,.lesson-link{width:100%;display:flex;align-items:center;text-align:left;background:transparent;color:#99a8c0}.side-link{gap:13px;padding:11px 12px;border-radius:8px;font-size:13px;font-weight:600}.side-link svg{color:#8191ab}.side-link:hover,.side-link.selected{color:#e8fff9;background:#172934}.side-link.selected svg{color:#6fe6ce}.side-count{margin-left:auto;font-size:10px;color:#66748a}.side-search{border:1px solid #253044;border-radius:9px;height:38px;padding:0 10px;display:flex;align-items:center;gap:8px;margin:6px 8px 24px;color:#687991;background:#101724}.side-search input{width:100%;min-width:0;outline:none;border:0;background:none;color:#dce6f6;font-size:12px}.side-search input::placeholder{color:#647189}.course-link{padding:9px 10px;gap:10px;border-radius:10px;margin-bottom:10px;color:white}.course-link:hover,.selected-course{background:#151f31}.course-link>span:nth-child(2){flex:1;font-size:13px;font-weight:750}.course-link small{display:block;color:#7d8ba6;margin-top:5px;font-size:10px;font-weight:500}.course-link>svg{color:#596980}.js-logo,.ts-logo{width:31px;height:31px;border-radius:7px;display:grid;place-items:center;color:#292500;background:#f7df1e;font-weight:900;font-size:12px}.ts-logo{background:#3178c6;color:white}.nav-unit{margin:0 0 7px 11px;border-left:1px solid #253045}.unit-toggle{justify-content:space-between;font-size:11px;color:#8c9bb4;padding:10px 10px;font-weight:700}.unit-toggle:hover{color:#e6eefd}.unit-lessons{padding-bottom:7px}.lesson-link{gap:8px;padding:7px 9px 7px 12px;font-size:11.5px;line-height:1.4;border-radius:7px;margin-left:2px;width:calc(100% - 3px)}.lesson-link>span:last-child{flex:1}.lesson-link:hover{color:#e4f5fa;background:#152134}.lesson-link.active-lesson{color:#6fe6ce;background:#102e30;font-weight:700}.lesson-status{display:flex;align-items:center;justify-content:center;min-width:13px;color:#485670}.lesson-status.done{color:#5cddbc}.ts-nav{margin-top:26px}.sidebar-bottom{padding:15px 18px;display:flex;gap:10px;align-items:center;border-top:1px solid #1a2332}.avatar{width:33px;height:33px;border:1px solid #354c64;border-radius:50%;display:grid;place-items:center;color:#72e5ce;background:#1b3640;font-weight:800}.sidebar-bottom>div:nth-child(2){flex:1}.sidebar-bottom strong{display:block;font-size:12px}.sidebar-bottom small{display:block;color:#687991;font-size:9.5px;margin-top:4px}.online-dot,.sync-dot,.welcome-dot,.workspace-status,.preview-status{width:7px;height:7px;display:inline-block;background:#61e3b8;border-radius:50%;box-shadow:0 0 12px #2ce1aa55}.close-sidebar,.mobile-menu-btn,.mobile-overlay{display:none!important}
 .main-pane{flex:1;min-width:0;background:radial-gradient(circle at 75% -10%,#17223a 0%,transparent 32%),#080c14}.topbar{height:71px;position:sticky;top:0;z-index:5;background:#080c14ed;backdrop-filter:blur(16px);border-bottom:1px solid #202838;display:flex;align-items:center;justify-content:space-between;padding:0 39px;gap:15px}.topbar-left,.topbar-right,.breadcrumbs{display:flex;align-items:center;gap:11px}.breadcrumbs{color:#75849f;font-size:11px;min-width:0;flex-wrap:wrap}.breadcrumbs button{background:none;color:#8b9bb5;padding:0}.breadcrumbs button:hover{color:white}.breadcrumbs span{color:#d5dfed;max-width:230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sync-label{color:#8190a7;font-size:10.5px}.sync-label .sync-dot{margin-right:7px}.topbar-project{border:1px solid #314057;background:#162033;color:#d8e4f5;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}.topbar-project:hover{background:#1d3041}.main-content{max-width:1600px;padding:42px 46px 72px;margin:0 auto}.section-kicker{color:#67dfc6;letter-spacing:1.7px;font-size:10px;font-weight:800}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.section-heading h2{font-size:24px;margin:9px 0}.section-heading p{color:#8998b2;font-size:13px;margin:0}.back-link{display:flex;align-items:center;gap:8px;color:#94a4bd;background:none;padding:0;margin-bottom:22px;font-size:12px;font-weight:650}.back-link:hover{color:#5fe4c4}
 .welcome-overline{display:flex;align-items:center;gap:9px;color:#9da9bf;letter-spacing:2px;font-size:10px;font-weight:800;margin-bottom:17px}.hero-banner{min-height:348px;border:1px solid #24324b;border-radius:18px;overflow:hidden;background:radial-gradient(circle at 93% 5%,#173d49 0%,transparent 45%),linear-gradient(115deg,#17253e 2%,#121b2e 55%,#11252f 100%);display:flex;justify-content:space-between;gap:10px;padding:45px 50px;position:relative}.hero-banner::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,#8fa9ca0e 1px,transparent 1px),linear-gradient(#8fa9ca0e 1px,transparent 1px);background-size:43px 43px;mask-image:linear-gradient(90deg,transparent,#000)}.hero-text{position:relative;z-index:1;max-width:650px}.pill{display:inline-flex;align-items:center;gap:7px;color:#89abbd;border:1px solid #344459;background:#1b273c;padding:7px 10px;border-radius:6px;font-size:9px;font-weight:850;letter-spacing:.8px;white-space:nowrap}.hero-chip{color:#5ee5c7;border-color:#2a655e;background:#1c4545}.soft-blue{background:#1e3551;border-color:#2c5284;color:#7bb7ff}.hero-banner h1{font-size:clamp(29px,3.2vw,45px);line-height:1.24;margin:25px 0 14px;color:#f6f9ff;letter-spacing:-1.7px}.hero-banner h1 em{font-style:normal;color:#67e2c5}.hero-text>p{font-size:13px;color:#aabbd2;line-height:1.85;max-width:570px}.hero-buttons{display:flex;align-items:center;gap:12px;margin-top:26px}.button-primary{background:#69e6c8;color:#092621;border:1px solid #69e6c8;border-radius:9px;padding:12px 16px;display:inline-flex;align-items:center;justify-content:center;gap:11px;font-weight:850;font-size:12px;box-shadow:0 6px 30px #1ddeab20}.button-primary:hover{background:#86f5da}.button-ghost{border:1px solid #40536c;color:#d4e0ef;background:#ffffff08;border-radius:9px;padding:12px 15px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:750;font-size:12px}.button-ghost:hover{background:#ffffff15}.hero-art{min-width:305px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}.hero-code-card{width:325px;height:225px;border:1px solid #52647a;background:#0a101bbf;box-shadow:0 15px 70px #0008;border-radius:12px;transform:rotate(5deg);overflow:hidden}.window-dots{border-bottom:1px solid #28394b;height:32px;display:flex;align-items:center;gap:6px;padding:0 13px}.window-dots i{width:7px;height:7px;border-radius:50%;background:#f27979}.window-dots i:nth-child(2){background:#ffca70}.window-dots i:nth-child(3){background:#69dbab}.hero-code-lines{padding:20px 19px;display:flex;flex-direction:column;gap:10px;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;color:#c5d6f5}.hero-code-lines b{color:#b6a5fa}.hero-code-lines strong{color:#9fe8b8;font-weight:400}.hero-code-lines .hero-comment{color:#53647d;margin-top:5px}.hero-float{position:absolute;background:#63e1c0;color:#06322c;border-radius:12px;padding:12px 14px;bottom:45px;left:12px;font-weight:950;font-size:23px;box-shadow:0 12px 35px #12d7a833}.stats-grid,.project-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:22px}.stat{border:1px solid #253044;background:#111824;border-radius:12px;padding:17px 19px;min-height:102px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}.stat-icon{color:#64e4c4;display:inline-flex;margin-bottom:5px}.stat strong{color:#edf4ff;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;letter-spacing:-.5px}.stat>span:last-child{font-size:11px;color:#8a9ab3}.section-block{margin-top:45px}.tracks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.track-card{border:1px solid #263246;border-radius:14px;background:linear-gradient(160deg,#111c2b,#101723 80%);padding:25px;min-height:358px;display:flex;flex-direction:column}.track-top{display:flex;justify-content:space-between;align-items:flex-start}.track-symbol{width:45px;height:45px;border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:950}.js-track-symbol{color:#212316;background:#f7df1e}.ts-track-symbol{color:white;background:#3178c6}.track-card h3{font-size:24px;margin:21px 0 10px}.track-card>p{color:#92a2ba;font-size:12.5px;line-height:1.75;max-width:480px;min-height:67px}.track-meta{display:flex;gap:18px;color:#8fa0ba;font-size:11px}.track-meta span{display:flex;gap:7px;align-items:center}.track-bottom{margin-top:auto;padding-top:24px}.progress-copy{display:flex;justify-content:space-between;color:#9aabc2;font-size:11px;margin-bottom:9px}.progress-copy strong{color:#cedaed}.progress-track{height:6px;border-radius:10px;background:#263448;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,#37bca8,#80f1cd);border-radius:10px;transition:width .25s}.track-bottom>button{display:flex;align-items:center;gap:8px;background:none;color:#6be8cb;font-size:12px;font-weight:750;padding:19px 0 0}.track-bottom>button:hover{color:#a2ffea}.project-feature{display:flex;align-items:center;gap:21px;background:linear-gradient(110deg,#17263b,#172139);border:1px solid #30415b;border-radius:13px;padding:25px;margin-top:32px}.feature-icon{flex:none;background:#1f3e48;color:#69e5c5;border-radius:12px;padding:14px}.project-feature>div:nth-child(2){flex:1}.project-feature h3{font-size:19px;margin:8px 0}.project-feature p{color:#91a2bb;font-size:12px;margin:0;max-width:720px}.button-outline{display:inline-flex;align-items:center;gap:8px;border:1px solid #3b5871;color:#d8e7f8;background:transparent;border-radius:9px;padding:11px 14px;font-size:12px;font-weight:700;white-space:nowrap}.button-outline:hover{border-color:#6ee6cc;color:#79edd5}.footer-note{font-size:10px;color:#61708a;margin-top:40px}
@@ -837,6 +837,222 @@ h1,h2,h3 {font-family: Inter,'Segoe UI', -apple-system, BlinkMacSystemFont, sans
 .cl-course-method .ft-method,.cl-course-method .be-method-grid{margin-top:0}
 .career-page .cl-git-help{padding:0 15px;margin:15px 0}
 .career-page .cl-git-help .career-commands{padding:10px 0}
+
+/* DevLab 13 — identidade dark minimalista. Fonte única de tema para build estático e React.
+   Superfícies em grafite; branco para conteúdo; lilás somente para navegação/foco/progresso. */
+:root{
+ color-scheme:dark;
+ --canvas:#0b0d12;--paper:#151820;--sidebar-surface:#0d0f15;
+ --ink:#f2f3f7;--muted:#a7adbb;--quiet:#858e9f;--rule:#2c303b;
+ --subtle:#1c202a;--primary:#aaa0fa;--primary-hover:#c4bdff;
+ --primary-tint:#242237;--editor:#10131b;--editor-divider:#2c323c;
+ --cl-text:#eff1f6;--cl-muted:#a1a8b5;--cl-line:#2b303b;
+ --cl-soft:#161a22;--cl-green:#aea5ff;
+ --text:#f0f1f6;--accent:#aea5ff;
+}
+html{background:var(--canvas);scrollbar-color:#373c49 var(--canvas)}
+body,#root,.app-shell,.main-pane,.main-content{background:var(--canvas)!important;color:var(--ink)}
+body{min-width:0}
+*{scrollbar-color:#343a46 transparent}
+::selection{background:#514a83;color:#fff}
+button,input,select,textarea{font-family:inherit}
+button,textarea,select,input{accent-color:var(--primary)}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--primary)!important;outline-offset:3px}
+button:disabled{cursor:not-allowed}
+body h1,body h2,body h3,body h4{color:var(--ink)}
+body p{color:var(--muted)}
+body small,body .section-kicker,body .card-kicker,body .section-heading p{color:var(--quiet)}
+body a{color:#c3bdff}
+body a:hover{color:#e3dfff}
+/* Identidade DevLab: símbolo somente tipográfico, sem cubo, degradê nem brilho. */
+.sidebar.cl-sidebar,.cl-sidebar .sidebar-top,.cl-sidebar .sidebar-bottom{background:#0e1016!important;border-color:var(--rule)!important}
+.sidebar.cl-sidebar{width:244px;min-width:244px}
+.cl-sidebar .sidebar-top{padding:26px 20px 23px;border-bottom:1px solid var(--rule);min-height:90px}
+.cl-sidebar .brand-button{gap:13px;align-items:center}
+.cl-sidebar .logo-symbol,.sidebar .logo-symbol{font:800 23px/1 ui-monospace,Consolas,monospace;letter-spacing:-.12em;width:44px;height:40px;color:#f4f5fc!important;background:transparent!important;border:0!important;box-shadow:none!important;display:grid;place-items:center;white-space:nowrap;padding-right:4px}
+.cl-sidebar .brand-text{font-size:23px!important;font-weight:790;color:#f2f3f8!important;letter-spacing:-.05em}
+.cl-sidebar .brand-text small{font-size:8px!important;letter-spacing:.085em!important;color:#9a9fab!important;margin-top:7px}
+.cl-sidebar .sidebar-scroll{padding:11px 12px 20px}
+.cl-side-inner{gap:10px;padding:14px 0}
+.cl-home-link,.cl-nav-link{color:#b6bbc8!important;border:1px solid transparent!important;background:transparent!important;border-radius:9px!important}
+.cl-home-link{font-size:13px;font-weight:720;padding:12px}
+.cl-nav-link{padding:10px 12px;font-size:12.5px}
+.cl-home-link.active,.cl-nav-link.active{background:#272833!important;border-color:#383848!important;color:#f4f3fe!important}
+.cl-home-link:hover,.cl-nav-link:hover{background:#1d2029!important;color:#fff!important}
+.cl-nav-title,.cl-search-label{color:#7f8799!important;font-size:9.5px;letter-spacing:.12em;padding:14px 12px 8px}
+.cl-nav-link small{color:#818997!important}.cl-nav-link.active small{color:#aca7d4!important}
+.cl-sidebar #cl-nav-groups{display:grid;gap:9px}
+.cl-sidebar-progress{display:flex;flex-direction:column;gap:10px;padding:20px 22px 24px!important}
+.cl-sidebar-progress-head{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:#e6e7ef}
+.cl-sidebar-progress-head strong{font-size:15px;color:#f1efff}
+.cl-sidebar-progress small{font-size:10px;color:#858b9a!important}
+.cl-progress-track,.progress-track{height:6px;background:#292c37!important;border-radius:20px;overflow:hidden;display:block}
+.cl-progress-track span,.progress-fill{height:100%;display:block;background:var(--primary)!important;border-radius:20px}
+.sidebar-open{background:#0e1016!important}
+/* Barra superior, busca e feedback de armazenamento */
+.topbar.cl-topbar{background:#101218!important;border-bottom:1px solid var(--rule)!important;min-height:72px;height:72px;display:flex;align-items:center;padding:0 32px;gap:22px}
+.cl-topbar .topbar-left{flex:0 1 auto;min-width:115px;gap:10px}
+.cl-topbar .cl-top-home{color:#f0f1f7!important;font-size:13px}
+.cl-topbar .cl-crumb-divider,.cl-topbar .cl-current-location{color:#7e8494!important}
+.cl-top-search{position:relative;max-width:625px;flex:1;min-width:0;display:flex;align-items:center;height:42px;border:1px solid #333743;border-radius:9px;background:#1a1d26;color:var(--muted)}
+.cl-top-search:focus-within{border-color:#7d75b8;box-shadow:0 0 0 2px #706b9830}
+.cl-search-mark{font-size:24px;color:#9da5b3;margin:0 8px 0 13px;line-height:1}
+#lesson-search{appearance:none;width:100%;min-width:0;border:0;outline:none!important;box-shadow:none!important;color:#f1f2f6;background:transparent;height:100%;font-size:12px;padding:0 10px 0 0}
+#lesson-search::placeholder{color:#8e95a3}
+.cl-search-shortcut{margin-right:12px;padding:4px 7px;border-radius:5px;background:#292d37;font-size:10px;color:#b3b8c4;white-space:nowrap}
+.cl-search-results{position:absolute;top:calc(100% + 7px);left:0;right:0;background:#191c26!important;border:1px solid #393d4b!important;border-radius:9px;z-index:100;box-shadow:0 15px 36px #0008;padding:8px;max-height:70vh;overflow:auto;display:grid;gap:2px}
+.cl-search-summary{color:#c9c9d9!important;padding:8px!important}
+.cl-search-results button{color:#eff1f7!important;border-radius:6px}
+.cl-search-results button:hover{background:#2a2e3a!important}
+.cl-search-results small{color:#a4acbd!important}
+.cl-topbar .cl-saving-status{color:#8f96a5!important;font-size:11px}.cl-topbar .cl-saving-status span{color:#a9a1fb!important}
+/* Home sem painéis ornamentais. Dados sempre derivados do progresso real. */
+.cl-home{max-width:1190px!important;color:var(--ink);padding:4px 0 55px!important}
+.v13-home-top{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(240px,.78fr);gap:16px}
+.cl-welcome{min-width:0;min-height:292px;display:flex!important;justify-content:space-between;gap:10px;align-items:center;padding:38px 42px!important;background:#161820!important;border:1px solid var(--rule)!important;border-radius:13px!important;overflow:hidden}
+.v13-hero-text{min-width:0;flex:1;position:relative;z-index:1}
+.cl-welcome h1{color:#f7f7fb!important;font-size:clamp(27px,2.75vw,39px)!important;line-height:1.22;letter-spacing:-.04em;margin:15px 0 14px!important}
+.cl-welcome p{color:#aeb4c2!important;font-size:13px;line-height:1.7;max-width:440px}
+.cl-welcome .section-kicker{color:#a09dbb!important;font-size:9px}
+.v13-hero-code{width:185px;min-width:100px;align-self:stretch;display:flex;align-items:center;justify-content:center;font:800 clamp(35px,5vw,80px)/1 ui-monospace,Consolas,monospace;letter-spacing:-.13em;color:#d6d3f7;opacity:.8;user-select:none;overflow:hidden}
+.v13-hero-code span{transform:rotate(-8deg)}
+.cl-home-actions{gap:9px;margin-top:24px}
+.cl-home .button-primary,.button-primary,.ws-main-button,.cl-next-step{background:#f1f2f7!important;color:#15151c!important;border:1px solid #f1f2f7!important;border-radius:8px!important;font-weight:700;box-shadow:none!important}
+.cl-home .button-primary:hover,.button-primary:hover,.ws-main-button:hover,.cl-next-step:hover{background:#daddf0!important;border-color:#daddf0!important;color:#14161c!important}
+.cl-secondary,.button-outline,.ws-outline,.button-ghost{background:#1a1d26!important;color:#e3e4ef!important;border:1px solid #3e424f!important;border-radius:8px!important}
+.cl-secondary:hover,.button-outline:hover,.ws-outline:hover,.button-ghost:hover{background:#282b37!important;color:#fff!important;border-color:#686582!important}
+.v13-home-stats{display:grid;grid-template-rows:1fr 1fr;gap:13px;min-width:0}
+.v13-progress-card,.v13-next-card{background:#161820;border:1px solid var(--rule);border-radius:13px;padding:22px 23px;min-width:0}
+.v13-card-label{font-size:12px;font-weight:720;color:#f2f2f8}
+.v13-progress-inner{display:flex;align-items:center;gap:20px;margin-top:20px}
+.v13-ring{--progress:0%;width:89px;height:89px;min-width:89px;display:grid;place-items:center;position:relative;border-radius:50%;background:conic-gradient(#aea5ff var(--progress),#343644 0);}
+.v13-ring:before{content:'';position:absolute;inset:11px;background:#161820;border-radius:50%}
+.v13-ring span{position:relative;font-size:21px;font-weight:740;color:#f8f7fb}
+.v13-progress-inner strong{font-size:15px;color:#fff;line-height:1.4}
+.v13-progress-inner p,.v13-next-card p{font-size:11px;color:#8d94a4;line-height:1.5;margin:6px 0}
+.v13-next-card strong{display:block;font-size:15px;margin-top:16px;line-height:1.5;color:#f6f5fb}
+.v13-next-card button{background:transparent;border:0;color:#c5c0fc;font-size:12px;font-weight:700;padding:10px 0 0;cursor:pointer}
+.v13-next-card button:hover{color:#fff}
+.cl-section{padding:36px 0 0!important}.cl-section-head{margin-bottom:17px!important}
+.cl-section-head h2{color:#f6f6fa!important;font-size:22px!important;letter-spacing:-.025em}
+.cl-section-head p{color:#9ca4b2!important}
+.cl-track-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:12px}
+.cl-track-item{display:flex;background:#171a22!important;border:1px solid #30343f!important;border-radius:12px!important;gap:11px!important;min-height:205px;padding:22px!important}
+.cl-track-item:hover{background:#20232d!important;border-color:#69627f!important;transform:none!important}
+.v13-track-icon{height:42px;min-width:42px;padding:0 7px;border:1px solid #343844;background:#232531;border-radius:9px;color:#eeeefa;font:750 14px/1 ui-monospace,Consolas,monospace;display:grid;place-items:center}
+.cl-track-item strong{color:#f1f2f7!important;font-size:18px!important}
+.cl-track-item>span:nth-of-type(2){color:#a5acbc!important;font-size:12px;line-height:1.5;flex:1}
+.v13-track-bottom{display:flex;justify-content:space-between;width:100%;gap:8px;color:#9ca4b4;font-size:11px;margin-top:7px}
+.v13-track-bottom small{font-size:11px;color:#a8afbe!important}
+.cl-track-item>.cl-progress-track{width:100%;height:5px}
+.cl-list-actions{background:#171a22!important;border:1px solid var(--rule)!important;border-radius:11px!important}
+.cl-list-actions button{background:#171a22!important;border-bottom:1px solid var(--rule)!important;color:#bfb9fa!important}
+.cl-list-actions button:hover{background:#22252f!important}
+.cl-list-actions strong{color:#f4f4f8!important}.cl-list-actions button span:nth-child(2){color:#9fa7b6!important}
+.cl-home-footer{border-color:var(--rule)!important}.cl-home-footer p{color:#abb0bc!important}.cl-home-footer button{color:#bbb4ff!important}
+/* Etapas educacionais: uma por vez e foco visível */
+.cl-study-tabs{background:#171a22!important;border-color:#323641!important}
+.cl-study-tabs button{color:#a7aebc!important}.cl-study-tabs button.active{background:#292838!important;color:#f2efff!important}
+.cl-study-tabs button:hover{background:#222631!important}
+.cl-step-index{border-color:#4a4d5a!important;color:#9ca2af!important}
+.cl-study-tabs button.active .cl-step-index{background:#a9a0f9!important;border-color:#a9a0f9!important;color:#17151c!important}
+.cl-support-details,.ft-lesson-page .ft-panel,.be-lesson-page .be-panel,.career-page .career-detail{background:#171a22!important;border:1px solid var(--rule)!important;box-shadow:none!important}
+.cl-support-details summary{color:#d4d2f0!important}.cl-support-details summary::after{color:#a9a0f9!important}
+.cl-support-details .ft-aside-card,.cl-support-details .be-aside-card{background:transparent!important}
+.cl-career-panel p{color:#acb3c0!important}
+/* Superfícies reutilizadas nas rotas antigas e novas. Nada de fundos claros acidentais. */
+:is(.course-hero,.course-progress,.course-hint,.unit-card,.lesson-card,.validation-box,.validation-result,.lesson-stage,.stage-track,.theory-card,.lab-pane,.theory-pane,.challenge-card,.quiz-card,.project-hero,.project-feature,.micro-session,.stats-grid,.stat,.hero-banner,.track-card,.brief-card,.review-card,.mission-card,.mission-panel,.mission-sidebar,.mission-details,.mission-result,.study-card,.study-panel,.ft-hero,.ft-track-hero,.ft-track-project,.ft-track-card,.ft-lesson-list,.ft-lesson-link,.ft-panel,.ft-aside-card,.ft-assignment,.ft-review-list,.ft-check-row,.ft-method,.ft-method>div,.ft-option,.ft-feedback,.ft-concepts span,.ft-lesson-status,.ft-home-promo,.be-hero,.be-track-hero,.be-track-hero aside,.be-track,.be-lesson-list,.be-lesson-row,.be-panel,.be-aside-card,.be-choice,.be-feedback,.be-download,.be-checks label,.be-concept,.be-promo,.be-disclaimer,.be-lab-history>div,.career-hero,.career-project-card,.career-detail,.career-git-description,.career-portfolio-editor,.career-portfolio-preview,.career-portfolio-list article,.career-promo,.career-tech span,.career-commands button,.ws-toolbar,.ws-page-heading,.ws-guidance,.ws-output,.ws-output-header,.ws-console-header,.ws-output-foot,.ws-dialog,.ws-select-wrap select){background:#171a22!important;border-color:#30343f!important;box-shadow:none!important;color:#f0f1f7}
+:is(.ft-option,.be-choice,.career-project-card,.career-commands button,.be-track,.ft-track-card):hover:not(:disabled){background:#232733!important;border-color:#5e5a76!important}
+:is(.ft-option.correct,.be-choice.is-correct,.ft-feedback.correct,.be-feedback.is-success){background:#202b29!important;border-color:#45665d!important;color:#d5efe3!important}
+:is(.ft-option.incorrect,.be-choice.is-wrong,.ft-feedback.incorrect,.be-feedback.is-error){background:#332321!important;border-color:#86534d!important;color:#ffe1dc!important}
+:is(.ft-panel,.be-panel,.career-detail,.lesson-card,.cl-support-details) :is(p,li,small){color:#abb3c1}
+:is(.ft-page,.be-page,.career-page,.ws-page,.page-lesson,.page-course,.page-project){color:#eff0f6!important}
+:is(.ft-page,.be-page,.career-page,.ws-page,.page-lesson,.page-course,.page-project) :is(h1,h2,h3,strong){color:#f2f3f7}
+:is(.ft-page,.be-page,.career-page,.ws-page,.page-lesson,.page-course,.page-project) :is(p,small){color:#a9b0be}
+:is(.ft-page,.be-page,.career-page,.ws-page) :is(.ft-track-description,.ft-hero p,.ft-track-hero p,.ft-track-project p,.ft-lesson-hero p,.ft-lesson-link small,.ft-track-category,.ft-lesson-time,.ft-caption,.be-hero p,.be-track-hero p,.be-desc,.be-track-count,.be-lesson-heading p,.be-lesson-row small,.be-row-meta,.be-aside-card p,.career-hero p,.career-hint,.career-detail-head p,.career-portfolio-list p,.ws-guidance p){color:#a8afbe!important}
+:is(.ft-track-card,.be-track,.ft-lesson-link,.be-lesson-row,.career-project-card,.cl-track-item) strong{color:#f0f1f8!important}
+:is(.ft-lesson-breadcrumb,.ft-lesson-breadcrumb button,.ft-resources a,.be-section-head a,.ft-track-footer,.be-track-open,.be-num,.be-track-count b,.ft-hero em,.be-hero em,.career-number,.career-real a){color:#c0bbfc!important}
+:is(.ft-course-symbol,.be-symbol,.be-status,.ft-lesson-status,.unit-number,.career-number){background:#272933!important;color:#c5c0ff!important;border-color:#393948!important}
+:is(.ft-symbol-html,.ft-symbol-css,.ft-symbol-javascript,.ft-symbol-typescript,.ft-symbol-react){background:#272933!important;color:#c5c0ff!important}
+:is(.ft-meter,.be-progress,.ws-progress,.progress-track){background:#343743!important}
+:is(.ft-meter>span,.be-progress i,.ws-progress>span){background:#aaa0fa!important}
+:is(.ft-option>span,.be-choice>span,.choice-letter,.ft-concepts span,.career-tech span){background:#272a36!important;color:#d4d0f5!important;border-color:#383c49!important}
+:is(.ft-review-list,.be-lesson-list,.ft-lesson-list,.unit-card,.career-portfolio-list article){border-color:#30343f!important}
+:is(.ft-check-row,.be-checks label,.career-checks label){border-color:#2e3340!important;color:#d3d7e2!important}
+:is(.ft-check-row,.ft-lesson-link,.be-lesson-row):hover{background:#232630!important}
+:is(.ft-lesson-hero,.be-lesson-heading,.career-detail-head,.career-evidence,.career-subtitle,.be-pager){border-color:#30343f!important}
+:is(.ft-code,.be-code,.career-console,.career-terminal-panel,.ws-console){background:#0d1118!important;color:#e4e9f4!important;border-color:#303744!important}
+:is(.be-code-heading,.career-terminal-toolbar,.ws-editor-tabs,.ws-editor-bottom){background:#191d27!important;color:#cdd1df!important;border-color:#2e3341!important}
+:is(.career-terminal-panel textarea,.career-git-form input,.ws-dialog input){background:#10141c!important;color:#e3e8f5!important;border-color:#424755!important}
+:is(.ft-panel,.be-panel,.career-page,.cl-home,.page-lesson,.page-project) :is(input:not([type=checkbox]):not([type=radio]),textarea,select){background:#11151e!important;color:#f0f2f7!important;border:1px solid #414654!important;outline-color:#aaa0fa!important}
+:is(.ft-page,.be-page,.career-page) :is(input,textarea)::placeholder{color:#7f8797}
+:is(.ft-page,.be-page,.career-page,.ws-page) :is(button:not(.ws-main-button),summary){color:inherit}
+:is(.ft-page,.be-page,.career-page) :is(.ws-main-button,.button-primary){color:#11141b!important}
+:is(.ft-page,.be-page,.career-page) :is(.ft-pager button,.be-pager button,.career-tabs button,.career-commands button){background:#191c25!important;border-color:#393e49!important;color:#c5cad7!important}
+:is(.ft-page,.be-page,.career-page) :is(.ft-pager button,.be-pager button,.career-tabs button,.career-commands button):hover{background:#272b35!important}
+:is(.ft-page,.be-page,.career-page) .career-tabs button.active{border-bottom-color:var(--primary)!important;color:#e5e1ff!important}
+:is(.ft-page,.be-page,.career-page) :is(.ft-track-project,.be-track-hero aside,.be-concept,.be-download,.ft-assignment){background:#20232d!important;border-color:#343844!important}
+/* Workspace: editor naturalmente escuro; painel externo acompanha o app. A prévia mantém branco para a página do aluno. */
+.ws-page-heading,.ws-toolbar{background:#171a22!important;color:#e8eaf2!important}
+.ws-toolbar{border:1px solid var(--rule);border-bottom:0}
+.ws-select-wrap label,.ws-storage,.ws-output-header,.ws-output-foot{color:#9da6b4!important}
+.ws-output,.ws-output-header,.ws-console-header,.ws-output-foot{background:#181b24!important;border-color:#2e3340!important;color:#e3e5ed!important}
+.ws-frame-container{background:#10141a!important}
+.ws-frame-container iframe{background:white!important;border-color:#444959!important}
+.ws-output-device button{color:#b8bcc9!important}.ws-output-device button.active{background:#37344a!important;color:#f2f0ff!important}
+.ws-console-header strong{color:#d9deea!important}
+.ws-console-header>span{background:#2d303b!important;color:#cad0dc!important}
+.ws-tree-file.active{background:#323048!important;color:#f5f2ff!important}
+.ws-editor-tab.selected{border-bottom-color:#b2a8ff!important}
+.ws-editor-bottom .ws-run{background:#eaeaf2!important;color:#14171f!important}
+.ws-editor-bottom .ws-run:hover{background:#cfcbf0!important}
+.ws-dialog::backdrop{background:#020309c4}
+.ws-guidance code,.ft-concepts code{background:#2c2d3c!important;color:#d6d1ff!important}
+/* Projeto guiado, aulas JS/TS antigas, missão e revisões */
+:is(.unit-item,.quiz-choice,.stage-btn,.file-tab,.mode-tab,.device-button,.course-link,.tab-button,.review-item,.brief-item,.mission-type-tab,.mission-action):hover{background:#292d39!important;color:#f4f4f8!important}
+:is(.quiz-choice,.stage-btn,.file-tab,.mode-tab,.device-button,.course-link,.tab-button,.review-item,.brief-item,.mission-type-tab,.mission-action){color:#c7ccd8!important;border-color:#363b48!important}
+:is(.quiz-choice,.stage-btn,.file-tab,.mode-tab,.device-button,.review-item,.brief-item).active{color:#eeeaff!important;background:#292739!important;border-color:#615c8b!important}
+:is(.card-kicker,.section-kicker,.lesson-stage .stage-heading,.track-meta,.course-metrics){color:#a5a1c3!important}
+:is(.validation-top,.validation-row,.validation-tag,.quiz-foot,.lesson-card>p,.challenge-card li,.unit-meta,.unit-card-head p){color:#afb5c3!important}
+:is(.validation-box,.quiz-choice,.feedback,.validation-result,.stage-btn,.lesson-stage,.lesson-card){background:#171a22!important;border-color:#343845!important}
+:is(.quiz-choice.correct,.feedback.success,.validation-result.pass){background:#202c2a!important;border-color:#3b6459!important;color:#c8eada!important}
+:is(.quiz-choice.incorrect,.feedback.issue,.validation-result.fail){background:#322324!important;border-color:#7d4c50!important;color:#ffe3df!important}
+:is(.check-button,.challenge-cta){background:#f1f1f7!important;color:#11141b!important;border:1px solid #e1e3eb!important}
+:is(.unit-item strong,.course-hero h1,.track-card h3,.quiz-card h2,.lesson-card h2){color:#f3f4f8!important}
+/* Consistência de campos de formulários e feedback sem cobrir o conteúdo da prévia. */
+:is(.cl-home,.main-content,.sidebar) :is(input[type=search],input[type=text],input[type=url],textarea,select){border-radius:8px}
+:is(.page-course,.page-lesson,.page-project,.ft-page,.be-page,.career-page,.ws-page) button:disabled{opacity:.62}
+@media(max-width:1220px){.cl-track-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.v13-hero-code{width:120px}.v13-progress-inner{gap:13px}.v13-ring{width:76px;height:76px;min-width:76px}}
+@media(max-width:1020px){.v13-home-top{grid-template-columns:1fr}.v13-home-stats{grid-template-columns:1fr 1fr;grid-template-rows:auto}.v13-progress-card,.v13-next-card{min-height:160px}.cl-topbar .topbar-right{display:none}}
+@media(max-width:860px){.sidebar.cl-sidebar{width:min(286px,86vw);min-width:0}.cl-topbar{padding:0 17px!important}.cl-topbar .topbar-left{min-width:0}.cl-topbar .cl-top-home,.cl-topbar .cl-crumb-divider,.cl-topbar .cl-current-location{display:none}.cl-top-search{max-width:none}.v13-hero-code{width:140px}.main-content{padding:25px 18px 56px}}
+@media(max-width:600px){.cl-welcome{padding:26px 22px!important;min-height:0}.v13-hero-code{display:none}.cl-welcome h1{font-size:29px!important}.cl-track-grid{grid-template-columns:1fr!important}.cl-track-item{min-height:0;padding:19px!important}.v13-home-stats{grid-template-columns:1fr}.v13-progress-card,.v13-next-card{min-height:0}.cl-top-search{height:41px}.cl-search-shortcut{display:none}.v13-ring{width:72px;height:72px;min-width:72px}.cl-section{padding-top:30px!important}.main-content{padding:20px 12px 48px!important}.main-content.page-workspace{padding:16px 10px 40px!important}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+/* Acessibilidade: o rótulo permanece disponível para leitores de tela, sem poluir a barra. */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.cl-sidebar-progress{align-items:stretch!important;width:100%!important;box-sizing:border-box}
+.cl-sidebar-progress-head{width:100%;gap:12px}
+.cl-sidebar-progress-head strong{margin-left:auto}
+.ws-toolbar>button.ws-main-button,.ws-header-actions>button.ws-main-button{color:#14151b!important}
+.ws-toolbar>button.ws-outline,.ws-header-actions>button.ws-outline{color:#e7e8ef!important}
+/* Revisão transversal: remove os últimos painéis claros de aulas legadas, Oficina e laboratório HTTP. */
+:is(.concept-list,.project-board,.project-stats,.mission-promo,.mission-stat,.mission-status,.mission-spec,.mission-workspace,.mission-card,.mission-result,.mission-error,.mission-test-names span,.mission-section .signature,.study-empty,.study-figures,.review-answer,.review-rating button,.learning-tools,.learning-tool,.learning-tool-symbol,.review-list,.review-list-item,.brief-check-row,.next-lesson,.complete-button,.project-stage,.project-todo,.be-http-notice,.be-response-placeholder,.be-examples button,.be-http-status,.be-lab-history>div){background:#191c25!important;color:#e8eaf2!important;border-color:#313745!important;box-shadow:none!important}
+:is(.concept-list,.project-board,.project-stats,.mission-promo,.mission-stat,.mission-spec,.mission-workspace,.mission-card,.study-empty,.study-figures,.learning-tools,.learning-tool,.review-list,.brief-card){border:1px solid #313745!important}
+:is(.mission-test-names span,.mission-section .signature,.concept-list span,.project-stage,.project-unit-head,.review-answer){background:#282b38!important;color:#e0ddff!important;border-color:#454459!important}
+:is(.mission-card-foot button,.mission-guidance summary,.review-list-item button,.brief-card summary,.learning-tool>span:last-child){color:#c5beff!important}
+:is(.mission-section p,.mission-heading p,.mission-stat span,.study-queue p,.be-http-notice p,.mission-section li,.mission-card p,.mission-error,.mission-result small,.study-empty p){color:#aeb6c4!important}
+:is(.mission-success,.mission-grade.passed){color:#c5e6d1!important}
+:is(.mission-grade.failed,.mission-result.fail small){color:#f6bdb6!important}
+:is(.mission-result.fail,.mission-error){background:#322527!important;border-color:#694445!important}
+:is(.complete-button.is-complete){background:#273b33!important;border-color:#466c5b!important;color:#c5e6d1!important}
+:is(.next-lesson,.complete-button,.review-rating button,.be-examples button){cursor:pointer}
+:is(.review-rating button,.be-examples button,.complete-button,.next-lesson):hover{background:#262936!important;border-color:#777095!important}
+:is(.be-lab-fields input,.be-lab-fields select,.be-lab-fields textarea,.cl-support-details textarea,.lesson-notes textarea){background:#11151e!important;color:#f0f2f7!important;border-color:#434858!important}
+:is(.be-lab-fields label,.be-examples>span,.be-response-placeholder){color:#abb4c3!important}
+:is(.project-board,.project-stats) :is(.project-todo,.project-unit,.project-stage,.project-board-title){border-color:#343843!important}
+:is(.project-board,.project-stats) :is(h2,h3,strong,button){color:#f1f2f8}
+:is(.study-empty,.study-figures,.review-card,.learning-tools) :is(h2,h3,strong){color:#f1f2f8!important}
+:is(.mission-workspace,.mission-spec,.study-empty,.project-board){border-radius:10px}
+.ws-toolbar>button:not(.ws-outline):not(.ws-main-button),.ws-header-actions>button:not(.ws-outline):not(.ws-main-button){background:#252937!important;border:1px solid #424857!important;color:#e8e9f2!important}
 </style></head><body><div id="root"></div><script>/** Navegação curricular independente da renderização e do armazenamento. */
 const learningAreas = Object.freeze([
   {id:'learn', label:'Aprender', routes:Object.freeze([
@@ -3581,41 +3797,50 @@ function learningCatalogEntries(){
 }
 function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}
 function updateSidebarSearch(){
- const has=!!st.search.trim(),results=document.querySelector('#cl-search-results'),groups=document.querySelector('#cl-nav-groups');
- if(!results||!groups)return;
- results.hidden=!has;groups.hidden=has;
+ const results=document.querySelector('#cl-search-results');
+ if(!results)return;
+ const has=!!st.search.trim();
+ results.hidden=!has;
  if(has)results.innerHTML=searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries()));
+ document.querySelector('#lesson-search')?.setAttribute('aria-expanded',String(has));
 }
 function cleanSidebar(){
  const current=location.hash.replace(/^#\/?/,'')||'inicio';
- const results=searchLearningCatalog(st.search,learningCatalogEntries());
  const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
+ const total=allLessons.length+frontendLessons.length+backendLessons.length;
+ const done=st.completed.length+frontendSummary().done+backendSummary().done;
+ const value=Math.min(100,Math.round(done/total*100));
  return `<aside id="cl-sidebar-nav" class="sidebar cl-sidebar ${st.mobileMenu?'sidebar-open':''}" aria-label="Navegação do DevLab">
-  <div class="sidebar-top"><button class="brand-button" data-nav="inicio" aria-label="Página inicial do DevLab"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>APRENDA FAZENDO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu" aria-label="Fechar menu">✕</button></div>
+  <div class="sidebar-top"><button class="brand-button" data-nav="inicio" aria-label="Página inicial do DevLab"><span class="logo-symbol" aria-hidden="true">&lt;/&gt;</span><span class="brand-text">DevLab<small>APRENDA · PRATIQUE · CONSTRUA</small></span></button><button class="icon-button close-sidebar" data-action="close-menu" aria-label="Fechar menu">✕</button></div>
   <div class="sidebar-scroll"><div class="cl-side-inner">
-   <button class="cl-home-link ${getRoute().page==='home'?'active':''}" data-nav="inicio">Visão geral <span aria-hidden="true">→</span></button>
-   <label class="cl-search-label" for="lesson-search">Buscar aula</label><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Ex.: formulário, React..." value="${esc(st.search)}" autocomplete="off">
-   <div id="cl-search-results" class="cl-search-results" aria-live="polite" ${st.search.trim()?'':'hidden'}>${searchResultsHtml(results)}</div>
-   <div id="cl-nav-groups" ${st.search.trim()?'hidden':''}>${learningAreas.map(group).join('')}</div>
-  </div></div><div class="sidebar-bottom"><div class="avatar" aria-hidden="true">DL</div><div><strong>Seu progresso</strong><small>${xp()} XP · salvo localmente</small></div></div>
+   <button class="cl-home-link ${getRoute().page==='home'?'active':''}" data-nav="inicio"><span>Início</span><span aria-hidden="true">⌂</span></button>
+   <div id="cl-nav-groups">${learningAreas.map(group).join('')}</div>
+  </div></div><div class="sidebar-bottom cl-sidebar-progress"><div class="cl-sidebar-progress-head"><span>Seu progresso</span><strong>${value}%</strong></div><div class="cl-progress-track" role="progressbar" aria-label="Aulas registradas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${value}"><span style="width:${value}%"></span></div><small>${done} de ${total} aulas registradas</small></div>
  </aside>`;
 }
 function cleanTopbar(){
- const route=getRoute(), names={home:'Visão geral',course:'Trilha de estudo',lesson:'Aula', 'frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP', workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
- return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div><div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Progresso local</span></div></header>`;
+ const route=getRoute(), names={home:'Início',course:'Trilha de estudo',lesson:'Aula','frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP',workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
+ return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div>
+ <div class="cl-top-search"><label class="sr-only" for="lesson-search">Buscar aulas e projetos</label><span class="cl-search-mark" aria-hidden="true">⌕</span><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Buscar aulas e trilhas..." value="${esc(st.search)}" autocomplete="off" aria-controls="cl-search-results" aria-expanded="${st.search.trim()?'true':'false'}"><span class="cl-search-shortcut" aria-hidden="true">Ctrl K</span><div id="cl-search-results" class="cl-search-results" role="region" aria-label="Resultados da busca" aria-live="polite" ${st.search.trim()?'':'hidden'}>${st.search.trim()?searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries())):''}</div></div>
+ <div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Salvo neste navegador</span></div></header>`;
 }
 function cleanHome(){
  const next=allLessons.find(l=>l.id===st.last)||allJsLessons[0];
- const choices=[
-  {title:'JavaScript',meta:'24 aulas · fundamentos',route:'curso/javascript',detail:'Lógica, funções e interação com a página.'},
-  {title:'Frontend',meta:'25 aulas · cinco percursos',route:'frontend',detail:'HTML, CSS, React e interfaces completas.'},
-  {title:'TypeScript',meta:'5 aulas · tipagem',route:'curso/typescript',detail:'Escreva JavaScript mais seguro e organizado.'},
-  {title:'Backend',meta:'25 aulas · cinco percursos',route:'backend',detail:'Node.js, APIs, SQL e autenticação.'}
+ const total=allLessons.length+frontendLessons.length+backendLessons.length;
+ const done=st.completed.length+frontendSummary().done+backendSummary().done;
+ const value=Math.min(100,Math.round(done/total*100));
+ const tracks=[
+  {title:'JavaScript',meta:'24 aulas',route:'curso/javascript',detail:'Lógica e fundamentos para a web.',glyph:'JS',percent:percent('js')},
+  {title:'Frontend',meta:'25 aulas',route:'frontend',detail:'HTML, CSS, TypeScript e React.',glyph:'&lt;/&gt;',percent:Math.round(frontendSummary().done/frontendLessons.length*100)},
+  {title:'TypeScript',meta:'5 aulas',route:'curso/typescript',detail:'Tipos, interfaces e código seguro.',glyph:'TS',percent:percent('ts')},
+  {title:'Backend',meta:'25 aulas',route:'backend',detail:'Node.js, APIs, SQL e autenticação.',glyph:'{ }',percent:Math.round(backendSummary().done/backendLessons.length*100)}
  ];
- return `<div class="cl-home"><header class="cl-welcome"><div><span class="section-kicker">SEU ESPAÇO DE ESTUDOS</span><h1>Aprenda programação,<br>um passo de cada vez.</h1><p>Uma aula, um exercício e um projeto. Escolha por onde continuar.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">Continuar: ${esc(next.title)} <span aria-hidden="true">→</span></button><button class="cl-secondary" data-nav="frontend">Ver percursos</button></div></div><div class="cl-home-progress"><strong>${st.completed.length}<span>/${allLessons.length}</span></strong><span>Aulas da trilha JS/TS concluídas</span><div class="cl-progress-track"><span style="width:${Math.round(st.completed.length/allLessons.length*100)}%"></span></div></div></header>
- <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Escolha uma trilha</h2></div><p>Estude conceitos em sequência, sem distrações.</p></div><div class="cl-track-grid">${choices.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="cl-track-meta">${esc(x.meta)}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="cl-track-arrow" aria-hidden="true">Ver aulas →</span></button>`).join('')}</div></section>
- <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR</span><h2>Consolide o aprendizado</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Retome conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Desenvolva em arquivos e módulos de verdade</span><span aria-hidden="true">→</span></button></div></section>
- <section class="cl-home-footer"><p>Pronto para desenvolver um projeto completo?</p><button data-nav="carreira">Abrir Jornada Profissional →</button></section></div>`;
+ return `<div class="cl-home v13-home">
+  <div class="v13-home-top"><header class="cl-welcome"><div class="v13-hero-text"><span class="section-kicker">SEU AMBIENTE DE APRENDIZAGEM</span><h1>Aprenda a programar.<br>Construa de verdade.</h1><p>Estude um conceito por vez, resolva desafios e desenvolva aplicações no seu ritmo.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">▶ &nbsp; Continuar estudando</button><button class="cl-secondary" data-nav="frontend">Ver trilhas</button></div></div><div class="v13-hero-code" aria-hidden="true"><span>&lt;/&gt;</span></div></header>
+  <aside class="v13-home-stats" aria-label="Resumo do seu progresso"><div class="v13-progress-card"><span class="v13-card-label">Seu progresso</span><div class="v13-progress-inner"><div class="v13-ring" style="--progress:${value}%"><span>${value}%</span></div><div><strong>${done} de ${total} aulas</strong><p>Registradas no navegador</p></div></div></div><div class="v13-next-card"><span class="v13-card-label">Continue de onde parou</span><strong>${esc(next.title)}</strong><p>JavaScript / TypeScript</p><button data-nav="aula/${esc(next.id)}">Abrir aula →</button></div></aside></div>
+  <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Trilhas de aprendizagem</h2></div><p>Escolha uma área e avance por módulos.</p></div><div class="cl-track-grid">${tracks.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="v13-track-icon" aria-hidden="true">${x.glyph}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="v13-track-bottom"><small>${esc(x.meta)}</small><small>${x.percent}%</small></span><span class="cl-progress-track" aria-hidden="true"><span style="width:${x.percent}%"></span></span></button>`).join('')}</div></section>
+  <section class="cl-section v13-practice"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR E CONSTRUIR</span><h2>Seu próximo desafio</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Trabalhe com arquivos, módulos e prévia</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Fixe conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="carreira"><strong>Projetos e portfólio</strong><span>Planeje, teste e documente suas entregas</span><span aria-hidden="true">→</span></button></div></section>
+ </div>`;
 }
 
 function studyStepNav(kind,id,labels){
@@ -3681,6 +3906,13 @@ window.addEventListener('keydown',event=>{
  const current=Number(tab.dataset.studySwitch),next=event.key==='Home'?0:event.key==='End'?count-1:(current+(event.key==='ArrowRight'?1:-1)+count)%count;
  if(kind==='career')studyUi.careerPhase=next;setStudyStep(kind,id,next,true);
 });
+
+window.addEventListener('keydown',event=>{
+ if((event.ctrlKey||event.metaKey)&&event.key.toLowerCase()==='k'){event.preventDefault();document.getElementById('lesson-search')?.focus();}
+ if(event.key==='Escape'&&document.activeElement?.id==='lesson-search'){st.search='';document.activeElement.value='';updateSidebarSearch();document.activeElement.blur();}
+});
+
+window.addEventListener('click',event=>{if(event.target.closest('[data-nav]'))st.search='';},true);
 
 render();
 </script></body></html>

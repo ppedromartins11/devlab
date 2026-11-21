@@ -1,3 +1,17 @@
+# DevLab 13.0 — identidade dark minimalista
+
+A interface publicada agora usa fundo grafite em todo o aplicativo, logotipo tipográfico `</>` e detalhes lilás discretos somente para seleção, foco e progresso. A página inicial traz um resumo real das 79 aulas (29 JS/TS + 25 frontend + 25 backend), trilhas e acesso à Oficina, Workspace, Revisões e Jornada Profissional. O campo de busca global foi movido para a barra superior e responde a `Ctrl+K`/`Cmd+K`.
+
+- **Não houve migração** das chaves `devlab-offline-v1:*`; dados existentes continuam salvos.
+- O preview do código do estudante permanece branco quando o HTML/CSS do próprio projeto assim define.
+- A versão estática de produção e a variante React consomem os tokens de `offline/source/dark-v13.css`; a React ainda não implementa todos os módulos da interface estática.
+- A nova identidade inclui favicon SVG gerado no HTML e arquivo em `assets/favicon.svg`.
+- Para testar: `npm test`, `python tests/e2e_dark_theme.py`, `node scripts/build-static.mjs`. O teste visual requer Chromium e Playwright.
+
+[Identidade e checklist](docs/SPRINT-13.md).
+
+---
+
 # DevLab 12 — experiência de aprendizagem modular
 
 A navegação agora está organizada em **Aprender / Praticar / Construir**, com uma página inicial mais enxuta. Aulas frontend/backend foram divididas em cinco módulos independentes, e projetos profissionais em quatro etapas. A busca de aulas não remonta toda a página a cada digitação. Nenhuma aula, exercício ou dado salvo foi removido.

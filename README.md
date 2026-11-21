@@ -1,3 +1,15 @@
+# DevLab 15.0 — Correção do editor e auditoria de regressão
+
+O editor de aulas não mostrava HTML, CSS ou JavaScript em alguns navegadores após o tema escuro. O conteúdo continuava no `textarea`, mas o fundo opaco imposto pelo CSS de formulários escondia a camada de realce de sintaxe (`#syntax-layer`).
+
+**Correção:** o seletor global de formulários ignora `#code-editor`; o editor mantém fundo e texto digitável transparentes, com cursor visível, deixando o conteúdo colorido do `<pre>` aparecer. A alteração não apaga `localStorage` nem modifica os exercícios.
+
+**Testes:** `npm test`, `python tests/e2e_editor_visibility.py` (7 larguras, edição, troca de HTML/CSS/JS/TS, prévia, restauração), `python tests/e2e_route_audit.py` (111 rotas em 390 e 1440 px) e os demais scripts `tests/e2e_*.py`. O teste automatizado de Chromium usa HTML inline + armazenamento simulado por restrição de localhost no ambiente de validação. Não substitui uma inspeção em Safari/iOS real.
+
+**Limites:** não é possível garantir ausência de todos os bugs somente com testes automatizados. O tema escuro continua permitindo que a prévia do site do estudante tenha fundo claro.
+
+---
+
 # DevLab 14.0 — Trilhas profissionais e linguagens independentes
 
 O início agora separa três **trilhas por objetivo profissional** — Frontend, Backend e Full-Stack — de uma **biblioteca de linguagens**: JavaScript, TypeScript, Python, Java e SQL. A arquitetura usa a estrutura pública de competências do [roadmap.sh](https://roadmap.sh/) como referência, com textos e atividades originais. Os checkpoints levam a projetos práticos, e cada etapa mostra aulas existentes, competências e referência complementar.

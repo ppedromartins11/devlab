@@ -26,7 +26,7 @@ def main():
    page.set_content(HTML,wait_until='load')
    assert page.locator('.cl-sidebar .cl-nav-group').count()==3
    assert page.locator('.nav-unit').count()==0
-   assert page.locator('.cl-track-item').count()==4
+   assert page.locator('.rp-main-card').count()==3  # Frontend, Backend, Full-Stack (Sprint 14)
    if width==390:
     page.locator('[data-action="open-menu"]').click()
     assert page.locator('#cl-sidebar-nav').get_attribute('class').find('sidebar-open')>=0

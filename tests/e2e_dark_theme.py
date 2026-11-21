@@ -22,11 +22,11 @@ def main():
             page.on('pageerror',lambda exc: errors.append(str(exc)))
             page.set_content(html,wait_until='load')
             assert page.locator('.cl-sidebar .brand-text').inner_text().startswith('DevLab')
-            assert page.locator('.v13-home .v13-ring').count()==1
-            assert page.locator('.v13-home .cl-track-item').count()==4
+            assert page.locator('.rp-main-card').count()==3  # Catálogo de carreiras atual
+            assert page.locator('[data-nav="linguagens"]').count()>0  # Acesso ao catálogo de linguagens
             body_bg=page.evaluate('getComputedStyle(document.body).backgroundColor')
             assert body_bg=='rgb(11, 13, 18)',(width,body_bg)
-            assert page.locator('.v13-progress-card').inner_text().find('0 de 79')>=0
+            assert '0 de 79' in page.locator('.cl-sidebar-progress').inner_text()
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'), ('home overflow',width,page.evaluate('[document.documentElement.scrollWidth,innerWidth]'))
             if width==1440:
                 page.screenshot(path=str(shots/'devlab13-dark-home-desktop.png'),full_page=True)

@@ -9,7 +9,7 @@ shim="""() => {const d={};Object.defineProperty(window,'localStorage',{configura
 with sync_playwright() as p:
  b=p.chromium.launch(headless=True,executable_path='/usr/bin/chromium',args=['--no-sandbox','--disable-dev-shm-usage'])
  page=b.new_page(accept_downloads=True,viewport={'width':1440,'height':900});page.evaluate(shim);page.set_default_timeout(6000);page.set_content(html)
- page.locator('.cl-track-item[data-nav="frontend"]').click();page.locator('.ft-track-card').first.wait_for();page.screenshot(path=str(out/'formacao-catalogo.png'),full_page=True)
+ page.evaluate('location.hash="#/frontend"');page.locator('.ft-track-card').first.wait_for();page.screenshot(path=str(out/'formacao-catalogo.png'),full_page=True)
  for track,lesson in [('typescript','ts-modelos'),('react','react-componentes')]:
   page.locator(f'[data-nav="frontend/trilha/{track}"]').click()
   page.locator('.ft-lesson-link').first.wait_for()

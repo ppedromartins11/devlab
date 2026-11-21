@@ -144,7 +144,7 @@ body a:hover{color:#e3dfff}
 :is(.ft-code,.be-code,.career-console,.career-terminal-panel,.ws-console){background:#0d1118!important;color:#e4e9f4!important;border-color:#303744!important}
 :is(.be-code-heading,.career-terminal-toolbar,.ws-editor-tabs,.ws-editor-bottom){background:#191d27!important;color:#cdd1df!important;border-color:#2e3341!important}
 :is(.career-terminal-panel textarea,.career-git-form input,.ws-dialog input){background:#10141c!important;color:#e3e8f5!important;border-color:#424755!important}
-:is(.ft-panel,.be-panel,.career-page,.cl-home,.page-lesson,.page-project) :is(input:not([type=checkbox]):not([type=radio]),textarea,select){background:#11151e!important;color:#f0f2f7!important;border:1px solid #414654!important;outline-color:#aaa0fa!important}
+:is(.ft-panel,.be-panel,.career-page,.cl-home,.page-lesson,.page-project) :is(input:not([type=checkbox]):not([type=radio]),textarea:not(#code-editor),select){background:#11151e!important;color:#f0f2f7!important;border:1px solid #414654!important;outline-color:#aaa0fa!important}
 :is(.ft-page,.be-page,.career-page) :is(input,textarea)::placeholder{color:#7f8797}
 :is(.ft-page,.be-page,.career-page,.ws-page) :is(button:not(.ws-main-button),summary){color:inherit}
 :is(.ft-page,.be-page,.career-page) :is(.ws-main-button,.button-primary){color:#11141b!important}
@@ -213,3 +213,19 @@ body a:hover{color:#e3dfff}
 :is(.study-empty,.study-figures,.review-card,.learning-tools) :is(h2,h3,strong){color:#f1f2f8!important}
 :is(.mission-workspace,.mission-spec,.study-empty,.project-board){border-radius:10px}
 .ws-toolbar>button:not(.ws-outline):not(.ws-main-button),.ws-header-actions>button:not(.ws-outline):not(.ws-main-button){background:#252937!important;border:1px solid #424857!important;color:#e8e9f2!important}
+
+/* Editor realce: a camada de escrita é transparente; o texto visível está no <pre>.
+   Não aplicar estilos globais de formulários sobre este textarea. */
+.editor-code > #code-editor {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  caret-color: #d5d0ff !important;
+}
+.editor-code > #syntax-layer {
+  background: transparent !important;
+  color: #dce2ed;
+  opacity: 1;
+}

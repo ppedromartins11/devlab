@@ -30,4 +30,5 @@ jobs:
       - run: node --test tests/learning-navigation.mjs
       - run: node tests/dark-theme.mjs
       - run: node --test tests/pathways.mjs
+      - run: node tests/editor-theme.mjs
       - run: node scripts/build-static.mjs

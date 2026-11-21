@@ -41,3 +41,13 @@ Configuração visual: `src/styles.css` contém a estrutura legada; `src/workspa
 - `docs/SPRINT-11.md`: escopo, limitações e instruções para Git real.
 - Para alterar esta área, rode `node --test tests/career.mjs`, `npm test`, `python offline/build_standalone.py` e os testes opcionais de navegador.
 - Não confundir o simulador Git com integração remota. Não tratar checklists como certificação automática.
+
+## Sprint 12 — organização pedagógica
+
+- A versão de produção mantém as rotas e o progresso existentes, mas separa visualmente as trilhas em **Aprender / Praticar / Construir**.
+- `src/learning-navigation.js` contém o modelo puro de navegação e busca. `offline/source/learning-shell.js` gera a interface e controla qual módulo está visível sem reiniciar o editor.
+- `offline/source/learning-v12.css` é a última camada de estilo na geração. Evite acrescentar promoções e cartões decorativos à página inicial.
+- Cada aula frontend/backend possui cinco etapas independentes. Não remova conteúdo nem marque checklists como verificação automática.
+- A Jornada Profissional possui quatro etapas por projeto; os registros de evidências permanecem nas mesmas chaves `career-*` de `localStorage`.
+- A busca da barra lateral atualiza apenas os resultados; nunca deve invocar `render()` a cada tecla e interromper a prévia.
+- Valide com `node --test tests/learning-navigation.mjs`, `python tests/e2e_clean_ux.py`, `npm test` e os fluxos de navegador existentes.

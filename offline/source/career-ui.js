@@ -38,7 +38,7 @@ function careerCreateWorkspace(){
 }
 window.addEventListener('click',event=>{
  const tab=event.target.closest('[data-career-tab]');if(tab){cst.tab=tab.dataset.careerTab;careerPersist();render();return;}
- const select=event.target.closest('[data-career-select]');if(select){if(!careerFindProject(select.dataset.careerSelect))return;cst.selected=select.dataset.careerSelect;careerPersist();render();return;}
+ const select=event.target.closest('[data-career-select]');if(select){if(!careerFindProject(select.dataset.careerSelect))return;studyUi.careerPhase=0;cst.selected=select.dataset.careerSelect;careerPersist();render();return;}
  const example=event.target.closest('[data-career-example]');if(example){const el=$('#career-git-command');if(el){el.value=example.dataset.careerExample;el.focus();}return;}
  const action=event.target.closest('[data-career-action]');if(!action)return;
  switch(action.dataset.careerAction){

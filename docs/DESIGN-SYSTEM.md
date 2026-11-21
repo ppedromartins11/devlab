@@ -28,3 +28,11 @@ A navegação não deve exigir uma ordem artificial. O editor da aula é indepen
 3. A mudança não apaga progresso existente no armazenamento local.
 4. Testar as larguras 390px, 768px e 1440px, estados vazio/erro/concluído, teclado e toque.
 5. Não introduzir cópias de interface, conteúdo ou identidade visual de serviços terceiros.
+
+## Atualização visual — Sprint 12
+
+- Menu compacto: início, quatro percursos em Aprender, três atividades em Praticar e três ferramentas em Construir. A árvore de aulas aparece dentro do percurso, não no menu permanente.
+- Aulas frontend/backend: conceito, exemplo, pergunta, prática e revisão aparecem **uma etapa por vez**, navegáveis por botões ou teclas de seta. Caderno e metodologia ficam em seções expansíveis.
+- Projetos profissionais: briefing, requisitos, revisão e evidências ficam em etapas separadas; checklists preservam a marcação existente.
+- Página inicial: uma ação principal para continuar, escolha de trilhas e links de prática, sem banners redundantes.
+- A busca é incremental e não remonta a aplicação inteira; preserva o editor e a prévia ativos.

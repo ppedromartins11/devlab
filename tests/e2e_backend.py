@@ -25,11 +25,14 @@ def main():
         assert page.locator('.be-lesson-row').count()==5
         go(page,base,'backend/aula/node-runtime')
         lesson=page.locator('h1').inner_text();assert 'Node.js:' in lesson
+        page.locator('[data-study-switch="2"]').first.click()
         page.locator('[data-be-answer="0"]').click()
         assert page.locator('.be-feedback.is-error').count()==1
         page.locator('[data-be-answer="1"]').click()
         assert page.locator('.be-feedback.is-success').count()==1
+        page.locator('.cl-support-details summary').first.click()
         page.locator('#be-notes').fill('Testei Node fora do browser e diferenciei DOM de APIs nativas.')
+        page.locator('[data-study-switch="4"]').first.click()
         for index in range(3):page.locator(f'[data-be-check="{index}"]').check()
         assert 'Revisão registrada' in page.locator('.be-status').inner_text()
         page.screenshot(path=str(out/'backend-aula.png'),full_page=True)
@@ -39,8 +42,10 @@ def main():
         second.set_content((ROOT/'offline/index.html').read_text(),wait_until='load')
         go(second,base,'backend/aula/node-runtime')
         assert 'Revisão registrada' in second.locator('.be-status').inner_text()
+        second.locator('.cl-support-details summary').first.click()
         assert 'Testei Node fora' in second.locator('#be-notes').input_value()
         second.close()
+        page.locator('[data-study-switch="3"]').first.click()
         with page.expect_download(timeout=30000) as download_info:
             page.locator('[data-be-download]').click()
         download=download_info.value

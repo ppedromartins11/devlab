@@ -22,10 +22,12 @@ with sync_playwright() as p:
   if width==1440:
    page.screenshot(path=str(Path(__file__).resolve().parents[1]/'docs/screenshots/career-desktop.png'),full_page=True)
    page.locator('[data-career-action="open-workspace"]').click()
+   page.locator('.ws-page').wait_for(timeout=5000)
    assert page.locator('.ws-page').count()==1
    assert page.locator('.ws-tree-file').count()>=3
    page.evaluate("location.hash='#/carreira'")
    page.wait_for_timeout(150)
+   page.locator('[data-study-switch="1"]').first.click()
    page.locator('[data-career-check="0"]').check()
    assert '1/7 requisitos' in page.locator('.career-project-card.active').inner_text()
    page.locator('[data-career-select="api"]').click()

@@ -1,0 +1,108 @@
+/* Sprint 12: UX educacional modular, sem alterar conteúdo, chaves ou contratos. */
+:root{--cl-text:#20302a;--cl-muted:#65756e;--cl-line:#e1e7e2;--cl-soft:#f5f7f4;--cl-green:#215d4c}
+.cl-sidebar{width:238px;background:#f8f9f7;border-right:1px solid var(--cl-line)}
+.cl-sidebar .sidebar-top{min-height:76px;padding:16px 22px}
+.cl-sidebar .sidebar-scroll{padding:0 12px 24px;overflow-y:auto}
+.cl-side-inner{display:flex;flex-direction:column;gap:15px;padding:18px 0}
+.cl-home-link{width:100%;border:1px solid transparent;border-radius:8px;padding:12px 13px;background:transparent;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:650;color:var(--cl-text);cursor:pointer;text-align:left}
+.cl-home-link.active,.cl-nav-link.active{background:#e9f2ec;color:#1a5a44}
+.cl-nav-group{display:flex;flex-direction:column;gap:3px}
+.cl-nav-title,.cl-search-label{padding:4px 12px 7px;font-size:10px;font-weight:780;letter-spacing:.11em;text-transform:uppercase;color:#7c8982}
+.cl-nav-link{min-width:0;width:100%;border:0;background:transparent;border-radius:8px;padding:11px 12px;display:flex;justify-content:space-between;gap:9px;text-align:left;align-items:center;cursor:pointer;color:#3e5047;font-size:12.5px;font-weight:620}
+.cl-nav-link small{color:#89958f;font-size:10px;font-weight:500;white-space:nowrap}
+.cl-nav-link.active small{color:#37745d}
+.cl-home-link:hover,.cl-nav-link:hover,.cl-search-results button:hover{background:#edf2ed}
+.cl-sidebar #lesson-search{display:block;width:calc(100% - 8px);margin:0 4px;padding:10px 11px;min-height:38px;background:#fff;border:1px solid var(--cl-line);border-radius:8px;font-size:12px;color:var(--cl-text)}
+.cl-search-results{display:grid;gap:5px;max-height:60vh;overflow:auto}
+.cl-search-summary{padding:0 9px 5px;color:#586e60;font-size:11px;line-height:1.45}
+.cl-search-results button{display:flex;flex-direction:column;gap:4px;background:transparent;border:0;border-radius:7px;padding:10px;text-align:left;color:var(--cl-text);font-size:12px;cursor:pointer}
+.cl-search-results small{font-size:10px;color:#73877b}
+.cl-sidebar .sidebar-bottom{background:#f8f9f7;border-top:1px solid var(--cl-line);padding:12px 15px}
+.cl-sidebar .avatar{width:29px;height:29px;border-radius:8px;font-size:10px}
+.cl-topbar{border-bottom:1px solid var(--cl-line);background:rgba(255,255,255,.92);min-height:62px;gap:10px}
+.cl-topbar .cl-top-home{border:0;background:transparent;font-size:12px;font-weight:720;color:#245846;cursor:pointer;padding:3px 0}
+.cl-topbar .cl-crumb-divider{color:#aab8ad}.cl-topbar .cl-current-location{font-size:12px;font-weight:540;color:#5b6e62;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:35vw}
+.cl-saving-status{font-size:11px;color:#6d8074;white-space:nowrap}.cl-saving-status span{font-size:10px;color:#3b8a68}
+.cl-home{max-width:1120px;margin:0 auto;padding:8px 2px 34px;color:var(--cl-text)}
+.cl-welcome{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:32px;padding:48px 45px;background:#fff;border:1px solid var(--cl-line);border-radius:12px;align-items:center}
+.cl-welcome h1{font-size:clamp(29px,3.2vw,43px);line-height:1.18;letter-spacing:-.035em;color:#1f3a30;margin:13px 0 12px;font-weight:760}
+.cl-welcome p{font-size:14px;line-height:1.7;color:#6b7b71;max-width:540px;margin:0 0 22px}
+.cl-home-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.cl-home-actions .button-primary{max-width:100%;white-space:normal;text-align:left;font-size:12px}
+.cl-secondary{background:#fff;border:1px solid #ccd9d1;color:#315343;border-radius:8px;padding:12px 16px;font-weight:670;font-size:12px;cursor:pointer}
+.cl-home-progress{padding:22px;border-left:1px solid var(--cl-line);display:flex;flex-direction:column;gap:10px}
+.cl-home-progress strong{font-size:42px;letter-spacing:-.04em;color:#224c3e}.cl-home-progress strong span{color:#9cb3a5;font-size:21px}
+.cl-home-progress>span{font-size:12px;line-height:1.5;color:#6b7b70}
+.cl-progress-track{height:6px;background:#e5ece5;border-radius:999px;overflow:hidden}.cl-progress-track span{display:block;height:100%;background:#377b5f;border-radius:999px}
+.cl-section{padding:42px 0 7px}.cl-section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:19px}
+.cl-section-head h2{font-size:23px;line-height:1.25;letter-spacing:-.025em;margin:7px 0 0}.cl-section-head p{font-size:12px;color:#7b8880;margin:0}
+.cl-track-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cl-track-item{background:#fff;border:1px solid var(--cl-line);border-radius:10px;padding:23px;display:flex;flex-direction:column;align-items:start;gap:11px;text-align:left;cursor:pointer;min-width:0;transition:border-color .15s ease,background .15s ease}
+.cl-track-item:hover{border-color:#89b7a0;background:#fbfdfb}.cl-track-item strong{font-size:19px;letter-spacing:-.02em;color:#284b3e}
+.cl-track-item>span:nth-last-child(2){font-size:12px;line-height:1.6;color:#6b7c70}
+.cl-track-meta{font-size:10px;color:#779183;text-transform:uppercase;letter-spacing:.08em;font-weight:750}
+.cl-track-arrow{margin-top:6px;color:#287253;font-size:12px;font-weight:750}
+.cl-list-actions{border:1px solid var(--cl-line);background:#fff;border-radius:10px;overflow:hidden}
+.cl-list-actions button{display:grid;grid-template-columns:minmax(130px,1fr) minmax(0,1.6fr) auto;gap:18px;align-items:center;padding:19px 22px;border:0;border-bottom:1px solid var(--cl-line);background:#fff;width:100%;text-align:left;cursor:pointer;font-size:12px;color:#35624f}
+.cl-list-actions button:last-child{border-bottom:0}.cl-list-actions button:hover{background:#f9fbf9}.cl-list-actions strong{color:#263f33;font-size:13px}
+.cl-list-actions button span:nth-child(2){color:#7a8a7d}.cl-home-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:25px 2px 2px;margin-top:30px;border-top:1px solid var(--cl-line)}
+.cl-home-footer p{font-size:13px;color:#667b6d;margin:0}.cl-home-footer button{font-size:12px;color:#236449;font-weight:700;background:transparent;border:0;cursor:pointer}
+/* Lesson flow: only one pedagogical module visible at once. */
+.cl-study-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:18px 0 20px;background:#fff;border:1px solid var(--cl-line);border-radius:10px;padding:7px}
+.cl-study-tabs button{border:0;border-radius:7px;background:transparent;padding:13px 8px;min-height:47px;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;color:#6c7b70;font-size:12px;font-weight:650;white-space:nowrap}
+.cl-study-tabs button:hover{background:#f3f7f3}.cl-study-tabs button.active{color:#245b45;background:#e9f3eb}
+.cl-step-index{color:#78968a;font-size:10px;border:1px solid #d0dfd3;border-radius:999px;width:19px;height:19px;display:inline-grid;place-items:center;flex:none}
+.cl-study-tabs button.active .cl-step-index{background:#377b5f;border-color:#377b5f;color:#fff}
+.cl-study-tabs [aria-selected=true]{outline-offset:-2px}
+[data-study-panel][hidden]{display:none!important}
+.cl-next-step{margin:22px 0 2px;background:#285f49;border:1px solid #285f49;color:#fff;border-radius:8px;padding:12px 16px;font-weight:700;cursor:pointer;font-size:12px}
+.cl-next-step:hover{background:#164b36}
+.ft-lesson-page,.be-lesson-page{max-width:990px;margin-inline:auto}
+.ft-lesson-page .ft-learning-shell,.be-lesson-page .be-lesson-columns{display:flex;flex-direction:column;align-items:stretch;gap:15px;grid-template-columns:minmax(0,1fr)}
+.ft-lesson-page .ft-lesson-body,.be-lesson-page .be-lesson-primary{width:100%;min-width:0;max-width:none;display:block}
+.ft-lesson-page .ft-panel,.be-lesson-page .be-panel{padding:30px 34px;border:1px solid var(--cl-line);border-radius:10px;background:#fff;box-shadow:none;margin:0;min-height:220px}
+.ft-lesson-page .ft-panel>h2,.be-lesson-page .be-panel>h2{font-size:22px;line-height:1.3;margin:9px 0 20px}
+.ft-lesson-page .ft-panel>p,.be-lesson-page .be-panel>p{max-width:70ch;line-height:1.8}
+.ft-lesson-page .ft-study-aside,.be-lesson-page .be-lesson-aside{display:flex;flex-direction:column;gap:7px;margin:0;max-width:100%;width:100%;min-width:0}
+.cl-support-details{background:#fff;border:1px solid var(--cl-line);border-radius:9px;padding:0 18px;margin:0}
+.cl-support-details summary{cursor:pointer;list-style:none;padding:14px 0;font-size:12px;font-weight:700;color:#3d6551;display:flex;align-items:center;justify-content:space-between}
+.cl-support-details summary::after{content:'+';font-size:17px;font-weight:500;color:#709280}.cl-support-details[open] summary::after{content:'−'}
+.cl-support-details summary::-webkit-details-marker{display:none}
+.cl-support-details .ft-aside-card,.cl-support-details .be-aside-card{border:0;padding:2px 0 20px;box-shadow:none;background:transparent}
+.cl-support-details textarea{max-width:100%;min-height:130px}
+.ft-lesson-page .ft-lesson-hero,.be-lesson-page .be-lesson-heading{padding:16px 0 10px;background:transparent;border:0;box-shadow:none}
+.ft-lesson-page .ft-lesson-hero h1,.be-lesson-page .be-lesson-heading h1{font-size:clamp(26px,3vw,33px)}
+.ft-lesson-page .ft-pager,.be-lesson-page .be-pager{margin-top:20px}
+.career-page .career-hero{padding:28px 33px}
+.career-page .career-hero h1{font-size:clamp(26px,3vw,34px)}
+.career-page .career-projects{display:flex;flex-direction:column;gap:16px}
+.career-page .career-catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
+.career-page .career-project-card{padding:16px;min-width:0;margin:0}
+.career-page .career-project-card small{display:none}
+.career-page .career-project-card strong{font-size:13px}
+.career-page .career-project-card .career-card-footer{margin-top:9px}
+.career-page .career-detail{min-width:0;width:100%;max-width:none;padding:27px 32px;border:1px solid var(--cl-line);background:#fff;box-shadow:none}
+.career-detail>.cl-study-tabs{grid-template-columns:repeat(4,minmax(0,1fr));margin:16px 0 20px}
+.career-page .career-detail-head{padding:0 0 8px;border-bottom:0}
+.cl-career-panel{max-width:900px;padding:8px 0 20px}
+.cl-career-panel h3{font-size:18px;margin:3px 0 12px}.cl-career-panel p{color:#667a6b;font-size:12px;line-height:1.7}
+.cl-career-panel .career-checks{margin-top:14px}
+.cl-career-panel .career-evidence{margin:0;padding:0;border:0}
+.page-lesson.cl-lesson-learn .lab-pane{display:none!important}
+.page-lesson.cl-lesson-learn .lesson-layout{grid-template-columns:minmax(0,800px);justify-content:center;max-width:900px}
+.page-lesson.cl-lesson-learn .theory-pane{width:100%;max-width:100%}
+/* Foco acessível, além de mouse e hover. */
+.cl-sidebar button:focus-visible,.cl-sidebar input:focus-visible,.cl-home button:focus-visible,.cl-study-tabs button:focus-visible,.cl-next-step:focus-visible,.cl-support-details summary:focus-visible{outline:2px solid #276e50;outline-offset:2px}
+@media(max-width:1160px){.cl-sidebar{width:215px}.cl-welcome{padding:32px}.cl-home{max-width:940px}}
+@media(max-width:860px){.cl-sidebar{width:min(286px,86vw)}.cl-home{padding:0 3px}.cl-welcome{grid-template-columns:minmax(0,1fr)}.cl-home-progress{border-left:0;border-top:1px solid var(--cl-line);padding:14px 0 0}.cl-home-progress strong{font-size:30px}.cl-study-tabs{gap:3px}.cl-study-tabs button{flex-direction:column;gap:5px;font-size:11px;min-height:59px}.cl-track-grid{gap:10px}.cl-list-actions button{grid-template-columns:1fr auto;gap:6px}.cl-list-actions button span:nth-child(2){grid-row:2;grid-column:1}.career-page .career-detail{padding:21px}}
+@media(max-width:600px){.cl-welcome{padding:26px 22px}.cl-welcome h1{font-size:30px}.cl-home-actions{flex-direction:column;align-items:stretch}.cl-home-actions button{width:100%;justify-content:center}.cl-section{padding-top:32px}.cl-section-head{align-items:start;flex-direction:column;gap:6px}.cl-track-grid{grid-template-columns:minmax(0,1fr)}.cl-track-item{padding:18px}.cl-list-actions button{padding:15px}.cl-home-footer{align-items:start;flex-direction:column}.cl-saving-status{font-size:10px}.cl-topbar .cl-current-location{max-width:42vw}.cl-study-tabs{padding:5px;gap:1px}.cl-study-tabs button{font-size:9px;min-width:0;white-space:normal;text-align:center;line-height:1.1;padding:8px 2px;gap:5px}.cl-step-index{width:17px;height:17px;font-size:9px}.ft-lesson-page .ft-panel,.be-lesson-page .be-panel{padding:21px 17px}.career-page .career-catalog{grid-template-columns:1fr;gap:6px}.career-page .career-project-card{padding:12px}.career-page .career-project-card .career-number,.career-page .career-project-card .career-card-footer{font-size:10px}.career-page .career-detail{padding:18px}.career-detail>.cl-study-tabs button{font-size:10px}.cl-home-footer button{padding:3px 0}.cl-topbar .cl-crumb-divider{display:none}}
+@media(prefers-reduced-motion:reduce){.cl-track-item{transition:none}.cl-sidebar *{scroll-behavior:auto!important}}
+
+#cl-nav-groups[hidden],#cl-search-results[hidden]{display:none!important}
+
+/* Conteúdo de apoio em demanda, não mais outra faixa permanente na tela. */
+.cl-course-method{border-top:1px solid var(--cl-line);margin-top:20px;color:#5b7564}
+.cl-course-method>summary{padding:17px 4px;font-size:12px;font-weight:700;cursor:pointer}
+.cl-course-method .ft-method,.cl-course-method .be-method-grid{margin-top:0}
+.career-page .cl-git-help{padding:0 15px;margin:15px 0}
+.career-page .cl-git-help .career-commands{padding:10px 0}

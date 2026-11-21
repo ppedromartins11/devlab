@@ -728,7 +728,147 @@ h1,h2,h3 {font-family: Inter,'Segoe UI', -apple-system, BlinkMacSystemFont, sans
 .career-portfolio{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px}.career-portfolio-preview{background:#f9faf7}.career-portfolio-preview>h2{font-size:30px;letter-spacing:-.05em;margin:14px 0}.career-portfolio-preview>p{color:#617363;line-height:1.7}.career-portfolio-list{display:grid;gap:12px;margin-top:20px}.career-portfolio-list article{background:#fff;border:1px solid #dfe9e0;border-radius:9px;padding:17px}.career-portfolio-list small{font-size:11px;color:#337b54}.career-portfolio-list h3{font-size:17px;margin:7px 0}.career-portfolio-list p{font-size:13px;line-height:1.6;color:#6b7c6e}.career-portfolio-list article span{font-size:11px;color:#3e805b}
 .career-promo{display:flex;align-items:center;justify-content:space-between;gap:18px;background:#e9f3e9;border:1px solid #d5e5d7;padding:28px 32px;border-radius:12px;margin-top:28px}.career-promo h2{font-size:24px;letter-spacing:-.04em;margin:8px 0}.career-promo p{font-size:13px;color:#596f5b;max-width:520px}.career-promo button{flex:none}
 @media(max-width:1060px){.career-projects,.career-git,.career-portfolio{grid-template-columns:1fr}.career-catalog{grid-template-columns:repeat(3,minmax(0,1fr))}.career-project-card{padding:15px}}@media(max-width:720px){.career-page{padding:8px 0 44px}.career-hero{padding:23px;display:block}.career-hero-aside{border:0;border-top:1px solid #dce4db;margin-top:20px;padding:15px 0 0;min-width:0}.career-catalog{grid-template-columns:1fr}.career-projects,.career-git,.career-portfolio{gap:13px}.career-detail,.career-git-description,.career-portfolio-editor,.career-portfolio-preview{padding:19px}.career-url-row{grid-template-columns:1fr;gap:0}.career-git-form{flex-wrap:wrap}.career-git-form button{width:100%}.career-promo{display:block;padding:22px}.career-promo button{margin-top:14px;width:100%}.career-tabs{gap:17px}.career-tabs button{font-size:12px}}
-</style></head><body><div id="root"></div><script>/** Sprint 11 — trilha profissional. Dados autorais e estado de aprendizagem local. */
+
+/* Sprint 12: UX educacional modular, sem alterar conteúdo, chaves ou contratos. */
+:root{--cl-text:#20302a;--cl-muted:#65756e;--cl-line:#e1e7e2;--cl-soft:#f5f7f4;--cl-green:#215d4c}
+.cl-sidebar{width:238px;background:#f8f9f7;border-right:1px solid var(--cl-line)}
+.cl-sidebar .sidebar-top{min-height:76px;padding:16px 22px}
+.cl-sidebar .sidebar-scroll{padding:0 12px 24px;overflow-y:auto}
+.cl-side-inner{display:flex;flex-direction:column;gap:15px;padding:18px 0}
+.cl-home-link{width:100%;border:1px solid transparent;border-radius:8px;padding:12px 13px;background:transparent;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:650;color:var(--cl-text);cursor:pointer;text-align:left}
+.cl-home-link.active,.cl-nav-link.active{background:#e9f2ec;color:#1a5a44}
+.cl-nav-group{display:flex;flex-direction:column;gap:3px}
+.cl-nav-title,.cl-search-label{padding:4px 12px 7px;font-size:10px;font-weight:780;letter-spacing:.11em;text-transform:uppercase;color:#7c8982}
+.cl-nav-link{min-width:0;width:100%;border:0;background:transparent;border-radius:8px;padding:11px 12px;display:flex;justify-content:space-between;gap:9px;text-align:left;align-items:center;cursor:pointer;color:#3e5047;font-size:12.5px;font-weight:620}
+.cl-nav-link small{color:#89958f;font-size:10px;font-weight:500;white-space:nowrap}
+.cl-nav-link.active small{color:#37745d}
+.cl-home-link:hover,.cl-nav-link:hover,.cl-search-results button:hover{background:#edf2ed}
+.cl-sidebar #lesson-search{display:block;width:calc(100% - 8px);margin:0 4px;padding:10px 11px;min-height:38px;background:#fff;border:1px solid var(--cl-line);border-radius:8px;font-size:12px;color:var(--cl-text)}
+.cl-search-results{display:grid;gap:5px;max-height:60vh;overflow:auto}
+.cl-search-summary{padding:0 9px 5px;color:#586e60;font-size:11px;line-height:1.45}
+.cl-search-results button{display:flex;flex-direction:column;gap:4px;background:transparent;border:0;border-radius:7px;padding:10px;text-align:left;color:var(--cl-text);font-size:12px;cursor:pointer}
+.cl-search-results small{font-size:10px;color:#73877b}
+.cl-sidebar .sidebar-bottom{background:#f8f9f7;border-top:1px solid var(--cl-line);padding:12px 15px}
+.cl-sidebar .avatar{width:29px;height:29px;border-radius:8px;font-size:10px}
+.cl-topbar{border-bottom:1px solid var(--cl-line);background:rgba(255,255,255,.92);min-height:62px;gap:10px}
+.cl-topbar .cl-top-home{border:0;background:transparent;font-size:12px;font-weight:720;color:#245846;cursor:pointer;padding:3px 0}
+.cl-topbar .cl-crumb-divider{color:#aab8ad}.cl-topbar .cl-current-location{font-size:12px;font-weight:540;color:#5b6e62;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:35vw}
+.cl-saving-status{font-size:11px;color:#6d8074;white-space:nowrap}.cl-saving-status span{font-size:10px;color:#3b8a68}
+.cl-home{max-width:1120px;margin:0 auto;padding:8px 2px 34px;color:var(--cl-text)}
+.cl-welcome{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:32px;padding:48px 45px;background:#fff;border:1px solid var(--cl-line);border-radius:12px;align-items:center}
+.cl-welcome h1{font-size:clamp(29px,3.2vw,43px);line-height:1.18;letter-spacing:-.035em;color:#1f3a30;margin:13px 0 12px;font-weight:760}
+.cl-welcome p{font-size:14px;line-height:1.7;color:#6b7b71;max-width:540px;margin:0 0 22px}
+.cl-home-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.cl-home-actions .button-primary{max-width:100%;white-space:normal;text-align:left;font-size:12px}
+.cl-secondary{background:#fff;border:1px solid #ccd9d1;color:#315343;border-radius:8px;padding:12px 16px;font-weight:670;font-size:12px;cursor:pointer}
+.cl-home-progress{padding:22px;border-left:1px solid var(--cl-line);display:flex;flex-direction:column;gap:10px}
+.cl-home-progress strong{font-size:42px;letter-spacing:-.04em;color:#224c3e}.cl-home-progress strong span{color:#9cb3a5;font-size:21px}
+.cl-home-progress>span{font-size:12px;line-height:1.5;color:#6b7b70}
+.cl-progress-track{height:6px;background:#e5ece5;border-radius:999px;overflow:hidden}.cl-progress-track span{display:block;height:100%;background:#377b5f;border-radius:999px}
+.cl-section{padding:42px 0 7px}.cl-section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin-bottom:19px}
+.cl-section-head h2{font-size:23px;line-height:1.25;letter-spacing:-.025em;margin:7px 0 0}.cl-section-head p{font-size:12px;color:#7b8880;margin:0}
+.cl-track-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.cl-track-item{background:#fff;border:1px solid var(--cl-line);border-radius:10px;padding:23px;display:flex;flex-direction:column;align-items:start;gap:11px;text-align:left;cursor:pointer;min-width:0;transition:border-color .15s ease,background .15s ease}
+.cl-track-item:hover{border-color:#89b7a0;background:#fbfdfb}.cl-track-item strong{font-size:19px;letter-spacing:-.02em;color:#284b3e}
+.cl-track-item>span:nth-last-child(2){font-size:12px;line-height:1.6;color:#6b7c70}
+.cl-track-meta{font-size:10px;color:#779183;text-transform:uppercase;letter-spacing:.08em;font-weight:750}
+.cl-track-arrow{margin-top:6px;color:#287253;font-size:12px;font-weight:750}
+.cl-list-actions{border:1px solid var(--cl-line);background:#fff;border-radius:10px;overflow:hidden}
+.cl-list-actions button{display:grid;grid-template-columns:minmax(130px,1fr) minmax(0,1.6fr) auto;gap:18px;align-items:center;padding:19px 22px;border:0;border-bottom:1px solid var(--cl-line);background:#fff;width:100%;text-align:left;cursor:pointer;font-size:12px;color:#35624f}
+.cl-list-actions button:last-child{border-bottom:0}.cl-list-actions button:hover{background:#f9fbf9}.cl-list-actions strong{color:#263f33;font-size:13px}
+.cl-list-actions button span:nth-child(2){color:#7a8a7d}.cl-home-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:25px 2px 2px;margin-top:30px;border-top:1px solid var(--cl-line)}
+.cl-home-footer p{font-size:13px;color:#667b6d;margin:0}.cl-home-footer button{font-size:12px;color:#236449;font-weight:700;background:transparent;border:0;cursor:pointer}
+/* Lesson flow: only one pedagogical module visible at once. */
+.cl-study-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px;margin:18px 0 20px;background:#fff;border:1px solid var(--cl-line);border-radius:10px;padding:7px}
+.cl-study-tabs button{border:0;border-radius:7px;background:transparent;padding:13px 8px;min-height:47px;display:flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;color:#6c7b70;font-size:12px;font-weight:650;white-space:nowrap}
+.cl-study-tabs button:hover{background:#f3f7f3}.cl-study-tabs button.active{color:#245b45;background:#e9f3eb}
+.cl-step-index{color:#78968a;font-size:10px;border:1px solid #d0dfd3;border-radius:999px;width:19px;height:19px;display:inline-grid;place-items:center;flex:none}
+.cl-study-tabs button.active .cl-step-index{background:#377b5f;border-color:#377b5f;color:#fff}
+.cl-study-tabs [aria-selected=true]{outline-offset:-2px}
+[data-study-panel][hidden]{display:none!important}
+.cl-next-step{margin:22px 0 2px;background:#285f49;border:1px solid #285f49;color:#fff;border-radius:8px;padding:12px 16px;font-weight:700;cursor:pointer;font-size:12px}
+.cl-next-step:hover{background:#164b36}
+.ft-lesson-page,.be-lesson-page{max-width:990px;margin-inline:auto}
+.ft-lesson-page .ft-learning-shell,.be-lesson-page .be-lesson-columns{display:flex;flex-direction:column;align-items:stretch;gap:15px;grid-template-columns:minmax(0,1fr)}
+.ft-lesson-page .ft-lesson-body,.be-lesson-page .be-lesson-primary{width:100%;min-width:0;max-width:none;display:block}
+.ft-lesson-page .ft-panel,.be-lesson-page .be-panel{padding:30px 34px;border:1px solid var(--cl-line);border-radius:10px;background:#fff;box-shadow:none;margin:0;min-height:220px}
+.ft-lesson-page .ft-panel>h2,.be-lesson-page .be-panel>h2{font-size:22px;line-height:1.3;margin:9px 0 20px}
+.ft-lesson-page .ft-panel>p,.be-lesson-page .be-panel>p{max-width:70ch;line-height:1.8}
+.ft-lesson-page .ft-study-aside,.be-lesson-page .be-lesson-aside{display:flex;flex-direction:column;gap:7px;margin:0;max-width:100%;width:100%;min-width:0}
+.cl-support-details{background:#fff;border:1px solid var(--cl-line);border-radius:9px;padding:0 18px;margin:0}
+.cl-support-details summary{cursor:pointer;list-style:none;padding:14px 0;font-size:12px;font-weight:700;color:#3d6551;display:flex;align-items:center;justify-content:space-between}
+.cl-support-details summary::after{content:'+';font-size:17px;font-weight:500;color:#709280}.cl-support-details[open] summary::after{content:'−'}
+.cl-support-details summary::-webkit-details-marker{display:none}
+.cl-support-details .ft-aside-card,.cl-support-details .be-aside-card{border:0;padding:2px 0 20px;box-shadow:none;background:transparent}
+.cl-support-details textarea{max-width:100%;min-height:130px}
+.ft-lesson-page .ft-lesson-hero,.be-lesson-page .be-lesson-heading{padding:16px 0 10px;background:transparent;border:0;box-shadow:none}
+.ft-lesson-page .ft-lesson-hero h1,.be-lesson-page .be-lesson-heading h1{font-size:clamp(26px,3vw,33px)}
+.ft-lesson-page .ft-pager,.be-lesson-page .be-pager{margin-top:20px}
+.career-page .career-hero{padding:28px 33px}
+.career-page .career-hero h1{font-size:clamp(26px,3vw,34px)}
+.career-page .career-projects{display:flex;flex-direction:column;gap:16px}
+.career-page .career-catalog{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:100%}
+.career-page .career-project-card{padding:16px;min-width:0;margin:0}
+.career-page .career-project-card small{display:none}
+.career-page .career-project-card strong{font-size:13px}
+.career-page .career-project-card .career-card-footer{margin-top:9px}
+.career-page .career-detail{min-width:0;width:100%;max-width:none;padding:27px 32px;border:1px solid var(--cl-line);background:#fff;box-shadow:none}
+.career-detail>.cl-study-tabs{grid-template-columns:repeat(4,minmax(0,1fr));margin:16px 0 20px}
+.career-page .career-detail-head{padding:0 0 8px;border-bottom:0}
+.cl-career-panel{max-width:900px;padding:8px 0 20px}
+.cl-career-panel h3{font-size:18px;margin:3px 0 12px}.cl-career-panel p{color:#667a6b;font-size:12px;line-height:1.7}
+.cl-career-panel .career-checks{margin-top:14px}
+.cl-career-panel .career-evidence{margin:0;padding:0;border:0}
+.page-lesson.cl-lesson-learn .lab-pane{display:none!important}
+.page-lesson.cl-lesson-learn .lesson-layout{grid-template-columns:minmax(0,800px);justify-content:center;max-width:900px}
+.page-lesson.cl-lesson-learn .theory-pane{width:100%;max-width:100%}
+/* Foco acessível, além de mouse e hover. */
+.cl-sidebar button:focus-visible,.cl-sidebar input:focus-visible,.cl-home button:focus-visible,.cl-study-tabs button:focus-visible,.cl-next-step:focus-visible,.cl-support-details summary:focus-visible{outline:2px solid #276e50;outline-offset:2px}
+@media(max-width:1160px){.cl-sidebar{width:215px}.cl-welcome{padding:32px}.cl-home{max-width:940px}}
+@media(max-width:860px){.cl-sidebar{width:min(286px,86vw)}.cl-home{padding:0 3px}.cl-welcome{grid-template-columns:minmax(0,1fr)}.cl-home-progress{border-left:0;border-top:1px solid var(--cl-line);padding:14px 0 0}.cl-home-progress strong{font-size:30px}.cl-study-tabs{gap:3px}.cl-study-tabs button{flex-direction:column;gap:5px;font-size:11px;min-height:59px}.cl-track-grid{gap:10px}.cl-list-actions button{grid-template-columns:1fr auto;gap:6px}.cl-list-actions button span:nth-child(2){grid-row:2;grid-column:1}.career-page .career-detail{padding:21px}}
+@media(max-width:600px){.cl-welcome{padding:26px 22px}.cl-welcome h1{font-size:30px}.cl-home-actions{flex-direction:column;align-items:stretch}.cl-home-actions button{width:100%;justify-content:center}.cl-section{padding-top:32px}.cl-section-head{align-items:start;flex-direction:column;gap:6px}.cl-track-grid{grid-template-columns:minmax(0,1fr)}.cl-track-item{padding:18px}.cl-list-actions button{padding:15px}.cl-home-footer{align-items:start;flex-direction:column}.cl-saving-status{font-size:10px}.cl-topbar .cl-current-location{max-width:42vw}.cl-study-tabs{padding:5px;gap:1px}.cl-study-tabs button{font-size:9px;min-width:0;white-space:normal;text-align:center;line-height:1.1;padding:8px 2px;gap:5px}.cl-step-index{width:17px;height:17px;font-size:9px}.ft-lesson-page .ft-panel,.be-lesson-page .be-panel{padding:21px 17px}.career-page .career-catalog{grid-template-columns:1fr;gap:6px}.career-page .career-project-card{padding:12px}.career-page .career-project-card .career-number,.career-page .career-project-card .career-card-footer{font-size:10px}.career-page .career-detail{padding:18px}.career-detail>.cl-study-tabs button{font-size:10px}.cl-home-footer button{padding:3px 0}.cl-topbar .cl-crumb-divider{display:none}}
+@media(prefers-reduced-motion:reduce){.cl-track-item{transition:none}.cl-sidebar *{scroll-behavior:auto!important}}
+
+#cl-nav-groups[hidden],#cl-search-results[hidden]{display:none!important}
+
+/* Conteúdo de apoio em demanda, não mais outra faixa permanente na tela. */
+.cl-course-method{border-top:1px solid var(--cl-line);margin-top:20px;color:#5b7564}
+.cl-course-method>summary{padding:17px 4px;font-size:12px;font-weight:700;cursor:pointer}
+.cl-course-method .ft-method,.cl-course-method .be-method-grid{margin-top:0}
+.career-page .cl-git-help{padding:0 15px;margin:15px 0}
+.career-page .cl-git-help .career-commands{padding:10px 0}
+</style></head><body><div id="root"></div><script>/** Navegação curricular independente da renderização e do armazenamento. */
+const learningAreas = Object.freeze([
+  {id:'learn', label:'Aprender', routes:Object.freeze([
+    {route:'curso/javascript',label:'JavaScript',note:'24 aulas'},
+    {route:'curso/typescript',label:'TypeScript',note:'5 aulas'},
+    {route:'frontend',label:'Formação frontend',note:'25 aulas'},
+    {route:'backend',label:'Formação backend',note:'25 aulas'}
+  ])},
+  {id:'practice',label:'Praticar',routes:Object.freeze([
+    {route:'oficina',label:'Oficina de código',note:'6 missões'},
+    {route:'revisao',label:'Revisões',note:'Memorização'},
+    {route:'desafios',label:'Desafios',note:'3 desafios'}
+  ])},
+  {id:'build',label:'Construir',routes:Object.freeze([
+    {route:'workspace',label:'Workspace',note:'Projetos'},
+    {route:'projeto',label:'TaskFlow',note:'Projeto guiado'},
+    {route:'carreira',label:'Jornada profissional',note:'Portfólio'}
+  ])}
+]);
+
+function searchLearningCatalog(query, items, limit=12){
+  const terms=String(query??'').trim().toLocaleLowerCase('pt-BR').split(/\s+/u).filter(Boolean);
+  if(!terms.length)return [];
+  return items.filter(item=>terms.every(term=>(item.title+' '+(item.summary||'')+' '+(item.area||'')).toLocaleLowerCase('pt-BR').includes(term))).slice(0,limit);
+}
+
+function normalizeStudyStep(value, count=5){
+  const step=Number(value);
+  return Number.isInteger(step)&&step>=0&&step<count?step:0;
+}
+
+/** Sprint 11 — trilha profissional. Dados autorais e estado de aprendizagem local. */
 const careerProjects = Object.freeze([
   {
     id:'site', title:'Biblioteca de estudos', category:'Frontend', level:'Intermediário', duration:'4–6 h',
@@ -2749,18 +2889,13 @@ function progress(v){return `<div class="progress-track"><div class="progress-fi
 function pill(s,c=''){return `<span class="pill ${c}">${s}</span>`;}
 function iconMark(checked){return checked?'✓':'○';}
 function toast(message){ const old=$('.toast');if(old)old.remove();const div=document.createElement('div');div.className='toast';div.setAttribute('role','status');div.textContent='✓  '+message;document.body.append(div);setTimeout(()=>div.remove(),2600); }
-function sidebar(){
-  const renderUnits=(units,lang)=> units.map(unit=>{
-    const f=unit.lessons.filter(l=>(l.title+' '+l.summary).toLowerCase().includes(st.search.toLowerCase()));
-    if(st.search && !f.length)return '';
-    const open=st.expanded.includes(unit.id) || st.search;
-    return `<div class="nav-unit"><button class="unit-toggle" data-unit="${unit.id}"><span>${esc(unit.title.replace(/^\d+\. /,''))}</span><span>${open?'⌄':'›'}</span></button>${open?`<div class="unit-lessons">${f.map(l=>`<button class="lesson-link ${getRoute().id===l.id?'active-lesson':''}" data-nav="aula/${l.id}"><span class="lesson-status ${st.completed.includes(l.id)?'done':''}">${iconMark(st.completed.includes(l.id))}</span><span>${esc(l.title)}</span></button>`).join('')}</div>`:''}</div>`;
-  }).join('');
-  return `<aside class="sidebar ${st.mobileMenu?'sidebar-open':''}"><div class="sidebar-top"><button class="brand-button" data-nav="inicio"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>LABORATÓRIO DE CÓDIGO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu">✕</button></div><div class="sidebar-scroll"><div class="sidebar-group"><div class="sidebar-label">NAVEGAÇÃO</div><button class="side-link ${getRoute().page==='home'?'selected':''}" data-nav="inicio"><span>▦</span> Visão geral</button><button class="side-link ${getRoute().page==='project'?'selected':''}" data-nav="projeto"><span>▤</span> Projeto TaskFlow <span class="side-count">${st.milestones.length}/${allJsLessons.length}</span></button><button class="side-link ${['missions','mission'].includes(getRoute().page)?'selected':''}" data-nav="oficina"><span>⌘</span> Oficina de código <span class="side-count">${missions.filter(m=>st.missionProgress[m.id]?.passed).length}/${missions.length}</span></button><button class="side-link ${getRoute().page.startsWith('frontend-')?'selected':''}" data-nav="frontend"><span>◈</span> Formação frontend <span class="side-count">${frontendSummary().done}/${frontendSummary().lessons}</span></button><button class="side-link ${getRoute().page.startsWith('backend-')?'selected':''}" data-nav="backend"><span>⌁</span> Formação backend <span class="side-count">${backendSummary().done}/${backendSummary().lessons}</span></button><button class="side-link ${getRoute().page==='workspace'?'selected':''}" data-nav="workspace"><span>⌑</span> Workspace <span class="side-count">NOVO</span></button><button class="side-link ${getRoute().page==='career'?'selected':''}" data-nav="carreira"><span>▧</span> Jornada profissional <span class="side-count">3 projetos</span></button><button class="side-link ${getRoute().page==='review'?'selected':''}" data-nav="revisao"><span>↺</span> Revisão espaçada <span class="side-count">${reviewsDue().length}</span></button><button class="side-link ${getRoute().page==='briefs'?'selected':''}" data-nav="desafios"><span>◫</span> Desafios reais <span class="side-count">3</span></button></div><div class="side-search"><span>⌕</span><input id="lesson-search" aria-label="Buscar aulas" placeholder="Buscar aulas..." value="${esc(st.search)}" /></div><div class="sidebar-group sidebar-course"><div class="sidebar-label">CURSOS</div><button class="course-link" data-nav="curso/javascript"><span class="js-logo">JS</span><span>JavaScript<small>${allJsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allJsLessons.length} aulas</small></span>›</button>${renderUnits(jsUnits,'js')}<button class="course-link ts-nav" data-nav="curso/typescript"><span class="ts-logo">TS</span><span>TypeScript<small>${allTsLessons.filter(x=>st.completed.includes(x.id)).length} de ${allTsLessons.length} aulas · trilha 2</small></span>›</button>${renderUnits(tsUnits,'ts')}</div></div><div class="sidebar-bottom"><div class="avatar">P</div><div><strong>Progresso local</strong><small>${xp()} XP · ${streak()} dias de sequência</small></div><span class="online-dot"></span></div></aside>`;
-}
-function topbar(){let r=getRoute(),l=currentLesson();let bread=r.page==='home'?'Visão geral':r.page==='workspace'?'Workspace':r.page==='career'?'Jornada profissional':r.page==='backend-home'?'Formação backend':r.page==='backend-lab'?'Laboratório HTTP':r.page==='backend-track'?(findBackendTrack(r.id)?.title||'Formação backend'):r.page==='backend-lesson'?(findBackendLesson(r.id)?.title||'Aula backend'):r.page==='frontend-home'?'Formação frontend':r.page==='frontend-track'?(findFrontendTrack(r.id)?.title||'Formação'):r.page==='frontend-lesson'?(findFrontendLesson(r.id)?.title||'Aula frontend'):r.page==='project'?'Projeto TaskFlow':r.page==='review'?'Revisão espaçada':r.page==='briefs'?'Desafios reais':r.page==='missions'?'Oficina de código':r.page==='mission'?('Oficina / '+(findMission(r.id)?.title||'Missão')):r.page==='course'?(r.lang==='ts'?'TypeScript':'JavaScript'):`${isTs(l)?'TypeScript':'JavaScript'} / ${l.title}`;return `<header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu">☰</button><span class="breadcrumbs"><button data-nav="inicio">Meu aprendizado</button><span>› ${esc(bread)}</span></span></div><div class="topbar-right"><span class="topbar-xp">${xp()} XP</span><span class="sync-label"><span class="sync-dot"></span> Salvamento local</span><button class="topbar-project" data-nav="projeto">Projeto TaskFlow →</button></div></header>`;}
+function sidebar(){return cleanSidebar();}
+
+function topbar(){return cleanTopbar();}
+
 function stat(sym,value,label){return `<div class="stat"><span class="stat-icon">${sym}</span><strong>${esc(value)}</strong><span>${esc(label)}</span></div>`;}
-function home(){return `<div class="home-page"><div class="welcome-overline"><span class="welcome-dot"></span> PAINEL DE ESTUDOS</div><div class="hero-banner"><div class="hero-text">${pill('TRILHA DE DESENVOLVIMENTO WEB','hero-chip')}<h1>JavaScript na prática.<br/><em>Do conceito ao código.</em></h1><p>Estude um conceito, resolva um exercício e aplique a solução no TaskFlow. Seu código fica salvo neste navegador.</p><div class="hero-buttons"><button class="button-primary" data-nav="aula/${st.last}">${st.completed.length?'Continuar estudando':'Começar pelo básico'} →</button><button class="button-ghost" data-nav="workspace">Abrir workspace</button></div></div><div class="hero-art"><div class="hero-code-card"><div class="window-dots"><i></i><i></i><i></i></div><div class="hero-code-lines"><span><b>const</b> projeto = &#123;</span><span>&nbsp;&nbsp;objetivo: <strong>'aprender'</strong>,</span><span>&nbsp;&nbsp;pratica: <strong>true</strong>,</span><span>&nbsp;&nbsp;resultado: <strong>'construir'</strong></span><span>&#125;;</span><span class="hero-comment">// Seu progresso começa aqui_</span></div></div><div class="hero-float">&lt;/&gt;</div></div></div><section class="stats-grid">${stat('▤',st.completed.length+'/'+allLessons.length,'aulas concluídas')}${stat('★',xp()+' XP','experiência conquistada')}${stat('🔥',streak()+' dias','sequência de estudos')}${stat('◈',percent('js')+'%','avanço em JavaScript')}</section><section class="learning-tools" aria-label="Próximas ações"><div class="learning-tools-copy"><span class="section-kicker">ESTUDE COM INTENÇÃO</span><h2>Praticar também é revisar.</h2><p>Recupere conceitos de memória e resolva problemas fora das aulas guiadas.</p></div><div class="learning-tools-grid"><button class="learning-tool" data-nav="revisao"><span class="learning-tool-symbol">↺</span><span><strong>Revisão espaçada</strong><small>${reviewsDue().length?reviewsDue().length+" conceito(s) para recordar hoje":"Nenhuma revisão vencida"}</small></span><span aria-hidden="true">→</span></button><button class="learning-tool" data-nav="desafios"><span class="learning-tool-symbol">◫</span><span><strong>Desafios independentes</strong><small>3 briefs, requisitos e editor próprio</small></span><span aria-hidden="true">→</span></button></div></section><section class="mission-promo"><div><span class="section-kicker">NOVA ÁREA · OFICINA</span><h2>Escreva, depure e comprove.</h2><p>Seis missões com verificação automática e um ambiente de execução isolado. Nas avaliações finais, não há código inicial.</p></div><button class="button-primary" data-nav="oficina">Abrir Oficina →</button></section><section class="micro-session"><div><span class="section-kicker">RETOME DE ONDE PAROU</span><h2>Uma aula de cada vez.</h2><p>Volte à última aula aberta e continue no mesmo ponto.</p></div><button class="button-primary" data-nav="aula/${st.last}">Continuar a trilha →</button></section><section class="section-block"><div class="section-heading"><div><span class="section-kicker">CURSOS</span><h2>Seu plano de estudos</h2><p>Fundamentos de JavaScript primeiro. TypeScript depois.</p></div></div><div class="tracks-grid">${trackCard('js')}${trackCard('ts')}</div></section><section class="project-feature"><div class="feature-icon">▤</div><div><span class="section-kicker">PROJETO PRÁTICO</span><h3>TaskFlow · projeto de aplicação</h3><p>Construa um gerenciador de tarefas aplicando cada conceito da teoria. Edite HTML, CSS e JavaScript com prévia ao vivo.</p></div><button class="button-outline" data-nav="workspace">Desenvolver com arquivos reais →</button></section><footer class="footer-note">DevLab · Projeto pessoal · Seu progresso é armazenado neste navegador.</footer></div>`;}
+function home(){return cleanHome();}
+
 function trackCard(lang){const js=lang==='js',value=percent(lang);const lessons=js?allJsLessons:allTsLessons;return `<div class="track-card"><div class="track-top"><div class="track-symbol ${js?'js-track-symbol':'ts-track-symbol'}">${js?'JS':'TS'}</div>${pill(js?'TRILHA PRINCIPAL':'ETAPA 2',js?'':'soft-blue')}</div><h3>${js?'JavaScript':'TypeScript'}</h3><p>${js?'Lógica, arrays, funções, DOM, APIs, armazenamento e aplicações completas.':'Tipagem, interfaces, funções seguras e modelos de dados para projetos maiores.'}</p><div class="track-meta"><span>▤ ${lessons.length} aulas</span><span>⌘ Editor + prévia</span></div><div class="track-bottom"><div class="progress-copy"><span>Seu progresso</span><strong>${lessons.filter(x=>st.completed.includes(x.id)).length}/${lessons.length}</strong></div>${progress(value)}<button data-nav="curso/${js?'javascript':'typescript'}">Explorar trilha →</button></div></div>`;}
 function course(lang){let units=lang==='ts'?tsUnits:jsUnits, lessons=lang==='ts'?allTsLessons:allJsLessons,done=lessons.filter(x=>st.completed.includes(x.id)).length;return `<div class="course-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="course-hero"><div class="course-badge ${lang==='ts'?'badge-ts':'badge-js'}">${lang==='ts'?'TS':'JS'}</div><div><span class="section-kicker">${lang==='ts'?'TRILHA 02 · PRÓXIMO PASSO':'TRILHA 01 · SUA BASE'}</span><h1>${lang==='ts'?'TypeScript':'JavaScript'}</h1><p>${lang==='ts'?'Adicione tipos à sua base de JavaScript e aprenda a criar sistemas mais seguros.':'Do zero à prática: desenvolva lógica, entenda o navegador e construa interfaces reais sem pular fundamentos.'}</p><div class="course-metrics"><span>▤ ${units.length} unidades</span><span>⌘ ${lessons.length} aulas</span><span>▶ Laboratório integrado</span></div></div></div>${lang==='ts'?'<div class="course-hint">ⓘ Recomendação: estude JavaScript antes de começar. O editor compila TypeScript e executa a página na prévia.</div>':''}<div class="course-progress"><div class="course-progress-top"><strong>Seu progresso na trilha</strong><span>${done}/${lessons.length} aulas · <strong>${percent(lang)}%</strong></span></div>${progress(percent(lang))}</div><div class="unit-section"><div class="section-heading"><div><span class="section-kicker">CONTEÚDO DO CURSO</span><h2>Unidades e aulas</h2><p>Estude em ordem ou abra a aula que quiser revisar.</p></div></div><div class="unit-cards">${units.map((u,i)=>`<div class="unit-card unit-path-card"><div class="unit-card-head"><div class="unit-number">${String(i+1).padStart(2,'0')}</div><div><h3>${esc(u.title.replace(/^\d+\. /,''))}</h3><p>${esc(u.subtitle)}</p></div><span class="unit-meta">${u.lessons.filter(l=>st.completed.includes(l.id)).length}/${u.lessons.length}</span></div><div class="unit-items">${u.lessons.map((l,j)=>`<button class="unit-item ${st.practicePassed.includes(l.id)?'unit-verified':''}" data-nav="aula/${l.id}"><span class="unit-item-icon ${st.completed.includes(l.id)?'completed':''}">${st.completed.includes(l.id)?'✓':String(j+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.summary)}</small></span><span class="unit-item-right">${l.minutes} min ›</span></button>`).join('')}</div></div>`).join('')}</div></div></div>`;}
 function project(){return `<div class="project-page"><button class="back-link" data-nav="inicio">← Visão geral</button><div class="project-hero">${pill('▤ PROJETO PRÁTICO','hero-chip')}<h1>TaskFlow <span>— seu projeto evolutivo.</span></h1><p>Não é apenas uma série de exercícios. Você tem um produto próprio, que melhora conforme aprende. Todas as aulas compartilham o mesmo código no modo <strong>Projeto guiado</strong>.</p><button class="button-primary" data-nav="aula/${st.last}">⌘ Abrir meu código →</button></div><div class="project-stats">${stat('✓',st.milestones.length+'/'+allJsLessons.length,'marcos praticados')}${stat('⌘','HTML + CSS + JS','base do produto')}${stat('▣','Ao vivo','visualização da interface')}</div><div class="project-board"><div class="project-board-title"><span class="section-kicker">ROADMAP DO PRODUTO</span><h2>Implemente passo a passo</h2><p>Marque um marco depois de aplicar o conceito no seu projeto. A validação é manual.</p></div>${jsUnits.map((u,i)=>`<div class="project-unit"><div class="project-unit-head"><span class="project-stage">FASE ${String(i+1).padStart(2,'0')}</span><strong>${esc(u.title.replace(/^\d+\. /,''))}</strong></div><div class="project-todos">${u.lessons.map(l=>`<div class="project-todo"><button class="project-check ${st.milestones.includes(l.id)?'checked':''}" data-milestone="${l.id}" aria-label="${st.milestones.includes(l.id)?'Desmarcar':'Marcar'} marco">${st.milestones.includes(l.id)?'✓':''}</button><div><strong class="${st.milestones.includes(l.id)?'struck':''}">${esc(l.title)}</strong><p>${esc(l.project)}</p></div><button class="link-open" data-nav="aula/${l.id}">→</button></div>`).join('')}</div></div>`).join('')}<div class="project-unit"><div class="project-unit-head"><span class="project-stage ts-stage">PRÓXIMA FASE</span><strong>Melhorar o projeto com TypeScript</strong></div><p class="stage-desc">Depois de consolidar JS, modele tarefas com interfaces e tipifique suas funções.</p><button class="button-outline" data-nav="curso/typescript">Ir para TypeScript →</button></div></div></div>`;}
@@ -2818,8 +2953,9 @@ async function evaluateMission(){
 }
 
 function render(){const r=getRoute();if(r.page==='lesson'){st.last=currentLesson().id;save('last',st.last);if(!['html','css','js','ts'].includes(st.tab))st.tab=isTs(currentLesson())?'ts':'js';if(isTs(currentLesson())&&st.tab==='js')st.tab='ts';if(!isTs(currentLesson())&&st.tab==='ts')st.tab='js';}
- $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?'page-lesson':r.page==='workspace'?'page-workspace':''}">${r.page==='home'?home()+frontendIntroCard()+backendHomePromo()+careerHomePromo():r.page==='career'?careerPage():r.page==='backend-home'?backendHomePage():r.page==='backend-track'?backendTrackPage(r.id):r.page==='backend-lesson'?backendLessonPage(r.id):r.page==='backend-lab'?backendHttpLabPage():r.page==='frontend-home'?frontendHomePage():r.page==='frontend-track'?frontendTrackPage(r.id):r.page==='frontend-lesson'?frontendLessonPage(r.id):r.page==='workspace'?workspacePage():r.page==='course'?course(r.lang):r.page==='project'?project():r.page==='review'?reviewPage():r.page==='briefs'?briefsPage():r.page==='missions'?missionHubPage():r.page==='mission'?missionEditorPage():lessonPage(currentLesson())}</main></div></div>`;
+ $('#root').innerHTML=`<a href="#main-content" class="skip-link">Ir para o conteúdo</a><div class="app-layout">${sidebar()}${st.mobileMenu?'<button class="mobile-overlay" data-action="close-menu" aria-label="Fechar navegação"></button>':''}<div class="main-pane">${topbar()}<main id="main-content" class="main-content ${r.page==='lesson'?`page-lesson ${st.step==='learn'?'cl-lesson-learn':''}`:r.page==='workspace'?'page-workspace':''}">${r.page==='home'?home():r.page==='career'?careerPage():r.page==='backend-home'?backendHomePage():r.page==='backend-track'?backendTrackPage(r.id):r.page==='backend-lesson'?backendLessonPage(r.id):r.page==='backend-lab'?backendHttpLabPage():r.page==='frontend-home'?frontendHomePage():r.page==='frontend-track'?frontendTrackPage(r.id):r.page==='frontend-lesson'?frontendLessonPage(r.id):r.page==='workspace'?workspacePage():r.page==='course'?course(r.lang):r.page==='project'?project():r.page==='review'?reviewPage():r.page==='briefs'?briefsPage():r.page==='missions'?missionHubPage():r.page==='mission'?missionEditorPage():lessonPage(currentLesson())}</main></div></div>`;
  if(r.page==='lesson'){refreshEditor();runPreview();}else if(r.page==='mission'){refreshEditor();}else if(r.page==='workspace'){workspaceMount();}
+ mountCleanInterface();
 }
 function refreshEditor(){const editor=$('#code-editor');if(!editor)return;const value=editor.value;const el=$('#syntax-layer');if(el)el.innerHTML=syntax(value);const gutter=$('#editor-lines');if(gutter)gutter.textContent=Array.from({length:Math.max(1,value.split('\n').length)},(_,i)=>String(i+1)).join('\n');}
 function onEditorInput(){if(getRoute().page==='mission'){const id=getRoute().id;st.missionAttempt++;st.missionDrafts[id]=$('#code-editor').value;save('mission-drafts',st.missionDrafts);if(st.missionProgress[id]?.passed && st.missionProgress[id].passedCode!==st.missionDrafts[id]){st.missionProgress[id].passed=false;save('mission-progress',st.missionProgress);const status=$('.mission-status');if(status){status.textContent='Aguardando testes';status.classList.remove('is-passed');}const counter=$('.side-link[data-nav="oficina"] .side-count');if(counter)counter.textContent=missions.filter(m=>st.missionProgress[m.id]?.passed).length+'/'+missions.length;}st.missionResult=null;st.missionChecking=false;refreshEditor();return;}if(st.pendingCheck){clearTimeout(st.pendingCheck.timer);st.pendingCheck=null;}st.checkResult=null;const l=currentLesson(),draft=activeDraft(l),tab=activeTab(l);draft[tab]=$('#code-editor').value;if(st.mode==='exercise'){st.exercises[l.id]=draft;save('exercises',st.exercises)}else if(st.mode==='brief'){st.briefDrafts[st.activeBrief]=draft;save('brief-drafts',st.briefDrafts)}else if(isTs(l))save('project-ts',st.projectTs);else save('project-js',st.projectJs);if(st.mode==='exercise' && st.verifiedDrafts[l.id] && st.verifiedDrafts[l.id]!==JSON.stringify(draft)){delete st.verifiedDrafts[l.id];save('verified-drafts',st.verifiedDrafts);st.practicePassed=st.practicePassed.filter(id=>id!==l.id);save('practice-passed',st.practicePassed);}refreshEditor();clearTimeout(runnerTimer);runnerTimer=setTimeout(runPreview,650);}
@@ -2948,11 +3084,11 @@ function action(name){if(getRoute().page==='workspace')return;if(getRoute().page
  case 'export':if(isTs(l))downloadFile((st.mode==='project'?'taskflow-ts':l.id)+'.ts',draft.ts||'','text/plain');else downloadFile((st.mode==='project'?'taskflow':st.mode==='brief'?st.activeBrief:l.id)+'.html',makeExportHtml(draft));toast('Arquivo exportado.');break;
  case 'copy-code':clipboard(draft[activeTab(l)]||'');break;
  case 'copy-example':clipboard(l.example);break;
- case 'open-menu':st.mobileMenu=true;render();break;
- case 'close-menu':st.mobileMenu=false;render();break;
+ case 'open-menu':st.mobileMenu=true;render();$('.close-sidebar')?.focus();break;
+ case 'close-menu':st.mobileMenu=false;render();$('.mobile-menu-btn')?.focus();break;
  }}
 window.addEventListener('keydown',event=>{
-  if(event.key==='Escape'&&st.mobileMenu){st.mobileMenu=false;render();return;}
+  if(event.key==='Escape'&&st.mobileMenu){st.mobileMenu=false;render();$('.mobile-menu-btn')?.focus();return;}
   if((event.ctrlKey||event.metaKey)&&event.key==='Enter'&&!event.defaultPrevented&&['lesson','mission'].includes(getRoute().page)){
     event.preventDefault();if(getRoute().page==='mission')evaluateMission();else {runPreview();toast('Prévia atualizada.');}
   }
@@ -2974,7 +3110,7 @@ window.addEventListener('click',event=>{let target=event.target.closest('[data-n
  if(target.dataset.complete){const id=target.dataset.complete;st.completed=st.completed.includes(id)?st.completed.filter(x=>x!==id):[...st.completed,id];save('completed',st.completed);render();toast(st.completed.includes(id)?'Aula marcada como concluída.':'Aula desmarcada.');return;}
  if(target.dataset.milestone){const id=target.dataset.milestone;st.milestones=st.milestones.includes(id)?st.milestones.filter(x=>x!==id):[...st.milestones,id];save('milestones',st.milestones);if(st.milestones.includes(id))recordActivity();render();return;}
 });
-window.addEventListener('input',event=>{if(event.target?.id==='code-editor')onEditorInput();if(event.target?.id==='lesson-note'){st.notes[currentLesson().id]=event.target.value;save('notes',st.notes);}if(event.target?.id==='lesson-search'){const p=event.target.selectionStart;st.search=event.target.value;render();const input=$('#lesson-search');input?.focus();input?.setSelectionRange(p,p);}});
+window.addEventListener('input',event=>{if(event.target?.id==='code-editor')onEditorInput();if(event.target?.id==='lesson-note'){st.notes[currentLesson().id]=event.target.value;save('notes',st.notes);}if(event.target?.id==='lesson-search'){st.search=event.target.value;updateSidebarSearch();}});
 window.addEventListener('scroll',event=>{if(event.target?.id==='code-editor'){
   const a=event.target;const pre=$('#syntax-layer'),g=$('#editor-lines');if(pre){pre.scrollTop=a.scrollTop;pre.scrollLeft=a.scrollLeft;}if(g)g.scrollTop=a.scrollTop;
 }},true);
@@ -3199,7 +3335,7 @@ function frontendHomePage(){const s=frontendSummary();return `<section class="ft
   <div class="ft-hero"><div><span class="section-kicker">FORMAÇÃO FRONTEND · SPRINT 09</span><h1>Aprenda a construir<br><em>interfaces completas.</em></h1><p>Uma sequência de estudos para sair da teoria e criar páginas, componentes e aplicações. Os exercícios de HTML/CSS/JS abrem no Workspace; os starters TypeScript e React são projetos Vite para VS Code.</p></div><div class="ft-hero-counter"><strong>${s.lessons}</strong><span>aulas práticas em ${s.tracks} percursos</span><span>${s.done} revisadas por você</span></div></div>
   <div class="ft-section-heading"><div><span class="section-kicker">SEU CAMINHO</span><h2>Escolha a próxima competência</h2></div><span>Ordem sugerida: HTML → CSS → JavaScript → TypeScript → React</span></div>
   <div class="ft-track-grid">${frontendTracks.map(frontendTrackCard).join('')}</div>
-  <div class="ft-method"><div><strong>01 / Entenda</strong><p>Conceito, exemplo e pergunta para identificar o motivo da solução.</p></div><div><strong>02 / Pratique</strong><p>Projeto real em arquivos, sem entregar a atividade resolvida.</p></div><div><strong>03 / Revise</strong><p>Checklist de revisão manual. Não confunda marcação com teste automático de código.</p></div></div>
+  <details class="cl-course-method"><summary>Como funciona a formação</summary><div class="ft-method"><div><strong>01 / Entenda</strong><p>Conceito, exemplo e pergunta para identificar o motivo da solução.</p></div><div><strong>02 / Pratique</strong><p>Projeto real em arquivos, sem entregar a atividade resolvida.</p></div><div><strong>03 / Revise</strong><p>Checklist de revisão manual. Não confunda marcação com teste automático de código.</p></div></div></details>
  </section>`;}
 function frontendTrackPage(id){const track=findFrontendTrack(id);if(!track)return `<section class="ft-page"><h1>Trilha não encontrada</h1><button data-nav="frontend">Voltar</button></section>`;
  const done=frontendTrackDone(track),last=track.lessons.find(l=>!frontendDone(l))||track.lessons[0];
@@ -3289,7 +3425,7 @@ function backendHomePage(){const s=backendSummary();return `<section class="be-p
  <header class="be-hero"><div><span class="section-kicker">FORMAÇÃO BACKEND · SPRINT 10</span><h1>Construa o servidor.<br><em>Entenda o sistema inteiro.</em></h1><p>Aprenda a receber requisições HTTP, validar dados, escrever SQL e proteger recursos. Pratique conceitos aqui e rode APIs Node.js reais no VS Code.</p><div class="be-hero-actions"><button class="ws-main-button" data-nav="backend/lab">Abrir laboratório HTTP →</button><span>Simulação didática, sem servidor ou login reais.</span></div></div><div class="be-stat"><strong>${s.lessons}</strong><span>aulas em ${s.tracks} percursos</span><small>${s.done} revisadas por você</small></div></header>
  <div class="be-section-head"><div><span class="section-kicker">ROTEIRO DE ESTUDOS</span><h2>Aprenda uma camada por vez</h2></div><span>Node → HTTP → PostgreSQL → Segurança → Projeto final</span></div>
  <div class="be-track-grid">${backendTracks.map(backendTrackCard).join('')}</div>
- <section class="be-method-grid"><div><span>01 / COMPREENDA</span><h3>Entenda a responsabilidade</h3><p>Teoria, exemplos e verificações de compreensão para cada etapa.</p></div><div><span>02 / EXPERIMENTE</span><h3>Inspecione o HTTP</h3><p>Envie requisições num simulador que mostra erros, status e autorização por objeto.</p></div><div><span>03 / IMPLEMENTE</span><h3>Execute uma API real</h3><p>Baixe o projeto inicial, teste o servidor Node local e evolua o código.</p></div></section>
+ <details class="cl-course-method"><summary>Como funciona a formação</summary><section class="be-method-grid"><div><span>01 / COMPREENDA</span><h3>Entenda a responsabilidade</h3><p>Teoria, exemplos e verificações de compreensão para cada etapa.</p></div><div><span>02 / EXPERIMENTE</span><h3>Inspecione o HTTP</h3><p>Envie requisições num simulador que mostra erros, status e autorização por objeto.</p></div><div><span>03 / IMPLEMENTE</span><h3>Execute uma API real</h3><p>Baixe o projeto inicial, teste o servidor Node local e evolua o código.</p></div></section></details>
  <p class="be-disclaimer"><strong>Escopo:</strong> o laboratório HTTP é uma simulação no navegador. Os projetos ZIP usam Node.js real; PostgreSQL, login e deploy devem ser configurados no seu ambiente. Marcar critérios não é uma avaliação automática do código.</p>
  </section>`;}
 function backendTrackPage(id){const track=findBackendTrack(id);if(!track)return `<section class="be-page"><h1>Percurso não encontrado</h1><button data-nav="backend">Voltar</button></section>`;
@@ -3379,7 +3515,7 @@ function careerCreateWorkspace(){
 }
 window.addEventListener('click',event=>{
  const tab=event.target.closest('[data-career-tab]');if(tab){cst.tab=tab.dataset.careerTab;careerPersist();render();return;}
- const select=event.target.closest('[data-career-select]');if(select){if(!careerFindProject(select.dataset.careerSelect))return;cst.selected=select.dataset.careerSelect;careerPersist();render();return;}
+ const select=event.target.closest('[data-career-select]');if(select){if(!careerFindProject(select.dataset.careerSelect))return;studyUi.careerPhase=0;cst.selected=select.dataset.careerSelect;careerPersist();render();return;}
  const example=event.target.closest('[data-career-example]');if(example){const el=$('#career-git-command');if(el){el.value=example.dataset.careerExample;el.focus();}return;}
  const action=event.target.closest('[data-career-action]');if(!action)return;
  switch(action.dataset.careerAction){
@@ -3426,6 +3562,124 @@ window.addEventListener('submit',event=>{
  if(event.target?.id!=='career-git-form')return;
  event.preventDefault();const command=$('#career-git-command')?.value||'';
  cst.git=gitExecute(cst.git,command);careerPersist();render();$('#career-git-command')?.focus();
+});
+
+/* DevLab 12 — estrutura simples de navegação e módulos progressivos. */
+const studyUi = {active:Object.create(null),careerPhase:0};
+const studyLabels = ['Entender','Exemplo','Responder','Praticar','Revisar'];
+const careerLabels = ['Briefing','Requisitos','Revisão','Evidências'];
+
+let learningIndexCache=null;
+function learningCatalogEntries(){
+ if(learningIndexCache)return learningIndexCache;
+ return learningIndexCache=[
+  ...allJsLessons.map(l=>({title:l.title,summary:l.summary,area:'JavaScript',route:'aula/'+l.id})),
+  ...allTsLessons.map(l=>({title:l.title,summary:l.summary,area:'TypeScript',route:'aula/'+l.id})),
+  ...frontendLessons.map(l=>({title:l.title,summary:l.objective,area:'Frontend',route:'frontend/aula/'+l.id})),
+  ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id}))
+ ];
+}
+function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}
+function updateSidebarSearch(){
+ const has=!!st.search.trim(),results=document.querySelector('#cl-search-results'),groups=document.querySelector('#cl-nav-groups');
+ if(!results||!groups)return;
+ results.hidden=!has;groups.hidden=has;
+ if(has)results.innerHTML=searchResultsHtml(searchLearningCatalog(st.search,learningCatalogEntries()));
+}
+function cleanSidebar(){
+ const current=location.hash.replace(/^#\/?/,'')||'inicio';
+ const results=searchLearningCatalog(st.search,learningCatalogEntries());
+ const group=area=>`<div class="cl-nav-group"><div class="cl-nav-title">${esc(area.label)}</div>${area.routes.map(item=>`<button class="cl-nav-link ${current===item.route||current.startsWith(item.route+'/')?'active':''}" data-nav="${item.route}" ${current===item.route?'aria-current="page"':''}><span>${esc(item.label)}</span><small>${esc(item.note)}</small></button>`).join('')}</div>`;
+ return `<aside id="cl-sidebar-nav" class="sidebar cl-sidebar ${st.mobileMenu?'sidebar-open':''}" aria-label="Navegação do DevLab">
+  <div class="sidebar-top"><button class="brand-button" data-nav="inicio" aria-label="Página inicial do DevLab"><span class="logo-symbol">DL</span><span class="brand-text">dev<span>lab</span><small>APRENDA FAZENDO</small></span></button><button class="icon-button close-sidebar" data-action="close-menu" aria-label="Fechar menu">✕</button></div>
+  <div class="sidebar-scroll"><div class="cl-side-inner">
+   <button class="cl-home-link ${getRoute().page==='home'?'active':''}" data-nav="inicio">Visão geral <span aria-hidden="true">→</span></button>
+   <label class="cl-search-label" for="lesson-search">Buscar aula</label><input id="lesson-search" type="search" aria-label="Buscar entre todas as aulas" placeholder="Ex.: formulário, React..." value="${esc(st.search)}" autocomplete="off">
+   <div id="cl-search-results" class="cl-search-results" aria-live="polite" ${st.search.trim()?'':'hidden'}>${searchResultsHtml(results)}</div>
+   <div id="cl-nav-groups" ${st.search.trim()?'hidden':''}>${learningAreas.map(group).join('')}</div>
+  </div></div><div class="sidebar-bottom"><div class="avatar" aria-hidden="true">DL</div><div><strong>Seu progresso</strong><small>${xp()} XP · salvo localmente</small></div></div>
+ </aside>`;
+}
+function cleanTopbar(){
+ const route=getRoute(), names={home:'Visão geral',course:'Trilha de estudo',lesson:'Aula', 'frontend-home':'Frontend','frontend-track':'Percurso frontend','frontend-lesson':'Aula frontend','backend-home':'Backend','backend-track':'Percurso backend','backend-lesson':'Aula backend','backend-lab':'Laboratório HTTP', workspace:'Workspace',career:'Jornada profissional',missions:'Oficina',mission:'Missão',review:'Revisões',briefs:'Desafios',project:'TaskFlow'};
+ return `<header class="topbar cl-topbar"><div class="topbar-left"><button class="icon-button mobile-menu-btn" data-action="open-menu" aria-label="Abrir navegação" aria-controls="cl-sidebar-nav" aria-expanded="${st.mobileMenu?'true':'false'}">☰</button><button class="cl-top-home" data-nav="inicio">DevLab</button><span class="cl-crumb-divider" aria-hidden="true">/</span><span class="cl-current-location">${esc(names[route.page]||'Aprender')}</span></div><div class="topbar-right"><span class="cl-saving-status"><span aria-hidden="true">●</span> Progresso local</span></div></header>`;
+}
+function cleanHome(){
+ const next=allLessons.find(l=>l.id===st.last)||allJsLessons[0];
+ const choices=[
+  {title:'JavaScript',meta:'24 aulas · fundamentos',route:'curso/javascript',detail:'Lógica, funções e interação com a página.'},
+  {title:'Frontend',meta:'25 aulas · cinco percursos',route:'frontend',detail:'HTML, CSS, React e interfaces completas.'},
+  {title:'TypeScript',meta:'5 aulas · tipagem',route:'curso/typescript',detail:'Escreva JavaScript mais seguro e organizado.'},
+  {title:'Backend',meta:'25 aulas · cinco percursos',route:'backend',detail:'Node.js, APIs, SQL e autenticação.'}
+ ];
+ return `<div class="cl-home"><header class="cl-welcome"><div><span class="section-kicker">SEU ESPAÇO DE ESTUDOS</span><h1>Aprenda programação,<br>um passo de cada vez.</h1><p>Uma aula, um exercício e um projeto. Escolha por onde continuar.</p><div class="cl-home-actions"><button class="button-primary" data-nav="aula/${esc(next.id)}">Continuar: ${esc(next.title)} <span aria-hidden="true">→</span></button><button class="cl-secondary" data-nav="frontend">Ver percursos</button></div></div><div class="cl-home-progress"><strong>${st.completed.length}<span>/${allLessons.length}</span></strong><span>Aulas da trilha JS/TS concluídas</span><div class="cl-progress-track"><span style="width:${Math.round(st.completed.length/allLessons.length*100)}%"></span></div></div></header>
+ <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">01 · APRENDER</span><h2>Escolha uma trilha</h2></div><p>Estude conceitos em sequência, sem distrações.</p></div><div class="cl-track-grid">${choices.map(x=>`<button class="cl-track-item" data-nav="${x.route}"><span class="cl-track-meta">${esc(x.meta)}</span><strong>${esc(x.title)}</strong><span>${esc(x.detail)}</span><span class="cl-track-arrow" aria-hidden="true">Ver aulas →</span></button>`).join('')}</div></section>
+ <section class="cl-section"><div class="cl-section-head"><div><span class="section-kicker">02 · PRATICAR</span><h2>Consolide o aprendizado</h2></div></div><div class="cl-list-actions"><button data-nav="oficina"><strong>Oficina de código</strong><span>Resolva problemas com testes automáticos</span><span aria-hidden="true">→</span></button><button data-nav="revisao"><strong>Revisões</strong><span>${reviewsDue().length?`${reviewsDue().length} conceito(s) para revisar`:'Retome conceitos depois de estudá-los'}</span><span aria-hidden="true">→</span></button><button data-nav="workspace"><strong>Workspace</strong><span>Desenvolva em arquivos e módulos de verdade</span><span aria-hidden="true">→</span></button></div></section>
+ <section class="cl-home-footer"><p>Pronto para desenvolver um projeto completo?</p><button data-nav="carreira">Abrir Jornada Profissional →</button></section></div>`;
+}
+
+function studyStepNav(kind,id,labels){
+ const key=kind+':'+id, active=normalizeStudyStep(studyUi.active[key],labels.length);
+ return `<nav class="cl-study-tabs" aria-label="Etapas da aula" role="tablist">${labels.map((label,index)=>`<button type="button" role="tab" id="cl-tab-${kind}-${index}" data-study-switch="${index}" data-study-key="${esc(key)}" aria-selected="${index===active?'true':'false'}" class="${index===active?'active':''}" tabindex="${index===active?'0':'-1'}"><span class="cl-step-index">${index+1}</span><span>${esc(label)}</span></button>`).join('')}</nav>`;
+}
+function setStudyStep(kind,id,index,focus=false){
+ const labels=kind==='career'?careerLabels:studyLabels;
+ const key=kind+':'+id, step=normalizeStudyStep(index,labels.length);
+ studyUi.active[key]=step;
+ const container=kind==='career'?document.querySelector('.career-detail'):document.querySelector(kind==='frontend'?'.ft-lesson-page':'.be-lesson-page');
+ if(!container)return;
+ container.querySelectorAll('[data-study-panel]').forEach(panel=>{panel.hidden=Number(panel.dataset.studyPanel)!==step;});
+ const tabs=container.querySelectorAll('[data-study-switch]');tabs.forEach(tab=>{const selected=Number(tab.dataset.studySwitch)===step;tab.classList.toggle('active',selected);tab.setAttribute('aria-selected',String(selected));tab.tabIndex=selected?0:-1;});
+ if(focus){const tab=[...tabs].find(tab=>Number(tab.dataset.studySwitch)===step);tab?.focus({preventScroll:true});container.querySelector('.cl-study-tabs')?.scrollIntoView({block:'nearest',behavior:'instant'});}
+}
+function mountLessonModules(kind){
+ const selector=kind==='frontend'?'.ft-lesson-page':'.be-lesson-page',container=document.querySelector(selector);if(!container)return;
+ const panels=[...container.querySelectorAll(kind==='frontend'?'.ft-panel':'.be-panel')];if(panels.length!==5)return;
+ const id=getRoute().id,layout=container.querySelector(kind==='frontend'?'.ft-learning-shell':'.be-lesson-columns');
+ if(!layout)return;
+ layout.insertAdjacentHTML('beforebegin',studyStepNav(kind,id,studyLabels));
+ for(let i=0;i<panels.length;i++){
+  const panel=panels[i];panel.dataset.studyPanel=String(i);panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',`cl-tab-${kind}-${i}`);
+  if(i<4){const next=document.createElement('button');next.type='button';next.className='cl-next-step';next.dataset.studySwitch=String(i+1);next.dataset.studyKey=kind+':'+id;next.textContent=i===0?'Ver exemplo →':i===1?'Responder pergunta →':i===2?'Praticar →':'Revisar exercício →';panel.append(next);}
+ }
+ const aside=container.querySelector(kind==='frontend'?'.ft-study-aside':'.be-lesson-aside');
+ if(aside){
+  const cards=[...aside.children];aside.textContent='';
+  for(let i=0;i<cards.length;i++){
+   const details=document.createElement('details');details.className='cl-support-details';
+   const summary=document.createElement('summary');summary.textContent=i===0?'Meu caderno de anotações':'Dicas de estudo';
+   details.append(summary,cards[i]);aside.append(details);
+  }
+ }
+ setStudyStep(kind,id,studyUi.active[kind+':'+id]??0);
+}
+function mountCareerModules(){
+ if(cst.tab!=='projects')return;
+ const detail=document.querySelector('.career-detail');if(!detail)return;
+ const header=detail.querySelector('.career-detail-head'), tools=detail.querySelector('.career-detail-tools');
+ const subtitles=[...detail.querySelectorAll('.career-subtitle')], lists=[...detail.querySelectorAll('.career-checks')],hint=detail.querySelector('.career-hint'),evidence=detail.querySelector('.career-evidence');
+ if(!header||!tools||subtitles.length!==2||lists.length!==2||!evidence)return;
+ const nav=document.createElement('div');nav.innerHTML=studyStepNav('career',cst.selected,careerLabels);header.after(nav.firstElementChild);
+ const group=(index,...items)=>{const el=document.createElement('section');el.className='cl-career-panel';el.dataset.studyPanel=String(index);el.setAttribute('role','tabpanel');el.setAttribute('aria-labelledby',`cl-tab-career-${index}`);items.forEach(item=>{if(item)el.append(item)});detail.append(el);return el;};
+ group(0,tools).insertAdjacentHTML('afterbegin','<h3>Comece por este projeto</h3><p>Leia os objetivos, crie a estrutura inicial e avance para os requisitos.</p>');
+ group(1,subtitles[0],hint,lists[0]);group(2,subtitles[1],lists[1]);group(3,evidence);
+ const panels=detail.querySelectorAll('[data-study-panel]');panels.forEach((panel,i)=>{if(i<panels.length-1){const btn=document.createElement('button');btn.className='cl-next-step';btn.dataset.studySwitch=String(i+1);btn.dataset.studyKey='career:'+cst.selected;btn.textContent=['Ver requisitos →','Revisar código →','Registrar evidências →'][i];panel.append(btn);}});
+ setStudyStep('career',cst.selected,studyUi.careerPhase);
+}
+function mountCleanInterface(){
+ const page=getRoute().page;
+ if(page==='frontend-lesson'||page==='backend-lesson')mountLessonModules(page==='frontend-lesson'?'frontend':'backend');
+ if(page==='career'){mountCareerModules();if(cst.tab==='git'){const cmds=document.querySelector('.career-commands');if(cmds){const details=document.createElement('details');details.className='cl-support-details cl-git-help';const summary=document.createElement('summary');summary.textContent='Consultar exemplos de comandos';cmds.parentNode.insertBefore(details,cmds);details.append(summary,cmds);}}}
+}
+window.addEventListener('click',event=>{
+ const tab=event.target.closest('[data-study-switch]');if(tab){const [kind,id]=tab.dataset.studyKey.split(':');const step=Number(tab.dataset.studySwitch);if(kind==='career')studyUi.careerPhase=step;setStudyStep(kind,id,step,true);return;}
+ const selection=event.target.closest('[data-career-select]');if(selection)studyUi.careerPhase=0;
+});
+window.addEventListener('keydown',event=>{
+ const tab=event.target.closest('[role="tab"][data-study-switch]');if(!tab||!['ArrowRight','ArrowLeft','Home','End'].includes(event.key))return;
+ event.preventDefault();const [kind,id]=tab.dataset.studyKey.split(':'),count=kind==='career'?careerLabels.length:studyLabels.length;
+ const current=Number(tab.dataset.studySwitch),next=event.key==='Home'?0:event.key==='End'?count-1:(current+(event.key==='ArrowRight'?1:-1)+count)%count;
+ if(kind==='career')studyUi.careerPhase=next;setStudyStep(kind,id,next,true);
 });
 
 render();

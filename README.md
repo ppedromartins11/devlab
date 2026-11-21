@@ -1,3 +1,11 @@
+# DevLab 12 — experiência de aprendizagem modular
+
+A navegação agora está organizada em **Aprender / Praticar / Construir**, com uma página inicial mais enxuta. Aulas frontend/backend foram divididas em cinco módulos independentes, e projetos profissionais em quatro etapas. A busca de aulas não remonta toda a página a cada digitação. Nenhuma aula, exercício ou dado salvo foi removido.
+
+[Detalhes da refatoração, arquivos e testes](docs/SPRINT-12.md).
+
+---
+
 # DevLab — Aprenda construindo
 
 ## DevLab 11.0 — Jornada profissional e portfólio

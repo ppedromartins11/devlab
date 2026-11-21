@@ -27,7 +27,7 @@ def scenario(browser,width,name):
  page.on('pageerror', lambda error: errors.append(str(error)))
  page.set_content(html)
  assert page.locator('[data-nav="frontend"]').count()>0
- page.locator('.ft-home-promo [data-nav="frontend"]').click()
+ page.locator('.cl-track-item[data-nav="frontend"]').click()
  page.locator('.ft-track-card').first.wait_for()
  assert page.locator('.ft-track-card').count()==5
  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), 'Overflow no catálogo'
@@ -36,6 +36,7 @@ def scenario(browser,width,name):
  page.locator('.ft-lesson-link').first.wait_for()
  assert page.locator('.ft-lesson-link').count()==5
  page.locator('[data-nav="frontend/aula/html-documento"]').first.click()
+ page.locator('[data-study-switch="2"]').first.click()
  page.locator('.ft-quiz button').first.wait_for()
  assert page.locator('.ft-quiz button').count()==3
  assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'), 'Overflow na aula'
@@ -46,9 +47,12 @@ def scenario(browser,width,name):
  page.locator('button[data-ft-answer="1"]').click()
  assert page.locator('.ft-feedback.correct').count()==1
  assert page.locator('.ft-check-row').count()==3
+ page.locator('.cl-support-details summary').first.click()
  page.locator('#ft-notes').fill('Descobri que o head guarda metadados.')
+ page.locator('[data-study-switch="4"]').first.click()
  for i in range(3): page.locator(f'input[data-ft-check="{i}"]').check()
  assert 'Revisão registrada' in page.locator('.ft-lesson-status').inner_text()
+ page.locator('[data-study-switch="3"]').first.click()
  page.locator('button[data-ft-starter="html-documento"]').click()
  page.locator('.ws-page').first.wait_for(timeout=4000)
  assert page.locator('.ws-page').count()==1
@@ -57,6 +61,7 @@ def scenario(browser,width,name):
  # Retorno à aula preserva o caderno sem recarregar o site.
  page.evaluate("location.hash='#/frontend/aula/html-documento'")
  page.wait_for_timeout(150)
+ page.locator('.cl-support-details summary').first.click()
  assert page.locator('#ft-notes').input_value().startswith('Descobri')
  assert page.locator('.ft-lesson-status').inner_text().startswith('✓')
  page.screenshot(path=str(out/f'formacao-{name}.png'),full_page=True)

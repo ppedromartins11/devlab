@@ -13,7 +13,7 @@ function learningCatalogEntries(){
   ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id})),
   ...pathwayTracks.map(t=>({title:t.title,summary:t.subtitle,area:'Trilhas profissionais',route:'trilha/'+t.id})),
   ...languageCatalog.map(l=>({title:l.name,summary:l.description,area:'Biblioteca de linguagens',route:'linguagem/'+l.id})),
-  ...Object.values(guidedLanguageLessons).flat().map(l=>({title:l.title,summary:l.goal,area:l.id.startsWith('py-')?'Python':'Java',route:'linguagem/aula/'+l.id}))
+  ...Object.values(guidedLanguageLessons).flat().map(l=>({title:l.title,summary:l.goal,area:l.id.startsWith('py-')?'Python':l.id.startsWith('php-')?'PHP':'Java',route:'linguagem/aula/'+l.id}))
  ];
 }
 function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}

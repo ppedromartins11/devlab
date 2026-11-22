@@ -35,7 +35,7 @@ def main():
     page.locator('.rp-stage').first.locator('.rp-lesson-link').first.click();page.wait_for_timeout(130)
     assert '/aula/' in page.url or 'aula/' in page.url
     go(page,'linguagens')
-    assert page.locator('.rp-language-card').count()==5
+    assert page.locator('.rp-language-card').count()==6
     page.screenshot(path=str(ROOT/'docs/screenshots'/'roadmaps-languages.png'),full_page=True)
     page.locator('.rp-language-card[data-nav="linguagem/python"]').click();page.wait_for_timeout(130)
     assert page.locator('.rp-language-lesson').count()==5

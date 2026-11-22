@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d12"><meta name="description" content="DevLab - Curso prático de JavaScript e TypeScript com editor e prévia."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101217%22%2F%3E%3Cpath%20d%3D%22M21%2022%2010%2032l11%2010M43%2022l11%2010-11%2010M38%2014%2026%2050%22%20stroke%3D%22%23f5f5fb%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E"><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d12"><meta name="description" content="DevLab - Cursos práticos de programação, PHP, JavaScript, TypeScript e desenvolvimento web."><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23101217%22%2F%3E%3Cpath%20d%3D%22M21%2022%2010%2032l11%2010M43%2022l11%2010-11%2010M38%2014%2026%2050%22%20stroke%3D%22%23f5f5fb%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E"><title>DevLab · Aprenda construindo</title><style>:root{font-family:'DM Sans',system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#d6deef;background:#080c14;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}*{box-sizing:border-box}body{margin:0}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid #5eead4;outline-offset:3px}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:'Plus Jakarta Sans','DM Sans',system-ui,sans-serif;letter-spacing:-.035em}p{line-height:1.7}button{border:0}::-webkit-scrollbar{width:8px;height:8px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#273248;border-radius:10px}::selection{background:#3f5b80;color:white}
 .app-layout{display:flex;min-height:100vh}.sidebar{width:274px;min-width:274px;height:100vh;position:sticky;top:0;display:flex;flex-direction:column;background:#0c111c;border-right:1px solid #1a2332;z-index:10}.sidebar-top{padding:26px 20px 27px;border-bottom:1px solid #1a2332;display:flex;align-items:center;justify-content:space-between}.brand-button{display:flex;align-items:center;gap:11px;background:none;color:white;padding:0;text-align:left}.logo-symbol{height:37px;width:37px;display:grid;place-items:center;border-radius:11px;color:#061b1a;background:linear-gradient(145deg,#77eed4,#37b9b0);box-shadow:0 5px 20px #20d4b326}.brand-text{font-family:'Plus Jakarta Sans',sans-serif;font-size:24px;font-weight:800;letter-spacing:-1.3px;line-height:1}.brand-text>span{color:#63e3c8}.brand-text small{display:block;margin-top:7px;font:700 8px 'DM Sans',sans-serif;color:#74839c;letter-spacing:1.65px}.sidebar-scroll{overflow:auto;flex:1;padding:21px 13px 15px}.sidebar-group{margin-bottom:22px}.sidebar-label{color:#687991;letter-spacing:1.35px;font-size:10px;font-weight:800;margin:0 11px 11px}.side-link,.course-link,.unit-toggle,.lesson-link{width:100%;display:flex;align-items:center;text-align:left;background:transparent;color:#99a8c0}.side-link{gap:13px;padding:11px 12px;border-radius:8px;font-size:13px;font-weight:600}.side-link svg{color:#8191ab}.side-link:hover,.side-link.selected{color:#e8fff9;background:#172934}.side-link.selected svg{color:#6fe6ce}.side-count{margin-left:auto;font-size:10px;color:#66748a}.side-search{border:1px solid #253044;border-radius:9px;height:38px;padding:0 10px;display:flex;align-items:center;gap:8px;margin:6px 8px 24px;color:#687991;background:#101724}.side-search input{width:100%;min-width:0;outline:none;border:0;background:none;color:#dce6f6;font-size:12px}.side-search input::placeholder{color:#647189}.course-link{padding:9px 10px;gap:10px;border-radius:10px;margin-bottom:10px;color:white}.course-link:hover,.selected-course{background:#151f31}.course-link>span:nth-child(2){flex:1;font-size:13px;font-weight:750}.course-link small{display:block;color:#7d8ba6;margin-top:5px;font-size:10px;font-weight:500}.course-link>svg{color:#596980}.js-logo,.ts-logo{width:31px;height:31px;border-radius:7px;display:grid;place-items:center;color:#292500;background:#f7df1e;font-weight:900;font-size:12px}.ts-logo{background:#3178c6;color:white}.nav-unit{margin:0 0 7px 11px;border-left:1px solid #253045}.unit-toggle{justify-content:space-between;font-size:11px;color:#8c9bb4;padding:10px 10px;font-weight:700}.unit-toggle:hover{color:#e6eefd}.unit-lessons{padding-bottom:7px}.lesson-link{gap:8px;padding:7px 9px 7px 12px;font-size:11.5px;line-height:1.4;border-radius:7px;margin-left:2px;width:calc(100% - 3px)}.lesson-link>span:last-child{flex:1}.lesson-link:hover{color:#e4f5fa;background:#152134}.lesson-link.active-lesson{color:#6fe6ce;background:#102e30;font-weight:700}.lesson-status{display:flex;align-items:center;justify-content:center;min-width:13px;color:#485670}.lesson-status.done{color:#5cddbc}.ts-nav{margin-top:26px}.sidebar-bottom{padding:15px 18px;display:flex;gap:10px;align-items:center;border-top:1px solid #1a2332}.avatar{width:33px;height:33px;border:1px solid #354c64;border-radius:50%;display:grid;place-items:center;color:#72e5ce;background:#1b3640;font-weight:800}.sidebar-bottom>div:nth-child(2){flex:1}.sidebar-bottom strong{display:block;font-size:12px}.sidebar-bottom small{display:block;color:#687991;font-size:9.5px;margin-top:4px}.online-dot,.sync-dot,.welcome-dot,.workspace-status,.preview-status{width:7px;height:7px;display:inline-block;background:#61e3b8;border-radius:50%;box-shadow:0 0 12px #2ce1aa55}.close-sidebar,.mobile-menu-btn,.mobile-overlay{display:none!important}
 .main-pane{flex:1;min-width:0;background:radial-gradient(circle at 75% -10%,#17223a 0%,transparent 32%),#080c14}.topbar{height:71px;position:sticky;top:0;z-index:5;background:#080c14ed;backdrop-filter:blur(16px);border-bottom:1px solid #202838;display:flex;align-items:center;justify-content:space-between;padding:0 39px;gap:15px}.topbar-left,.topbar-right,.breadcrumbs{display:flex;align-items:center;gap:11px}.breadcrumbs{color:#75849f;font-size:11px;min-width:0;flex-wrap:wrap}.breadcrumbs button{background:none;color:#8b9bb5;padding:0}.breadcrumbs button:hover{color:white}.breadcrumbs span{color:#d5dfed;max-width:230px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.sync-label{color:#8190a7;font-size:10.5px}.sync-label .sync-dot{margin-right:7px}.topbar-project{border:1px solid #314057;background:#162033;color:#d8e4f5;border-radius:8px;padding:9px 12px;display:flex;align-items:center;gap:8px;font-size:11px;font-weight:700}.topbar-project:hover{background:#1d3041}.main-content{max-width:1600px;padding:42px 46px 72px;margin:0 auto}.section-kicker{color:#67dfc6;letter-spacing:1.7px;font-size:10px;font-weight:800}.section-heading{display:flex;justify-content:space-between;align-items:center;margin-bottom:23px}.section-heading h2{font-size:24px;margin:9px 0}.section-heading p{color:#8998b2;font-size:13px;margin:0}.back-link{display:flex;align-items:center;gap:8px;color:#94a4bd;background:none;padding:0;margin-bottom:22px;font-size:12px;font-weight:650}.back-link:hover{color:#5fe4c4}
 .welcome-overline{display:flex;align-items:center;gap:9px;color:#9da9bf;letter-spacing:2px;font-size:10px;font-weight:800;margin-bottom:17px}.hero-banner{min-height:348px;border:1px solid #24324b;border-radius:18px;overflow:hidden;background:radial-gradient(circle at 93% 5%,#173d49 0%,transparent 45%),linear-gradient(115deg,#17253e 2%,#121b2e 55%,#11252f 100%);display:flex;justify-content:space-between;gap:10px;padding:45px 50px;position:relative}.hero-banner::before{content:'';position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,#8fa9ca0e 1px,transparent 1px),linear-gradient(#8fa9ca0e 1px,transparent 1px);background-size:43px 43px;mask-image:linear-gradient(90deg,transparent,#000)}.hero-text{position:relative;z-index:1;max-width:650px}.pill{display:inline-flex;align-items:center;gap:7px;color:#89abbd;border:1px solid #344459;background:#1b273c;padding:7px 10px;border-radius:6px;font-size:9px;font-weight:850;letter-spacing:.8px;white-space:nowrap}.hero-chip{color:#5ee5c7;border-color:#2a655e;background:#1c4545}.soft-blue{background:#1e3551;border-color:#2c5284;color:#7bb7ff}.hero-banner h1{font-size:clamp(29px,3.2vw,45px);line-height:1.24;margin:25px 0 14px;color:#f6f9ff;letter-spacing:-1.7px}.hero-banner h1 em{font-style:normal;color:#67e2c5}.hero-text>p{font-size:13px;color:#aabbd2;line-height:1.85;max-width:570px}.hero-buttons{display:flex;align-items:center;gap:12px;margin-top:26px}.button-primary{background:#69e6c8;color:#092621;border:1px solid #69e6c8;border-radius:9px;padding:12px 16px;display:inline-flex;align-items:center;justify-content:center;gap:11px;font-weight:850;font-size:12px;box-shadow:0 6px 30px #1ddeab20}.button-primary:hover{background:#86f5da}.button-ghost{border:1px solid #40536c;color:#d4e0ef;background:#ffffff08;border-radius:9px;padding:12px 15px;display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:750;font-size:12px}.button-ghost:hover{background:#ffffff15}.hero-art{min-width:305px;display:flex;align-items:center;justify-content:center;position:relative;z-index:1}.hero-code-card{width:325px;height:225px;border:1px solid #52647a;background:#0a101bbf;box-shadow:0 15px 70px #0008;border-radius:12px;transform:rotate(5deg);overflow:hidden}.window-dots{border-bottom:1px solid #28394b;height:32px;display:flex;align-items:center;gap:6px;padding:0 13px}.window-dots i{width:7px;height:7px;border-radius:50%;background:#f27979}.window-dots i:nth-child(2){background:#ffca70}.window-dots i:nth-child(3){background:#69dbab}.hero-code-lines{padding:20px 19px;display:flex;flex-direction:column;gap:10px;font:12px ui-monospace,SFMono-Regular,Consolas,monospace;color:#c5d6f5}.hero-code-lines b{color:#b6a5fa}.hero-code-lines strong{color:#9fe8b8;font-weight:400}.hero-code-lines .hero-comment{color:#53647d;margin-top:5px}.hero-float{position:absolute;background:#63e1c0;color:#06322c;border-radius:12px;padding:12px 14px;bottom:45px;left:12px;font-weight:950;font-size:23px;box-shadow:0 12px 35px #12d7a833}.stats-grid,.project-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin-top:22px}.stat{border:1px solid #253044;background:#111824;border-radius:12px;padding:17px 19px;min-height:102px;display:flex;flex-direction:column;align-items:flex-start;gap:5px}.stat-icon{color:#64e4c4;display:inline-flex;margin-bottom:5px}.stat strong{color:#edf4ff;font-family:'Plus Jakarta Sans',sans-serif;font-size:19px;letter-spacing:-.5px}.stat>span:last-child{font-size:11px;color:#8a9ab3}.section-block{margin-top:45px}.tracks-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.track-card{border:1px solid #263246;border-radius:14px;background:linear-gradient(160deg,#111c2b,#101723 80%);padding:25px;min-height:358px;display:flex;flex-direction:column}.track-top{display:flex;justify-content:space-between;align-items:flex-start}.track-symbol{width:45px;height:45px;border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:950}.js-track-symbol{color:#212316;background:#f7df1e}.ts-track-symbol{color:white;background:#3178c6}.track-card h3{font-size:24px;margin:21px 0 10px}.track-card>p{color:#92a2ba;font-size:12.5px;line-height:1.75;max-width:480px;min-height:67px}.track-meta{display:flex;gap:18px;color:#8fa0ba;font-size:11px}.track-meta span{display:flex;gap:7px;align-items:center}.track-bottom{margin-top:auto;padding-top:24px}.progress-copy{display:flex;justify-content:space-between;color:#9aabc2;font-size:11px;margin-bottom:9px}.progress-copy strong{color:#cedaed}.progress-track{height:6px;border-radius:10px;background:#263448;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,#37bca8,#80f1cd);border-radius:10px;transition:width .25s}.track-bottom>button{display:flex;align-items:center;gap:8px;background:none;color:#6be8cb;font-size:12px;font-weight:750;padding:19px 0 0}.track-bottom>button:hover{color:#a2ffea}.project-feature{display:flex;align-items:center;gap:21px;background:linear-gradient(110deg,#17263b,#172139);border:1px solid #30415b;border-radius:13px;padding:25px;margin-top:32px}.feature-icon{flex:none;background:#1f3e48;color:#69e5c5;border-radius:12px;padding:14px}.project-feature>div:nth-child(2){flex:1}.project-feature h3{font-size:19px;margin:8px 0}.project-feature p{color:#91a2bb;font-size:12px;margin:0;max-width:720px}.button-outline{display:inline-flex;align-items:center;gap:8px;border:1px solid #3b5871;color:#d8e7f8;background:transparent;border-radius:9px;padding:11px 14px;font-size:12px;font-weight:700;white-space:nowrap}.button-outline:hover{border-color:#6ee6cc;color:#79edd5}.footer-note{font-size:10px;color:#61708a;margin-top:40px}
@@ -1129,11 +1129,30 @@ body a:hover{color:#e3dfff}
 .cl-sidebar .cl-nav-link small{display:block!important;margin:0!important;max-width:100%;min-width:0;white-space:normal!important;overflow-wrap:anywhere;font-size:10px!important;line-height:1.4!important;color:#8f95a4!important}
 .cl-sidebar .cl-nav-link.active small{color:#b4b1cc!important}
 .rp-content-note{font-size:11px;color:#929aaa;line-height:1.6;margin:8px 0 0}
+
+/* PHP 16 — extensão da identidade escura, sem cartões coloridos ou páginas poluídas. */
+.php-hero{padding:30px 32px;max-width:none}.php-hero>p{max-width:760px}.php-hero-stats{display:flex;gap:22px;flex-wrap:wrap;margin:20px 0 12px;color:#b8bdca;font-size:12px}.php-hero-stats strong{font-size:19px;color:#f1f1f7;margin-right:4px}
+.php-hero .rp-course-progress{margin:14px 0}.php-hero .rp-actions{margin-top:19px}
+.php-howto{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:18px 0 22px}.php-howto>div{display:flex;flex-direction:column;gap:6px;padding:16px 20px;border:1px solid #343845;border-radius:9px;background:#181b22}.php-howto strong{font-size:13px}.php-howto span{font-size:11px;color:#a7aebc}
+.php-runtime-note{margin-bottom:31px}.php-runtime-note code,.php-command code{font-family:ui-monospace,Consolas,monospace;background:#11141b;color:#e5e5ed;border-radius:4px;padding:2px 5px}
+.php-module-list{display:grid;gap:11px;margin-top:16px}.php-module{background:#171a22;border:1px solid #333743;border-radius:11px;overflow:hidden}.php-module[open]{border-color:#686480}
+.php-module summary{display:flex;align-items:center;gap:16px;padding:22px;list-style:none;cursor:pointer}.php-module summary::-webkit-details-marker{display:none}.php-module summary>span:last-child{color:#a9a8b7;font-size:19px}.php-module[open] summary>span:last-child{transform:rotate(180deg)}
+.php-module-count{display:grid;place-items:center;flex:0 0 39px;height:39px;background:#282932;border:1px solid #40404d;border-radius:8px;color:#d8d5f5;font-weight:700;font-size:12px}.php-module-name{display:grid;gap:5px;flex:1;min-width:0}.php-module-name strong{font-size:15px;color:#f4f5f9}.php-module-name small{font-size:12px;color:#a0a6b4;line-height:1.55}.php-module-done{font-size:12px;color:#bcc1ce;white-space:nowrap}
+.php-module-details{border-top:1px solid #343845;padding:12px 22px 22px}.php-module-details>p{font-size:12px;color:#bac0cc;line-height:1.7}.php-module-details>p strong{color:#e7e8ef}
+.php-lesson-link{display:flex;gap:14px;align-items:center;text-align:left;background:transparent;border:0;border-bottom:1px solid #2b2f39;color:#eceef5;padding:14px 3px;width:100%}.php-lesson-link:last-child{border:0}.php-lesson-link:hover{background:#232631}.php-lesson-index{flex:0 0 28px;height:28px;display:grid;place-items:center;border:1px solid #575b68;border-radius:50%;font-size:11px;color:#b4bbca}.php-lesson-index.done{border-color:#9995b9;color:#d7d4ed;background:#302d3d}.php-lesson-link>span:nth-child(2){flex:1;display:grid;gap:5px;min-width:0}.php-lesson-link strong{font-size:13px}.php-lesson-link small{font-size:11px;color:#a4aab8;line-height:1.5}
+.php-exam-cta,.php-project-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;margin-top:25px;padding:25px;border:1px solid #363a46;background:#191c25;border-radius:12px}.php-exam-cta h2,.php-project-cta h2{font-size:20px;margin:8px 0}.php-exam-cta p,.php-project-cta p{font-size:12px;line-height:1.7;color:#acb3c2;max-width:670px}.php-exam-cta button,.php-download{flex-shrink:0;white-space:normal}.php-download{padding:12px 16px;background:#f1f2f7;border-radius:8px;color:#161820!important;text-decoration:none;font-weight:700;font-size:12px;text-align:center}
+.php-lesson .rp-guided-panel{max-width:930px}.php-exam-tip{margin:22px 0;padding:18px;background:#232631;border-left:3px solid #a8a2de;border-radius:5px}.php-exam-tip strong{font-size:12px;color:#e6e3f8}.php-exam-tip p{font-size:12px;line-height:1.7;color:#c4c9d3;margin:8px 0 0}
+.php-command{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:#bfc4d1}.php-command span{font-size:11px;color:#9299a8;flex-basis:100%;line-height:1.55}.php-lesson-actions{display:flex;gap:10px;flex-wrap:wrap}.php-lesson .rp-guided-footer{flex-wrap:wrap}.php-lesson .rp-guided-code pre{white-space:pre;tab-size:4;max-height:500px}
+.php-exam-progress{display:flex;gap:16px;flex-wrap:wrap;justify-content:space-between;font-size:12px;color:#bfc4d1;margin:18px 0}.php-exam-progress .rp-bar{flex-basis:100%}.php-exam-question{max-width:830px!important}.php-exam-question h2{font-size:21px;line-height:1.5}.php-exam-question .php-module-tag{font-size:11px;text-transform:uppercase;color:#b7b3d9;letter-spacing:.06em}
+.php-exam-option.selected{border-color:#aaa4dd!important;background:#302f40!important;color:#fff}.php-exam-option.selected span{color:#ddd9ff}.php-exam-controls{display:flex;justify-content:space-between;gap:14px;margin:20px 0}.php-exam-controls button{font-size:13px;padding:12px 18px;border:1px solid #404451;background:#232630;color:#e7eaf3;border-radius:8px}.php-exam-controls button:disabled{opacity:.45;cursor:not-allowed}
+.php-exam-result{display:grid;gap:6px;border:1px solid #57546a;padding:22px 26px;border-radius:12px;background:#1c1d2a;max-width:330px}.php-exam-result strong{font-size:38px}.php-exam-result span{color:#b6bac7;font-size:13px}.php-exam-review{margin-top:38px}.php-exam-review h2{font-size:22px}.php-exam-review-item{border:1px solid #343845;border-radius:9px;margin:9px 0;background:#181b22;padding:15px 18px}.php-exam-review-item summary{font-size:13px;cursor:pointer;line-height:1.5;font-weight:650}.php-exam-review-item p{font-size:12px;color:#bcc2d0;line-height:1.65}
+@media(max-width:850px){.php-exam-cta,.php-project-cta{align-items:flex-start;flex-direction:column}.php-howto{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.php-hero{padding:22px 18px}.php-howto{grid-template-columns:1fr}.php-module summary{padding:15px;gap:11px}.php-module-details{padding:12px 14px 16px}.php-lesson .rp-guided-panel{padding:18px}.php-exam-controls{flex-wrap:wrap}.php-exam-controls button{flex:1}.php-lesson-actions{width:100%}.php-lesson-actions button{flex:1}}
 </style></head><body><div id="root"></div><script>/** Navegação curricular independente da renderização e do armazenamento. */
 const learningAreas = Object.freeze([
   {id:'learn',label:'Aprender',routes:Object.freeze([
     {route:'trilhas',label:'Trilhas profissionais',note:'Frontend · Backend · Full-Stack'},
-    {route:'linguagens',label:'Linguagens',note:'JS, TS, Python, Java e SQL'}
+    {route:'linguagens',label:'Linguagens',note:'JS, TS, PHP, Python, Java e SQL'}
   ])},
   {id:'practice',label:'Praticar',routes:Object.freeze([
     {route:'oficina',label:'Oficina de código',note:'Testes automáticos'},
@@ -1267,6 +1286,7 @@ const languageCatalog = [
  {id:'typescript',name:'TypeScript',label:'JavaScript tipado',description:'Tipos, interfaces, funções e generics em cinco aulas com compilação.',roadmap:'https://roadmap.sh/typescript',kind:'existing',route:'curso/typescript',count:5},
  {id:'python',name:'Python',label:'Fundamentos de programação',description:'Sintaxe, coleções, funções, arquivos e testes. Prática no VS Code.',roadmap:'https://roadmap.sh/python',kind:'guided',count:5},
  {id:'java',name:'Java',label:'Orientação a objetos',description:'Tipos, classes, coleções, exceções e testes. Prática com JDK local.',roadmap:'https://roadmap.sh/java',kind:'guided',count:5},
+ {id:'php',name:'PHP',label:'Do zero à prova prática',description:'32 aulas em 8 módulos: sintaxe, formulários, sessões, MySQL/PDO, POO, segurança e simulado.',roadmap:'https://roadmap.sh/php',kind:'guided',count:32},
  {id:'sql',name:'SQL',label:'Linguagem de consultas',description:'Consultas, JOIN, modelagem e transações pelas aulas de PostgreSQL.',roadmap:'https://roadmap.sh/sql',kind:'linked',route:'backend/trilha/postgres',count:5}
 ];
 
@@ -1280,9 +1300,1309 @@ function pathwayLessonIds(pathway){
  return [...new Set((pathway?.stages||[]).flatMap(s=>s.lessons.map(l=>l.kind+':'+l.id)))];
 }
 
-/** Miniaulas autorais: exemplos para praticar localmente, sem executar Python/Java no navegador. */
+/** 32 aulas autorais de PHP 8.2+; conteúdo consultado no manual oficial php.net. */
+const phpModules = [
+  {
+    "id": "primeiros-passos",
+    "title": "01 · Primeiros passos com PHP",
+    "level": "Iniciante",
+    "summary": "Entenda o servidor e execute seus primeiros arquivos PHP.",
+    "objective": "Instalar, executar e distinguir PHP, HTML e JavaScript.",
+    "lessonIds": [
+      "php-servidor",
+      "php-sintaxe",
+      "php-variaveis",
+      "php-strings"
+    ]
+  },
+  {
+    "id": "logica",
+    "title": "02 · Lógica e funções",
+    "level": "Básico",
+    "summary": "Decisões, repetições e funções tipadas com exemplos reais.",
+    "objective": "Implementar regras de negócio sem copiar o exemplo.",
+    "lessonIds": [
+      "php-operadores",
+      "php-condicoes",
+      "php-repeticoes",
+      "php-funcoes"
+    ]
+  },
+  {
+    "id": "arrays",
+    "title": "03 · Arrays e transformação de dados",
+    "level": "Básico",
+    "summary": "Organize listas, mapas, filtros e pequenos relatórios.",
+    "objective": "Dominar coleções cobradas nas provas práticas.",
+    "lessonIds": [
+      "php-arrays-indexados",
+      "php-associativos",
+      "php-array-funcoes",
+      "php-datas-json"
+    ]
+  },
+  {
+    "id": "formularios",
+    "title": "04 · Formulários e requisições",
+    "level": "Intermediário",
+    "summary": "Receba e valide dados do navegador, com segurança.",
+    "objective": "Criar formulários prontos para a prova prática.",
+    "lessonIds": [
+      "php-get-post",
+      "php-form-validacao",
+      "php-escape-html",
+      "php-post-redirect"
+    ]
+  },
+  {
+    "id": "arquivos-sessoes",
+    "title": "05 · Arquivos, cookies e sessões",
+    "level": "Intermediário",
+    "summary": "Reutilize código, gerencie estado e trate arquivos com cuidado.",
+    "objective": "Entender recursos usados em login e uploads de projetos PHP.",
+    "lessonIds": [
+      "php-includes",
+      "php-cookies",
+      "php-sessoes",
+      "php-arquivos-upload"
+    ]
+  },
+  {
+    "id": "mysql",
+    "title": "06 · PHP com MySQL e CRUD",
+    "level": "Intermediário",
+    "summary": "Conecte o PHP a um banco real usando PDO e SQL seguro.",
+    "objective": "Preparar uma aplicação de cadastro similar à prova de pizzaria.",
+    "lessonIds": [
+      "php-sql-modelagem",
+      "php-pdo-conexao",
+      "php-pdo-preparado",
+      "php-crud-transacoes"
+    ]
+  },
+  {
+    "id": "orientacao-objetos",
+    "title": "07 · POO e arquitetura PHP",
+    "level": "Avançado",
+    "summary": "Organize sistemas com classes, contratos e dependências.",
+    "objective": "Entender conceitos de programação orientada a objetos cobrados em provas.",
+    "lessonIds": [
+      "php-classes",
+      "php-heranca-contratos",
+      "php-exceptions",
+      "php-namespaces"
+    ]
+  },
+  {
+    "id": "seguranca-projeto",
+    "title": "08 · Segurança, API e prova final",
+    "level": "Avançado",
+    "summary": "Una conceitos em uma aplicação prática segura e testável.",
+    "objective": "Concluir um CRUD de pizzaria e responder questões integradoras de prova.",
+    "lessonIds": [
+      "php-passwords",
+      "php-csrf-sql-xss",
+      "php-api-testes",
+      "php-projeto-final"
+    ]
+  }
+];
+const phpLessons = [
+  {
+    "id": "php-servidor",
+    "moduleId": "primeiros-passos",
+    "title": "O que é PHP e onde ele executa",
+    "goal": "Diferenciar código de servidor e código do navegador.",
+    "theory": [
+      "PHP é executado no servidor. O navegador recebe o resultado gerado (HTML, JSON etc.), não as instruções PHP originais. Um arquivo .php aberto diretamente no navegador não é interpretado.",
+      "Instale uma versão suportada de PHP ou use XAMPP. No terminal: php -v verifica a instalação; php -S localhost:8000 inicia um servidor local para desenvolvimento. Não use esse servidor embutido diretamente na internet."
+    ],
+    "example": "<?php\n// Execute: php primeiro.php\necho \"Olá, PHP!\" . PHP_EOL;",
+    "question": "O que o navegador recebe após uma página PHP ser processada?",
+    "choices": [
+      "O código PHP com senhas",
+      "A saída do PHP, como HTML",
+      "O arquivo .php sem interpretação"
+    ],
+    "answer": 1,
+    "explanation": "PHP é interpretado no lado do servidor; o cliente recebe apenas a saída produzida.",
+    "task": "Crie primeiro.php e execute php primeiro.php. Em seguida inicie php -S localhost:8000 e abra o arquivo no navegador.",
+    "checks": [
+      "Confira php -v e o comando no terminal.",
+      "Compare a saída do terminal com a saída HTTP.",
+      "Explique por que não basta abrir o arquivo por file://."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/tutorial.firstpage.php",
+    "tip": "PROVA: PHP não é JavaScript. PHP roda no servidor, JS pode rodar no navegador.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-sintaxe",
+    "moduleId": "primeiros-passos",
+    "title": "Tags PHP, echo e comentários",
+    "goal": "Imprimir conteúdo sem confundir PHP e HTML.",
+    "theory": [
+      "Um bloco PHP começa com <?php. Em arquivos somente PHP, recomenda-se omitir a tag final ?> para evitar saída acidental. Instruções comuns terminam com ponto e vírgula.",
+      "echo escreve valores na saída; comentários // e /* ... */ não aparecem no HTML. Para inserir dados de usuário numa página use escaping, que será estudado depois."
+    ],
+    "example": "<?php\n// Mensagem gerada no servidor\necho \"Pedido recebido\";\necho PHP_EOL;\necho 2 + 3;",
+    "question": "Qual instrução escreve um texto na resposta?",
+    "choices": [
+      "echo \"Olá\";",
+      "print_r = \"Olá\"",
+      "console.log(\"Olá\")"
+    ],
+    "answer": 0,
+    "explanation": "echo envia conteúdo para a saída do PHP.",
+    "task": "Imprima um título e uma quantidade de pizzas sem usar HTML complexo.",
+    "checks": [
+      "Use <?php e ponto e vírgula.",
+      "Teste o comando php arquivo.php.",
+      "Compare aspas simples e duplas."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.basic-syntax.php",
+    "tip": "PROVA: echo não precisa dos parênteses de uma chamada de função.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-variaveis",
+    "moduleId": "primeiros-passos",
+    "title": "Variáveis, tipos e conversões",
+    "goal": "Guardar dados com $ e identificar seus tipos.",
+    "theory": [
+      "Variáveis PHP começam com $. Tipos básicos: int, float, string, bool e null. PHP também possui arrays e objetos. O operador de atribuição é = e a comparação estrita é ===.",
+      "var_dump mostra o tipo e o valor; use-o durante a depuração, nunca para expor dados sensíveis. Casts como (int) fazem conversões explícitas, mas exigem validação da entrada."
+    ],
+    "example": "<?php\n$nome = \"Ana\";\n$quantidade = 2;\n$preco = 29.90;\n$ativo = true;\nvar_dump($nome, $quantidade, $preco, $ativo);",
+    "question": "Como começa o nome de uma variável PHP?",
+    "choices": [
+      "Com #",
+      "Com $",
+      "Com let"
+    ],
+    "answer": 1,
+    "explanation": "Em PHP nomes de variáveis usam o prefixo $.",
+    "task": "Crie $produto (string), $preco (float) e $disponivel (bool). Inspecione os tipos.",
+    "checks": [
+      "Use pelo menos três tipos.",
+      "Identifique o resultado de var_dump.",
+      "Faça uma conversão explícita e explique o risco."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.variables.basics.php",
+    "tip": "PROVA: $valor = \"5\" guarda string, não int; === considera tipo e valor.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-strings",
+    "moduleId": "primeiros-passos",
+    "title": "Strings, concatenação e interpolação",
+    "goal": "Construir mensagens com dados de forma correta.",
+    "theory": [
+      "A concatenação de strings em PHP usa ponto (.). O sinal + é para operações numéricas; não deve ser usado para concatenar textos.",
+      "Aspas duplas permitem interpolar variáveis; aspas simples normalmente tratam $nome como texto literal. Para dinheiro, number_format pode formatar a saída, sem substituir cálculos precisos."
+    ],
+    "example": "<?php\n$nome = \"Ana\";\n$itens = 3;\necho \"Olá, $nome!\" . PHP_EOL;\necho \"Você tem \" . $itens . \" pedidos.\";",
+    "question": "Qual operador concatena textos em PHP?",
+    "choices": [
+      "+",
+      ".",
+      "&"
+    ],
+    "answer": 1,
+    "explanation": "O operador de concatenação de PHP é o ponto.",
+    "task": "Formate uma mensagem de pedido usando concatenação e interpolação.",
+    "checks": [
+      "Teste aspas simples e duplas.",
+      "Use o operador ponto.",
+      "Não confunda texto de preço com cálculo financeiro."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.types.string.php",
+    "tip": "PROVA: \"Olá, $nome\" interpola; 'Olá, $nome' exibe o cifrão literalmente.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-operadores",
+    "moduleId": "logica",
+    "title": "Operadores e comparações",
+    "goal": "Distinguir atribuição, comparação e cálculo.",
+    "theory": [
+      "Atribuição usa =; comparação de valor usa ==; comparação estrita usa ===. Prefira === para evitar coerções implícitas. &&, || e ! compõem condições.",
+      "Operadores aritméticos incluem +, -, *, / e %. O módulo % indica resto, útil para saber se um número é par. Cuidado com divisão por zero e conversões automáticas."
+    ],
+    "example": "<?php\n$quantidade = 4;\n$minimo = 2;\n$valido = $quantidade >= $minimo && $quantidade % 2 === 0;\nvar_dump($valido);",
+    "question": "O que $a === $b compara?",
+    "choices": [
+      "Apenas valor",
+      "Tipo e valor",
+      "Faz uma atribuição"
+    ],
+    "answer": 1,
+    "explanation": "=== faz comparação estrita de valor e tipo.",
+    "task": "Faça um teste de desconto aplicado somente quando total >= 100 e cliente estiver ativo.",
+    "checks": [
+      "Teste exatos R$ 100.",
+      "Teste cliente inativo.",
+      "Diferencie =, == e ===."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.operators.comparison.php",
+    "tip": "PROVA: = atribui; == compara com coerção; === compara sem conversão de tipo.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-condicoes",
+    "moduleId": "logica",
+    "title": "if, elseif, switch e match",
+    "goal": "Escolher estruturas adequadas a cada regra.",
+    "theory": [
+      "if/elseif/else compara condições; switch corresponde a múltiplos casos e match (PHP 8+) devolve um valor usando comparação estrita e não cai de um caso para outro.",
+      "Sempre trate a alternativa padrão. Prefira match para mapear estados simples e if/else para faixas de preço ou notas."
+    ],
+    "example": "<?php\n$status = \"pago\";\n$texto = match ($status) {\n    \"pago\" => \"Aprovado\",\n    \"pendente\" => \"Aguardando\",\n    default => \"Desconhecido\",\n};\necho $texto;",
+    "question": "Em PHP 8+, qual estrutura devolve valor e usa comparação estrita?",
+    "choices": [
+      "match",
+      "echo",
+      "foreach"
+    ],
+    "answer": 0,
+    "explanation": "match é uma expressão com correspondência estrita.",
+    "task": "Crie classificações para pedido novo, pago, cancelado e status desconhecido.",
+    "checks": [
+      "Inclua default.",
+      "Teste um status inesperado.",
+      "Compare match e switch."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/control-structures.match.php",
+    "tip": "PROVA: match não usa break e compara estritamente.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-repeticoes",
+    "moduleId": "logica",
+    "title": "for, while e foreach",
+    "goal": "Percorrer itens sem criar laços infinitos.",
+    "theory": [
+      "for é apropriado quando há contagem; while depende de condição que deve se tornar falsa. foreach percorre arrays, com acesso opcional à chave.",
+      "Laços podem usar break e continue. Não modifique o contador de forma que a condição nunca termine. Evite misturar saída HTML e cálculo sem necessidade."
+    ],
+    "example": "<?php\n$pizzas = [\"Mussarela\", \"Calabresa\", \"Frango\"];\nforeach ($pizzas as $indice => $pizza) {\n    echo ($indice + 1) . \". \" . $pizza . PHP_EOL;\n}",
+    "question": "Qual laço percorre elementos de um array diretamente?",
+    "choices": [
+      "foreach",
+      "switch",
+      "echo"
+    ],
+    "answer": 0,
+    "explanation": "foreach é adequado para percorrer listas e mapas.",
+    "task": "Liste o nome e a posição de cada pizza de um array.",
+    "checks": [
+      "Teste um array vazio.",
+      "Use foreach corretamente.",
+      "Mostre onde um while infinito poderia surgir."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/control-structures.foreach.php",
+    "tip": "PROVA: foreach ($itens as $chave => $valor) acessa chave e valor.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-funcoes",
+    "moduleId": "logica",
+    "title": "Funções, parâmetros e tipos",
+    "goal": "Separar cálculo do código de apresentação.",
+    "theory": [
+      "function cria uma função reutilizável. Parâmetros recebem dados, return devolve um resultado. A sintaxe `: float` declara retorno e `declare(strict_types=1)` habilita regras estritas de parâmetros escalares em chamadas feitas neste arquivo.",
+      "Use valores padrão somente quando fizer sentido. Uma função deve ter responsabilidade clara e tratamento explícito para entradas inválidas."
+    ],
+    "example": "<?php\ndeclare(strict_types=1);\nfunction total(float $preco, int $quantidade): float {\n    if ($quantidade < 0) { throw new InvalidArgumentException(\"Quantidade inválida\"); }\n    return $preco * $quantidade;\n}\necho total(12.5, 3);",
+    "question": "Qual instrução devolve um valor de uma função?",
+    "choices": [
+      "echo",
+      "return",
+      "include"
+    ],
+    "answer": 1,
+    "explanation": "return devolve um valor; echo apenas o imprime.",
+    "task": "Escreva calcularDesconto(float $total, float $percentual): float com tratamento de percentuais inválidos.",
+    "checks": [
+      "Teste 0%, 10% e 100%.",
+      "Teste valores fora de 0–100.",
+      "Use parâmetro e retorno tipados."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.functions.php",
+    "tip": "PROVA: printar uma saída não equivale a retornar o resultado.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-arrays-indexados",
+    "moduleId": "arrays",
+    "title": "Arrays indexados e acesso",
+    "goal": "Armazenar vários elementos em uma única variável.",
+    "theory": [
+      "Arrays indexados contêm valores com chaves inteiras por padrão. O primeiro índice costuma ser 0; count($itens) retorna a quantidade.",
+      "Use ?? para fornecer valor padrão quando uma chave não existe. Evite acessar índice inexistente sem verificar; array_key_exists e isset têm diferenças com valores null."
+    ],
+    "example": "<?php\n$pizzas = [\"Mussarela\", \"Frango\", \"Calabresa\"];\necho count($pizzas) . PHP_EOL;\necho $pizzas[0] . PHP_EOL;\necho $pizzas[99] ?? \"Não encontrada\";",
+    "question": "Qual é o primeiro índice do array [\"A\", \"B\"]?",
+    "choices": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "explanation": "Arrays sequenciais normalmente começam com índice 0.",
+    "task": "Receba quatro preços e imprima quantidade, primeiro item e soma.",
+    "checks": [
+      "Teste lista vazia.",
+      "Use count.",
+      "Não acesse posição inexistente."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.types.array.php",
+    "tip": "PROVA: count conta elementos; não confunda com end() nem array_sum().",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-associativos",
+    "moduleId": "arrays",
+    "title": "Arrays associativos e registros",
+    "goal": "Representar um pedido com chave e valor.",
+    "theory": [
+      "Arrays associativos mapeiam chaves como \"nome\" e \"preco\" a valores. Um array pode conter outros arrays, formando coleções de registros.",
+      "Use isset para checar chave existente com valor não nulo e array_key_exists quando null é um valor legítimo. Ao lidar com dados externos valide o formato esperado."
+    ],
+    "example": "<?php\n$produto = [\"nome\" => \"Pizza grande\", \"preco\" => 55.00, \"ativo\" => true];\necho $produto[\"nome\"] . PHP_EOL;\nvar_dump(isset($produto[\"ativo\"]));",
+    "question": "Como acessar o campo preco de um array associativo $p?",
+    "choices": [
+      "$p.preco",
+      "$p[\"preco\"]",
+      "$p->preco"
+    ],
+    "answer": 1,
+    "explanation": "Arrays usam colchetes e chaves; objetos usam ->.",
+    "task": "Crie um array associativo de cliente e outro de pedido, com total calculado.",
+    "checks": [
+      "Use chaves descritivas.",
+      "Teste uma chave ausente.",
+      "Distinga array de objeto."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.types.array.php",
+    "tip": "PROVA: $dados[\"nome\"] lê array; $objeto->nome lê propriedade de objeto.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-array-funcoes",
+    "moduleId": "arrays",
+    "title": "array_map, filter e reduce",
+    "goal": "Transformar listas com funções reutilizáveis.",
+    "theory": [
+      "array_map transforma cada elemento, array_filter seleciona elementos e array_reduce acumula um resultado. As chaves podem ser preservadas em array_filter; se precisar índices sequenciais, use array_values.",
+      "Operações puras tornam testes simples: receba uma lista, devolva uma nova lista e evite alterar entradas sem necessidade."
+    ],
+    "example": "<?php\n$precos = [10, 20, 30];\n$comTaxa = array_map(fn($p) => $p * 1.1, $precos);\n$maiores = array_values(array_filter($comTaxa, fn($p) => $p > 20));\nprint_r($maiores);",
+    "question": "Qual função seleciona elementos que atendem a um predicado?",
+    "choices": [
+      "array_filter",
+      "array_map",
+      "count"
+    ],
+    "answer": 0,
+    "explanation": "array_filter mantém os elementos cujo predicado é verdadeiro.",
+    "task": "Receba pedidos e devolva somente os que estão pagos; calcule a soma dos valores.",
+    "checks": [
+      "Não modifique a lista original.",
+      "Teste coleção vazia.",
+      "Explique preservação das chaves."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/ref.array.php",
+    "tip": "PROVA: array_filter seleciona; array_map transforma; array_reduce acumula.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-datas-json",
+    "moduleId": "arrays",
+    "title": "Datas, JSON e serialização",
+    "goal": "Converter dados sem supor formatos inválidos.",
+    "theory": [
+      "json_encode transforma valores PHP compatíveis em JSON; json_decode pode criar objetos ou arrays associativos com true. Use JSON_THROW_ON_ERROR para tratar dados inválidos.",
+      "DateTimeImmutable evita mutações inesperadas. Formate datas explicitamente e valide entradas, especialmente quando houver fuso horário ou data vinda de formulário."
+    ],
+    "example": "<?php\n$pedido = [\"id\" => 1, \"status\" => \"pago\"];\n$json = json_encode($pedido, JSON_THROW_ON_ERROR);\n$dados = json_decode($json, true, 512, JSON_THROW_ON_ERROR);\necho $dados[\"status\"];",
+    "question": "O que json_decode($json, true) retorna para um objeto JSON?",
+    "choices": [
+      "Array associativo",
+      "HTML",
+      "Somente string"
+    ],
+    "answer": 0,
+    "explanation": "O segundo argumento true solicita arrays associativos.",
+    "task": "Transforme um registro de compra em JSON e recupere uma propriedade, incluindo tratamento de JSON inválido.",
+    "checks": [
+      "Use JSON_THROW_ON_ERROR.",
+      "Teste JSON inválido.",
+      "Diferencie encode e decode."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/ref.json.php",
+    "tip": "PROVA: json_encode gera JSON; json_decode lê JSON; true retorna arrays associativos.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-get-post",
+    "moduleId": "formularios",
+    "title": "GET, POST e superglobais",
+    "goal": "Entender requisições e dados enviados ao servidor.",
+    "theory": [
+      "$_GET contém parâmetros da URL (query string). $_POST contém campos de formulários com métodos e tipos de envio compatíveis; não é sinônimo de todo corpo HTTP JSON.",
+      "$_SERVER[\"REQUEST_METHOD\"] informa o método. Não confie no navegador: valide tamanho, tipo e formato no servidor. Dados sensíveis não devem ir em parâmetros de URL."
+    ],
+    "example": "<?php\n$metodo = $_SERVER[\"REQUEST_METHOD\"] ?? \"CLI\";\n$nome = trim((string)($_POST[\"nome\"] ?? \"\"));\nif ($metodo === \"POST\" && $nome !== \"\") {\n    echo \"Nome recebido\";\n}",
+    "question": "Qual superglobal normalmente recebe campos de formulário method=\"post\"?",
+    "choices": [
+      "$_GET",
+      "$_POST",
+      "$_SESSION"
+    ],
+    "answer": 1,
+    "explanation": "$_POST contém campos do formulário POST processados pelo PHP.",
+    "task": "Crie um formulário HTML com method=\"post\" e name=\"nome\", com tratamento em index.php.",
+    "checks": [
+      "Teste requisição GET sem envio.",
+      "Teste POST com nome preenchido.",
+      "Não exiba senha pela URL."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/tutorial.forms.php",
+    "tip": "PROVA: id identifica elemento HTML; name é a chave enviada pelo formulário.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-form-validacao",
+    "moduleId": "formularios",
+    "title": "Validação, trim e filtros",
+    "goal": "Rejeitar entradas inválidas no backend.",
+    "theory": [
+      "trim remove espaços nas pontas; filter_var valida formatos como e-mail. is_numeric e filtros não substituem regras de negócio; limite comprimentos e quantidades.",
+      "Nunca confie em required ou type=\"email\" do HTML como barreira de segurança. Refaça a validação no PHP e mostre mensagens sem vazar dados internos."
+    ],
+    "example": "<?php\n$email = trim((string)($_POST[\"email\"] ?? \"\"));\nif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {\n    echo \"E-mail inválido\";\n} else {\n    echo \"Formato aceito\";\n}",
+    "question": "Onde deve acontecer a validação obrigatória de dados enviados?",
+    "choices": [
+      "Somente no JavaScript",
+      "Somente no HTML",
+      "No servidor PHP"
+    ],
+    "answer": 2,
+    "explanation": "A validação no servidor não pode ser ignorada pelo cliente.",
+    "task": "Implemente validação de nome, e-mail e quantidade no cadastro de cliente.",
+    "checks": [
+      "Rejeite nome só com espaços.",
+      "Teste e-mail inválido.",
+      "Rejeite quantidade zero ou negativa."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/filter.filters.validate.php",
+    "tip": "PROVA: required do HTML ajuda a UX, mas não substitui validação no PHP.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-escape-html",
+    "moduleId": "formularios",
+    "title": "htmlspecialchars e prevenção de XSS",
+    "goal": "Mostrar textos de usuários sem executar HTML injetado.",
+    "theory": [
+      "XSS pode ocorrer ao inserir conteúdo do usuário diretamente em HTML. Na saída para HTML, use htmlspecialchars($valor, ENT_QUOTES | ENT_SUBSTITUTE, \"UTF-8\").",
+      "Escaping depende do contexto: conteúdo HTML, atributos, URL e JavaScript têm regras próprias. Nunca faça saída de texto não confiável com echo bruto dentro de um documento HTML."
+    ],
+    "example": "<?php\n$nome = \"<script>alert(1)<\/script>\";\necho htmlspecialchars($nome, ENT_QUOTES | ENT_SUBSTITUTE, \"UTF-8\");",
+    "question": "Qual função ajuda a escapar texto não confiável ao exibi-lo em HTML?",
+    "choices": [
+      "htmlspecialchars",
+      "unserialize",
+      "include"
+    ],
+    "answer": 0,
+    "explanation": "htmlspecialchars converte caracteres especiais em entidades HTML.",
+    "task": "Exiba nome e observação de um cliente preservando caracteres especiais sem executar HTML.",
+    "checks": [
+      "Teste com <script> como entrada.",
+      "Teste com aspas simples e duplas.",
+      "Diferencie escaping de validação."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.htmlspecialchars.php",
+    "tip": "PROVA: escapar a saída para HTML é diferente de validar ou sanitizar entrada.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-post-redirect",
+    "moduleId": "formularios",
+    "title": "POST-Redirect-GET e redirecionamento",
+    "goal": "Evitar reenvios ao atualizar uma página.",
+    "theory": [
+      "O padrão POST-Redirect-GET redireciona após uma operação que altera dados, evitando o reenvio acidental ao atualizar a página.",
+      "header(\"Location: ...\") precisa ser enviado antes de qualquer saída de corpo HTTP. Use exit após redirecionar para interromper execução. Nunca aceite destinos arbitrários de redirecionamento sem validar."
+    ],
+    "example": "<?php\n$metodo = $_SERVER[\"REQUEST_METHOD\"] ?? \"GET\";\nif ($metodo === \"POST\") {\n    // Validar e processar o formulário antes daqui.\n    header(\"Location: /sucesso.php\", true, 303);\n    exit;\n}\necho \"Formulário disponível\";",
+    "question": "Por que usar exit logo após header(\"Location: ...\")?",
+    "choices": [
+      "Para aumentar a memória",
+      "Para impedir execução posterior",
+      "Para instalar um cookie"
+    ],
+    "answer": 1,
+    "explanation": "header define o cabeçalho, mas não encerra automaticamente o script.",
+    "task": "Crie cadastro que redireciona para sucesso.php após POST válido.",
+    "checks": [
+      "Não escreva saída antes de header.",
+      "Use exit após redirect.",
+      "Atualize a página e observe o comportamento."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.header.php",
+    "tip": "PROVA: headers HTTP precisam ser enviados antes do conteúdo de resposta.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-includes",
+    "moduleId": "arquivos-sessoes",
+    "title": "include, require e organização",
+    "goal": "Separar arquivos sem duplicar lógica.",
+    "theory": [
+      "include incorpora outro arquivo e emite aviso quando não encontra; require falha com erro mais grave. Os sufixos _once evitam incluir o mesmo arquivo várias vezes no mesmo fluxo.",
+      "Use __DIR__ para construir caminhos relativos ao arquivo e evitar depender do diretório atual. Não construa caminhos de include usando parâmetros de usuário."
+    ],
+    "example": "<?php\n// Coloque este exemplo num arquivo que exista ao lado de config.php.\n$caminho = __DIR__ . \"/config.php\";\nif (is_file($caminho)) {\n    require_once $caminho;\n}\necho \"Aplicação pronta\";",
+    "question": "Qual constante representa o diretório do arquivo atual?",
+    "choices": [
+      "__DIR__",
+      "$_GET",
+      "__FILE_SIZE__"
+    ],
+    "answer": 0,
+    "explanation": "__DIR__ aponta para o diretório do script fonte.",
+    "task": "Separe cabeçalho, conexão e página inicial usando require_once com __DIR__.",
+    "checks": [
+      "Corrija caminhos para subpastas.",
+      "Compare include e require.",
+      "Evite incluir arquivos indicados pela URL."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.require-once.php",
+    "tip": "PROVA: include pode emitir aviso e prosseguir; require é usado para dependências obrigatórias.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-cookies",
+    "moduleId": "arquivos-sessoes",
+    "title": "Cookies e ciclo de vida",
+    "goal": "Diferenciar estado no navegador e no servidor.",
+    "theory": [
+      "Cookies são armazenados no navegador e enviados em requisições compatíveis. setcookie define cabeçalhos; por isso deve ser chamado antes do corpo da resposta.",
+      "HttpOnly dificulta leitura via JavaScript, Secure restringe transmissão a HTTPS e SameSite ajuda a mitigar envio cross-site. Nenhum desses atributos substitui autenticação e validação de autorização."
+    ],
+    "example": "<?php\nsetcookie(\"tema\", \"escuro\", [\n    \"expires\" => time() + 3600,\n    \"path\" => \"/\",\n    \"secure\" => isset($_SERVER[\"HTTPS\"]),\n    \"httponly\" => true,\n    \"samesite\" => \"Lax\",\n]);\necho \"Cookie configurado\";",
+    "question": "Em qual local o cookie é armazenado principalmente?",
+    "choices": [
+      "No navegador",
+      "Sempre no banco",
+      "No CSS"
+    ],
+    "answer": 0,
+    "explanation": "O navegador mantém cookies e os envia ao servidor conforme as regras.",
+    "task": "Crie preferência de tema com cookie e observe o cabeçalho Set-Cookie no navegador.",
+    "checks": [
+      "Configure path e SameSite.",
+      "Ative Secure no HTTPS.",
+      "Explique diferença de cookie e sessão."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.setcookie.php",
+    "tip": "PROVA: cookie é client-side; $_SESSION é mantido pelo mecanismo de sessão no servidor.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-sessoes",
+    "moduleId": "arquivos-sessoes",
+    "title": "session_start, login e logout",
+    "goal": "Manter estado de usuário sem gravar senhas em cookies.",
+    "theory": [
+      "session_start inicia ou retoma uma sessão. $_SESSION é um array de dados da sessão; o navegador normalmente possui apenas um identificador de sessão.",
+      "Depois do login, use session_regenerate_id(true) para diminuir riscos de fixação. Logout deve remover os dados de sessão e invalidar o cookie de sessão quando aplicável."
+    ],
+    "example": "<?php\nsession_start();\n$_SESSION[\"usuario_id\"] = 42;\necho \"Sessão iniciada para \" . $_SESSION[\"usuario_id\"];",
+    "question": "Qual instrução é usada para iniciar ou retomar uma sessão PHP?",
+    "choices": [
+      "session_start()",
+      "new Session()",
+      "session_login()"
+    ],
+    "answer": 0,
+    "explanation": "session_start inicia/retoma a sessão em PHP.",
+    "task": "Crie uma página login.php que guarda user_id na sessão após credenciais válidas e outra para logout.",
+    "checks": [
+      "Teste página sem login.",
+      "Regere o ID após login.",
+      "Remova os dados e cookie da sessão ao sair."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.session-start.php",
+    "tip": "PROVA: $_SESSION precisa de session_start e não é equivalente a $_COOKIE.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-arquivos-upload",
+    "moduleId": "arquivos-sessoes",
+    "title": "Leitura, escrita e uploads",
+    "goal": "Manipular arquivos sem confiar em nomes enviados.",
+    "theory": [
+      "file_get_contents lê dados e file_put_contents escreve conteúdo em arquivo. Para uso concorrente, considere LOCK_EX ou armazenamento em banco. Verifique retorno de erros.",
+      "$_FILES recebe metadados do upload multipart/form-data. Valide tamanho, erro e tipo real via finfo; gere nomes aleatórios e salve fora da pasta pública sempre que possível. Não confie em extensão ou nome fornecido pelo usuário."
+    ],
+    "example": "<?php\n$arquivo = sys_get_temp_dir() . \"/devlab-estudo-\" . bin2hex(random_bytes(4)) . \".txt\";\nfile_put_contents($arquivo, \"PHP local\", LOCK_EX);\necho file_get_contents($arquivo);\nunlink($arquivo);",
+    "question": "Em qual superglobal ficam informações de arquivos enviados por formulário multipart?",
+    "choices": [
+      "$_UPLOAD",
+      "$_FILES",
+      "$_COOKIE"
+    ],
+    "answer": 1,
+    "explanation": "$_FILES contém arquivos enviados por upload multipart.",
+    "task": "Crie upload de foto para pasta não pública, com limite de 2 MB e verificação de MIME.",
+    "checks": [
+      "Rejeite extensão/MIME indevidos.",
+      "Gere nome aleatório.",
+      "Trate falha de upload sem mostrar path sensível."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/features.file-upload.php",
+    "tip": "PROVA: enctype=\"multipart/form-data\" é necessário para envio tradicional de arquivos.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-sql-modelagem",
+    "moduleId": "mysql",
+    "title": "Tabelas, chaves e relacionamentos",
+    "goal": "Identificar entidades e relações antes de programar.",
+    "theory": [
+      "MySQL armazena dados em tabelas. PRIMARY KEY identifica linhas; FOREIGN KEY relaciona tabelas e ajuda a manter integridade.",
+      "Para um pedido de pizzaria, separe produtos, pedidos e itens de pedido. O preço por item pode ser registrado no pedido para preservar o valor no momento da compra."
+    ],
+    "example": "<?php\n// Este exemplo representa um registro de uma tabela de itens.\n$item = [\"pedido_id\" => 10, \"pizza_id\" => 2, \"quantidade\" => 3];\necho \"Pedido #\" . $item[\"pedido_id\"];",
+    "question": "Qual chave identifica unicamente um registro?",
+    "choices": [
+      "FOREIGN KEY",
+      "PRIMARY KEY",
+      "ORDER BY"
+    ],
+    "answer": 1,
+    "explanation": "PRIMARY KEY identifica cada linha da tabela.",
+    "task": "Desenhe 3 tabelas: pizzas, pedidos, itens_pedido com chaves e campos.",
+    "checks": [
+      "Defina uma PK para cada tabela.",
+      "Defina relacionamento entre pedidos e itens.",
+      "Evite armazenar múltiplos produtos em uma coluna."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/book.pdo.php",
+    "tip": "PROVA: banco relacional usa PK, FK e joins; não guarde listas separadas por vírgula em uma célula.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-pdo-conexao",
+    "moduleId": "mysql",
+    "title": "PDO e conexão com o banco",
+    "goal": "Criar uma conexão reutilizável sem expor credenciais.",
+    "theory": [
+      "PDO (PHP Data Objects) fornece interface para diferentes bancos, mas requer o driver específico, como pdo_mysql. configure host, banco, usuário e senha fora dos arquivos públicos.",
+      "Ative modo de exceções e desative emulação de prepared statements quando apropriado. Nunca imprima exceções de conexão com credenciais para visitantes."
+    ],
+    "example": "<?php\n// Configure DB_HOST, DB_NAME, DB_USER e DB_PASS no ambiente.\n$host = getenv(\"DB_HOST\") ?: \"127.0.0.1\";\n$db = getenv(\"DB_NAME\") ?: \"pizzaria\";\n$dsn = \"mysql:host=$host;dbname=$db;charset=utf8mb4\";\n// Ao configurar seu banco: new PDO($dsn, $user, $pass, [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);\necho $dsn;",
+    "question": "Qual extensão permite usar prepared statements com MySQL em PHP moderno?",
+    "choices": [
+      "PDO com driver pdo_mysql",
+      "echo",
+      "$_SERVER"
+    ],
+    "answer": 0,
+    "explanation": "PDO com driver MySQL permite conexão e instruções preparadas.",
+    "task": "Configure conexão PDO com banco local e faça SELECT em uma tabela pizzas.",
+    "checks": [
+      "Não inclua senhas no Git.",
+      "Use charset utf8mb4.",
+      "Trate indisponibilidade do banco."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/book.pdo.php",
+    "tip": "PROVA: PDO é API; pdo_mysql é driver de banco e precisa estar habilitado.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-pdo-preparado",
+    "moduleId": "mysql",
+    "title": "Prepared statements e parâmetros",
+    "goal": "Evitar concatenar entrada do usuário em SQL.",
+    "theory": [
+      "Prepared statements separam estrutura SQL de valores. Use prepare e execute com parâmetros nomeados ou posicionais; não concatene campos enviados por formulário diretamente na query.",
+      "Marcadores substituem valores, não nomes de tabela/coluna. Para nomes dinâmicos, use uma lista de opções permitidas definida pelo servidor."
+    ],
+    "example": "<?php\n// $pdo é uma conexão PDO válida fornecida por sua aplicação.\nif (isset($pdo) && $pdo instanceof PDO) {\n    $stmt = $pdo->prepare(\"SELECT id, nome FROM pizzas WHERE id = :id\");\n    $stmt->execute([\"id\" => 3]);\n    print_r($stmt->fetch(PDO::FETCH_ASSOC));\n}",
+    "question": "Qual método prepara uma instrução SQL parametrizada?",
+    "choices": [
+      "$pdo->prepare()",
+      "$pdo->echo()",
+      "$_POST->query()"
+    ],
+    "answer": 0,
+    "explanation": "prepare define uma consulta que receberá os parâmetros via execute.",
+    "task": "Implemente cadastro e busca de pizzas por nome usando PDO com parâmetros.",
+    "checks": [
+      "Teste nome contendo apóstrofo.",
+      "Não concatene $_GET em SQL.",
+      "Teste pizza inexistente."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/pdo.prepare.php",
+    "tip": "PROVA: parâmetros preparados evitam injeção por valores; não parametrizam identificadores SQL.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-crud-transacoes",
+    "moduleId": "mysql",
+    "title": "CRUD e transações",
+    "goal": "Executar operações relacionadas como uma unidade.",
+    "theory": [
+      "CRUD significa Create (INSERT), Read (SELECT), Update (UPDATE) e Delete (DELETE). Sempre restrinja alterações a IDs válidos e verifique autorização quando houver usuários.",
+      "Transações usam beginTransaction, commit e rollBack. Registre pedido e seus itens dentro da mesma transação para evitar pedidos incompletos em caso de falha."
+    ],
+    "example": "<?php\n// Para estudar a estrutura, conecte $pdo antes de executar.\nif (isset($pdo) && $pdo instanceof PDO) {\n    $pdo->beginTransaction();\n    try {\n        $pdo->prepare(\"INSERT INTO pedidos (status) VALUES (?)\")->execute([\"novo\"]);\n        $pdo->commit();\n    } catch (Throwable $erro) {\n        $pdo->rollBack();\n        throw $erro;\n    }\n}",
+    "question": "Qual ação desfaz uma transação ainda não confirmada?",
+    "choices": [
+      "commit",
+      "rollBack",
+      "fetchAll"
+    ],
+    "answer": 1,
+    "explanation": "rollBack reverte alterações da transação não confirmada.",
+    "task": "Implemente INSERT de pedido e itens em uma transação, validando estoque.",
+    "checks": [
+      "Teste criação com itens válidos.",
+      "Force uma falha e confira rollback.",
+      "Use prepared statements em todos os valores."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/pdo.transactions.php",
+    "tip": "PROVA: DELETE sem WHERE pode remover todas as linhas; transações protegem operações relacionadas.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-classes",
+    "moduleId": "orientacao-objetos",
+    "title": "Classes, objetos e construtores",
+    "goal": "Criar modelos com propriedades e métodos tipados.",
+    "theory": [
+      "Uma classe descreve estrutura e comportamento; new cria uma instância. `__construct` inicializa o objeto. Propriedades podem ser tipadas com `string`, `int`, `float` etc.",
+      "private limita o acesso direto de outras classes. PHP 8+ admite constructor property promotion, que reduz repetições na declaração de propriedades."
+    ],
+    "example": "<?php\nclass Pizza {\n    public function __construct(\n        public readonly string $nome,\n        public readonly float $preco\n    ) {}\n}\n$pizza = new Pizza(\"Mussarela\", 39.9);\necho $pizza->nome;",
+    "question": "Qual método especial inicializa uma nova instância?",
+    "choices": [
+      "__construct",
+      "__start",
+      "newClass"
+    ],
+    "answer": 0,
+    "explanation": "__construct é invocado na criação do objeto.",
+    "task": "Crie classe Pedido com id, status e método calcularTotal.",
+    "checks": [
+      "Use propriedades tipadas.",
+      "Teste instâncias independentes.",
+      "Explique readonly vs private."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.oop5.decon.php",
+    "tip": "PROVA: -> acessa propriedade/método de instância; :: acessa membros estáticos/constantes.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-heranca-contratos",
+    "moduleId": "orientacao-objetos",
+    "title": "Herança, interface, trait e enum",
+    "goal": "Distinguir reaproveitamento de contrato.",
+    "theory": [
+      "extends representa herança; implements obriga a cumprir uma interface. Uma interface define métodos que classes concretas implementam. Trait reutiliza implementações sem criar hierarquia de herança.",
+      "Enum (PHP 8.1+) representa um conjunto fechado de opções. Prefira composição quando uma classe não for realmente um subtipo de outra."
+    ],
+    "example": "<?php\ninterface Pagamento { public function pagar(float $valor): bool; }\nclass Pix implements Pagamento {\n    public function pagar(float $valor): bool { return $valor > 0; }\n}\nenum Status: string { case Pendente = \"pendente\"; case Pago = \"pago\"; }\necho Status::Pago->value;",
+    "question": "Qual palavra obriga uma classe a seguir uma interface?",
+    "choices": [
+      "extends",
+      "implements",
+      "use namespace"
+    ],
+    "answer": 1,
+    "explanation": "implements declara que uma classe satisfaz um contrato de interface.",
+    "task": "Crie interface MetodoPagamento e duas implementações; use enum para status.",
+    "checks": [
+      "Teste duas classes concretas.",
+      "Distinga trait de interface.",
+      "Use enum para estados fixos."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.oop5.interfaces.php",
+    "tip": "PROVA: extends é herança; implements é contrato; trait não substitui interface.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-exceptions",
+    "moduleId": "orientacao-objetos",
+    "title": "Exceptions, try/catch e Throwable",
+    "goal": "Tratar erros sem escondê-los.",
+    "theory": [
+      "throw lança uma exceção; try/catch permite tratar condições conhecidas. finally executa limpeza. Throwable é a interface base de Error e Exception em PHP moderno.",
+      "Não capture Throwable para ignorar falhas. No servidor web, registre detalhes em logs apropriados e mostre resposta segura ao usuário, sem stack trace."
+    ],
+    "example": "<?php\nfunction validar(int $qtd): void {\n    if ($qtd < 1) throw new InvalidArgumentException(\"Quantidade inválida\");\n}\ntry { validar(0); } catch (InvalidArgumentException $e) {\n    echo \"Informe quantidade positiva\";\n}",
+    "question": "Qual palavra lança explicitamente uma exceção?",
+    "choices": [
+      "catch",
+      "throw",
+      "finally"
+    ],
+    "answer": 1,
+    "explanation": "throw sinaliza um erro para ser tratado pelo chamador.",
+    "task": "Faça método de criar pedido que lança exceção para quantidade inválida e testa o catch.",
+    "checks": [
+      "Teste caminho com erro.",
+      "Não exponha mensagem técnica ao visitante.",
+      "Use finally quando houver recurso para limpar."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.exceptions.php",
+    "tip": "PROVA: Exception e Error implementam Throwable; nem toda falha deve ser silenciosa.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-namespaces",
+    "moduleId": "orientacao-objetos",
+    "title": "Namespaces, Composer e autoload PSR-4",
+    "goal": "Organizar código em múltiplos arquivos.",
+    "theory": [
+      "Namespaces evitam conflitos de nomes entre classes. `use` importa uma classe por seu nome qualificado. Autoload carrega classes quando usadas, sem require manual para cada uma.",
+      "Composer é gerenciador de dependências PHP; PSR-4 relaciona namespaces a pastas. Projetos maiores separam `src/`, `public/`, `tests/` e configurações."
+    ],
+    "example": "<?php\nnamespace DevLab\\Dominio;\nclass Pedido {\n    public function __construct(public int $id) {}\n}\n$pedido = new Pedido(1);\necho $pedido->id;",
+    "question": "Qual ferramenta gerencia dependências PHP e pode configurar autoload?",
+    "choices": [
+      "Composer",
+      "npm (sempre)",
+      "phpMyAdmin"
+    ],
+    "answer": 0,
+    "explanation": "Composer gerencia pacotes PHP e autoload, incluindo PSR-4.",
+    "task": "Crie src/Dominio/Pedido.php e autoload PSR-4 via composer.json, com um script public/index.php.",
+    "checks": [
+      "Gere autoload com Composer.",
+      "Separe domínio do código HTTP.",
+      "Documente como rodar o sistema."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/language.namespaces.php",
+    "tip": "PROVA: Composer não é servidor web nem banco de dados; gera autoload e gerencia dependências.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-passwords",
+    "moduleId": "seguranca-projeto",
+    "title": "Hash de senhas e verificação",
+    "goal": "Não guardar senhas em texto puro.",
+    "theory": [
+      "password_hash($senha, PASSWORD_DEFAULT) cria hash seguro; password_verify compara senha digitada com hash armazenado. Hash não é criptografia reversível.",
+      "Nunca use md5 ou sha1 para armazenar senhas; use o algoritmo recomendado e deixe margem de tamanho para a coluna do hash. Configure políticas de login e limites de tentativas na aplicação."
+    ],
+    "example": "<?php\n$hash = password_hash(\"senha-de-teste\", PASSWORD_DEFAULT);\nvar_dump(password_verify(\"senha-de-teste\", $hash));\nvar_dump(password_verify(\"senha-errada\", $hash));",
+    "question": "Qual função verifica a senha contra um hash salvo?",
+    "choices": [
+      "password_verify",
+      "md5",
+      "json_decode"
+    ],
+    "answer": 0,
+    "explanation": "password_verify compara senha e hash com o algoritmo adequado.",
+    "task": "Implemente cadastro com password_hash e login com password_verify.",
+    "checks": [
+      "Nunca armazene senha em texto puro.",
+      "Teste senha correta e incorreta.",
+      "Regere ID de sessão no login."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.password-hash.php",
+    "tip": "PROVA: senha é armazenada em hash, nunca deve ser recuperada/descriptografada.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-csrf-sql-xss",
+    "moduleId": "seguranca-projeto",
+    "title": "CSRF, SQL injection e XSS",
+    "goal": "Aplicar controles corretos ao risco correto.",
+    "theory": [
+      "SQL injection é mitigada por queries parametrizadas. XSS requer escaping de saída apropriado ao contexto. CSRF exige tokens ou defesas específicas para operações que alteram estado com autenticação por cookie.",
+      "Use tokens CSRF gerados com random_bytes e comparados com hash_equals. Verifique autorização por recurso em cada endpoint: login não basta para acesso aos dados de outras pessoas."
+    ],
+    "example": "<?php\nsession_start();\n$_SESSION[\"csrf\"] ??= bin2hex(random_bytes(32));\n$recebido = (string)($_POST[\"csrf\"] ?? \"\");\nif ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    if (!hash_equals($_SESSION[\"csrf\"], $recebido)) { http_response_code(403); exit(\"Requisição recusada\"); }\n}\necho \"Fluxo verificado\";",
+    "question": "Qual medida protege valores usados em SQL contra injeção?",
+    "choices": [
+      "Concatenar $_POST",
+      "Prepared statements",
+      "htmlspecialchars nos valores SQL"
+    ],
+    "answer": 1,
+    "explanation": "SQL parametrizado separa valores de código da consulta.",
+    "task": "Proteja cadastro de pizza contra SQL injection, XSS e CSRF; documente cada controle.",
+    "checks": [
+      "Use prepared statements.",
+      "Escape texto ao exibir no HTML.",
+      "Valide token CSRF ao receber POST."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/security.php",
+    "tip": "PROVA: prepared SQL não substitui escaping HTML; são ataques e controles diferentes.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-api-testes",
+    "moduleId": "seguranca-projeto",
+    "title": "Respostas JSON, REST e testes",
+    "goal": "Criar endpoints previsíveis com teste de comportamento.",
+    "theory": [
+      "Uma API pode enviar `Content-Type: application/json` e status apropriado com http_response_code. json_encode gera resposta JSON. Valide o corpo recebido e trate falhas sem emitir HTML inesperado.",
+      "Testes com phpunit ou scripts de teste devem verificar retornos e casos-limite. Diferencie 400 (solicitação inválida), 401 (sem autenticação), 403 (sem autorização), 404 (não encontrado) e 500 (erro no servidor)."
+    ],
+    "example": "<?php\nhttp_response_code(200);\nheader(\"Content-Type: application/json; charset=utf-8\");\necho json_encode([\"ok\" => true, \"pedidos\" => []], JSON_THROW_ON_ERROR);",
+    "question": "Qual status HTTP representa recurso não encontrado?",
+    "choices": [
+      "200",
+      "404",
+      "500"
+    ],
+    "answer": 1,
+    "explanation": "404 identifica recurso não encontrado; 500 indica falha do servidor.",
+    "task": "Crie GET /api/pizzas e POST /api/pedidos e teste códigos de resposta.",
+    "checks": [
+      "Responda com JSON válido.",
+      "Valide entrada antes de persistir.",
+      "Teste 400/404 e sucesso."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/function.http-response-code.php",
+    "tip": "PROVA: 401 exige autenticação; 403 significa acesso negado para a identidade existente.",
+    "filename": "exemplo.php"
+  },
+  {
+    "id": "php-projeto-final",
+    "moduleId": "seguranca-projeto",
+    "title": "Projeto final: Pizzaria da Turma",
+    "goal": "Integrar formulário, validação, PDO, transação e relatório.",
+    "theory": [
+      "Uma entrega prática de PHP costuma envolver formulário HTML, captura com $_POST, validação, gravação no banco e exibição segura de resultados. Divida em arquivos reutilizáveis e registre o esquema SQL.",
+      "No desafio final, implemente listar pizzas, fazer pedido, registrar itens e visualizar pedidos. Acrescente segurança básica (CSRF, prepared, escaping) e testes; CRUD administrativo e login são extensões avançadas."
+    ],
+    "example": "<?php\n// Exemplo de contrato de função da prova.\nfunction calcularPedido(float $preco, int $qtd): float {\n    if ($preco < 0 || $qtd < 1) throw new InvalidArgumentException();\n    return round($preco * $qtd, 2);\n}\necho calcularPedido(34.90, 2);",
+    "question": "Na prova prática, qual é a sequência mais adequada?",
+    "choices": [
+      "Ler dados → validar → preparar SQL → gravar → responder",
+      "Imprimir $_POST direto → concatenar SQL",
+      "Abrir banco sem credenciais → executar"
+    ],
+    "answer": 0,
+    "explanation": "Separar entrada, validação, persistência e resposta melhora segurança e correção.",
+    "task": "Baixe o projeto Pizzaria PHP, importe database/schema.sql no MySQL do XAMPP e faça um pedido completo.",
+    "checks": [
+      "Teste formulário válido e inválido.",
+      "Confirme pedido e itens no phpMyAdmin.",
+      "Reveja hash, CSRF, PDO e saída segura."
+    ],
+    "docs": "https://www.php.net/manual/pt_BR/tutorial.forms.php",
+    "tip": "PROVA: exercício integrador junta $_POST, PHP, MySQL, PDO e consulta no phpMyAdmin.",
+    "filename": "exemplo.php"
+  }
+];
+const phpExamQuestions = [
+  {
+    "key": "php-servidor",
+    "moduleId": "primeiros-passos",
+    "question": "O que o navegador recebe após uma página PHP ser processada?",
+    "choices": [
+      "O código PHP com senhas",
+      "A saída do PHP, como HTML",
+      "O arquivo .php sem interpretação"
+    ],
+    "answer": 1,
+    "explanation": "PHP é interpretado no lado do servidor; o cliente recebe apenas a saída produzida."
+  },
+  {
+    "key": "php-variaveis",
+    "moduleId": "primeiros-passos",
+    "question": "Como começa o nome de uma variável PHP?",
+    "choices": [
+      "Com #",
+      "Com $",
+      "Com let"
+    ],
+    "answer": 1,
+    "explanation": "Em PHP nomes de variáveis usam o prefixo $."
+  },
+  {
+    "key": "php-operadores",
+    "moduleId": "logica",
+    "question": "O que $a === $b compara?",
+    "choices": [
+      "Apenas valor",
+      "Tipo e valor",
+      "Faz uma atribuição"
+    ],
+    "answer": 1,
+    "explanation": "=== faz comparação estrita de valor e tipo."
+  },
+  {
+    "key": "php-repeticoes",
+    "moduleId": "logica",
+    "question": "Qual laço percorre elementos de um array diretamente?",
+    "choices": [
+      "foreach",
+      "switch",
+      "echo"
+    ],
+    "answer": 0,
+    "explanation": "foreach é adequado para percorrer listas e mapas."
+  },
+  {
+    "key": "php-arrays-indexados",
+    "moduleId": "arrays",
+    "question": "Qual é o primeiro índice do array [\"A\", \"B\"]?",
+    "choices": [
+      "1",
+      "0",
+      "-1"
+    ],
+    "answer": 1,
+    "explanation": "Arrays sequenciais normalmente começam com índice 0."
+  },
+  {
+    "key": "php-array-funcoes",
+    "moduleId": "arrays",
+    "question": "Qual função seleciona elementos que atendem a um predicado?",
+    "choices": [
+      "array_filter",
+      "array_map",
+      "count"
+    ],
+    "answer": 0,
+    "explanation": "array_filter mantém os elementos cujo predicado é verdadeiro."
+  },
+  {
+    "key": "php-get-post",
+    "moduleId": "formularios",
+    "question": "Qual superglobal normalmente recebe campos de formulário method=\"post\"?",
+    "choices": [
+      "$_GET",
+      "$_POST",
+      "$_SESSION"
+    ],
+    "answer": 1,
+    "explanation": "$_POST contém campos do formulário POST processados pelo PHP."
+  },
+  {
+    "key": "php-escape-html",
+    "moduleId": "formularios",
+    "question": "Qual função ajuda a escapar texto não confiável ao exibi-lo em HTML?",
+    "choices": [
+      "htmlspecialchars",
+      "unserialize",
+      "include"
+    ],
+    "answer": 0,
+    "explanation": "htmlspecialchars converte caracteres especiais em entidades HTML."
+  },
+  {
+    "key": "php-includes",
+    "moduleId": "arquivos-sessoes",
+    "question": "Qual constante representa o diretório do arquivo atual?",
+    "choices": [
+      "__DIR__",
+      "$_GET",
+      "__FILE_SIZE__"
+    ],
+    "answer": 0,
+    "explanation": "__DIR__ aponta para o diretório do script fonte."
+  },
+  {
+    "key": "php-sessoes",
+    "moduleId": "arquivos-sessoes",
+    "question": "Qual instrução é usada para iniciar ou retomar uma sessão PHP?",
+    "choices": [
+      "session_start()",
+      "new Session()",
+      "session_login()"
+    ],
+    "answer": 0,
+    "explanation": "session_start inicia/retoma a sessão em PHP."
+  },
+  {
+    "key": "php-sql-modelagem",
+    "moduleId": "mysql",
+    "question": "Qual chave identifica unicamente um registro?",
+    "choices": [
+      "FOREIGN KEY",
+      "PRIMARY KEY",
+      "ORDER BY"
+    ],
+    "answer": 1,
+    "explanation": "PRIMARY KEY identifica cada linha da tabela."
+  },
+  {
+    "key": "php-pdo-preparado",
+    "moduleId": "mysql",
+    "question": "Qual método prepara uma instrução SQL parametrizada?",
+    "choices": [
+      "$pdo->prepare()",
+      "$pdo->echo()",
+      "$_POST->query()"
+    ],
+    "answer": 0,
+    "explanation": "prepare define uma consulta que receberá os parâmetros via execute."
+  },
+  {
+    "key": "php-classes",
+    "moduleId": "orientacao-objetos",
+    "question": "Qual método especial inicializa uma nova instância?",
+    "choices": [
+      "__construct",
+      "__start",
+      "newClass"
+    ],
+    "answer": 0,
+    "explanation": "__construct é invocado na criação do objeto."
+  },
+  {
+    "key": "php-exceptions",
+    "moduleId": "orientacao-objetos",
+    "question": "Qual palavra lança explicitamente uma exceção?",
+    "choices": [
+      "catch",
+      "throw",
+      "finally"
+    ],
+    "answer": 1,
+    "explanation": "throw sinaliza um erro para ser tratado pelo chamador."
+  },
+  {
+    "key": "php-passwords",
+    "moduleId": "seguranca-projeto",
+    "question": "Qual função verifica a senha contra um hash salvo?",
+    "choices": [
+      "password_verify",
+      "md5",
+      "json_decode"
+    ],
+    "answer": 0,
+    "explanation": "password_verify compara senha e hash com o algoritmo adequado."
+  },
+  {
+    "key": "php-api-testes",
+    "moduleId": "seguranca-projeto",
+    "question": "Qual status HTTP representa recurso não encontrado?",
+    "choices": [
+      "200",
+      "404",
+      "500"
+    ],
+    "answer": 1,
+    "explanation": "404 identifica recurso não encontrado; 500 indica falha do servidor."
+  },
+  {
+    "key": "extra-1",
+    "moduleId": "primeiros-passos",
+    "question": "Qual comando verifica erros de sintaxe de um arquivo PHP sem executá-lo?",
+    "choices": [
+      "php -l arquivo.php",
+      "php -S arquivo.php",
+      "php --install arquivo.php"
+    ],
+    "answer": 0,
+    "explanation": "php -l faz lint do arquivo."
+  },
+  {
+    "key": "extra-2",
+    "moduleId": "logica",
+    "question": "Ao usar POST com campo name=\"email\", onde os dados normalmente chegam?",
+    "choices": [
+      "$_POST[\"email\"]",
+      "$_GET[\"id\"]",
+      "$_SESSION[\"email\"] sempre"
+    ],
+    "answer": 0,
+    "explanation": "Formulários method=post entregam campos em $_POST."
+  },
+  {
+    "key": "extra-3",
+    "moduleId": "arrays",
+    "question": "Na expressão $x = \"5\"; $x === 5 resulta em:",
+    "choices": [
+      "true",
+      "false",
+      "erro de sintaxe"
+    ],
+    "answer": 1,
+    "explanation": "String e inteiro não têm o mesmo tipo."
+  },
+  {
+    "key": "extra-4",
+    "moduleId": "formularios",
+    "question": "Um formulário com upload deve usar qual enctype?",
+    "choices": [
+      "application/json",
+      "multipart/form-data",
+      "text/plain obrigatório"
+    ],
+    "answer": 1,
+    "explanation": "multipart/form-data permite envio de arquivos."
+  },
+  {
+    "key": "extra-5",
+    "moduleId": "arquivos-sessoes",
+    "question": "Para pesquisar um nome enviado por usuário no MySQL, a opção segura é:",
+    "choices": [
+      "\"... WHERE nome = \". $_GET[\"nome\"]",
+      "PDO prepare + execute com parâmetro",
+      "eval() com variável"
+    ],
+    "answer": 1,
+    "explanation": "Prepared statements previnem injeção via valores."
+  },
+  {
+    "key": "extra-6",
+    "moduleId": "mysql",
+    "question": "Após um INSERT em pedido e itens, uma falha nos itens deve provocar:",
+    "choices": [
+      "commit imediatamente",
+      "rollBack da transação",
+      "reload da página apenas"
+    ],
+    "answer": 1,
+    "explanation": "Transação deve preservar consistência."
+  },
+  {
+    "key": "extra-7",
+    "moduleId": "orientacao-objetos",
+    "question": "Qual é a saída esperada de password_verify com senha incorreta?",
+    "choices": [
+      "false",
+      "a senha original",
+      "um hash novo"
+    ],
+    "answer": 0,
+    "explanation": "A função retorna false quando a senha não corresponde ao hash."
+  },
+  {
+    "key": "extra-8",
+    "moduleId": "seguranca-projeto",
+    "question": "Um usuário autenticado tenta excluir pedido de outra conta. Qual teste deve ser obrigatório?",
+    "choices": [
+      "Autorização por proprietário do recurso",
+      "Somente sessão iniciada",
+      "Somente o botão estar oculto"
+    ],
+    "answer": 0,
+    "explanation": "Autenticação não substitui autorização por objeto."
+  }
+];
+function findPhpLesson(id){ return phpLessons.find(l=>l.id===id); }
+function phpModuleForLesson(id){ return phpModules.find(m=>m.lessonIds.includes(id)); }
+
+
+/** Aulas autorais: execução Python, Java e PHP no ambiente local (sem fingir que executam no navegador). */
 const guidedLanguageLessonFactory=(id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs)=>({id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs});
 const guidedLanguageLessons={
+ php:phpLessons,
  python:[
   guidedLanguageLessonFactory('py-intro','Variáveis e tipos','Identificar tipos e imprimir informações sem concatenar tudo.',
    ['Python organiza instruções por linhas e usa indentação significativa. int, float, str e bool são tipos comuns; as variáveis não exigem declaração prévia do tipo.','Use f-strings para montar mensagens legíveis. Execute o arquivo com python main.py no terminal e observe erros, sem tentar memorizar cada comando.'],
@@ -4063,7 +5383,7 @@ function learningCatalogEntries(){
   ...backendLessons.map(l=>({title:l.title,summary:l.objective,area:'Backend',route:'backend/aula/'+l.id})),
   ...pathwayTracks.map(t=>({title:t.title,summary:t.subtitle,area:'Trilhas profissionais',route:'trilha/'+t.id})),
   ...languageCatalog.map(l=>({title:l.name,summary:l.description,area:'Biblioteca de linguagens',route:'linguagem/'+l.id})),
-  ...Object.values(guidedLanguageLessons).flat().map(l=>({title:l.title,summary:l.goal,area:l.id.startsWith('py-')?'Python':'Java',route:'linguagem/aula/'+l.id}))
+  ...Object.values(guidedLanguageLessons).flat().map(l=>({title:l.title,summary:l.goal,area:l.id.startsWith('py-')?'Python':l.id.startsWith('php-')?'PHP':'Java',route:'linguagem/aula/'+l.id}))
  ];
 }
 function searchResultsHtml(results){return `<span class="cl-search-summary">${results.length?`Resultados para “${esc(st.search.trim())}”`:'Nenhuma aula encontrada'}</span>${results.map(item=>`<button data-nav="${esc(item.route)}"><strong>${esc(item.title)}</strong><small>${esc(item.area)}</small></button>`).join('')}`;}
@@ -4201,7 +5521,7 @@ function pathwayHome(){
  <section class="rp-section rp-practice-mini"><div class="rp-section-heading"><div><span class="section-kicker">COLOQUE EM PRÁTICA</span><h2>Laboratórios e projetos</h2></div></div><div class="rp-fast-grid"><button data-nav="oficina"><strong>Oficina de código</strong><small>Problemas com testes automáticos</small></button><button data-nav="workspace"><strong>Workspace</strong><small>Arquivos e módulos JavaScript</small></button><button data-nav="carreira"><strong>Projetos integradores</strong><small>Do briefing ao portfólio</small></button></div></section>
  </div>`;
 }
-function pathwayCatalogPage(){return `<div class="rp-page"><button class="back-link" data-nav="inicio">← Início</button><header class="rp-page-head"><span class="section-kicker">FORMAÇÃO POR CARREIRA</span><h1>Qual caminho você quer seguir?</h1><p>Você não precisa estudar todas as tecnologias de uma vez. Escolha uma trilha e complete os módulos na sequência recomendada. As aulas são compartilhadas entre trilhas e mantêm o progresso que você já registrou.</p></header><div class="rp-main-grid">${pathwayTracks.map(pathwayMainCard).join('')}</div><div class="rp-soft-note"><strong>Preferiu começar por uma linguagem?</strong><p>JavaScript, TypeScript, Python, Java e SQL ficam em uma biblioteca separada.</p><button data-nav="linguagens">Abrir biblioteca de linguagens →</button></div><p class="rp-source-note">Organização inspirada nos temas públicos de <a href="https://roadmap.sh/" target="_blank" rel="noopener noreferrer">roadmap.sh</a>. Textos, checkpoints e atividades são autorais do DevLab.</p></div>`;}
+function pathwayCatalogPage(){return `<div class="rp-page"><button class="back-link" data-nav="inicio">← Início</button><header class="rp-page-head"><span class="section-kicker">FORMAÇÃO POR CARREIRA</span><h1>Qual caminho você quer seguir?</h1><p>Você não precisa estudar todas as tecnologias de uma vez. Escolha uma trilha e complete os módulos na sequência recomendada. As aulas são compartilhadas entre trilhas e mantêm o progresso que você já registrou.</p></header><div class="rp-main-grid">${pathwayTracks.map(pathwayMainCard).join('')}</div><div class="rp-soft-note"><strong>Preferiu começar por uma linguagem?</strong><p>JavaScript, TypeScript, PHP, Python, Java e SQL ficam em uma biblioteca separada.</p><button data-nav="linguagens">Abrir biblioteca de linguagens →</button></div><p class="rp-source-note">Organização inspirada nos temas públicos de <a href="https://roadmap.sh/" target="_blank" rel="noopener noreferrer">roadmap.sh</a>. Textos, checkpoints e atividades são autorais do DevLab.</p></div>`;}
 function pathwayDetailPage(id){
  const t=findPathway(id);if(!t)return `<div class="rp-page"><h1>Trilha não encontrada</h1><button data-nav="trilhas">Ver trilhas</button></div>`;
  const s=pathwayTrackStats(t),pct=pathwayPercent(t);
@@ -4215,8 +5535,10 @@ function pathwayDetailPage(id){
  }).join('')}</div><div class="rp-soft-note"><strong>Quer trabalhar em um projeto com vários arquivos?</strong><p>Abra o Workspace ou a Jornada Profissional. As aulas de backend exigem Node e PostgreSQL no seu computador.</p><div class="rp-actions"><button data-nav="workspace">Abrir Workspace</button><button data-nav="carreira">Projetos integradores</button></div></div><p class="rp-source-note">Sequência adaptada de <a href="${esc(t.reference)}" target="_blank" rel="noopener noreferrer">roadmap.sh</a>; não é uma certificação do site de referência.</p></div>`;
 }
 function guidedLanguageComplete(lesson){return !!pathwayState.langQuiz[lesson.id] && (pathwayState.langChecks[lesson.id]||[]).length===lesson.checks.length;}
-function languagesCatalogPage(){return `<div class="rp-page"><button class="back-link" data-nav="inicio">← Início</button><header class="rp-page-head"><span class="section-kicker">BIBLIOTECA DE LINGUAGENS</span><h1>Aprenda uma linguagem por vez.</h1><p>Aqui você estuda a linguagem em si, com fundamentos, exemplos e prática. Frontend, Backend e Full-Stack ficam em trilhas profissionais separadas.</p></header><div class="rp-languages-grid">${languageCatalog.map(l=>{const count=l.kind==='guided'?guidedLessonsFor(l.id).filter(guidedLanguageComplete).length:l.id==='javascript'?allJsLessons.filter(v=>st.completed.includes(v.id)).length:l.id==='typescript'?allTsLessons.filter(v=>st.completed.includes(v.id)).length:backendTracks.find(t=>t.id==='postgres').lessons.filter(backendDone).length;return `<button class="rp-language-card" data-nav="linguagem/${esc(l.id)}"><span class="rp-language-mark">${esc({javascript:'JS',typescript:'TS',python:'PY',java:'JV',sql:'SQL'}[l.id])}</span><strong>${esc(l.name)}</strong><span>${esc(l.description)}</span><span class="rp-language-meta">${count}/${l.count} ${l.kind==='guided'?'práticas revisadas':'aulas registradas'} <span aria-hidden="true">→</span></span></button>`;}).join('')}</div><div class="rp-soft-note"><strong>Como estudar melhor?</strong><p>Leia o conceito, tente explicar sem consultar, implemente a atividade e rode os testes no VS Code. As perguntas conferem compreensão; os checklists são autodeclarados.</p></div><p class="rp-source-note">Referências por linguagem indicadas nos cards. Conteúdo redigido para o DevLab.</p></div>`;}
+function languagesCatalogPage(){return `<div class="rp-page"><button class="back-link" data-nav="inicio">← Início</button><header class="rp-page-head"><span class="section-kicker">BIBLIOTECA DE LINGUAGENS</span><h1>Aprenda uma linguagem por vez.</h1><p>Aqui você estuda a linguagem em si, com fundamentos, exemplos e prática. Frontend, Backend e Full-Stack ficam em trilhas profissionais separadas.</p></header><div class="rp-languages-grid">${languageCatalog.map(l=>{const count=l.kind==='guided'?guidedLessonsFor(l.id).filter(guidedLanguageComplete).length:l.id==='javascript'?allJsLessons.filter(v=>st.completed.includes(v.id)).length:l.id==='typescript'?allTsLessons.filter(v=>st.completed.includes(v.id)).length:backendTracks.find(t=>t.id==='postgres').lessons.filter(backendDone).length;return `<button class="rp-language-card" data-nav="linguagem/${esc(l.id)}"><span class="rp-language-mark">${esc({javascript:'JS',typescript:'TS',python:'PY',java:'JV',php:'PHP',sql:'SQL'}[l.id])}</span><strong>${esc(l.name)}</strong><span>${esc(l.description)}</span><span class="rp-language-meta">${count}/${l.count} ${l.kind==='guided'?'práticas revisadas':'aulas registradas'} <span aria-hidden="true">→</span></span></button>`;}).join('')}</div><div class="rp-soft-note"><strong>Como estudar melhor?</strong><p>Leia o conceito, tente explicar sem consultar, implemente a atividade e rode os testes no VS Code. As perguntas conferem compreensão; os checklists são autodeclarados.</p></div><p class="rp-source-note">Referências por linguagem indicadas nos cards. Conteúdo redigido para o DevLab.</p></div>`;}
 function languageCoursePage(id){
+ if(id==='php/simulado')return phpExamPage();
+ if(id==='php')return phpCoursePage();
  const t=findLanguage(id);if(!t)return `<div class="rp-page"><h1>Linguagem não encontrada</h1><button data-nav="linguagens">Voltar</button></div>`;
  const lessons=t.kind==='guided'?guidedLessonsFor(id):id==='javascript'?allJsLessons:id==='typescript'?allTsLessons:backendTracks.find(v=>v.id==='postgres').lessons;
  const items=lessons.map((l,i)=>{const done=t.kind==='guided'?guidedLanguageComplete(l):id==='javascript'||id==='typescript'?st.completed.includes(l.id):backendDone(l);const route=t.kind==='guided'?'linguagem/aula/'+l.id:id==='sql'?'backend/aula/'+l.id:'aula/'+l.id;return `<button class="rp-language-lesson" data-nav="${esc(route)}"><span class="rp-lesson-dot ${done?'done':''}">${done?'✓':String(i+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.goal||l.summary||l.objective||'Abra a aula e pratique o conceito.')}</small></span><span aria-hidden="true">→</span></button>`;}).join('');
@@ -4224,6 +5546,7 @@ function languageCoursePage(id){
  return `<div class="rp-page"><button class="back-link" data-nav="linguagens">← Biblioteca de linguagens</button><header class="rp-page-head"><span class="section-kicker">ESTUDO DE LINGUAGEM</span><h1>${esc(t.name)}</h1><p>${esc(t.description)}</p><div class="rp-course-progress"><span>${done} de ${lessons.length} aulas${t.kind==='guided'?' revisadas':''}</span><span class="rp-bar"><span style="width:${Math.round(done/Math.max(1,lessons.length)*100)}%"></span></span></div></header>${t.kind==='guided'?'<div class="rp-soft-note"><strong>Prática no seu computador</strong><p>Essas aulas ensinam conceitos, mas não executam Python ou Java no navegador. Copie o exemplo, crie um arquivo no VS Code e execute com Python ou JDK instalado.</p></div>':''}<section class="rp-section"><div class="rp-section-heading"><div><span class="section-kicker">SEQUÊNCIA SUGERIDA</span><h2>Aulas desta linguagem</h2></div></div><div class="rp-language-list">${items}</div></section><a class="rp-stage-resource" href="${esc(t.roadmap)}" target="_blank" rel="noopener noreferrer">Ver o roadmap público desta linguagem ↗</a></div>`;
 }
 function languageLessonPage(id){
+ if(id.startsWith('php-'))return phpLessonPage(id);
  const l=findGuidedLesson(id);if(!l)return `<div class="rp-page"><h1>Aula não encontrada</h1><button data-nav="linguagens">Voltar</button></div>`;
  const lang=id.startsWith('py-')?'python':'java',lessons=guidedLessonsFor(lang),index=lessons.indexOf(l),correct=pathwayState.langQuiz[l.id],answers=pathwayState.langChecks[l.id]||[],done=guidedLanguageComplete(l);
  const tabs=['Entender','Responder','Praticar'];const current=Math.max(0,Math.min(pathwayState.langTab,2));
@@ -4244,6 +5567,57 @@ window.addEventListener('click',event=>{
 });
 window.addEventListener('input',event=>{if(event.target?.dataset.langNote){const id=event.target.dataset.langNote;pathwayState.langNotes[id]=event.target.value;save('language-notes',pathwayState.langNotes);}});
 window.addEventListener('hashchange',()=>{pathwayState.langTab=0;});
+
+/* DevLab 16: experiência de estudo para provas de PHP. Não executa PHP no navegador. */
+const phpExamState = load('php-exam-state', {answers:{}, index:0, submitted:false, attempts:0, lastScore:null});
+function phpModuleStats(module){
+ const done=module.lessonIds.filter(id=>{const l=findGuidedLesson(id);return l&&guidedLanguageComplete(l);}).length;
+ return {done,total:module.lessonIds.length};
+}
+function phpCoursePage(){
+ const done=phpLessons.filter(guidedLanguageComplete).length;
+ const progress=Math.round(done/phpLessons.length*100);
+ const next=phpLessons.find(l=>!guidedLanguageComplete(l))||phpLessons[0];
+ return `<div class="rp-page php-course"><button class="back-link" data-nav="linguagens">← Linguagens</button>
+ <header class="rp-detail-hero php-hero"><span class="section-kicker">FORMAÇÃO EM PHP · DO ZERO AO AVANÇADO</span><h1>PHP para aprender e passar na prova.</h1><p>Do primeiro echo ao formulário com POST, PDO/MySQL, sessões, orientação a objetos e segurança. Estude um conceito, responda à questão e pratique com código real.</p>
+ <div class="php-hero-stats"><span><strong>${phpModules.length}</strong> módulos</span><span><strong>${phpLessons.length}</strong> aulas</span><span><strong>${done}</strong> concluídas</span></div>
+ <div class="rp-course-progress"><span>${progress}% concluído</span><span class="rp-bar"><span style="width:${progress}%"></span></span></div>
+ <div class="rp-actions"><button class="rp-primary" data-nav="linguagem/aula/${esc(next.id)}">${done===phpLessons.length?'Revisar desde o início':'Continuar de onde parei'} →</button><button data-nav="linguagem/php/simulado">Simulado teórico · ${phpExamQuestions.length} questões</button></div></header>
+ <section class="php-howto"><div><strong>Estudar</strong><span>Explicação curta e exemplo</span></div><div><strong>Responder</strong><span>Questão de prova com feedback</span></div><div><strong>Aplicar</strong><span>Exercício no PHP local / XAMPP</span></div></section>
+ <div class="rp-soft-note php-runtime-note"><strong>Como executar PHP?</strong><p>Instale o PHP (ou XAMPP) e rode <code>php -v</code>, depois <code>php exemplo.php</code>. Para formulários web, use <code>php -S localhost:8000</code> e acesse pelo navegador. O editor JavaScript do DevLab não executa arquivos PHP — não confunda visualização com execução.</p></div>
+ <div class="rp-section-heading"><div><span class="section-kicker">SEU PLANO DE ESTUDO</span><h2>Conteúdo organizado por módulos</h2><p>Abra uma unidade de cada vez. Os quatro exercícios de cada módulo aumentam progressivamente de dificuldade.</p></div></div>
+ <div class="php-module-list">${phpModules.map((mod,i)=>{const stt=phpModuleStats(mod),nextIn=mod.lessonIds.find(id=>!guidedLanguageComplete(findGuidedLesson(id)));return `<details class="php-module" ${nextIn&&mod.lessonIds.includes(next.id)?'open':''}><summary><span class="php-module-count">${String(i+1).padStart(2,'0')}</span><span class="php-module-name"><strong>${esc(mod.title.replace(/^\d+ · /,''))}</strong><small>${esc(mod.summary)}</small></span><span class="php-module-done">${stt.done}/${stt.total}</span><span aria-hidden="true">⌄</span></summary><div class="php-module-details"><p><strong>Você vai conseguir:</strong> ${esc(mod.objective)}</p>${mod.lessonIds.map((id,j)=>{const l=findGuidedLesson(id),done=guidedLanguageComplete(l);return `<button class="php-lesson-link" data-nav="linguagem/aula/${esc(id)}"><span class="php-lesson-index ${done?'done':''}">${done?'✓':String(j+1).padStart(2,'0')}</span><span><strong>${esc(l.title)}</strong><small>${esc(l.goal)}</small></span><span aria-hidden="true">→</span></button>`;}).join('')}</div></details>`;}).join('')}</div>
+ <section class="php-exam-cta"><div><span class="section-kicker">PREPARAÇÃO PARA PROVA</span><h2>Simulado de PHP</h2><p>${phpExamQuestions.length} questões objetivas abrangendo todos os módulos. Resultado final com correção, explicações e revisão dos erros.</p></div><button class="rp-primary" data-nav="linguagem/php/simulado">Iniciar simulado →</button></section>
+ <section class="php-project-cta"><div><span class="section-kicker">PROVA PRÁTICA · XAMPP + MYSQL</span><h2>Pizzaria da Turma</h2><p>Baixe uma aplicação de estudo com formulário HTML, $_POST, validação, sessão, PDO com prepared statements, transação, SQL e testes locais. Treine no VS Code e confira as tabelas no phpMyAdmin.</p></div><a class="php-download" href="./downloads/php-pizzaria-prova.zip" download="php-pizzaria-prova.zip">Baixar projeto PHP + MySQL (ZIP) ↓</a></section>
+ <p class="rp-source-note">Base: <a href="https://www.php.net/manual/pt_BR/" target="_blank" rel="noopener noreferrer">manual oficial do PHP</a>. Aulas e questões são autorais; checklists de prática são autodeclarados. PHP 8.2+ recomendado para os exemplos, use sempre uma versão suportada e corrigida.</p></div>`;
+}
+function phpLessonPage(id){
+ const l=findGuidedLesson(id);if(!l)return `<div class="rp-page"><h1>Aula PHP não encontrada</h1><button data-nav="linguagem/php">Voltar</button></div>`;
+ const mod=phpModuleForLesson(id),idx=phpLessons.indexOf(l),correct=!!pathwayState.langQuiz[id],marked=pathwayState.langChecks[id]||[],done=guidedLanguageComplete(l),tab=Math.max(0,Math.min(3,pathwayState.langTab));
+ const tabs=['Entender','Ver código','Questão','Praticar'];const next=phpLessons[idx+1],previous=phpLessons[idx-1];
+ return `<div class="rp-page php-lesson"><button class="back-link" data-nav="linguagem/php">← PHP · Todos os módulos</button><header class="rp-page-head"><span class="section-kicker">${esc(mod.title.toUpperCase())} · AULA ${idx+1} DE ${phpLessons.length}</span><h1>${esc(l.title)}</h1><p>${esc(l.goal)}</p><span class="rp-lesson-status">${done?'✓ Questão e prática revisadas':'PHP 8.2+ · pratique no VS Code / XAMPP'}</span></header>
+ <nav class="rp-lesson-tabs" aria-label="Etapas da aula">${tabs.map((name,i)=>`<button data-lang-step="${i}" class="${tab===i?'active':''}" ${tab===i?'aria-current="step"':''}>${i+1}. ${name}</button>`).join('')}</nav>
+ <div class="rp-guided-body"><section class="rp-guided-panel" ${tab!==0?'hidden':''}><h2>Entenda o conceito</h2>${l.theory.map(p=>`<p>${esc(p)}</p>`).join('')}<div class="php-exam-tip"><strong>O que costuma cair na prova</strong><p>${esc(l.tip)}</p></div><button class="rp-primary" data-lang-step="1">Ver o código PHP →</button></section>
+ <section class="rp-guided-panel" ${tab!==1?'hidden':''}><h2>Observe e entenda o exemplo</h2><p>Leia o código linha por linha, tente prever a saída e depois execute localmente.</p><div class="rp-guided-code"><div class="rp-guided-code-top"><span>${esc(l.filename)}</span><button data-lang-copy="${esc(id)}">Copiar código</button></div><pre><code>${esc(l.example)}</code></pre></div><div class="php-command"><strong>Executar:</strong> <code>php ${esc(l.filename)}</code> <span>Use XAMPP / PHP CLI. Formulários e PDO dependem dos serviços instalados.</span></div><button class="rp-primary" data-lang-step="2">Responder à questão →</button></section>
+ <section class="rp-guided-panel" ${tab!==2?'hidden':''}><h2>Questão de fixação</h2><p>${esc(l.question)}</p><div class="rp-answers">${l.choices.map((choice,i)=>`<button data-lang-answer="${i}" data-lang-id="${esc(id)}" ${correct?'disabled':''} class="${correct&&i===l.answer?'correct':''}"><span>${'ABC'[i]}</span>${esc(choice)}</button>`).join('')}</div>${correct?`<div class="rp-answer-feedback"><strong>✓ Resposta correta</strong><p>${esc(l.explanation)}</p></div>`:'<p class="rp-disclaimer">Escolha uma alternativa. Você pode tentar novamente; a resposta só é revelada depois do acerto.</p>'}<button class="rp-primary" data-lang-step="3">Ir para a prática →</button></section>
+ <section class="rp-guided-panel" ${tab!==3?'hidden':''}><h2>Agora faça sozinho</h2><p>${esc(l.task)}</p><div class="rp-guided-checks">${l.checks.map((text,i)=>`<label><input type="checkbox" data-lang-check="${esc(id+':'+i)}" ${marked.includes(i)?'checked':''}><span>${esc(text)}</span></label>`).join('')}</div><label for="rp-language-note"><strong>Minhas anotações e erros</strong></label><textarea id="rp-language-note" data-lang-note="${esc(id)}" rows="4" placeholder="O que aconteceu na execução? Qual erro você resolveu?">${esc(pathwayState.langNotes[id]||'')}</textarea><p class="rp-disclaimer">Os critérios são sua conferência manual. O navegador do DevLab não executa PHP nem valida esses arquivos automaticamente.</p>${done?'<div class="rp-answer-feedback">✓ Aula revisada. Continue ou faça outra questão.</div>':''}</section></div>
+ <nav class="rp-guided-footer"><a href="${esc(l.docs)}" target="_blank" rel="noopener noreferrer">Manual oficial sobre o assunto ↗</a><div class="php-lesson-actions">${previous?`<button data-nav="linguagem/aula/${esc(previous.id)}">← Anterior</button>`:''}${next?`<button data-nav="linguagem/aula/${esc(next.id)}">Próxima aula →</button>`:`<button data-nav="linguagem/php/simulado">Simulado final →</button>`}</div></nav></div>`;
+}
+function phpExamScore(){return phpExamQuestions.reduce((score,q)=>score+(phpExamState.answers[q.key]===q.answer?1:0),0);}
+function phpExamPage(){
+ const total=phpExamQuestions.length,idx=Math.max(0,Math.min(total-1,Number(phpExamState.index)||0));
+ if(phpExamState.submitted){const score=phpExamScore(),pct=Math.round(score/total*100);const errors=phpExamQuestions.filter(q=>phpExamState.answers[q.key]!==q.answer);
+ return `<div class="rp-page php-exam-page"><button class="back-link" data-nav="linguagem/php">← PHP · Voltar ao curso</button><header class="rp-page-head"><span class="section-kicker">SIMULADO CORRIGIDO</span><h1>${pct>=70?'Bom resultado! Continue praticando.':'Revise os conteúdos mais difíceis.'}</h1><p>Você acertou ${score} de ${total} questões (${pct}%). Meta recomendada de estudo: pelo menos 70%. Esta avaliação é teórica e não substitui a execução do projeto.</p></header><div class="php-exam-result"><strong>${pct}%</strong><span>${score}/${total} acertos · ${errors.length} para revisar</span></div><div class="rp-actions"><button class="rp-primary" data-php-exam-reset="1">Refazer simulado →</button><button data-nav="linguagem/php">Revisar módulos</button></div><section class="php-exam-review"><h2>Correção comentada ${errors.length?'· questões a revisar':'· todas corretas'}</h2>${(errors.length?errors:phpExamQuestions).map(q=>`<details class="php-exam-review-item"><summary>${esc(q.question)}</summary><p>Sua resposta: ${esc(q.choices[phpExamState.answers[q.key]]||'Não respondida')}</p><p><strong>Correta: ${esc(q.choices[q.answer])}</strong></p><p>${esc(q.explanation)}</p></details>`).join('')}</section></div>`;}
+ const q=phpExamQuestions[idx];const chosen=phpExamState.answers[q.key];const answered=Object.keys(phpExamState.answers).filter(key=>phpExamQuestions.some(q=>q.key===key)).length;
+ return `<div class="rp-page php-exam-page"><button class="back-link" data-nav="linguagem/php">← Voltar ao curso</button><header class="rp-page-head"><span class="section-kicker">SIMULADO · MODO PROVA</span><h1>Teste seus conhecimentos de PHP</h1><p>${total} questões objetivas, do básico ao avançado. O gabarito aparece somente ao finalizar.</p></header><div class="php-exam-progress"><span>Questão ${idx+1} de ${total}</span><span>${answered}/${total} respondidas</span><span class="rp-bar"><span style="width:${Math.round((idx+1)/total*100)}%"></span></span></div><section class="rp-guided-panel php-exam-question"><p class="php-module-tag">${esc(phpModules.find(m=>m.id===q.moduleId)?.title||'PHP')}</p><h2>${esc(q.question)}</h2><div class="rp-answers">${q.choices.map((c,i)=>`<button type="button" class="php-exam-option ${chosen===i?'selected':''}" aria-pressed="${chosen===i}" data-php-exam-answer="${i}"><span>${'ABC'[i]}</span>${esc(c)}</button>`).join('')}</div></section><nav class="php-exam-controls"><button ${idx===0?'disabled':''} data-php-exam-go="${idx-1}">← Anterior</button>${idx<total-1?`<button class="rp-primary" data-php-exam-go="${idx+1}">Próxima →</button>`:`<button class="rp-primary" data-php-exam-submit="1" ${answered!==total?'disabled':''}>Corrigir simulado (${answered}/${total})</button>`}</nav><p class="rp-disclaimer">Não há cronômetro ou bloqueio. Faça sem consultar a resposta para simular uma prova.</p></div>`;
+}
+window.addEventListener('click',e=>{
+ const target=e.target.closest('[data-php-exam-answer],[data-php-exam-go],[data-php-exam-submit],[data-php-exam-reset]');if(!target)return;
+ if(target.dataset.phpExamAnswer!==undefined){const q=phpExamQuestions[phpExamState.index];if(!q||phpExamState.submitted)return;phpExamState.answers[q.key]=Number(target.dataset.phpExamAnswer);save('php-exam-state',phpExamState);render();return;}
+ if(target.dataset.phpExamGo!==undefined){phpExamState.index=Math.max(0,Math.min(phpExamQuestions.length-1,Number(target.dataset.phpExamGo)));save('php-exam-state',phpExamState);render();document.querySelector('.php-exam-progress')?.scrollIntoView({behavior:'auto',block:'start'});return;}
+ if(target.dataset.phpExamSubmit!==undefined){if(Object.keys(phpExamState.answers).filter(k=>phpExamQuestions.some(q=>q.key===k)).length!==phpExamQuestions.length)return;phpExamState.submitted=true;phpExamState.attempts++;phpExamState.lastScore=phpExamScore();save('php-exam-state',phpExamState);recordActivity();render();return;}
+ if(target.dataset.phpExamReset!==undefined){phpExamState.answers={};phpExamState.index=0;phpExamState.submitted=false;save('php-exam-state',phpExamState);render();return;}
+});
 
 render();
 </script></body></html>

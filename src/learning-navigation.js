@@ -2,7 +2,7 @@
 export const learningAreas = Object.freeze([
   {id:'learn',label:'Aprender',routes:Object.freeze([
     {route:'trilhas',label:'Trilhas profissionais',note:'Frontend · Backend · Full-Stack'},
-    {route:'linguagens',label:'Linguagens',note:'JS, TS, Python, Java e SQL'}
+    {route:'linguagens',label:'Linguagens',note:'JS, TS, PHP, Python, Java e SQL'}
   ])},
   {id:'practice',label:'Praticar',routes:Object.freeze([
     {route:'oficina',label:'Oficina de código',note:'Testes automáticos'},

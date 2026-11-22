@@ -107,6 +107,7 @@ export const languageCatalog = [
  {id:'typescript',name:'TypeScript',label:'JavaScript tipado',description:'Tipos, interfaces, funções e generics em cinco aulas com compilação.',roadmap:'https://roadmap.sh/typescript',kind:'existing',route:'curso/typescript',count:5},
  {id:'python',name:'Python',label:'Fundamentos de programação',description:'Sintaxe, coleções, funções, arquivos e testes. Prática no VS Code.',roadmap:'https://roadmap.sh/python',kind:'guided',count:5},
  {id:'java',name:'Java',label:'Orientação a objetos',description:'Tipos, classes, coleções, exceções e testes. Prática com JDK local.',roadmap:'https://roadmap.sh/java',kind:'guided',count:5},
+ {id:'php',name:'PHP',label:'Do zero à prova prática',description:'32 aulas em 8 módulos: sintaxe, formulários, sessões, MySQL/PDO, POO, segurança e simulado.',roadmap:'https://roadmap.sh/php',kind:'guided',count:32},
  {id:'sql',name:'SQL',label:'Linguagem de consultas',description:'Consultas, JOIN, modelagem e transações pelas aulas de PostgreSQL.',roadmap:'https://roadmap.sh/sql',kind:'linked',route:'backend/trilha/postgres',count:5}
 ];
 

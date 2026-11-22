@@ -29,8 +29,8 @@ test('trilhas profissionais próprias e separadas por carreira',()=>{
 });
 
 test('biblioteca independente com cursos reais e aulas guiadas',()=>{
- assert.deepEqual(languageCatalog.map(l=>l.id),['javascript','typescript','python','java','sql']);
- assert.equal(languageCatalog.reduce((n,l)=>n+(l.kind==='guided'?l.count:0),0),10);
+ assert.deepEqual(languageCatalog.map(l=>l.id),['javascript','typescript','python','java','php','sql']);
+ assert.equal(languageCatalog.reduce((n,l)=>n+(l.kind==='guided'?l.count:0),0),42);
  for(const l of languageCatalog){assert.equal(findLanguage(l.id),l);assert.ok(l.roadmap.startsWith('https://roadmap.sh/'));}
  for(const id of ['python','java']){
   assert.equal(guidedLessonsFor(id).length,5);

@@ -1,3 +1,12 @@
+
+## DevLab 16.0 — PHP do extremo básico ao avançado
+
+A Biblioteca de Linguagens ganhou a trilha **PHP**: [32 aulas em 8 módulos](docs/SPRINT-16.md) cobrindo sintaxe, formulários `$_GET`/`$_POST`, arrays, sessões, PHP/MySQL com PDO e SQL preparado, POO, segurança, APIs e projeto de pizzaria. Abra `#/linguagem/php` no DevLab. O **simulado de 24 questões** está em `#/linguagem/php/simulado`, com correção explicada.
+
+O site DevLab continua sendo estático; **PHP não é executado no navegador**. Copie os exemplos para o PHP CLI ou XAMPP, e use o [starter PHP/MySQL](examples/php-pizzaria/README.md) (também disponível na interface como ZIP). O progresso da trilha é guardado nas mesmas chaves locais usadas por Python/Java e as revisões anteriores permanecem intactas.
+
+Verifique com `node --test tests/php.mjs`, `python tests/e2e_php.py`, `php examples/php-pizzaria/tests/test_functions.php` e `npm test`.
+
 # DevLab 15.0 — Correção do editor e auditoria de regressão
 
 O editor de aulas não mostrava HTML, CSS ou JavaScript em alguns navegadores após o tema escuro. O conteúdo continuava no `textarea`, mas o fundo opaco imposto pelo CSS de formulários escondia a camada de realce de sintaxe (`#syntax-layer`).

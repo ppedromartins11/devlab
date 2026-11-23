@@ -2,7 +2,7 @@
 
 ## Escopo real
 
-O inventário do código atual reúne **179 aulas únicas**, sem contar reaproveitamentos das trilhas profissionais como novos conteúdos:
+O inventário do código atual reúne **179 posições de aula (176 IDs distintos)**, sem contar reaproveitamentos das trilhas profissionais como novos conteúdos:
 
 | Origem | Aulas |
 |---|---:|
@@ -15,7 +15,9 @@ O inventário do código atual reúne **179 aulas únicas**, sem contar reaprove
 | JavaScript e TypeScript avançados (guiadas) | 19 |
 | Frontend (HTML, CSS, JavaScript, TypeScript, React) | 25 |
 | Backend (Node.js, HTTP, PostgreSQL, autenticação, qualidade) | 25 |
-| **Total único** | **179** |
+| **Total de posições** | **179** |
+
+**Há três identificadores reutilizados em cursos diferentes**: `api-json`, `ts-generics` e `ts-dom`. Os microdesafios recebem escopo por curso quando necessário, preservando os IDs e o progresso legado.
 
 **Cobertura:** as 32 atividades autorais existentes são preservadas. As demais **147** são geradas de forma determinística **a partir do código e do objetivo da aula respectiva**, usando um banco de regras de conceitos de programação. Não usam um exercício genérico repetido em todas as páginas.
 

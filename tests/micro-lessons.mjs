@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {readFileSync} from 'node:fs';
+import vm from 'node:vm';
 import {microChallenges,findMicroChallenge,gradeMicroAnswer,normalizeMicroAnswer} from '../src/micro-lessons.js';
 import {allLessons} from '../src/course.js';
 import {frontendLessons} from '../src/frontend-curriculum.js';
@@ -56,4 +57,7 @@ test('build inclui exercício e interface nas rotas de linguagens e editor',()=>
  assert.doesNotMatch(ui,/\beval\s*\(|\bnew Function\s*\(/);
  const html=read('offline/index.html');
  assert.ok(html.includes('microChallengeHtml(')&&html.includes('data-micro-form'),'build sem microaula');
+ const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
+ assert.equal(scripts.length,1,'um script principal embutido');
+ assert.doesNotThrow(()=>new vm.Script(scripts[0][1]),'bundle não deve ter erros de sintaxe');
 });

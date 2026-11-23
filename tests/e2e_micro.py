@@ -64,6 +64,25 @@ with sync_playwright() as playwright:
         assert page.locator('.rp-guided-panel:not([hidden]) .rp-answers').count()==1
         go(page,'frontend/aula/html-documento')
         assert page.locator('.dl-micro').count()==1
+        # Sprint 22: cada aula contém prática editável, inclusive linguagens com execução local.
+        assert page.evaluate('allMicroLessonIds.length')==179
+        for route in ['aula/projeto-integrador','aula/ts-tipos','linguagem/aula/py-venv',
+                      'linguagem/aula/java-streams','linguagem/aula/sql-transactions',
+                      'linguagem/aula/js-closures','linguagem/aula/ts-config',
+                      'frontend/aula/react-estado','backend/aula/api-routes']:
+            go(page,route)
+            assert page.locator('.dl-micro').count()==1,(width,route)
+            assert page.locator('[data-micro-form]').count()==1,(width,route)
+            page.locator('[data-micro-practice-details] summary').click()
+            assert page.locator('[data-micro-practice-input]').count()==1,(width,route)
+            assert page.locator('[data-micro-open-practice]').count()==1,(width,route)
+        go(page,'linguagem/aula/sql-transactions')
+        page.locator('[data-micro-practice-details] summary').click()
+        field=page.locator('[data-micro-practice-input]')
+        field.fill('SELECT 123; -- meu rascunho de prática')
+        go(page,'linguagem/aula/sql-transactions')
+        page.locator('[data-micro-practice-details] summary').click()
+        assert page.locator('[data-micro-practice-input]').input_value().startswith('SELECT 123')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth+2'),width
         assert not errors,(width,errors)
         page.close()

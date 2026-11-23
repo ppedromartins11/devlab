@@ -53,3 +53,26 @@
 .dl-micro-suggestions button{background:#282b39;border:1px solid #505264;border-radius:7px;color:#f0f0f9;padding:9px 13px;font:12px ui-monospace,Consolas,monospace;cursor:pointer;min-height:38px}
 .dl-micro-suggestions button:hover{background:#35374b;border-color:#9e98df}
 @media(max-width:560px){.dl-micro-suggestions button{flex:1 1 70px}}
+
+/* Sprint 22: uma microtarefa de leitura + uma prática aberta em TODAS as aulas. */
+.dl-micro-practical{margin-top:20px;border:1px solid #414656;border-radius:10px;overflow:hidden;background:#161922}
+.dl-micro-practical>summary{cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 17px;color:#f0f1f7;list-style:none}
+.dl-micro-practical>summary::-webkit-details-marker{display:none}
+.dl-micro-practical>summary::after{content:'＋';font-size:19px;color:#b4adf8}
+.dl-micro-practical[open]>summary::after{content:'−'}
+.dl-micro-practical>summary span{font-size:14px;font-weight:750}
+.dl-micro-practical>summary small{font-size:11px;color:#aab0c0}
+.dl-micro-practical-body{border-top:1px solid #353b49;padding:16px 18px}
+.dl-micro-practical-body .dl-micro-task{font-size:13px;line-height:1.75;color:#d6d9e4;margin:0 0 16px}
+.dl-micro-practical-body label{display:block;color:#cdd1dd;font-size:12px;font-weight:700;margin-bottom:9px}
+.dl-micro-practical-body textarea{display:block;width:100%;min-height:160px;max-height:400px;resize:vertical;background:#0d1119;color:#f0f1f9;border:1px solid #434a5b;border-radius:8px;padding:14px 15px;font:12px/1.7 ui-monospace,Consolas,monospace;tab-size:2;white-space:pre;overflow:auto}
+.dl-micro-practice-actions{display:flex;justify-content:flex-start;gap:10px;flex-wrap:wrap;margin:12px 0}
+.dl-micro-practice-actions button{border:1px solid #535869;border-radius:8px;color:#edf0f6;background:#272d39;padding:11px 13px;font-size:12px;cursor:pointer}
+.dl-micro-practice-actions button:last-child{color:#10131b;background:#f0f1f6;border-color:#f0f1f6;font-weight:700}
+.dl-micro-practice-checks{margin-top:13px;font-size:12px;color:#c1c6d3;line-height:1.6}
+.dl-micro-practice-checks>strong{color:#f0f0f7}
+.dl-micro-practice-checks ul{padding-left:20px;margin:6px 0 10px}
+.dl-micro-practical .rp-disclaimer{color:#a3aabd!important}
+.dl-micro :is(.dl-micro-practical summary,.dl-micro-practical button,.dl-micro-practical textarea):focus-visible{outline:2px solid #bcb3ff;outline-offset:3px}
+@media(max-width:630px){.dl-micro-practical>summary{flex-direction:column;align-items:flex-start;gap:4px}.dl-micro-practical>summary::after{align-self:flex-end;margin-top:-20px}.dl-micro-practical-body{padding:13px}.dl-micro-practice-actions{flex-direction:column}.dl-micro-practice-actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){.dl-micro-practical *{transition:none!important}}

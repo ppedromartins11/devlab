@@ -75,5 +75,12 @@ export const guidedLanguageLessons={
  ]
 };
 
+// A ordem de navegação é por nível de aprofundamento, preservando todos os IDs e os dados salvos.
+const guidedLevel = lesson => lesson.level || (lesson.id==='py-test'||lesson.id==='java-tests'?'Intermediário':'Fundamentos');
+const guidedRank = {Fundamentos:0,Intermediário:1,Avançado:2};
+for (const languageId of ['python','java','sql','typescript','javascript']) {
+ guidedLanguageLessons[languageId].sort((left,right)=>guidedRank[guidedLevel(left)]-guidedRank[guidedLevel(right)]);
+}
+
 export const findGuidedLesson = id => Object.values(guidedLanguageLessons).flat().find(l=>l.id===id);
 export const guidedLessonsFor = id => guidedLanguageLessons[id]||[];

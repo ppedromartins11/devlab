@@ -33,7 +33,7 @@ function microChallengeHtml(lessonId,group){
  '<h3>'+esc(task.title)+'</h3><p>'+esc(task.prompt)+'</p>',
  '<pre class="dl-micro-code"><code>'+esc(task.snippet)+'</code></pre>',
  '<form data-micro-form="'+esc(id)+'" class="dl-micro-form">',
- '<label for="micro-answer-'+esc(id)+'">Substitua <code>____</code> pelo trecho correto</label>',
+ '<label for="micro-answer-'+esc(id)+'">Substitua cada <code>____</code> pelo mesmo trecho correto</label>',
  '<div class="dl-micro-controls"><input id="micro-answer-'+esc(id)+'" name="answer" data-micro-input="'+esc(id)+'" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="100" value="'+esc(value)+'" placeholder="Digite o código que falta" aria-describedby="micro-feedback-'+esc(id)+'">',
  '<button type="submit">'+(complete?'Verificar novamente':'Conferir resposta')+'</button></div></form>',
  task.suggestions?.length?'<div class="dl-micro-suggestions"><span>Sugestões para preencher pelo toque</span><div>'+task.suggestions.map(token=>'<button type="button" data-micro-suggestion="'+esc(token)+'">'+esc(token)+'</button>').join('')+'</div></div>':'',
@@ -42,6 +42,7 @@ function microChallengeHtml(lessonId,group){
  '<div id="micro-feedback-'+esc(id)+'" class="dl-micro-feedback '+(feedback?.ok?'correct':feedback?'incorrect':'')+'" role="status" aria-live="polite">',
  feedback?'<strong>'+(feedback.ok?'✓ Resposta correta':'Ainda não é esse trecho')+'</strong><p>'+esc(feedback.ok?task.explanation:'Confira o formato do código e tente novamente. Use as dicas se necessário.')+'</p>'+(feedback.ok?'<button type="button" data-micro-next>Continuar a aula →</button>':''):complete?'<strong>✓ Você já completou este microdesafio.</strong><p>Execute o código para consolidar o aprendizado.</p><button type="button" data-micro-next>Continuar a aula →</button>':'',
  '</div>',
+ (feedback?.ok||(!feedback&&complete))?'<div class="dl-micro-complete-code"><strong>Exemplo reconstruído</strong><pre><code>'+esc(task.snippet.replace(/____/g,task.answers[0]))+'</code></pre></div>':'',
  microPracticalHtml(id,task),
  '</section>'
  ];

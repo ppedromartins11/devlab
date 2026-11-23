@@ -1,4 +1,5 @@
 import { phpLessons } from './php-curriculum.js';
+import { extendedPythonLessons, extendedJavaLessons, guidedSqlLessons } from './extended-language-curriculum.js';
 /** Aulas autorais: execução Python, Java e PHP no ambiente local (sem fingir que executam no navegador). */
 const guidedLanguageLessonFactory=(id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs)=>({id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs});
 export const guidedLanguageLessons={
@@ -33,7 +34,8 @@ export const guidedLanguageLessons={
    'import unittest\n\ndef dobrar(valor):\n    return valor * 2\n\nclass Testes(unittest.TestCase):\n    def test_dobrar(self):\n        self.assertEqual(dobrar(4), 8)',
    'Qual comando executa a descoberta de testes unittest?',['python -m unittest discover','python import all','python run tests'],0,'O comando unittest discover encontra testes seguindo o padrão do módulo.',
    'Crie um pequeno gerenciador de tarefas em memória com três testes e um README para executar.',
-   ['Teste um fluxo válido e um inválido.','Inclua comando de execução no README.','Execute o conjunto completo de testes.'],'https://docs.python.org/3/library/unittest.html')
+   ['Teste um fluxo válido e um inválido.','Inclua comando de execução no README.','Execute o conjunto completo de testes.'],'https://docs.python.org/3/library/unittest.html'),
+  ...extendedPythonLessons
  ],
  java:[
   guidedLanguageLessonFactory('java-intro','JDK, tipos e método main','Compilar e executar uma classe Java básica.',
@@ -65,8 +67,10 @@ export const guidedLanguageLessons={
    'import static org.junit.jupiter.api.Assertions.*;\nimport org.junit.jupiter.api.Test;\nclass TarefaTest {\n    @Test void rejeitaTituloVazio() {\n        assertThrows(IllegalArgumentException.class, () -> new Tarefa(""));\n    }\n}',
    'Qual ferramenta é usada para escrever testes automatizados Java?',['JUnit','HTML','JSON'],0,'JUnit é uma biblioteca de testes usada em projetos Java.',
    'Crie testes para a classe Tarefa e registre no README os comandos Maven ou Gradle do seu projeto.',
-   ['Cubra entrada inválida.','Teste criação e conclusão.','Execute testes no terminal e corrija as falhas.'],'https://junit.org/junit5/docs/current/user-guide/')
- ]
+   ['Cubra entrada inválida.','Teste criação e conclusão.','Execute testes no terminal e corrija as falhas.'],'https://junit.org/junit5/docs/current/user-guide/'),
+  ...extendedJavaLessons
+ ],
+ sql: guidedSqlLessons
 };
 
 export const findGuidedLesson = id => Object.values(guidedLanguageLessons).flat().find(l=>l.id===id);

@@ -1,3 +1,13 @@
+## DevLab Sprint 22 — desafios e prática em todas as aulas
+
+A biblioteca tem **179 aulas únicas**, incluindo JS/TS, Python, Java, PHP, SQL, Frontend e Backend. Todas agora exibem **(1) um desafio curto de completar código e (2) um exercício prático com código inicial editável**, vinculado ao assunto da própria aula. As 32 atividades existentes continuam, e os novos desafios são derivados dos exemplos de suas respectivas aulas com regras de conceitos.
+
+A correção da lacuna é textual; a aplicação prática requer execução no editor original ou no ambiente local adequado. **Não se trata de um compilador universal nem de avaliação automática de competência**. O progresso anterior permanece preservado; novos rascunhos são salvos separadamente.
+
+[Escopo, metodologia, cobertura e limitações da Sprint 22](docs/SPRINT-22-PRACTICE-ALL.md).
+
+---
+
 ## DevLab 21 — Microaprendizagem interativa
 
 A auditoria das referências públicas do Mimo identificou que o DevLab tinha boa cobertura curricular, mas menor **frequência de interação nas aulas guiadas**. Esta evolução introduz **32 microdesafios autorais de código**: leia, complete a lacuna, receba feedback imediato, consulte até duas dicas e aplique em exercícios maiores. Há uma sugestão de prática rápida na página inicial e um indicador de sequência nas aulas guiadas.

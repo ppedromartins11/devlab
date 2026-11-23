@@ -69,6 +69,7 @@ function mountLessonModules(kind){
  layout.insertAdjacentHTML('beforebegin',studyStepNav(kind,id,studyLabels));
  for(let i=0;i<panels.length;i++){
   const panel=panels[i];panel.dataset.studyPanel=String(i);panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby',`cl-tab-${kind}-${i}`);
+  if(i===0 && findMicroChallenge(id))panel.insertAdjacentHTML('beforeend',microChallengeHtml(id));
   if(i<4){const next=document.createElement('button');next.type='button';next.className='cl-next-step';next.dataset.studySwitch=String(i+1);next.dataset.studyKey=kind+':'+id;next.textContent=i===0?'Ver exemplo →':i===1?'Responder pergunta →':i===2?'Praticar →':'Revisar exercício →';panel.append(next);}
  }
  const aside=container.querySelector(kind==='frontend'?'.ft-study-aside':'.be-lesson-aside');

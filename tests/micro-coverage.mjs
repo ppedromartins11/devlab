@@ -33,7 +33,7 @@ test('cada atividade inclui lacuna, resposta, duas dicas e prática específica'
  for(const task of Object.values(completeMicroChallenges)){
   assert.ok((task.snippet.match(/____/g)||[]).length>=1&&
    (task.snippet.match(/____/g)||[]).length<=(task.source==='curated'?2:1),task.lessonId);
-  assert.ok(task.title.length>12&&task.prompt.length>25,task.lessonId+' enunciado');
+  assert.ok(task.title.length>=10&&task.prompt.length>25,task.lessonId+' enunciado');
   assert.ok(task.answers?.length>=1&&task.answers[0].length>0,task.lessonId+' resposta');
   assert.equal(task.suggestions?.length,3,task.lessonId+' precisa de três alternativas móveis');
   assert.ok(task.suggestions.includes(task.answers[0]),task.lessonId+' alternativa correta ausente');

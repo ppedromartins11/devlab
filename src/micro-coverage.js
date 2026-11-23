@@ -82,7 +82,7 @@ function derivedLesson(lesson,group){
  const suggestions=[...new Set([correct,...selection.rule.alts,'null','false'].filter(x=>x&&x!=='____'))].slice(0,3);
  const objective=String(lesson.goal||lesson.objective||lesson.summary||lesson.title).trim().replace(/[.!?]$/,'');
  return {
-  ...meta,title:'Complete o trecho: '+lesson.title,prompt:'Complete a instrução retirada do exemplo desta aula.',
+  ...meta,title:'Complete o trecho: '+lesson.title,prompt:'Complete a instrução que demonstra '+selection.rule.topic+' neste exemplo.',
   snippet,answers:[correct],suggestions,
   hints:['Pense no objetivo da aula: '+objective+'.','O conceito está ligado a '+selection.rule.topic+'; revise o exemplo para identificar a expressão.'],
   explanation:'Neste trecho, '+correct+' '+selection.rule.purpose+'. Execute o exemplo completo para conferir o resultado.',

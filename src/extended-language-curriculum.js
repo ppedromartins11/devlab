@@ -652,3 +652,411 @@ export const extendedJavaLessons = [
     "moduleId": "java-expansion"
   }
 ];
+
+export const guidedSqlLessons = [
+  {
+    "id": "sql-intro",
+    "title": "PostgreSQL, tabelas e SELECT",
+    "goal": "Executar consultas e distinguir schema, tabela, linha e coluna.",
+    "theory": [
+      "SQL é uma linguagem declarativa: você descreve quais dados deseja, e o banco escolhe como obtê-los. PostgreSQL oferece psql e ferramentas gráficas para trabalhar com consultas.",
+      "Comece com tabelas temporárias em um banco local isolado. Entenda que SELECT não altera dados, enquanto INSERT, UPDATE e DELETE modificam registros."
+    ],
+    "example": "CREATE TEMP TABLE livros (id integer, titulo text);\nINSERT INTO livros VALUES (1, 'Algoritmos'), (2, 'Banco de Dados');\nSELECT id, titulo FROM livros;",
+    "question": "Qual comando consulta linhas sem modificá-las?",
+    "choices": [
+      "SELECT",
+      "UPDATE",
+      "DROP"
+    ],
+    "answer": 0,
+    "explanation": "SELECT recupera dados; UPDATE e DROP alteram o banco.",
+    "task": "Crie uma tabela temporária com três registros e execute consultas selecionando colunas específicas.",
+    "checks": [
+      "Use um banco de desenvolvimento.",
+      "Explique cada coluna do resultado.",
+      "Evite SELECT * como padrão em API pública."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/tutorial-sql.html",
+    "level": "Fundamentos",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-filter",
+    "title": "WHERE, NULL e operadores",
+    "goal": "Filtrar registros corretamente, incluindo valores ausentes.",
+    "theory": [
+      "WHERE aceita condições com AND, OR, IN, BETWEEN e LIKE. SQL usa lógica de três valores: verdadeiro, falso e desconhecido (NULL).",
+      "Comparar NULL com '=' não funciona como em linguagens tradicionais; use IS NULL ou IS NOT NULL. Parênteses deixam a precedência de AND e OR explícita."
+    ],
+    "example": "CREATE TEMP TABLE produtos (nome text, preco numeric, ativo boolean);\nINSERT INTO produtos VALUES ('A', 10, true),('B', null, true),('C', 20, false);\nSELECT nome FROM produtos WHERE ativo AND preco IS NOT NULL AND preco >= 10;",
+    "question": "Como filtrar valores SQL ausentes?",
+    "choices": [
+      "= NULL",
+      "IS NULL",
+      "== NULL"
+    ],
+    "answer": 1,
+    "explanation": "NULL exige IS NULL ou IS NOT NULL.",
+    "task": "Crie filtros por preço e status, compare resultados com e sem parênteses e trate NULL.",
+    "checks": [
+      "Teste nulos.",
+      "Teste limite de preço.",
+      "Explique AND versus OR."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/queries-table-expressions.html",
+    "level": "Fundamentos",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-sort",
+    "title": "ORDER BY, LIMIT e paginação",
+    "goal": "Ordenar consultas com resultados determinísticos.",
+    "theory": [
+      "Sem ORDER BY o banco não garante a ordem das linhas. LIMIT restringe a saída, e OFFSET pula registros, mas pode ser caro em tabelas grandes.",
+      "Para paginação consistente, use uma chave de desempate estável. Para volumes grandes, avalie paginação por cursor com índice apropriado."
+    ],
+    "example": "CREATE TEMP TABLE atividades (id int, pontos int);\nINSERT INTO atividades VALUES (1,10),(2,20),(3,20);\nSELECT * FROM atividades ORDER BY pontos DESC, id ASC LIMIT 2;",
+    "question": "Por que incluir id como critério de desempate?",
+    "choices": [
+      "Para mudar os pontos",
+      "Para garantir ordenação estável",
+      "Para desativar índices"
+    ],
+    "answer": 1,
+    "explanation": "id define uma ordem quando os pontos são iguais.",
+    "task": "Implemente duas páginas de registros ordenadas e explique risco de OFFSET com inserções concorrentes.",
+    "checks": [
+      "Ordene por coluna mais id.",
+      "Teste empates.",
+      "Compare LIMIT/OFFSET com cursor."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/queries-limit.html",
+    "level": "Fundamentos",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-joins",
+    "title": "INNER e LEFT JOIN",
+    "goal": "Relacionar tabelas sem duplicar informações.",
+    "theory": [
+      "JOIN combina linhas por condição de relacionamento. INNER JOIN retorna somente combinações correspondentes; LEFT JOIN preserva todas as linhas da tabela à esquerda.",
+      "Chaves estrangeiras protegem relações e impedem referências inválidas. Multiplicidade importa: uma venda com três itens aparece três vezes quando associada à tabela itens."
+    ],
+    "example": "CREATE TEMP TABLE clientes (id int PRIMARY KEY, nome text);\nCREATE TEMP TABLE pedidos (id int, cliente_id int);\nINSERT INTO clientes VALUES (1,'Ana'),(2,'Bia');\nINSERT INTO pedidos VALUES (10,1);\nSELECT c.nome,p.id FROM clientes c LEFT JOIN pedidos p ON p.cliente_id=c.id ORDER BY c.id;",
+    "question": "Qual JOIN preserva clientes sem pedidos?",
+    "choices": [
+      "INNER JOIN",
+      "LEFT JOIN",
+      "CROSS JOIN"
+    ],
+    "answer": 1,
+    "explanation": "LEFT JOIN preserva todas as linhas da tabela à esquerda.",
+    "task": "Modele clientes e pedidos, liste clientes sem pedidos e justifique os relacionamentos.",
+    "checks": [
+      "Teste cliente sem pedido.",
+      "Teste cliente com múltiplos pedidos.",
+      "Não confunda duplicação de JOIN com duplicação de registros."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/tutorial-join.html",
+    "level": "Fundamentos",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-group",
+    "title": "GROUP BY e agregação",
+    "goal": "Produzir métricas de dados sem confundir linhas e grupos.",
+    "theory": [
+      "COUNT, SUM, AVG, MIN e MAX agregam valores. GROUP BY forma grupos com as mesmas chaves, e HAVING filtra resultados já agregados.",
+      "COUNT(*) conta linhas; COUNT(coluna) ignora NULL nessa coluna. Separe filtros antes da agregação em WHERE de condições após agregação em HAVING."
+    ],
+    "example": "CREATE TEMP TABLE vendas (loja text, valor numeric);\nINSERT INTO vendas VALUES ('A',10),('A',20),('B',5);\nSELECT loja, SUM(valor) AS total FROM vendas GROUP BY loja HAVING SUM(valor)>15 ORDER BY loja;",
+    "question": "Qual cláusula filtra grupos agregados?",
+    "choices": [
+      "WHERE",
+      "HAVING",
+      "OFFSET"
+    ],
+    "answer": 1,
+    "explanation": "HAVING aplica condição ao resultado de uma agregação.",
+    "task": "Relate total e quantidade de vendas por loja, inclusive loja sem vendas com LEFT JOIN.",
+    "checks": [
+      "Compare COUNT(*) e COUNT(valor).",
+      "Teste grupo vazio.",
+      "Ordene o resultado explicitamente."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/queries-table-expressions.html",
+    "level": "Fundamentos",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-subqueries",
+    "title": "Subconsultas e EXISTS",
+    "goal": "Expressar filtros relacionais sem trazer dados desnecessários.",
+    "theory": [
+      "EXISTS verifica se uma subconsulta retorna ao menos uma linha. É frequentemente mais adequado que contar todas as correspondências para uma decisão booleana.",
+      "Uma subconsulta correlacionada depende da linha externa. Entenda o relacionamento e compare com JOIN quando precisar de colunas adicionais."
+    ],
+    "example": "CREATE TEMP TABLE usuarios (id int PRIMARY KEY);\nCREATE TEMP TABLE acessos (user_id int);\nINSERT INTO usuarios VALUES (1),(2);\nINSERT INTO acessos VALUES (1);\nSELECT u.id FROM usuarios u WHERE EXISTS (SELECT 1 FROM acessos a WHERE a.user_id=u.id);",
+    "question": "Qual expressão verifica existência de registros relacionados?",
+    "choices": [
+      "EXISTS",
+      "ORDER BY",
+      "DISTINCT ON"
+    ],
+    "answer": 0,
+    "explanation": "EXISTS retorna verdadeiro quando a subconsulta produz uma linha.",
+    "task": "Retorne usuários com e sem acessos usando EXISTS e NOT EXISTS, comparando com LEFT JOIN.",
+    "checks": [
+      "Teste ausência de acessos.",
+      "Teste múltiplos acessos.",
+      "Explique por que contagem não é necessária."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/functions-subquery.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-schema",
+    "title": "DDL, tipos e normalização",
+    "goal": "Criar esquema consistente com entidades e relacionamentos.",
+    "theory": [
+      "CREATE TABLE define colunas, tipos e restrições. A normalização reduz redundância e anomalias de atualização; não crie colunas repetidas pedido1, pedido2 e pedido3.",
+      "Escolha tipos coerentes: numeric para valores financeiros que precisam de exatidão decimal, timestamptz para instantes, boolean para estados binários."
+    ],
+    "example": "CREATE TEMP TABLE produtos (id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY, nome text NOT NULL, preco numeric(12,2) NOT NULL CHECK (preco>=0));\nINSERT INTO produtos(nome, preco) VALUES('Caneta',3.50);\nSELECT * FROM produtos;",
+    "question": "Qual tipo é apropriado para preço decimal exato?",
+    "choices": [
+      "float sem critério",
+      "numeric",
+      "text sempre"
+    ],
+    "answer": 1,
+    "explanation": "numeric preserva precisão decimal definida, adequada a valores financeiros.",
+    "task": "Modele clientes, pedidos e itens normalizados com PK, FK e UNIQUE pertinentes.",
+    "checks": [
+      "Elimine grupo repetido.",
+      "Explique dependências de chaves.",
+      "Teste INSERT inválido."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/ddl.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-constraints",
+    "title": "Integridade: PK, FK, UNIQUE e CHECK",
+    "goal": "Impedir dados inválidos no próprio banco.",
+    "theory": [
+      "PRIMARY KEY identifica uma linha. FOREIGN KEY impede referências inexistentes; UNIQUE evita duplicidade e CHECK descreve invariantes sobre valores.",
+      "Validação da interface melhora usabilidade, mas não substitui restrições no banco. Use ON DELETE com uma regra de negócio justificável, não CASCADE indiscriminado."
+    ],
+    "example": "CREATE TEMP TABLE categorias(id int PRIMARY KEY);\nCREATE TEMP TABLE itens(id int PRIMARY KEY, categoria_id int REFERENCES categorias(id), quantidade int NOT NULL CHECK(quantidade>=0));\nINSERT INTO categorias VALUES (1);\nINSERT INTO itens VALUES (10,1,2);",
+    "question": "Quem garante a integridade mesmo quando a API falha na validação?",
+    "choices": [
+      "Apenas HTML",
+      "Restrições do banco",
+      "A cor do formulário"
+    ],
+    "answer": 1,
+    "explanation": "Restrições são aplicadas a todas as operações de escrita.",
+    "task": "Crie INSERTs válidos e inválidos para PK, FK, UNIQUE e CHECK, anotando as mensagens.",
+    "checks": [
+      "Valide chave inexistente.",
+      "Valide quantidade negativa.",
+      "Explique a política de exclusão."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/ddl-constraints.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-transactions",
+    "title": "Transações e atomicidade",
+    "goal": "Garantir que alterações relacionadas aconteçam juntas.",
+    "theory": [
+      "Uma transação agrupa operações. COMMIT confirma; ROLLBACK desfaz operações ainda não confirmadas. Essa atomicidade é essencial para pedidos, estoque e transferências.",
+      "Concorrência e isolamento influenciam o resultado de transações simultâneas. Mesmo após validar saldo, uma transação concorrente pode exigir bloqueios ou atualização condicional."
+    ],
+    "example": "CREATE TEMP TABLE contas(id int PRIMARY KEY, saldo numeric);\nINSERT INTO contas VALUES(1,100),(2,0);\nBEGIN;\nUPDATE contas SET saldo=saldo-20 WHERE id=1 AND saldo>=20;\nUPDATE contas SET saldo=saldo+20 WHERE id=2;\nCOMMIT;\nSELECT * FROM contas ORDER BY id;",
+    "question": "Qual comando desfaz mudanças ainda não confirmadas?",
+    "choices": [
+      "ROLLBACK",
+      "COMMIT",
+      "EXPLAIN"
+    ],
+    "answer": 0,
+    "explanation": "ROLLBACK cancela a transação atual antes de COMMIT.",
+    "task": "Implemente transferência com débito condicional, rollback e verificação de saldo total.",
+    "checks": [
+      "Teste saldo insuficiente.",
+      "Teste falha no segundo UPDATE.",
+      "Explique como evitar corrida entre operações."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/tutorial-transactions.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-index",
+    "title": "Índices e custo de consultas",
+    "goal": "Criar índices baseados em consultas reais.",
+    "theory": [
+      "Um índice acelera certas buscas e ordenações, mas ocupa armazenamento e aumenta o custo de escrita. Não indexe todas as colunas indiscriminadamente.",
+      "EXPLAIN mostra o plano de execução; EXPLAIN ANALYZE executa a consulta e mede estatísticas. Em tabela pequena, sequential scan pode ser a melhor escolha."
+    ],
+    "example": "CREATE TEMP TABLE logs(id serial PRIMARY KEY, usuario_id int, criado_em timestamptz DEFAULT now());\nCREATE INDEX logs_usuario_criado ON logs(usuario_id,criado_em DESC);\nEXPLAIN SELECT * FROM logs WHERE usuario_id=10 ORDER BY criado_em DESC LIMIT 20;",
+    "question": "Qual ferramenta mostra como o banco planeja executar SELECT?",
+    "choices": [
+      "EXPLAIN",
+      "ROLLBACK",
+      "TRUNCATE"
+    ],
+    "answer": 0,
+    "explanation": "EXPLAIN apresenta operações e estimativas do plano de consulta.",
+    "task": "Compare um SELECT com e sem índice em dados de teste, sem afirmar ganho quando tabela é pequena.",
+    "checks": [
+      "Registre planos.",
+      "Meça com dados suficientes.",
+      "Considere custo de INSERT."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/using-explain.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-cte",
+    "title": "CTEs e consultas em etapas",
+    "goal": "Organizar consultas complexas em partes legíveis.",
+    "theory": [
+      "WITH define CTEs nomeadas usadas na consulta seguinte. Podem ajudar a separar etapas de filtragem e agregação sem criar tabela persistente.",
+      "CTEs não garantem por si só melhor performance. Compare planos e prefira nomes que expliquem o significado de cada conjunto."
+    ],
+    "example": "CREATE TEMP TABLE pagamentos(valor numeric, status text);\nINSERT INTO pagamentos VALUES(15,'pago'),(20,'pago'),(30,'pendente');\nWITH pagos AS (SELECT valor FROM pagamentos WHERE status='pago')\nSELECT COUNT(*) AS quantidade, SUM(valor) AS total FROM pagos;",
+    "question": "CTE é definida com qual palavra?",
+    "choices": [
+      "WITH",
+      "INTO",
+      "GROUP"
+    ],
+    "answer": 0,
+    "explanation": "WITH declara um resultado intermediário nomeado.",
+    "task": "Escreva um relatório de pagamentos com CTE para filtrar e outro para agrupar.",
+    "checks": [
+      "Confira resultado com versão direta.",
+      "Dê nomes semânticos às etapas.",
+      "Compare planos se houver custo elevado."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/queries-with.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-window",
+    "title": "Window functions e rankings",
+    "goal": "Analisar linhas mantendo detalhe por registro.",
+    "theory": [
+      "Funções de janela como ROW_NUMBER, RANK e SUM(...) OVER(...) calculam métricas relacionadas sem colapsar todas as linhas em grupos.",
+      "PARTITION BY separa janelas lógicas; ORDER BY da janela determina sequência do cálculo. Diferencie RANK com empates de ROW_NUMBER."
+    ],
+    "example": "CREATE TEMP TABLE notas(turma text, aluno text, nota int);\nINSERT INTO notas VALUES('A','Ana',9),('A','Bia',9),('B','Leo',7);\nSELECT turma,aluno,nota,RANK() OVER(PARTITION BY turma ORDER BY nota DESC) AS posicao FROM notas;",
+    "question": "Qual função mantém empates na mesma posição?",
+    "choices": [
+      "ROW_NUMBER",
+      "RANK",
+      "COUNT(*)"
+    ],
+    "answer": 1,
+    "explanation": "RANK atribui posição igual aos empates e pula posições seguintes.",
+    "task": "Calcule classificação por turma, média por grupo e total acumulado por data.",
+    "checks": [
+      "Teste empate.",
+      "Teste grupos distintos.",
+      "Explique a diferença para GROUP BY."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/tutorial-window.html",
+    "level": "Intermediário",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-plans",
+    "title": "EXPLAIN ANALYZE e otimização",
+    "goal": "Detectar gargalos com evidências, sem palpite.",
+    "theory": [
+      "EXPLAIN ANALYZE executa a consulta de verdade. Em comandos que alteram dados, envolva em transação e ROLLBACK se estiver testando; evite usá-lo em produção sem entender impactos.",
+      "Observe linhas estimadas versus reais, scans, joins e índices utilizados. Corrija primeiro modelo, consulta ou índice quando existir evidência de gargalo."
+    ],
+    "example": "CREATE TEMP TABLE metricas(id int PRIMARY KEY, valor int);\nINSERT INTO metricas SELECT n,n*2 FROM generate_series(1,1000) AS n;\nANALYZE metricas;\nEXPLAIN (ANALYZE, BUFFERS) SELECT * FROM metricas WHERE id=500;",
+    "question": "O que diferencia EXPLAIN ANALYZE?",
+    "choices": [
+      "Ele executa a consulta",
+      "Ele não acessa tabelas",
+      "Ele cria índice automaticamente"
+    ],
+    "answer": 0,
+    "explanation": "EXPLAIN ANALYZE mede execução real e deve ser usado com cuidado.",
+    "task": "Compare planos para filtro por id e valor em tabela de teste, registrando evidências.",
+    "checks": [
+      "Registre tempo e linhas.",
+      "Compare estimativas e realidade.",
+      "Evite executar consultas destrutivas no banco real."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/using-explain.html",
+    "level": "Avançado",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-security",
+    "title": "SQL seguro, roles e RLS",
+    "goal": "Projetar autorização na camada de dados.",
+    "theory": [
+      "SQL parametrizado evita que valores do usuário sejam interpretados como sintaxe de consulta. Nunca use concatenação de dados não confiáveis em cláusulas dinâmicas.",
+      "PostgreSQL permite políticas de Row Level Security por usuário e função, mas ativar RLS sem políticas apropriadas bloqueia acesso. Para Supabase, vincule dados ao auth.uid() em políticas corretas."
+    ],
+    "example": "CREATE TEMP TABLE exemplo_privado(id int PRIMARY KEY, dono_id int NOT NULL, titulo text);\nINSERT INTO exemplo_privado VALUES(1,1,'A');\nSELECT * FROM exemplo_privado WHERE dono_id=1;\n-- Este filtro sozinho não implementa autorização; configure RLS em uma tabela real de laboratório.",
+    "question": "Por que filtrar dono_id apenas na interface não protege dados?",
+    "choices": [
+      "Porque requisições podem ser feitas sem a interface",
+      "Porque SELECT não suporta WHERE",
+      "Porque RLS dispensa testes"
+    ],
+    "answer": 0,
+    "explanation": "A verificação deve ocorrer no servidor ou nas políticas do banco, não só no navegador.",
+    "task": "Modele políticas de propriedade em banco de testes e comprove que contas distintas não compartilham linhas.",
+    "checks": [
+      "Teste dono e não dono.",
+      "Não exponha service_role no frontend.",
+      "Documente GRANT e RLS."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+    "level": "Avançado",
+    "moduleId": "sql-expansion"
+  },
+  {
+    "id": "sql-project",
+    "title": "Projeto SQL: dados, consultas e migrações",
+    "goal": "Entregar um esquema reproduzível com testes reais.",
+    "theory": [
+      "Um projeto de dados deve ter schema versionado, massa de teste, consultas com objetivos claros e regras de integridade aplicadas ao banco.",
+      "Uma resposta correta em questão objetiva não prova domínio: reproduza o modelo em um banco limpo, valide consultas e registre decisões, limitações e plano de restauração."
+    ],
+    "example": "CREATE TEMP TABLE tarefas (id bigint GENERATED ALWAYS AS IDENTITY PRIMARY KEY, titulo text NOT NULL, concluida boolean NOT NULL DEFAULT false);\nINSERT INTO tarefas(titulo) VALUES('Construir sistema'),('Escrever testes');\nSELECT concluida,COUNT(*) FROM tarefas GROUP BY concluida;",
+    "question": "Qual evidência demonstra que o schema é reproduzível?",
+    "choices": [
+      "Um print da interface",
+      "Executar migrações em banco vazio",
+      "Memorizar comandos"
+    ],
+    "answer": 1,
+    "explanation": "Aplicar o schema em ambiente limpo comprova que sua instalação é reproduzível.",
+    "task": "Entregue projeto de pedidos com schema normalizado, migrações, constraints, consultas, plano e testes em banco local.",
+    "checks": [
+      "Execute do zero em banco isolado.",
+      "Teste integridade e transação.",
+      "Documente setup, rollback e consultas."
+    ],
+    "docs": "https://www.postgresql.org/docs/current/sql.html",
+    "level": "Avançado",
+    "moduleId": "sql-expansion"
+  }
+];

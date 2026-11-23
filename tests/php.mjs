@@ -33,21 +33,21 @@ test('PHP: 8 módulos, 32 aulas organizadas, sem IDs duplicados e cobertura por 
      assert.ok(lesson.theory.length>=2&&lesson.theory.every(t=>t.length>70));
      assert.ok(lesson.example.startsWith('<?php'));
      assert.ok(lesson.task.length>35&&lesson.checks.length===3);
-     assert.ok(lesson.explanation.length>20&&lesson.tip.startsWith('PROVA:'));
+     assert.ok(lesson.explanation.length>20&&lesson.tip.startsWith('ESSENCIAL:'));
      assert.match(lesson.docs,/^https:\/\/www\.php\.net\/manual\/pt_BR\//);
    }
  }
  assert.equal(seen.size,32);
 });
 
-test('PHP: simulado completo em 8 módulos, respostas definidas e feedback disponível',()=>{
+test('PHP: revisão de conceitos em 8 módulos, respostas definidas e feedback disponível',()=>{
  assert.equal(phpExamQuestions.length,24);
  assert.equal(new Set(phpExamQuestions.map(q=>q.key)).size,24);
  for(const m of phpModules){assert.equal(phpExamQuestions.filter(q=>q.moduleId===m.id).length,3);}
  for(const q of phpExamQuestions){assert.equal(q.choices.length,3);assert.ok(q.answer>=0&&q.answer<=2);assert.ok(q.explanation.length>20);}
 });
 
-test('PHP: interface preserva progresso, navegação, recursos e simulado',()=>{
+test('PHP: interface preserva progresso, navegação, recursos e autoavaliação',()=>{
  const ui=read('offline/source/php-ui.js'),path=read('offline/source/pathways-ui.js'),build=read('offline/build_standalone.py');
  assert.ok(ui.includes("load('php-exam-state'"));
  assert.ok(ui.includes("save('php-exam-state'"));

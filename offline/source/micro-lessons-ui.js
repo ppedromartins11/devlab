@@ -22,7 +22,8 @@ function microPracticalHtml(id,task){
   (task.checks||[]).map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul></div>'+
   '<p class="rp-disclaimer">Rascunho salvo neste navegador. O texto aqui não é executado nem avaliado automaticamente: '+(task.editorAvailable?'use o editor e os testes da aula para verificar sua solução.':'copie o arquivo para o ambiente apropriado e execute os testes da aula.')+'</p></div></details>';
 }
-function microChallengeHtml(id){
+function microChallengeHtml(lessonId,group){
+ const id=microActivityKey(lessonId,group);
  const task=findCompleteMicroChallenge(id);if(!task)return '';
  const complete=!!microUi.completed[id],hints=Math.min(2,microUi.hints[id]||0);
  const feedback=microUi.feedback[id],value=microUi.drafts[id]||'';
@@ -88,10 +89,10 @@ window.addEventListener('click',event=>{
   clipboard(microUi.practiceDrafts[id]??task.starterCode);return;}
  const open=event.target.closest('[data-micro-open-practice]');
  if(open){const route=getRoute(),id=open.dataset.microOpenPractice;
-  if(!findCompleteMicroChallenge(id))return;
+  const task=findCompleteMicroChallenge(id);if(!task)return;
   if(route.page==='lesson'){st.step='practice';render();}
   else if(route.page==='language-lesson'){pathwayState.langTab=id.startsWith('php-')?3:2;render();}
-  else if(route.page==='frontend-lesson'||route.page==='backend-lesson'){setStudyStep(route.page==='frontend-lesson'?'frontend':'backend',id,3,true);}
+  else if(route.page==='frontend-lesson'||route.page==='backend-lesson'){setStudyStep(route.page==='frontend-lesson'?'frontend':'backend',task.lessonId,3,true);}
   return;
  }
  const chip=event.target.closest('[data-micro-suggestion]');

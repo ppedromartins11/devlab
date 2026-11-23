@@ -25,6 +25,7 @@ test('100% das aulas distintas têm um desafio de código ligado à aula',()=>{
  assert.equal(report.total,179);
  assert.equal(report.curated,Object.keys(existingMicro).length);
  assert.equal(report.derived,179-Object.keys(existingMicro).length);
+ console.log('CURRICULAR_COVERAGE_REPORT',JSON.stringify(report));
 });
 
 test('cada atividade inclui lacuna, resposta, duas dicas e prática específica',()=>{

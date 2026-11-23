@@ -92,12 +92,18 @@ for(const [group,lessons] of Object.entries(guidedLanguageLessons))for(const les
 export const allMicroLessonData=Object.freeze(rows);
 const covered={};
 for(const {lesson,group} of rows){
- if(covered[lesson.id])throw new Error('ID duplicado: '+lesson.id);
- const meta=descriptor(lesson,group),authored=authoredChallenges[lesson.id];
- covered[lesson.id]=Object.freeze(authored?{...meta,...authored,...meta,source:'curated',quality:'human-reviewed'}:derivedLesson(lesson,group));
+ // Algumas aulas compartilham IDs entre trilhas, mas os exercícios são distintos.
+ // Mantemos a primeira chave antiga para preservar o progresso existente.
+ const key=covered[lesson.id]?group+':'+lesson.id:lesson.id;
+ if(covered[key])throw new Error('Atividade repetida: '+key);
+ const meta=descriptor(lesson,group),authored=key===lesson.id?authoredChallenges[lesson.id]:null;
+ const activity=authored?{...meta,...authored,...meta,source:'curated',quality:'human-reviewed'}:derivedLesson(lesson,group);
+ covered[key]=Object.freeze({...activity,activityId:key});
 }
 export const completeMicroChallenges=Object.freeze(covered);
 export const allMicroLessonIds=Object.freeze(Object.keys(covered));
+export const microActivityKey=(lessonId,group)=>group&&completeMicroChallenges[group+':'+lessonId]?
+ group+':'+lessonId:lessonId;
 export const findCompleteMicroChallenge=id=>completeMicroChallenges[id]||null;
 export function microCoverageReport(){
  const all=Object.values(completeMicroChallenges);

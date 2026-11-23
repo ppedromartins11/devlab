@@ -1060,3 +1060,249 @@ export const guidedSqlLessons = [
     "moduleId": "sql-expansion"
   }
 ];
+
+export const extendedJavaScriptLessons = [
+  {
+    "id": "js-closures",
+    "title": "Escopo léxico e closures",
+    "goal": "Escrever funções que preservam estado sem expor mutações globais.",
+    "theory": [
+      "Closures permitem que uma função acesse variáveis do escopo onde foi criada, mesmo após esse escopo terminar. Isso é útil para encapsular estado.",
+      "Evite esconder dependências importantes em closures de difícil teste. Compare com funções puras quando não houver necessidade de estado."
+    ],
+    "example": "function contador() { let n = 0; return () => ++n; }\nconst proximo = contador();\nconsole.log(proximo(), proximo());",
+    "question": "Por que o contador mantém n entre chamadas?",
+    "choices": [
+      "A função fecha sobre o ambiente léxico",
+      "A variável vira global",
+      "O JavaScript reinicia n"
+    ],
+    "answer": 0,
+    "explanation": "A função retornada preserva referência à variável do ambiente onde foi criada.",
+    "task": "Implemente limitador de tentativas com closure, sem permitir zerar o estado por fora.",
+    "checks": [
+      "Crie instâncias independentes.",
+      "Teste limite alcançado.",
+      "Não use variável global."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Closures",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-prototypes",
+    "title": "Objetos, protótipos e classes",
+    "goal": "Entender delegação e composição sem confundir instância e classe.",
+    "theory": [
+      "JavaScript usa delegação por protótipos para herança de comportamento. A sintaxe class facilita a definição, mas continua usando a cadeia de protótipos.",
+      "Prefira composição quando herança produzir acoplamento desnecessário. Não modifique protótipos globais de tipos nativos em aplicações comuns."
+    ],
+    "example": "class Produto { constructor(nome) { this.nome = nome; } resumo() { return this.nome; } }\nconst p = new Produto('Livro');\nconsole.log(p.resumo(), Object.getPrototypeOf(p) === Produto.prototype);",
+    "question": "Onde costuma estar o método resumo de uma instância criada com class?",
+    "choices": [
+      "No protótipo da classe",
+      "Em uma variável global",
+      "No JSON de cada instância"
+    ],
+    "answer": 0,
+    "explanation": "Métodos de classe são disponibilizados pelo protótipo, não recriados por padrão para cada objeto.",
+    "task": "Compare fábrica com composição e classe para modelar três tipos de notificação.",
+    "checks": [
+      "Teste comportamento de instâncias.",
+      "Evite herança profunda.",
+      "Explique a cadeia de protótipos."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-iterators",
+    "title": "Iteradores, generators e transformação incremental",
+    "goal": "Processar sequências preguiçosamente sem materializar tudo.",
+    "theory": [
+      "Um iterable implementa Symbol.iterator. Um generator com function* cria valores sob demanda e mantém estado entre yields.",
+      "Generators podem ser consumidos uma única vez. Para percorrer dados repetidamente, crie um novo iterator ou materialize quando necessário."
+    ],
+    "example": "function* numeros(max) { for (let i=0;i<max;i++) yield i; }\nconsole.log([...numeros(4)]);\nconsole.log([...numeros(4)].reduce((a,b)=>a+b,0));",
+    "question": "Qual palavra produz um valor de um generator?",
+    "choices": [
+      "yield",
+      "throw",
+      "static"
+    ],
+    "answer": 0,
+    "explanation": "yield entrega um item da sequência e suspende o generator.",
+    "task": "Crie um paginador generator que percorre lotes sem carregar todos os registros.",
+    "checks": [
+      "Teste zero elementos.",
+      "Teste tamanho não múltiplo do lote.",
+      "Explique o consumo único."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Iterators_and_generators",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-async-cancel",
+    "title": "Promises, concorrência e cancelamento",
+    "goal": "Tratar operações assíncronas com controle de falhas.",
+    "theory": [
+      "Promise.all falha quando uma promessa rejeita; Promise.allSettled reúne resultados e falhas. O uso depende do contrato do produto.",
+      "AbortController sinaliza cancelamento para APIs que o suportam, como fetch. Cancelar uma requisição não desfaz automaticamente um efeito que já ocorreu no servidor."
+    ],
+    "example": "async function executar() {\n const jobs = [Promise.resolve(1), Promise.reject(new Error('falha'))];\n console.log((await Promise.allSettled(jobs)).map(r => r.status));\n}\nexecutar();",
+    "question": "Quando usar Promise.allSettled?",
+    "choices": [
+      "Quando precisa registrar sucesso e falha de todas as operações",
+      "Quando quer ignorar resultados",
+      "Quando quer bloquear o event loop"
+    ],
+    "answer": 0,
+    "explanation": "allSettled permite inspecionar resultados de todas as operações sem abortar o conjunto na primeira rejeição.",
+    "task": "Implemente busca com debounce, AbortController e tratamento de requisição fora de ordem.",
+    "checks": [
+      "Teste cancelamento.",
+      "Teste falha de rede.",
+      "Impeça resultado antigo de sobrescrever o novo."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-modules-advanced",
+    "title": "Módulos ES, imports e dependências",
+    "goal": "Organizar um sistema sem criar acoplamentos circulares.",
+    "theory": [
+      "Módulos ES têm escopo próprio e exports explícitos. Imports estáticos permitem análise antes da execução, enquanto import() pode carregar um módulo sob demanda.",
+      "Evite dependências circulares entre regras e interface. Separe contratos compartilhados em módulo próprio quando necessário."
+    ],
+    "example": "// math.js: export const dobro = n => n * 2;\n// main.js: import {dobro} from './math.js';\nconst dobrar = n => n * 2;\nconsole.log(dobrar(4));",
+    "question": "Qual vantagem do import estático?",
+    "choices": [
+      "Declara dependências antes da execução",
+      "Converte JavaScript em SQL",
+      "Executa código em sandbox automaticamente"
+    ],
+    "answer": 0,
+    "explanation": "Imports estáticos expõem dependências, facilitando análise e organização.",
+    "task": "Divida projeto em domínio, persistência e interface com testes sem dependências circulares.",
+    "checks": [
+      "Faça um diagrama dos imports.",
+      "Teste módulos isoladamente.",
+      "Explique uso justificado de import() dinâmico."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-error-handling",
+    "title": "Erros, invariantes e contratos",
+    "goal": "Criar funções previsíveis sob entradas inválidas.",
+    "theory": [
+      "throw interrompe a execução normal e sinaliza erro. Capture exceções apenas onde exista estratégia útil de recuperação ou tradução.",
+      "Evite retornar sucesso falso quando validação falhar. Uma API pode usar Result como objeto discriminado, mas todo chamador precisa tratar ambas as possibilidades."
+    ],
+    "example": "function dividir(a,b) { if (!Number.isFinite(a) || !Number.isFinite(b) || b === 0) throw new RangeError('entrada inválida'); return a/b; }\ntry { console.log(dividir(10,0)); } catch (e) { console.log(e.name); }",
+    "question": "Por que não capturar erros só para ignorá-los?",
+    "choices": [
+      "Porque oculta problemas e estados inconsistentes",
+      "Porque o JavaScript não permite",
+      "Porque sempre aumenta o desempenho"
+    ],
+    "answer": 0,
+    "explanation": "Silenciar falhas quebra a rastreabilidade e pode manter estado inválido.",
+    "task": "Crie camada de validação e trate erros com mensagens úteis, preservando causa para logs internos.",
+    "checks": [
+      "Teste divisão por zero e NaN.",
+      "Não exponha dados sensíveis.",
+      "Teste sucesso e falha."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-performance",
+    "title": "Performance e análise de gargalos",
+    "goal": "Medir custos antes de otimizar código.",
+    "theory": [
+      "Operações de DOM e cálculo pesado podem comprometer resposta da interface. Use Performance API e DevTools para investigar antes de aplicar otimizações.",
+      "Big O descreve crescimento do custo de algoritmos. Um Map pode oferecer buscas eficientes por chave; comparar comportamento com dados representativos evita micro-otimizações inúteis."
+    ],
+    "example": "const itens = Array.from({length:1000},(_,id)=>({id}));\nconst indice = new Map(itens.map(x=>[x.id,x]));\nconsole.log(indice.get(900));",
+    "question": "Por que medir antes e depois de otimizar?",
+    "choices": [
+      "Para provar que a mudança melhora o cenário real",
+      "Para reduzir número de arquivos",
+      "Para eliminar testes"
+    ],
+    "answer": 0,
+    "explanation": "Métricas mostram se a otimização ajuda ou piora o comportamento observado.",
+    "task": "Compare buscas por array e Map, registre medidas em diferentes tamanhos e avalie troca por memória.",
+    "checks": [
+      "Mantenha mesma entrada nos testes.",
+      "Meça várias amostras.",
+      "Explique trade-offs."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/API/Performance_API",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-security",
+    "title": "Segurança no navegador e tratamento de entradas",
+    "goal": "Evitar XSS, vazamento de dados e confiança indevida no cliente.",
+    "theory": [
+      "Use textContent para texto não confiável, evitando inserir HTML arbitrário com innerHTML. Dados vindos da rede também não são automaticamente seguros.",
+      "Validação client-side é experiência de uso, não autorização. Segredos nunca devem ser embutidos no JavaScript publicado; privilégios são controlados pelo backend."
+    ],
+    "example": "const textoRecebido = '<img src=x onerror=alert(1)>';\nconst elemento = document.createElement('p');\nelemento.textContent = textoRecebido;\nconsole.log(elemento.textContent);",
+    "question": "Qual opção coloca texto externo sem interpretá-lo como HTML?",
+    "choices": [
+      "innerHTML",
+      "textContent",
+      "eval"
+    ],
+    "answer": 1,
+    "explanation": "textContent mantém o valor como texto em vez de interpretar elementos e handlers.",
+    "task": "Faça formulário que renderiza nomes com segurança e valide acesso a dados no servidor.",
+    "checks": [
+      "Teste string HTML maliciosa como texto.",
+      "Não use eval.",
+      "Explique por que ocultar botão não autoriza operação."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Web/Security/Attacks/XSS",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  },
+  {
+    "id": "js-final-project",
+    "title": "Projeto JavaScript completo e manutenção",
+    "goal": "Consolidar estado, interfaces, módulos e testes.",
+    "theory": [
+      "Construção de software exige organizar regras, interface, armazenamento e erros de forma verificável. Um projeto em funcionamento deve ter cenários de teste e documentação de uso.",
+      "Defina um contrato mínimo de entradas, saídas e limitações. Faça revisão de acessibilidade, desempenho básico e regressões quando alterar funcionalidades."
+    ],
+    "example": "const criarTarefa = titulo => { const texto = titulo.trim(); if (!texto) throw new Error('Título obrigatório'); return {id:crypto.randomUUID(), titulo:texto, feito:false}; };\nconsole.log(criarTarefa('Aprender'))",
+    "question": "Qual evidência comprova que uma regra funciona?",
+    "choices": [
+      "Teste executado com casos válidos e inválidos",
+      "Marcar uma opção sem executar",
+      "Um screenshot sem contexto"
+    ],
+    "answer": 0,
+    "explanation": "Execução reproduzível e testes de comportamento oferecem evidência; apenas leitura não basta.",
+    "task": "Entregue gerenciador de tarefas modular com filtros, persistência, testes, acessibilidade e README.",
+    "checks": [
+      "Teste CRUD e persistência.",
+      "Teste entradas inválidas e navegação por teclado.",
+      "Documente como reproduzir os resultados."
+    ],
+    "docs": "https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Testing",
+    "level": "Avançado",
+    "moduleId": "javascript-expansion"
+  }
+];

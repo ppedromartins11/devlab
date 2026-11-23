@@ -1,5 +1,7 @@
 from pathlib import Path
 import re
+import os
+import json
 root = Path(__file__).parent
 src = root.parent / 'src'
 contracts = (src/'lesson-contracts.js').read_text()
@@ -30,6 +32,15 @@ php_curriculum = (src/'php-curriculum.js').read_text().replace('export const ','
 lang_curriculum = (src/'language-curriculum.js').read_text().replace("import { phpLessons } from './php-curriculum.js';",'').replace('export const ','const ').replace('export function ','function ')
 pathways_ui = (root/'source'/'pathways-ui.js').read_text()
 php_ui = (root/'source'/'php-ui.js').read_text()
+auth_core = (src/'auth-client.js').read_text().replace('export const ', 'const ').replace('export async function ', 'async function ').replace('export function ', 'function ')
+auth_ui = (root/'source'/'auth-ui.js').read_text()
+auth_config = {
+    'url': os.environ.get('DEVLAB_SUPABASE_URL', '').strip(),
+    'publishableKey': os.environ.get('DEVLAB_SUPABASE_PUBLISHABLE_KEY', '').strip()
+}
+if auth_config['publishableKey'].startswith('sb_secret_'):
+    raise ValueError('Nunca use chave secreta do Supabase no build frontend.')
+auth_config_script = 'window.DEVLAB_AUTH_CONFIG=Object.freeze(' + json.dumps(auth_config).replace('</', '<\\/') + ');'
 # Insere a interface antes da inicialização do app, preservando todas as rotas existentes.
 assert app.rstrip().endswith('render();')
 app = app.rstrip()[:-len('render();')] + '\n' + workspace_ui + '\n' + frontend_ui + '\n' + backend_ui + '\n' + career_ui + '\n' + learning_ui + '\n' + pathways_ui + '\n' + php_ui + '\nrender();\n'
@@ -48,7 +59,8 @@ css += '\n' + (root/'source'/'learning-v12.css').read_text()
 css += '\n' + (root/'source'/'dark-v13.css').read_text()
 css += '\n' + (root/'source'/'pathways-v14.css').read_text()
 css += '\n' + (root/'source'/'php-v16.css').read_text()
-js = learning_nav + '\n' + pathways + '\n' + php_curriculum + '\n' + lang_curriculum + '\n' + re.sub(r'^export (const|function) (careerProjects|careerFindProject|careerValidateRecord|careerProgress|careerPortfolioMarkdown|careerPortfolioHtml|gitInitial|gitExecute|gitEdit|gitMilestones)\b',r'\1 \2',career,flags=re.M) + '\n' + re.sub(r'^export (const|function) (backendTracks|backendLessons|findBackendTrack|findBackendLesson|backendTrackProgress)\b',r'\1 \2',backend_curriculum,flags=re.M) + '\n' + backend_starters.replace('export function backendStarterFiles(', 'function backendStarterFiles(') + '\n' + backend_http_lab.replace('export const ','const ').replace('export function ','function ') + '\n' + re.sub(r'^export (const|function) (frontendTracks|frontendLessons|findFrontendTrack|findFrontendLesson|frontendTrackProgress)\b',r'\1 \2',frontend_curriculum,flags=re.M) + '\n' + re.sub(r'^export function (frontendStarterFiles|frontendWorkspaceStarter)\b',r'function \1',frontend_starters,flags=re.M) + '\n' + guard.replace('export function ','function ') + '\n' + contracts.replace('export const ','const ').replace('export function ','function ') + '\n' + course.replace('export const ', 'const ') + '\n' + learning.replace("import { runtimeCheckedLessons } from './runtime-check.js';",'').replace('export const ', 'const ').replace('export function ', 'function ') + '\n' + runtime.replace('export const ', 'const ') + '\n' + assessment.replace('export const ', 'const ').replace('export function ','function ') + '\n' + preview.replace("import { assessLessonBehavior } from './lesson-assessment.js';",'').replace('export function ','function ') + '\n' + study.replace('export const ','const ').replace('export function ','function ') + '\n' + missions.replace('export const ','const ') + '\n' + mission_runner.replace('export function ','function ') + '\n' + workspace_engine + '\n' + app
+css += '\n' + (root/'source'/'auth-v18.css').read_text()
+js = learning_nav + '\n' + pathways + '\n' + php_curriculum + '\n' + lang_curriculum + '\n' + re.sub(r'^export (const|function) (careerProjects|careerFindProject|careerValidateRecord|careerProgress|careerPortfolioMarkdown|careerPortfolioHtml|gitInitial|gitExecute|gitEdit|gitMilestones)\b',r'\1 \2',career,flags=re.M) + '\n' + re.sub(r'^export (const|function) (backendTracks|backendLessons|findBackendTrack|findBackendLesson|backendTrackProgress)\b',r'\1 \2',backend_curriculum,flags=re.M) + '\n' + backend_starters.replace('export function backendStarterFiles(', 'function backendStarterFiles(') + '\n' + backend_http_lab.replace('export const ','const ').replace('export function ','function ') + '\n' + re.sub(r'^export (const|function) (frontendTracks|frontendLessons|findFrontendTrack|findFrontendLesson|frontendTrackProgress)\b',r'\1 \2',frontend_curriculum,flags=re.M) + '\n' + re.sub(r'^export function (frontendStarterFiles|frontendWorkspaceStarter)\b',r'function \1',frontend_starters,flags=re.M) + '\n' + guard.replace('export function ','function ') + '\n' + contracts.replace('export const ','const ').replace('export function ','function ') + '\n' + course.replace('export const ', 'const ') + '\n' + learning.replace("import { runtimeCheckedLessons } from './runtime-check.js';",'').replace('export const ', 'const ').replace('export function ', 'function ') + '\n' + runtime.replace('export const ', 'const ') + '\n' + assessment.replace('export const ', 'const ').replace('export function ','function ') + '\n' + preview.replace("import { assessLessonBehavior } from './lesson-assessment.js';",'').replace('export function ','function ') + '\n' + study.replace('export const ','const ').replace('export function ','function ') + '\n' + missions.replace('export const ','const ') + '\n' + mission_runner.replace('export function ','function ') + '\n' + workspace_engine + '\n' + auth_core + '\n' + auth_config_script + '\n' + app + '\n' + auth_ui
 # Never close the host <script> when embedded JavaScript strings mention it.
 js = re.sub(r'</script', r'<\\/script', js, flags=re.I)
 html = '''<!doctype html>

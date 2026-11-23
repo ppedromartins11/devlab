@@ -1,3 +1,15 @@
+## DevLab 21 — Microaprendizagem interativa
+
+A auditoria das referências públicas do Mimo identificou que o DevLab tinha boa cobertura curricular, mas menor **frequência de interação nas aulas guiadas**. Esta evolução introduz **32 microdesafios autorais de código**: leia, complete a lacuna, receba feedback imediato, consulte até duas dicas e aplique em exercícios maiores. Há uma sugestão de prática rápida na página inicial e um indicador de sequência nas aulas guiadas.
+
+O código é corrigido por **comparação textual**, não executado; acertar uma lacuna não comprova domínio de programação. Exercícios e projetos maiores permanecem necessários. **Não foram reutilizados textos, visual, marca ou código do Mimo.**
+
+As novas chaves de progresso com prefixo devlab-offline-v1:micro- não alteram o progresso salvo. Validação: npm test, npm run build:static e, com Playwright/Chromium instalados, python tests/e2e_micro.py.
+
+[Auditoria Mimo × DevLab](docs/ESTUDO-MIMO-E-IMPLEMENTACAO.md).
+
+---
+
 # DevLab 19 — Aprendizado progressivo, do básico ao avançado
 
 **Objetivo atual: aprender programação de verdade**, sem treinamento para provas nem objetivos acadêmicos pontuais. A Biblioteca de Linguagens reúne **129 aulas**: JavaScript (33), TypeScript (15), Python (17), Java (17), PHP (32) e SQL/PostgreSQL (15), com fundamentos, aplicações, testes, depuração e projetos integradores.

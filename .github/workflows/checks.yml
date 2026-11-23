@@ -36,4 +36,5 @@ jobs:
       - run: node tests/editor-theme.mjs
       - run: node --test tests/php.mjs
       - run: node --test tests/curriculum-mastery.mjs
+      - run: node --test tests/micro-lessons.mjs
       - run: node scripts/build-static.mjs

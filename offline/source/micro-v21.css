@@ -1,0 +1,55 @@
+/* DevLab 21 — microprática. Neutro, sem copiar identidade de terceiros. */
+.dl-micro{margin:22px 0;border:1px solid #454758;background:#191c25;border-radius:12px;padding:22px;min-width:0}
+.dl-micro-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.dl-micro-status{font-size:11px;color:#b6bbca;font-weight:650}
+.dl-micro h3{font-size:19px;letter-spacing:-.02em;color:#f3f4fa;line-height:1.4;margin:15px 0 7px}
+.dl-micro>p{font-size:13px;color:#c2c8d2;line-height:1.7;margin:8px 0 14px}
+.dl-micro-code{white-space:pre;overflow-x:auto;background:#10131b;border:1px solid #363a48;border-radius:9px;padding:18px;font:12px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace;color:#e4e6f1;max-width:100%;margin:12px 0 20px}
+.dl-micro-form{display:block}
+.dl-micro-form label{display:block;margin:0 0 9px;color:#e2e5ed;font-size:12px;font-weight:650}
+.dl-micro-form label code{color:#c7bfff;font-family:ui-monospace,monospace}
+.dl-micro-controls{display:flex;gap:10px;flex-wrap:wrap}
+.dl-micro-controls input{flex:1 1 220px;min-width:0;border:1px solid #555a69;background:#11141b;color:#fff;border-radius:8px;font:13px ui-monospace,Consolas,monospace;padding:12px}
+.dl-micro-controls button,.dl-micro-feedback button{border:0;border-radius:8px;background:#f1f2f7;color:#161820;font-size:12px;font-weight:750;padding:12px 15px;cursor:pointer}
+.dl-micro-bottom{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:14px;flex-wrap:wrap}
+.dl-micro-bottom small{font-size:10.5px;color:#a0a5b5;line-height:1.5}
+.dl-micro-hint{background:transparent;border:1px solid #4d5262;color:#dadbe6;padding:9px 13px;border-radius:8px;font-size:12px;cursor:pointer}
+.dl-micro-hint:disabled{opacity:.55;cursor:default}
+.dl-micro-hints{border-left:2px solid #a89df7;margin:12px 0 0;padding:0 0 0 13px}
+.dl-micro-hints p{color:#d3d0e3;font-size:12px;line-height:1.65;margin:7px 0}
+.dl-micro-feedback:empty{display:none}
+.dl-micro-feedback:not(:empty){padding:13px 16px;border-radius:8px;margin-top:15px;font-size:12px;line-height:1.6;border:1px solid #4b4e60;background:#20222f;color:#e3e5ef}
+.dl-micro-feedback.correct{border-color:#4c7665;background:#172b25;color:#e1f3e7}
+.dl-micro-feedback.incorrect{border-color:#81635b;background:#302522;color:#f8d9ce}
+.dl-micro-feedback strong{display:block}
+.dl-micro-feedback p{margin:4px 0 10px;line-height:1.65}
+.dl-micro-feedback button{margin-top:5px}
+.dl-micro :is(button,input):focus-visible{outline:2px solid #bcb3ff;outline-offset:3px}
+.theory-pane>.lesson-card .dl-micro{margin-top:12px}
+@media(max-width:560px){.dl-micro{padding:16px;margin:16px 0}.dl-micro-controls{flex-direction:column}.dl-micro-controls input,.dl-micro-controls button{width:100%;flex:auto}.dl-micro-code{font-size:11px;padding:12px}}
+@media(prefers-reduced-motion:reduce){.dl-micro *{scroll-behavior:auto!important;transition:none!important}}
+
+/* Microetapas e feedback de tentativas conceituais. */
+.dl-lesson-meter{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:13px 0;font-size:11px;color:#b4bac9}
+.dl-lesson-meter>div{flex:1 1 180px;max-width:330px;background:#292d39;height:5px;border-radius:5px;overflow:hidden}
+.dl-lesson-meter>div>span{display:block;height:100%;background:#aaa0fa;border-radius:5px}
+.rp-answers button.incorrect{border-color:#926356;background:#302320;color:#f8d3c8}
+.dl-guided-retry{border:1px solid #815f56;border-radius:8px;padding:15px;background:#2d2423;color:#f2dbd2;font-size:12px;margin-top:15px}
+.dl-guided-retry p{line-height:1.65;margin:6px 0;color:#edc8bd}
+.dl-guided-retry small{color:#c7a9a4;font-size:11px}
+@media(max-width:560px){.dl-lesson-meter{align-items:start;flex-direction:column;gap:7px}.dl-lesson-meter>div{flex:auto;width:100%;max-width:none}}
+
+.dl-daily{border:1px solid #434857;border-radius:11px;background:#1b1e29;padding:19px 22px;margin:20px 0 30px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.dl-daily>div{display:grid;gap:6px;min-width:0}
+.dl-daily strong{font-size:17px;color:#f4f5fa;line-height:1.35}
+.dl-daily p{font-size:12px;color:#afb7c8;line-height:1.6;max-width:690px;margin:0}
+.dl-daily button{flex-shrink:0;padding:12px 17px;border:0;background:#f1f2f7;color:#161820;border-radius:8px;font-weight:700;font-size:12px}
+.dl-daily button:focus-visible{outline:2px solid #bcb3ff;outline-offset:3px}
+@media(max-width:630px){.dl-daily{padding:17px;flex-direction:column;align-items:stretch}.dl-daily button{width:100%}}
+
+.dl-micro-suggestions{display:grid;gap:8px;margin:12px 0 2px}
+.dl-micro-suggestions>span{font-size:11px;color:#acb3c1}
+.dl-micro-suggestions>div{display:flex;gap:8px;flex-wrap:wrap}
+.dl-micro-suggestions button{background:#282b39;border:1px solid #505264;border-radius:7px;color:#f0f0f9;padding:9px 13px;font:12px ui-monospace,Consolas,monospace;cursor:pointer;min-height:38px}
+.dl-micro-suggestions button:hover{background:#35374b;border-color:#9e98df}
+@media(max-width:560px){.dl-micro-suggestions button{flex:1 1 70px}}

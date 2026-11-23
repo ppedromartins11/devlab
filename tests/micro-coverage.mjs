@@ -35,6 +35,8 @@ test('cada atividade inclui lacuna, resposta, duas dicas e prática específica'
    (task.snippet.match(/____/g)||[]).length<=(task.source==='curated'?2:1),task.lessonId);
   assert.ok(task.title.length>12&&task.prompt.length>25,task.lessonId+' enunciado');
   assert.ok(task.answers?.length>=1&&task.answers[0].length>0,task.lessonId+' resposta');
+  assert.equal(task.suggestions?.length,3,task.lessonId+' precisa de três alternativas móveis');
+  assert.ok(task.suggestions.includes(task.answers[0]),task.lessonId+' alternativa correta ausente');
   assert.equal(task.hints?.length,2,task.lessonId+' dicas');
   assert.ok(task.explanation.length>40,task.lessonId+' explicação');
   assert.ok(task.practice.length>25,task.lessonId+' prática');

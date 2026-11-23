@@ -1,6 +1,76 @@
 /** Regras didáticas para selecionar um conceito presente no código de cada aula. */
 export const microRulebook = [
   {
+    "token": "array_filter",
+    "topic": "filtragem PHP de arrays",
+    "purpose": "retorna os elementos que satisfazem o predicado",
+    "clues": "array_map filter reduce transformar listas",
+    "alts": [
+      "array_map",
+      "array_reduce"
+    ]
+  },
+  {
+    "token": "===",
+    "topic": "comparação estrita PHP",
+    "purpose": "compara valor e tipo sem conversão automática",
+    "clues": "operadores comparações atribuição",
+    "alts": [
+      "==",
+      "="
+    ]
+  },
+  {
+    "token": "assert.throws",
+    "topic": "teste de exceções",
+    "purpose": "verifica que a função lançará um erro esperado",
+    "clues": "testes unitários mocks invariantes",
+    "alts": [
+      "assert.equal",
+      "console.log"
+    ]
+  },
+  {
+    "token": "HttpOnly",
+    "topic": "segurança de cookies",
+    "purpose": "impede que JavaScript de página leia o valor do cookie",
+    "clues": "sessões cookies seguros transporte",
+    "alts": [
+      "SameSite",
+      "Path"
+    ]
+  },
+  {
+    "token": "strict",
+    "topic": "configuração estrita TypeScript",
+    "purpose": "habilita verificações estáticas mais rigorosas no compilador",
+    "clues": "strict compilador configuração refatoração",
+    "alts": [
+      "skipLibCheck",
+      "noEmit"
+    ]
+  },
+  {
+    "token": ".card.featured",
+    "topic": "seletores CSS compostos",
+    "purpose": "seleciona o elemento que apresenta as duas classes CSS",
+    "clues": "seletores cascata especificidade classes",
+    "alts": [
+      ".card",
+      "#card"
+    ]
+  },
+  {
+    "token": "<table",
+    "topic": "tabelas semânticas HTML",
+    "purpose": "estrutura informações tabulares com linhas e células",
+    "clues": "tabelas acessibilidade table caption",
+    "alts": [
+      "<div",
+      "<section"
+    ]
+  },
+  {
     "token": "useState",
     "topic": "estado React",
     "purpose": "guarda valores entre renderizações",

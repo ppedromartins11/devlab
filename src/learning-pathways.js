@@ -103,12 +103,12 @@ export const pathwayTracks = [
 ];
 
 export const languageCatalog = [
- {id:'javascript',name:'JavaScript',label:'Linguagem da web',description:'Lógica, funções, arrays, DOM e APIs em 24 aulas com editor e prévia.',roadmap:'https://roadmap.sh/javascript',kind:'existing',route:'curso/javascript',count:24},
- {id:'typescript',name:'TypeScript',label:'JavaScript tipado',description:'Tipos, interfaces, funções e generics em cinco aulas com compilação.',roadmap:'https://roadmap.sh/typescript',kind:'existing',route:'curso/typescript',count:5},
- {id:'python',name:'Python',label:'Fundamentos de programação',description:'Sintaxe, coleções, funções, arquivos e testes. Prática no VS Code.',roadmap:'https://roadmap.sh/python',kind:'guided',count:5},
- {id:'java',name:'Java',label:'Orientação a objetos',description:'Tipos, classes, coleções, exceções e testes. Prática com JDK local.',roadmap:'https://roadmap.sh/java',kind:'guided',count:5},
- {id:'php',name:'PHP',label:'Do zero à prova prática',description:'32 aulas em 8 módulos: sintaxe, formulários, sessões, MySQL/PDO, POO, segurança e simulado.',roadmap:'https://roadmap.sh/php',kind:'guided',count:32},
- {id:'sql',name:'SQL',label:'Linguagem de consultas',description:'Consultas, JOIN, modelagem e transações pelas aulas de PostgreSQL.',roadmap:'https://roadmap.sh/sql',kind:'linked',route:'backend/trilha/postgres',count:5}
+ {id:'javascript',name:'JavaScript',label:'Linguagem da web',description:'Do primeiro script à arquitetura, assincronia, segurança e projetos. 24 aulas com editor e 9 aprofundamentos práticos.',roadmap:'https://roadmap.sh/javascript',kind:'hybrid',route:'curso/javascript',count:33},
+ {id:'typescript',name:'TypeScript',label:'JavaScript tipado',description:'Fundamentos com editor, strict, modelagem de tipos, runtime e projeto aplicado em 15 aulas.',roadmap:'https://roadmap.sh/typescript',kind:'hybrid',route:'curso/typescript',count:15},
+ {id:'python',name:'Python',label:'Fundamentos de programação',description:'17 aulas: fundamentos, estruturas, arquivos, classes, HTTP, asyncio, SQLite e projeto modular.',roadmap:'https://roadmap.sh/python',kind:'guided',count:17},
+ {id:'java',name:'Java',label:'Orientação a objetos',description:'17 aulas: JDK, classes, generics, Streams, concorrência, HTTP, JDBC e projeto testado.',roadmap:'https://roadmap.sh/java',kind:'guided',count:17},
+ {id:'php',name:'PHP',label:'Do básico ao avançado',description:'32 aulas em 8 módulos com formulários, PDO/MySQL, orientação a objetos, segurança e projeto integrador.',roadmap:'https://roadmap.sh/php',kind:'guided',count:32},
+ {id:'sql',name:'SQL',label:'PostgreSQL do zero ao avançado',description:'15 aulas práticas de consultas, joins, modelagem, transações, índices, janelas e segurança.',roadmap:'https://roadmap.sh/sql',kind:'guided',count:15}
 ];
 
 export const findPathway = id => pathwayTracks.find(t=>t.id===id);

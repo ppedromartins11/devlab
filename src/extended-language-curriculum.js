@@ -325,3 +325,330 @@ export const extendedPythonLessons = [
     "moduleId": "python-expansion"
   }
 ];
+
+export const extendedJavaLessons = [
+  {
+    "id": "java-build",
+    "title": "Maven, módulos e organização",
+    "goal": "Criar projetos Java com dependências e execução reproduzível.",
+    "theory": [
+      "Maven organiza compilação, testes e dependências por meio do pom.xml. A estrutura src/main/java e src/test/java separa produto e testes.",
+      "Dependências externas devem ter versão e procedência revisadas. Use o wrapper quando disponível e não adicione JARs manualmente sem justificativa."
+    ],
+    "example": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Projeto Java pronto para compilar\");\n  }\n}",
+    "question": "Qual arquivo declara dependências em um projeto Maven?",
+    "choices": [
+      "package.json",
+      "pom.xml",
+      "Cargo.toml"
+    ],
+    "answer": 1,
+    "explanation": "pom.xml descreve as dependências e o ciclo de build Maven.",
+    "task": "Crie projeto Maven, documente comandos de build, execute testes e faça um build limpo.",
+    "checks": [
+      "Build sem arquivos temporários antigos.",
+      "README com instruções reproduzíveis.",
+      "Teste e compilação executam sem IDE."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Fundamentos",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-strings",
+    "title": "String, igualdade e imutabilidade",
+    "goal": "Tratar texto sem erro de comparação e entradas inválidas.",
+    "theory": [
+      "String é imutável. Métodos como strip criam novos objetos; comparar texto pelo conteúdo exige equals, e não ==.",
+      "Para construir grandes textos em laço, StringBuilder evita concatenações repetitivas. Considere locale e Unicode para casos que exigem regras regionais."
+    ],
+    "example": "public class Main {\n public static void main(String[] args) {\n  String nome = \"  Ana  \".strip();\n  String outro = new String(\"Ana\");\n  System.out.println(nome.equals(outro));\n }\n}",
+    "question": "Qual operação compara o conteúdo de String?",
+    "choices": [
+      "==",
+      "equals",
+      "="
+    ],
+    "answer": 1,
+    "explanation": "equals testa o conteúdo textual, enquanto == compara referências.",
+    "task": "Implemente busca em catálogo por nome, tratando vazio e espaços externos.",
+    "checks": [
+      "Teste String vazia.",
+      "Teste textos equivalentes de instâncias diferentes.",
+      "Evite == para conteúdo."
+    ],
+    "docs": "https://dev.java/learn/language-basics/",
+    "level": "Fundamentos",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-interfaces",
+    "title": "Interfaces e polimorfismo",
+    "goal": "Separar contratos de implementações.",
+    "theory": [
+      "Uma interface especifica comportamentos públicos. Diferentes implementações podem cumprir o mesmo contrato, permitindo trocar persistência sem reescrever domínio.",
+      "Polimorfismo não exige herança de implementação. Prefira composição e interfaces pequenas, com testes para cada implementação."
+    ],
+    "example": "interface Notificador { void enviar(String mensagem); }\nclass ConsoleNotificador implements Notificador {\n public void enviar(String mensagem) { System.out.println(mensagem); }\n}\npublic class Main {\n public static void main(String[] args) { Notificador n = new ConsoleNotificador(); n.enviar(\"Olá\"); }\n}",
+    "question": "Qual benefício uma interface oferece?",
+    "choices": [
+      "Garantia de execução em paralelo",
+      "Contrato comum para implementações diferentes",
+      "Elimina todos os testes"
+    ],
+    "answer": 1,
+    "explanation": "Interfaces permitem acoplamento ao contrato, não a uma classe concreta.",
+    "task": "Modele serviço de notificações com interface e implementações de console e memória.",
+    "checks": [
+      "Teste contrato das duas implementações.",
+      "Não acople domínio à saída de console.",
+      "Trate mensagem vazia."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Intermediário",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-records",
+    "title": "Records, imutabilidade e validação",
+    "goal": "Modelar valores simples com invariantes.",
+    "theory": [
+      "Record gera construtor, acessores, equals, hashCode e toString para componentes. É adequado a modelos de valor, respostas e eventos.",
+      "Valide componentes no construtor compacto. Record é raso: um componente do tipo lista ainda pode conter objeto mutável, exigindo cópia defensiva."
+    ],
+    "example": "record Produto(String nome, double preco) {\n Produto { if (nome == null || nome.isBlank() || preco < 0) throw new IllegalArgumentException(); }\n}\npublic class Main {\n public static void main(String[] args) { System.out.println(new Produto(\"Livro\", 25)); }\n}",
+    "question": "Um record torna uma List interna automaticamente imutável?",
+    "choices": [
+      "Sim",
+      "Não, a imutabilidade é rasa",
+      "Somente no modo debug"
+    ],
+    "answer": 1,
+    "explanation": "Record não congela objetos armazenados em seus componentes.",
+    "task": "Modele um registro PedidoItem com validação e cópia segura de coleções onde necessário.",
+    "checks": [
+      "Teste criação inválida.",
+      "Teste equals para valores equivalentes.",
+      "Evite expor coleção mutável."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Intermediário",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-generics",
+    "title": "Generics, Optional e tipos",
+    "goal": "Evitar conversões inseguras e valores ausentes ambíguos.",
+    "theory": [
+      "Generics permitem escrever coleções e abstrações parametrizadas por tipo. A verificação ocorre na compilação, evitando casts desnecessários.",
+      "Optional<T> comunica ausência em retorno de busca, mas não substitui validação de argumentos nem deve ser usado indiscriminadamente como campo de entidade."
+    ],
+    "example": "import java.util.*;\npublic class Main {\n static Optional<String> buscar(Map<Integer,String> dados, int id) { return Optional.ofNullable(dados.get(id)); }\n public static void main(String[] args) { System.out.println(buscar(Map.of(1,\"Ana\"), 2).orElse(\"não encontrado\")); }\n}",
+    "question": "Qual tipo expressa um resultado de busca que pode não existir?",
+    "choices": [
+      "Optional<T>",
+      "int[]",
+      "StringBuilder"
+    ],
+    "answer": 0,
+    "explanation": "Optional permite distinguir resultado presente e ausente explicitamente.",
+    "task": "Construa repositório em memória genérico que retorna Optional e nunca lança NullPointerException em busca ausente.",
+    "checks": [
+      "Teste item presente.",
+      "Teste id inexistente.",
+      "Evite casts não verificados."
+    ],
+    "docs": "https://dev.java/learn/api/",
+    "level": "Intermediário",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-streams",
+    "title": "Stream API e operações funcionais",
+    "goal": "Filtrar, transformar e agregar dados sem efeitos colaterais.",
+    "theory": [
+      "Stream API processa sequências com filter, map, sorted e collect. Operações intermediárias são avaliadas somente quando uma operação terminal é executada.",
+      "Não modifique a coleção de origem durante o pipeline. Paralelismo não garante desempenho melhor e pode introduzir condições de corrida."
+    ],
+    "example": "import java.util.*;\npublic class Main {\n public static void main(String[] args) {\n  List<Integer> notas = List.of(4,7,9,10);\n  int total = notas.stream().filter(n -> n >= 7).mapToInt(Integer::intValue).sum();\n  System.out.println(total);\n }\n}",
+    "question": "Em um Stream, qual operação dispara o processamento?",
+    "choices": [
+      "filter",
+      "map",
+      "sum"
+    ],
+    "answer": 2,
+    "explanation": "sum é terminal e efetua o processamento das etapas anteriores.",
+    "task": "Agregue pedidos por status e calcule total, primeiro com loops e depois com Streams.",
+    "checks": [
+      "Teste lista vazia.",
+      "Compare resultados das duas soluções.",
+      "Não introduza mutação compartilhada no pipeline."
+    ],
+    "docs": "https://dev.java/learn/api/collections-and-streams/streams/",
+    "level": "Intermediário",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-exceptions",
+    "title": "Exceções e try-with-resources",
+    "goal": "Tratar falhas sem ocultar contexto.",
+    "theory": [
+      "Checked exceptions exigem tratamento ou declaração. Exceções de domínio devem comunicar invariantes violados e não ser substituídas por retornos silenciosos.",
+      "try-with-resources fecha recursos AutoCloseable mesmo quando ocorre exceção. Evite capturar Exception apenas para imprimir e continuar em estado incoerente."
+    ],
+    "example": "import java.io.*;\npublic class Main {\n public static void main(String[] args) throws IOException {\n  try (StringReader reader = new StringReader(\"abc\")) { System.out.println((char) reader.read()); }\n }\n}",
+    "question": "Qual recurso fecha AutoCloseable automaticamente?",
+    "choices": [
+      "try-with-resources",
+      "System.out.println",
+      "break"
+    ],
+    "answer": 0,
+    "explanation": "try-with-resources fecha recursos ao sair do bloco.",
+    "task": "Implemente leitor de arquivo com erro distinguível para arquivo ausente e conteúdo inválido.",
+    "checks": [
+      "Teste caminho inexistente.",
+      "Feche recursos mesmo com falha.",
+      "Não esconda mensagens relevantes de erro."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Intermediário",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-files",
+    "title": "Arquivos, Paths e codificação",
+    "goal": "Persistir texto e dados de modo portátil.",
+    "theory": [
+      "java.nio.file.Path representa caminhos; Files fornece leitura e escrita com APIs adequadas. Use UTF-8 explicitamente para comportamento consistente.",
+      "Separe serialização, validação e persistência. Não use nome fornecido por usuário sem resolver e verificar o destino, especialmente em upload."
+    ],
+    "example": "import java.nio.file.*;\nimport java.nio.charset.StandardCharsets;\npublic class Main {\n public static void main(String[] args) throws Exception {\n  Path arquivo = Files.createTempFile(\"devlab-\", \".txt\");\n  Files.writeString(arquivo, \"Olá\", StandardCharsets.UTF_8);\n  System.out.println(Files.readString(arquivo, StandardCharsets.UTF_8));\n  Files.deleteIfExists(arquivo);\n }\n}",
+    "question": "Qual API representa um caminho no Java moderno?",
+    "choices": [
+      "Path",
+      "JButton",
+      "Scanner apenas"
+    ],
+    "answer": 0,
+    "explanation": "Path é abstração para caminhos em java.nio.file.",
+    "task": "Crie armazenamento CSV pequeno com validação de linhas e leitura e escrita UTF-8.",
+    "checks": [
+      "Cubra arquivo vazio.",
+      "Cubra linha inválida.",
+      "Não deixe arquivos temporários de teste."
+    ],
+    "docs": "https://dev.java/learn/api/",
+    "level": "Intermediário",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-concurrency",
+    "title": "Threads e concorrência segura",
+    "goal": "Executar tarefas independentes e proteger estado compartilhado.",
+    "theory": [
+      "Threads permitem concorrência, mas ordem e agendamento são não determinísticos. Acesso simultâneo a estado mutável pode produzir data race.",
+      "ExecutorService gerencia tarefas; use try/finally e shutdown, e evite usar sleep como mecanismo de sincronização. Testes devem observar resultado e término."
+    ],
+    "example": "import java.util.concurrent.*;\npublic class Main {\n public static void main(String[] args) throws Exception {\n  ExecutorService executor = Executors.newFixedThreadPool(2);\n  try { Future<Integer> resultado = executor.submit(() -> 2 + 2); System.out.println(resultado.get()); }\n  finally { executor.shutdown(); }\n }\n}",
+    "question": "O que Future.get faz?",
+    "choices": [
+      "Obtém o resultado quando disponível",
+      "Sempre executa imediatamente",
+      "Ignora falhas das tarefas"
+    ],
+    "answer": 0,
+    "explanation": "Future.get aguarda resultado e pode propagar erro da tarefa.",
+    "task": "Processe várias tarefas em pool limitado, registre resultados e encerre executor mesmo com falha.",
+    "checks": [
+      "Teste tarefa que falha.",
+      "Não compartilhe lista mutável sem proteção.",
+      "Encerre o pool corretamente."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Avançado",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-http",
+    "title": "Cliente HTTP, JSON e contratos",
+    "goal": "Consumir serviços com timeout, erros e respostas inesperadas.",
+    "theory": [
+      "HttpClient da biblioteca padrão permite operações HTTP síncronas e assíncronas. O sucesso do envio não implica status 200: verifique código e conteúdo.",
+      "Valide JSON antes de assumir campos. Para testes, isole o transporte da regra de negócio e use um servidor de teste, não requisições externas imprevisíveis."
+    ],
+    "example": "import java.net.http.*;\nimport java.net.*;\nimport java.time.Duration;\npublic class Main {\n public static void main(String[] args) throws Exception {\n  HttpRequest req = HttpRequest.newBuilder(URI.create(\"https://example.com\"))\n   .timeout(Duration.ofSeconds(5)).GET().build();\n  System.out.println(req.uri()); // Não envia requisição neste exemplo\n }\n}",
+    "question": "Um status 404 deve ser tratado como conteúdo válido da entidade?",
+    "choices": [
+      "Sim, sempre",
+      "Não, é recurso não encontrado",
+      "Somente em GET com JSON"
+    ],
+    "answer": 1,
+    "explanation": "404 representa ausência de recurso; o cliente precisa tratar esse cenário.",
+    "task": "Crie cliente HTTP com endpoint configurável, timeout, tratamento de 4xx/5xx e testes com servidor local.",
+    "checks": [
+      "Teste sucesso e 404.",
+      "Teste timeout.",
+      "Não registre tokens nos logs."
+    ],
+    "docs": "https://docs.oracle.com/en/java/javase/21/docs/api/java.net.http/java/net/http/HttpClient.html",
+    "level": "Avançado",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-jdbc",
+    "title": "Persistência com JDBC e transações",
+    "goal": "Conectar uma aplicação Java a SQL de forma segura.",
+    "theory": [
+      "JDBC fornece Connection, PreparedStatement e ResultSet para conversar com bancos. PreparedStatement parametriza valores, reduzindo risco de injeção SQL.",
+      "Uma operação com múltiplas alterações deve usar transação. Configure rollback ao falhar, preserve credenciais fora do código e feche recursos."
+    ],
+    "example": "import java.sql.*;\npublic class Main {\n public static void main(String[] args) throws Exception {\n  try (Connection c = DriverManager.getConnection(\"jdbc:derby:memory:demo;create=true\")) {\n   try (PreparedStatement ps = c.prepareStatement(\"SELECT ?\")) { ps.setInt(1, 7); }\n  } catch (SQLException e) { System.out.println(\"Driver e banco são necessários: \" + e.getSQLState()); }\n }\n}",
+    "question": "Por que usar PreparedStatement?",
+    "choices": [
+      "Para concatenar SQL mais rápido",
+      "Para separar valores do comando SQL",
+      "Para remover necessidade de transações"
+    ],
+    "answer": 1,
+    "explanation": "PreparedStatement evita tratar entradas como parte da sintaxe SQL.",
+    "task": "Implemente CRUD com banco local configurado, migração SQL e testes transacionais isolados.",
+    "checks": [
+      "Teste SQL com caracteres especiais.",
+      "Teste rollback ao falhar.",
+      "Guarde credenciais fora do repositório."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Avançado",
+    "moduleId": "java-expansion"
+  },
+  {
+    "id": "java-design",
+    "title": "Projeto final Java: camadas e testes",
+    "goal": "Entregar serviço consistente de ponta a ponta.",
+    "theory": [
+      "Separe domínio, aplicação, repositórios e interface HTTP/CLI. O domínio não deve conhecer SQL, REST ou estruturas específicas do framework.",
+      "Um projeto é validado por regras, testes de unidade e integração, documentação de execução, tratamento de erros e análise de limitações. Um checklist sozinho não certifica domínio."
+    ],
+    "example": "interface Repositorio { void salvar(String titulo); }\nclass Servico {\n private final Repositorio repo;\n Servico(Repositorio repo) { this.repo = repo; }\n void criar(String titulo) { if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException(); repo.salvar(titulo); }\n}\npublic class Main {\n public static void main(String[] args) { new Servico(t -> System.out.println(t)).criar(\"Aprender\"); }\n}",
+    "question": "Qual dependência é preferível no domínio?",
+    "choices": [
+      "Interface de persistência",
+      "Driver JDBC concreto",
+      "Framework de UI"
+    ],
+    "answer": 0,
+    "explanation": "O domínio depende de um contrato, permitindo diferentes implementações.",
+    "task": "Entregue API ou CLI Java com Maven, validação, persistência, testes JUnit e README de execução.",
+    "checks": [
+      "Mostre fluxo completo de criação e consulta.",
+      "Cubra falhas e persistência com testes.",
+      "Documente arquitetura e decisões."
+    ],
+    "docs": "https://dev.java/learn/",
+    "level": "Avançado",
+    "moduleId": "java-expansion"
+  }
+];

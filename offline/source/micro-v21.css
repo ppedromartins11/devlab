@@ -38,3 +38,11 @@
 .dl-guided-retry p{line-height:1.65;margin:6px 0;color:#edc8bd}
 .dl-guided-retry small{color:#c7a9a4;font-size:11px}
 @media(max-width:560px){.dl-lesson-meter{align-items:start;flex-direction:column;gap:7px}.dl-lesson-meter>div{flex:auto;width:100%;max-width:none}}
+
+.dl-daily{border:1px solid #434857;border-radius:11px;background:#1b1e29;padding:19px 22px;margin:20px 0 30px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.dl-daily>div{display:grid;gap:6px;min-width:0}
+.dl-daily strong{font-size:17px;color:#f4f5fa;line-height:1.35}
+.dl-daily p{font-size:12px;color:#afb7c8;line-height:1.6;max-width:690px;margin:0}
+.dl-daily button{flex-shrink:0;padding:12px 17px;border:0;background:#f1f2f7;color:#161820;border-radius:8px;font-weight:700;font-size:12px}
+.dl-daily button:focus-visible{outline:2px solid #bcb3ff;outline-offset:3px}
+@media(max-width:630px){.dl-daily{padding:17px;flex-direction:column;align-items:stretch}.dl-daily button{width:100%}}

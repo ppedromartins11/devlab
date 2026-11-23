@@ -6,10 +6,15 @@ import {microChallenges as authoredChallenges} from './micro-lessons.js';
 import {microRulebook} from './micro-rulebook.js';
 
 const simplify=x=>String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
+const supplementalExamples={
+ // Exemplos reduzidos e didáticos, não implementações de segurança ou APIs completas.
+ 'auth-threats':"function statusAcesso(usuario, recurso) {\n  if (!usuario) return 401;\n  if (recurso.donoId !== usuario.id) return 403;\n  return 200;\n}",
+ 'quality-final':"async function buscarTarefas(url) {\n  const resposta = await fetch(url);\n  if (!resposta.ok) throw new Error('HTTP');\n  return resposta.json();\n}"
+};
 const lessonExample=lesson=>{
  const raw=String(lesson.example||'').replace(/\r\n/g,'\n').trim();
  const meaningful=raw.split('\n').some(line=>line.trim()&&!/^(\/\/|#|--|\/\*|\*)/.test(line.trim()));
- return meaningful?raw:String(lesson.starter?.js||lesson.starter?.ts||raw).trim();
+ return meaningful?raw:String(lesson.starter?.js||lesson.starter?.ts||supplementalExamples[lesson.id]||raw).trim();
 };
 function findToken(line,token){
  let i=line.indexOf(token);
@@ -57,7 +62,7 @@ function descriptor(lesson,group){
   lessonId:lesson.id,language:groupLabel(group,lesson),
   practice:String(lesson.challenge||lesson.practice||lesson.task||'').trim(),
   checks:[...(lesson.steps||lesson.checks||[])].slice(0,3),
-  starterCode:String(lesson.starter?.js||lesson.example||''),
+  starterCode:String(lesson.starter?.js||lesson.starter?.ts||lessonExample(lesson)),
   fullExample:lessonExample(lesson),
   route:group==='frontend'?'frontend/aula/'+lesson.id:group==='backend'?'backend/aula/'+lesson.id:
    ['javascript','typescript'].includes(group)?'aula/'+lesson.id:'linguagem/aula/'+lesson.id,

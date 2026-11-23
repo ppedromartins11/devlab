@@ -34,6 +34,14 @@ function microRefresh(container,id,focusSelector){
  container.replaceWith(wrapper.firstElementChild);
  if(focusSelector)document.querySelector('[data-micro-id="'+id+'"] '+focusSelector)?.focus({preventScroll:true});
 }
+function microQuickCardHtml(){
+ const recommended=st.last&&findMicroChallenge(st.last)&&!microUi.completed[st.last]?st.last:null;
+ const id=recommended||Object.keys(microChallenges).find(key=>!microUi.completed[key]);
+ if(!id)return '<section class="dl-daily"><div><span class="section-kicker">PRÁTICA RÁPIDA</span><strong>Você concluiu os microdesafios disponíveis.</strong><p>Continue os projetos e desafios de código da plataforma para aprofundar o aprendizado.</p></div><button data-nav="linguagens">Abrir cursos →</button></section>';
+ const challenge=findMicroChallenge(id);
+ const route=allLessons.some(l=>l.id===id)?'aula/'+id:frontendLessons.some(l=>l.id===id)?'frontend/aula/'+id:backendLessons.some(l=>l.id===id)?'backend/aula/'+id:'linguagem/aula/'+id;
+ return '<section class="dl-daily"><div><span class="section-kicker">PRÁTICA RÁPIDA · 5 MINUTOS</span><strong>'+esc(challenge.title)+'</strong><p>'+esc(challenge.language)+' · complete uma linha e depois experimente no editor ou no seu ambiente de desenvolvimento.</p></div><button data-nav="'+esc(route)+'">Começar agora →</button></section>';
+}
 window.addEventListener('input',event=>{
  const id=event.target?.dataset.microInput;if(!id||!findMicroChallenge(id))return;
  microUi.drafts[id]=event.target.value;save('micro-drafts',microUi.drafts);

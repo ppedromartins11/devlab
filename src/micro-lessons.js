@@ -1,5 +1,25 @@
 /** DevLab 21: microdesafios autorais de leitura e completude de código. Não executam código. */
 export const microChallenges = Object.freeze({
+  "primeiros-passos": {
+    "lessonId": "primeiros-passos",
+    "language": "JavaScript",
+    "title": "Seu primeiro comando",
+    "prompt": "Complete o método que mostra a mensagem no console do navegador.",
+    "snippet": "const mensagem = 'Olá, DevLab';\nconsole.____(mensagem);",
+    "answers": [
+      "log"
+    ],
+    "hints": [
+      "A linha envia uma informação para a área de mensagens do navegador.",
+      "O método pertence ao objeto console e possui três letras."
+    ],
+    "explanation": "console.log escreve valores no console para ajudar a entender o programa durante o desenvolvimento.",
+    "suggestions": [
+      "log",
+      "print",
+      "echo"
+    ]
+  },
   "variaveis": {
     "lessonId": "variaveis",
     "language": "JavaScript",
@@ -13,7 +33,12 @@ export const microChallenges = Object.freeze({
       "Variáveis armazenam valores que podem ser usados em outras instruções.",
       "O argumento de console.log deve ser o identificador da variável, sem aspas."
     ],
-    "explanation": "Usar o identificador recupera o valor; colocar o nome entre aspas exibiria um texto literal."
+    "explanation": "Usar o identificador recupera o valor; colocar o nome entre aspas exibiria um texto literal.",
+    "suggestions": [
+      "pontos",
+      "'pontos'",
+      "window"
+    ]
   },
   "condicionais": {
     "lessonId": "condicionais",
@@ -103,7 +128,12 @@ export const microChallenges = Object.freeze({
       "TypeScript possui um tipo para dados numéricos.",
       "O tipo é o mesmo para 3 e 3.5."
     ],
-    "explanation": "number descreve números em TypeScript; não existe um tipo int separado."
+    "explanation": "number descreve números em TypeScript; não existe um tipo int separado.",
+    "suggestions": [
+      "number",
+      "string",
+      "boolean"
+    ]
   },
   "ts-interfaces": {
     "lessonId": "ts-interfaces",
@@ -163,7 +193,12 @@ export const microChallenges = Object.freeze({
       "O valor já foi atribuído à variável na primeira linha.",
       "Não coloque aspas ao redor do identificador."
     ],
-    "explanation": "O identificador nome referencia a string armazenada na variável."
+    "explanation": "O identificador nome referencia a string armazenada na variável.",
+    "suggestions": [
+      "nome",
+      "'nome'",
+      "print"
+    ]
   },
   "py-decisions": {
     "lessonId": "py-decisions",
@@ -223,7 +258,12 @@ export const microChallenges = Object.freeze({
       "System.out fornece operações para saída padrão.",
       "O nome termina com ln para mudar de linha."
     ],
-    "explanation": "println escreve o conteúdo e avança para a linha seguinte."
+    "explanation": "println escreve o conteúdo e avança para a linha seguinte.",
+    "suggestions": [
+      "println",
+      "log",
+      "echo"
+    ]
   },
   "java-control": {
     "lessonId": "java-control",
@@ -283,7 +323,12 @@ export const microChallenges = Object.freeze({
       "PHP processa o arquivo no servidor e produz uma resposta.",
       "A palavra tem quatro letras e escreve uma expressão na saída."
     ],
-    "explanation": "echo emite a expressão na saída da resposta PHP."
+    "explanation": "echo emite a expressão na saída da resposta PHP.",
+    "suggestions": [
+      "echo",
+      "console.log",
+      "write"
+    ]
   },
   "php-variaveis": {
     "lessonId": "php-variaveis",
@@ -343,7 +388,12 @@ export const microChallenges = Object.freeze({
       "Na consulta, SELECT indica os dados desejados.",
       "Não digite um valor literal: queremos o nome da coluna."
     ],
-    "explanation": "SELECT nome retorna os valores dessa coluna nas linhas de pessoas."
+    "explanation": "SELECT nome retorna os valores dessa coluna nas linhas de pessoas.",
+    "suggestions": [
+      "nome",
+      "pessoas",
+      "texto"
+    ]
   },
   "sql-filter": {
     "lessonId": "sql-filter",
@@ -403,7 +453,12 @@ export const microChallenges = Object.freeze({
       "Não é a área de metadados do documento.",
       "Normalmente existe uma região principal por página."
     ],
-    "explanation": "main identifica o conteúdo predominante do documento."
+    "explanation": "main identifica o conteúdo predominante do documento.",
+    "suggestions": [
+      "main",
+      "head",
+      "meta"
+    ]
   },
   "css-flex": {
     "lessonId": "css-flex",
@@ -418,7 +473,12 @@ export const microChallenges = Object.freeze({
       "Essa propriedade troca o modelo de layout do elemento.",
       "O modelo permite alinhar elementos por eixo principal e transversal."
     ],
-    "explanation": "display: flex ativa o flexbox para os filhos diretos do elemento."
+    "explanation": "display: flex ativa o flexbox para os filhos diretos do elemento.",
+    "suggestions": [
+      "flex",
+      "grid",
+      "block"
+    ]
   },
   "node-runtime": {
     "lessonId": "node-runtime",
@@ -433,7 +493,12 @@ export const microChallenges = Object.freeze({
       "O módulo pertence à biblioteca nativa do runtime.",
       "Esse prefixo diferencia módulos nativos de nomes de pacotes."
     ],
-    "explanation": "node:fs referencia explicitamente o módulo de arquivos integrado ao Node.js."
+    "explanation": "node:fs referencia explicitamente o módulo de arquivos integrado ao Node.js.",
+    "suggestions": [
+      "node",
+      "npm",
+      "fs"
+    ]
   },
   "api-http": {
     "lessonId": "api-http",

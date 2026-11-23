@@ -25,6 +25,7 @@ test('100% das aulas distintas têm um desafio de código ligado à aula',()=>{
  assert.equal(report.total,179);
  assert.equal(report.curated,Object.keys(existingMicro).length);
  assert.equal(report.derived,179-Object.keys(existingMicro).length);
+ assert.equal(report.fallback,0,'Aulas sem correspondência conceitual precisam de revisão curricular');
  console.log('CURRICULAR_COVERAGE_REPORT',JSON.stringify(report));
  console.log('FALLBACK_ITEMS',JSON.stringify(Object.values(completeMicroChallenges).filter(x=>x.quality==='identifier').map(x=>({id:x.activityId,title:x.title,answer:x.answers[0]}))));
 });

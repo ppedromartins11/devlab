@@ -6,7 +6,11 @@ import {microChallenges as authoredChallenges} from './micro-lessons.js';
 import {microRulebook} from './micro-rulebook.js';
 
 const simplify=x=>String(x||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
-const lessonExample=lesson=>String(lesson.example||'').replace(/\r\n/g,'\n').trim();
+const lessonExample=lesson=>{
+ const raw=String(lesson.example||'').replace(/\r\n/g,'\n').trim();
+ const meaningful=raw.split('\n').some(line=>line.trim()&&!/^(\/\/|#|--|\/\*|\*)/.test(line.trim()));
+ return meaningful?raw:String(lesson.starter?.js||lesson.starter?.ts||raw).trim();
+};
 function findToken(line,token){
  let i=line.indexOf(token);
  while(i>=0){

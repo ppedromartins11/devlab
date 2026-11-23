@@ -50,7 +50,7 @@ test('build inclui exercício e interface nas rotas de linguagens e editor',()=>
  assert.ok(app.includes('microChallengeHtml(l.id)'));
  assert.ok(lang.includes('microChallengeHtml(l.id,lang)'));
  assert.ok(php.includes("microChallengeHtml(id,'php')"));
- assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id)'));
+ assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id,kind)'));
  for(const key of ['micro-completed','micro-drafts','micro-attempts','micro-hints'])assert.ok(ui.includes(key));
  assert.match(ui,/role="status"/);
  assert.match(css,/:focus-visible/);

@@ -11,7 +11,7 @@ const catalog=new Set([...allLessons,...frontendLessons,...backendLessons,...Obj
 
 test('microdesafios: itens autorais com vínculo real com aulas existentes',()=>{
  const ids=Object.keys(microChallenges);
- assert.equal(ids.length,31);
+ assert.equal(ids.length,32);
  for(const [id,exercise] of Object.entries(microChallenges)){
   assert.equal(id,exercise.lessonId);
   assert.ok(catalog.has(id),'Aula não encontrada: '+id);
@@ -24,6 +24,9 @@ test('microdesafios: itens autorais com vínculo real com aulas existentes',()=>
   assert.equal(findMicroChallenge(id),exercise);
  }
  assert.equal(findMicroChallenge('aula-inexistente'),null);
+ assert.ok(microChallenges['primeiros-passos'].suggestions.includes('log'));
+ assert.ok(Object.values(microChallenges).filter(x=>x.suggestions).length>=10);
+ for(const lesson of Object.values(microChallenges).filter(x=>x.suggestions))assert.ok(lesson.suggestions.includes(lesson.answers[0]),lesson.lessonId);
 });
 
 test('correção textual respeita sintaxe, rejeita vazio, não executa programas',()=>{

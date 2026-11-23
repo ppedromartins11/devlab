@@ -1,9 +1,12 @@
 import { phpLessons } from './php-curriculum.js';
-import { extendedPythonLessons, extendedJavaLessons, guidedSqlLessons } from './extended-language-curriculum.js';
+import { extendedPythonLessons, extendedJavaLessons, guidedSqlLessons, extendedJavaScriptLessons, extendedTypeScriptLessons } from './extended-language-curriculum.js';
 /** Aulas autorais: execução Python, Java e PHP no ambiente local (sem fingir que executam no navegador). */
 const guidedLanguageLessonFactory=(id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs)=>({id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs});
 export const guidedLanguageLessons={
  php:phpLessons,
+ sql:guidedSqlLessons,
+ javascript: extendedJavaScriptLessons,
+ typescript: extendedTypeScriptLessons,
  python:[
   guidedLanguageLessonFactory('py-intro','Variáveis e tipos','Identificar tipos e imprimir informações sem concatenar tudo.',
    ['Python organiza instruções por linhas e usa indentação significativa. int, float, str e bool são tipos comuns; as variáveis não exigem declaração prévia do tipo.','Use f-strings para montar mensagens legíveis. Execute o arquivo com python main.py no terminal e observe erros, sem tentar memorizar cada comando.'],
@@ -69,8 +72,7 @@ export const guidedLanguageLessons={
    'Crie testes para a classe Tarefa e registre no README os comandos Maven ou Gradle do seu projeto.',
    ['Cubra entrada inválida.','Teste criação e conclusão.','Execute testes no terminal e corrija as falhas.'],'https://junit.org/junit5/docs/current/user-guide/'),
   ...extendedJavaLessons
- ],
- sql: guidedSqlLessons
+ ]
 };
 
 export const findGuidedLesson = id => Object.values(guidedLanguageLessons).flat().find(l=>l.id===id);

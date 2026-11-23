@@ -76,3 +76,7 @@
 .dl-micro :is(.dl-micro-practical summary,.dl-micro-practical button,.dl-micro-practical textarea):focus-visible{outline:2px solid #bcb3ff;outline-offset:3px}
 @media(max-width:630px){.dl-micro-practical>summary{flex-direction:column;align-items:flex-start;gap:4px}.dl-micro-practical>summary::after{align-self:flex-end;margin-top:-20px}.dl-micro-practical-body{padding:13px}.dl-micro-practice-actions{flex-direction:column}.dl-micro-practice-actions button{width:100%}}
 @media(prefers-reduced-motion:reduce){.dl-micro-practical *{transition:none!important}}
+
+.dl-micro-complete-code{margin:16px 0 8px;padding:13px;border:1px solid #43594e;background:#18271f;border-radius:8px}
+.dl-micro-complete-code strong{display:block;font-size:12px;color:#daefdf;margin-bottom:9px}
+.dl-micro-complete-code pre{white-space:pre;overflow-x:auto;margin:0;color:#dcf2e3;font:12px/1.7 ui-monospace,Consolas,monospace}

@@ -1,6 +1,6 @@
 ## DevLab Sprint 22 — desafios e prática em todas as aulas
 
-A biblioteca tem **179 aulas únicas**, incluindo JS/TS, Python, Java, PHP, SQL, Frontend e Backend. Todas agora exibem **(1) um desafio curto de completar código e (2) um exercício prático com código inicial editável**, vinculado ao assunto da própria aula. As 32 atividades existentes continuam, e os novos desafios são derivados dos exemplos de suas respectivas aulas com regras de conceitos.
+A biblioteca tem **179 posições de aula (176 IDs distintos, devido a três conteúdos identificados em cursos diferentes)**, incluindo JS/TS, Python, Java, PHP, SQL, Frontend e Backend. Todas agora exibem **(1) um desafio curto de completar código e (2) um exercício prático com código inicial editável**, vinculado ao assunto da própria aula. As 32 atividades existentes continuam, e os novos desafios são derivados dos exemplos de suas respectivas aulas com regras de conceitos.
 
 A correção da lacuna é textual; a aplicação prática requer execução no editor original ou no ambiente local adequado. **Não se trata de um compilador universal nem de avaliação automática de competência**. O progresso anterior permanece preservado; novos rascunhos são salvos separadamente.
 

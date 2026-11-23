@@ -83,7 +83,7 @@ export const phpModules = [
     "title": "07 · POO e arquitetura PHP",
     "level": "Avançado",
     "summary": "Organize sistemas com classes, contratos e dependências.",
-    "objective": "Entender conceitos de programação orientada a objetos cobrados em provas.",
+    "objective": "Aplicar orientação a objetos em regras de negócio, serviços e modelos testáveis.",
     "lessonIds": [
       "php-classes",
       "php-heranca-contratos",

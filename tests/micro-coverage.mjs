@@ -30,27 +30,28 @@ test('100% das aulas distintas têm um desafio de código ligado à aula',()=>{
 });
 
 test('cada atividade inclui lacuna, resposta, duas dicas e prática específica',()=>{
+ const problems=[];
+ const check=(ok,id,name)=>{if(!ok)problems.push(id+': '+name);};
  for(const task of Object.values(completeMicroChallenges)){
-  assert.ok((task.snippet.match(/____/g)||[]).length>=1&&
-   (task.snippet.match(/____/g)||[]).length<=(task.source==='curated'?2:1),task.lessonId);
-  assert.ok(task.title.length>=10&&task.prompt.length>25,task.lessonId+' enunciado');
-  assert.ok(task.answers?.length>=1&&task.answers[0].length>0,task.lessonId+' resposta');
-  assert.equal(task.suggestions?.length,3,task.lessonId+' precisa de três alternativas móveis');
-  assert.ok(task.suggestions.includes(task.answers[0]),task.lessonId+' alternativa correta ausente');
-  assert.equal(task.hints?.length,2,task.lessonId+' dicas');
-  assert.ok(task.explanation.length>40,task.lessonId+' explicação');
-  assert.ok(task.practice.length>25,task.lessonId+' prática');
-  assert.ok(task.checks.length>=2,task.lessonId+' critérios');
-  assert.ok(task.starterCode.length>12,task.lessonId+' starter');
-  assert.ok(task.fullExample.length>12,task.lessonId+' exemplo');
-  assert.ok(task.route.includes(task.lessonId),task.lessonId+' rota');
+  const id=task.activityId,blanks=(task.snippet.match(/____/g)||[]).length;
+  check(blanks>=1&&blanks<=(task.source==='curated'?2:1),id,'lacunas');
+  check(task.title.length>=10&&task.prompt.length>25,id,'enunciado');
+  check(task.answers?.length>=1&&task.answers[0].length>0,id,'resposta');
+  check(task.suggestions?.length===3,id,'três alternativas por toque');
+  check(task.suggestions?.includes(task.answers[0]),id,'alternativa correta');
+  check(task.hints?.length===2,id,'duas dicas');
+  check(task.explanation?.length>40,id,'explicação');
+  check(task.practice?.length>25,id,'atividade prática');
+  check(task.checks?.length>=2,id,'critérios');
+  check(task.starterCode?.length>12,id,'código editável');
+  check(task.fullExample?.length>12,id,'exemplo');
+  check(task.route?.includes(task.lessonId),id,'rota');
   if(task.source==='derived-from-example'){
    const filled=task.snippet.replace('____',task.answers[0]);
-   assert.ok(task.fullExample.includes(filled),task.lessonId+' trecho não é parte do exemplo da aula');
-   assert.equal(task.suggestions?.length,3,task.lessonId+' opções de toque');
-   assert.ok(task.suggestions.includes(task.answers[0]),task.lessonId+' alternativa correta');
+   check(task.fullExample.includes(filled),id,'trecho divergente do exemplo');
   }
  }
+ assert.deepEqual(problems,[],problems.join('\n'));
 });
 
 test('nenhum exercício altera IDs anteriores nem executa código digitado na interface',()=>{

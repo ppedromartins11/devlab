@@ -95,6 +95,22 @@ for(const lesson of frontendLessons)rows.push({lesson,group:'frontend'});
 for(const lesson of backendLessons)rows.push({lesson,group:'backend'});
 for(const [group,lessons] of Object.entries(guidedLanguageLessons))for(const lesson of lessons)rows.push({lesson,group});
 export const allMicroLessonData=Object.freeze(rows);
+function microSuggestions(task){
+ const correct=task.answers[0];
+ if(task.suggestions?.length>=3&&task.suggestions.includes(correct))return [...new Set(task.suggestions)].slice(0,3);
+ const rule=microRulebook.find(x=>x.token===correct||x.token.replace(/[.<]/g,'')===correct);
+ const byLanguage={
+  JavaScript:['const','let','return','console.log'],TypeScript:['string','number','boolean','unknown'],
+  Python:['print','return','len','def'],Java:['println','equals','static','private'],
+  PHP:['echo','foreach','$_POST','return'],SQL:['WHERE','ORDER BY','SELECT','JOIN'],
+  HTML:['main','header','section','article'],CSS:['flex','grid','block','relative'],
+  React:['useEffect','useState','map','filter'],HTTP:['GET','POST','PUT','DELETE'],
+  'Node.js':['require','import','export','process'],Backend:['try','return','throw','await'],
+  Segurança:['401','403','200','404']
+ };
+ const candidates=[correct,...(rule?.alts||[]),...(byLanguage[task.language]||[]),'false','null'];
+ return [...new Set(candidates.filter(Boolean))].slice(0,3);
+}
 const covered={};
 for(const {lesson,group} of rows){
  // Algumas aulas compartilham IDs entre trilhas, mas os exercícios são distintos.
@@ -103,7 +119,7 @@ for(const {lesson,group} of rows){
  if(covered[key])throw new Error('Atividade repetida: '+key);
  const meta=descriptor(lesson,group),authored=key===lesson.id?authoredChallenges[lesson.id]:null;
  const activity=authored?{...meta,...authored,...meta,source:'curated',quality:'human-reviewed'}:derivedLesson(lesson,group);
- covered[key]=Object.freeze({...activity,activityId:key});
+ covered[key]=Object.freeze({...activity,suggestions:microSuggestions(activity),activityId:key});
 }
 export const completeMicroChallenges=Object.freeze(covered);
 export const allMicroLessonIds=Object.freeze(Object.keys(covered));

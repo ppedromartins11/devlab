@@ -46,3 +46,10 @@
 .dl-daily button{flex-shrink:0;padding:12px 17px;border:0;background:#f1f2f7;color:#161820;border-radius:8px;font-weight:700;font-size:12px}
 .dl-daily button:focus-visible{outline:2px solid #bcb3ff;outline-offset:3px}
 @media(max-width:630px){.dl-daily{padding:17px;flex-direction:column;align-items:stretch}.dl-daily button{width:100%}}
+
+.dl-micro-suggestions{display:grid;gap:8px;margin:12px 0 2px}
+.dl-micro-suggestions>span{font-size:11px;color:#acb3c1}
+.dl-micro-suggestions>div{display:flex;gap:8px;flex-wrap:wrap}
+.dl-micro-suggestions button{background:#282b39;border:1px solid #505264;border-radius:7px;color:#f0f0f9;padding:9px 13px;font:12px ui-monospace,Consolas,monospace;cursor:pointer;min-height:38px}
+.dl-micro-suggestions button:hover{background:#35374b;border-color:#9e98df}
+@media(max-width:560px){.dl-micro-suggestions button{flex:1 1 70px}}

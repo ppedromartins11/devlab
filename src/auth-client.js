@@ -5,8 +5,8 @@ export function validateDevLabAuthConfig(config) {
   if (!config || typeof config.url !== 'string' || typeof config.publishableKey !== 'string') return false;
   const key = config.publishableKey.trim();
   if (!key || /^sb_secret_/i.test(key) || /\s/.test(key)) return false;
-  // Aceita publishable keys novas e anon keys legadas; nunca a service_role.
-  if (!key.startsWith('sb_publishable_') && !/^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/.test(key)) return false;
+  // Apenas chaves publicáveis modernas: JWTs legados não distinguem anon de service_role.
+  if (!/^sb_publishable_[A-Za-z0-9_-]+$/.test(key)) return false;
   let parsed;
   try { parsed = new URL(config.url); } catch { return false; }
   const local = ['localhost', '127.0.0.1'].includes(parsed.hostname);

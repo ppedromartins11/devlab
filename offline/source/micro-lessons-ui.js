@@ -19,6 +19,7 @@ function microChallengeHtml(id){
  '<label for="micro-answer-'+esc(id)+'">Substitua <code>____</code> pelo trecho correto</label>',
  '<div class="dl-micro-controls"><input id="micro-answer-'+esc(id)+'" name="answer" data-micro-input="'+esc(id)+'" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="100" value="'+esc(value)+'" placeholder="Digite o código que falta" aria-describedby="micro-feedback-'+esc(id)+'">',
  '<button type="submit">'+(complete?'Verificar novamente':'Conferir resposta')+'</button></div></form>',
+ task.suggestions?.length?'<div class="dl-micro-suggestions"><span>Sugestões para preencher pelo toque</span><div>'+task.suggestions.map(token=>'<button type="button" data-micro-suggestion="'+esc(token)+'">'+esc(token)+'</button>').join('')+'</div></div>':'',
  hints?'<div class="dl-micro-hints">'+task.hints.slice(0,hints).map((hint,i)=>'<p><strong>Dica '+(i+1)+':</strong> '+esc(hint)+'</p>').join('')+'</div>':'',
  '<div class="dl-micro-bottom"><button class="dl-micro-hint" type="button" data-micro-hint="'+esc(id)+'" '+(hints===2?'disabled':'')+'>'+(hints===2?'Todas as dicas exibidas':'Preciso de uma dica')+'</button><small>'+(Number(microUi.attempts[id])||0)+' tentativa(s) · conferência textual, sem executar o código</small></div>',
  '<div id="micro-feedback-'+esc(id)+'" class="dl-micro-feedback '+(feedback?.ok?'correct':feedback?'incorrect':'')+'" role="status" aria-live="polite">',
@@ -59,6 +60,15 @@ window.addEventListener('submit',event=>{
  microRefresh(form.closest('.dl-micro'),id,'[data-micro-input]');
 });
 window.addEventListener('click',event=>{
+ const chip=event.target.closest('[data-micro-suggestion]');
+ if(chip){
+  const section=chip.closest('.dl-micro'),id=section?.dataset.microId,field=section?.querySelector('[data-micro-input]');
+  if(!id||!findMicroChallenge(id)||!field)return;
+  field.value=chip.dataset.microSuggestion;
+  microUi.drafts[id]=field.value;save('micro-drafts',microUi.drafts);
+  field.focus({preventScroll:true});
+  return;
+ }
  const hint=event.target.closest('[data-micro-hint]');
  if(hint){
   const id=hint.dataset.microHint;if(!findMicroChallenge(id))return;

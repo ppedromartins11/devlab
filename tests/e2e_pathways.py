@@ -38,7 +38,7 @@ def main():
     assert page.locator('.rp-language-card').count()==6
     page.screenshot(path=str(ROOT/'docs/screenshots'/'roadmaps-languages.png'),full_page=True)
     page.locator('.rp-language-card[data-nav="linguagem/python"]').click();page.wait_for_timeout(130)
-    assert page.locator('.rp-language-lesson').count()==5
+    assert page.locator('.rp-language-lesson').count()==17
     page.locator('.rp-language-lesson').first.click();page.wait_for_timeout(130)
     assert 'py-intro' in page.url
     page.locator('[data-lang-step="1"]').first.click()

@@ -16,6 +16,9 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --ignore-scripts --no-audit --no-fund
+      - run: python3 offline/build_standalone.py
+      - run: node --check src/auth-client.js && node --check offline/source/auth-ui.js
+      - run: node --test tests/auth-client.mjs
       - run: node tests/smoke.mjs
       - run: node tests/learning.mjs
       - run: node tests/study-tools.mjs

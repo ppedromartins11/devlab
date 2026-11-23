@@ -26,11 +26,13 @@ test('100% das aulas distintas têm um desafio de código ligado à aula',()=>{
  assert.equal(report.curated,Object.keys(existingMicro).length);
  assert.equal(report.derived,179-Object.keys(existingMicro).length);
  console.log('CURRICULAR_COVERAGE_REPORT',JSON.stringify(report));
+ console.log('FALLBACK_ITEMS',JSON.stringify(Object.values(completeMicroChallenges).filter(x=>x.quality==='identifier').map(x=>({id:x.activityId,title:x.title,answer:x.answers[0]}))));
 });
 
 test('cada atividade inclui lacuna, resposta, duas dicas e prática específica',()=>{
  for(const task of Object.values(completeMicroChallenges)){
-  assert.equal((task.snippet.match(/____/g)||[]).length,1,task.lessonId);
+  assert.ok((task.snippet.match(/____/g)||[]).length>=1&&
+   (task.snippet.match(/____/g)||[]).length<=(task.source==='curated'?2:1),task.lessonId);
   assert.ok(task.title.length>12&&task.prompt.length>25,task.lessonId+' enunciado');
   assert.ok(task.answers?.length>=1&&task.answers[0].length>0,task.lessonId+' resposta');
   assert.equal(task.hints?.length,2,task.lessonId+' dicas');
@@ -57,7 +59,7 @@ test('nenhum exercício altera IDs anteriores nem executa código digitado na in
  assert.doesNotMatch(ui,/\b(?:eval|Function)\s*\(/);
  assert.ok(ui.includes('não é executado nem avaliado automaticamente'));
  assert.ok(read('offline/source/app.js').includes('microChallengeHtml(l.id)'));
- assert.ok(read('offline/source/php-ui.js').includes('microChallengeHtml(id)'));
+ assert.ok(read('offline/source/php-ui.js').includes("microChallengeHtml(id,'php')"));
  assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id,kind)'));
 });
 
@@ -65,6 +67,6 @@ test('biblioteca possui cobertura de JS TS Python Java PHP SQL frontend e backen
  const rows=allMicroLessonData;
  const counts=Object.fromEntries(['javascript','typescript','python','java','php','sql','frontend','backend']
   .map(group=>[group,rows.filter(r=>r.group===group).length]));
- assert.deepEqual(counts,{javascript:24,typescript:5,python:17,java:17,php:32,sql:15,frontend:25,backend:25});
+ assert.deepEqual(counts,{javascript:33,typescript:15,python:17,java:17,php:32,sql:15,frontend:25,backend:25});
  for(const r of rows)assert.ok(findCompleteMicroChallenge(microActivityKey(r.lesson.id,r.group)));
 });

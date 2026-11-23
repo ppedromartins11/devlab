@@ -76,6 +76,15 @@ with sync_playwright() as playwright:
             page.locator('[data-micro-practice-details] summary').click()
             assert page.locator('[data-micro-practice-input]').count()==1,(width,route)
             assert page.locator('[data-micro-open-practice]').count()==1,(width,route)
+        # IDs legados reaproveitados em cursos distintos não podem compartilhar microprogresso.
+        go(page,'frontend/aula/ts-generics')
+        assert page.locator('[data-micro-id="frontend:ts-generics"]').count()==1
+        go(page,'aula/ts-generics')
+        assert page.locator('[data-micro-id="ts-generics"]').count()==1
+        go(page,'backend/aula/api-json')
+        assert page.locator('[data-micro-id="backend:api-json"]').count()==1
+        go(page,'linguagem/aula/ts-dom')
+        assert page.locator('[data-micro-id="typescript:ts-dom"]').count()==1
         go(page,'linguagem/aula/sql-transactions')
         page.locator('[data-micro-practice-details] summary').click()
         field=page.locator('[data-micro-practice-input]')

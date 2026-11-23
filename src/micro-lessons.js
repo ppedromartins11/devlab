@@ -146,7 +146,7 @@ export const microChallenges = Object.freeze({
     ],
     "hints": [
       "O compilador pode analisar sem produzir saída compilada.",
-      "A flag começa com 'no'."
+      "A flag impede a emissão de arquivos e começa com a palavra no."
     ],
     "explanation": "--noEmit executa a análise do TypeScript sem gerar arquivos JavaScript."
   },

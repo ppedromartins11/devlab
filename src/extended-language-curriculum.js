@@ -1306,3 +1306,276 @@ export const extendedJavaScriptLessons = [
     "moduleId": "javascript-expansion"
   }
 ];
+
+export const extendedTypeScriptLessons = [
+  {
+    "id": "ts-config",
+    "title": "tsconfig, strict e compilação",
+    "goal": "Configurar o compilador como ferramenta de qualidade.",
+    "theory": [
+      "TypeScript executa análises de tipo em tempo de compilação; o JavaScript produzido continua seguindo regras do runtime. Opções strict identificam problemas cedo.",
+      "noEmit pode validar tipos sem gerar arquivos. Não desative strict para silenciar falhas; investigue as hipóteses incorretas de seus tipos."
+    ],
+    "example": "// tsconfig.json: {\"compilerOptions\":{\"strict\":true,\"target\":\"ES2022\",\"noEmit\":true}}\nconst mensagem: string = 'Código tipado';\nconsole.log(mensagem);",
+    "question": "noEmit faz o quê?",
+    "choices": [
+      "Verifica sem gerar JS",
+      "Bloqueia erros do runtime",
+      "Remove tipos do navegador"
+    ],
+    "answer": 0,
+    "explanation": "Com noEmit o TypeScript analisa e não escreve arquivos compilados.",
+    "task": "Monte projeto strict com tsc --noEmit e corrija dois erros reais de tipo sem usar any.",
+    "checks": [
+      "tsc termina sem erros.",
+      "README descreve compilação.",
+      "Nenhum any injustificado."
+    ],
+    "docs": "https://www.typescriptlang.org/tsconfig/",
+    "level": "Fundamentos",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-unions",
+    "title": "Uniões e tipos literais",
+    "goal": "Modelar estados com alternativas explícitas.",
+    "theory": [
+      "Union types expressam valores possíveis, como 'aberto' | 'fechado'. Tipos literais ajudam a impedir estados inválidos na compilação.",
+      "Use a união para refletir regra real de negócio; não crie uma sequência de casts para forçar o programa a compilar."
+    ],
+    "example": "type Estado = 'aberto' | 'fechado';\nfunction alternar(e: Estado): Estado { return e === 'aberto' ? 'fechado' : 'aberto'; }\nconsole.log(alternar('aberto'));",
+    "question": "Qual declaração impede estado 'desconhecido'?",
+    "choices": [
+      "type Estado = string",
+      "type Estado = 'aberto' | 'fechado'",
+      "type Estado = any"
+    ],
+    "answer": 1,
+    "explanation": "Tipos literais restringem os valores aceitos.",
+    "task": "Modele status de pedido como união, com transições válidas e tipos de retorno.",
+    "checks": [
+      "Teste transição válida.",
+      "Typecheck rejeita estado inexistente.",
+      "Não use as Estado para mascarar erro."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "level": "Fundamentos",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-narrow",
+    "title": "Discriminated unions e narrowing",
+    "goal": "Tratar estados assíncronos sem propriedades opcionais ambíguas.",
+    "theory": [
+      "Discriminated unions usam uma propriedade comum como status para distinguir formatos. TypeScript estreita o tipo automaticamente em ramificações.",
+      "Uma função de renderização deve tratar loading, success e error. Ao ampliar a união, uma checagem exhaustive com never ajuda a encontrar casos não tratados."
+    ],
+    "example": "type Estado = {status:'loading'} | {status:'success'; dados:string[]} | {status:'error'; mensagem:string};\nfunction resumo(e:Estado):string {\n switch(e.status){case 'loading':return 'Aguarde';case 'success':return String(e.dados.length);case 'error':return e.mensagem;}\n}",
+    "question": "Quando dados está disponível?",
+    "choices": [
+      "Em todos os estados",
+      "Somente com status success",
+      "Apenas loading"
+    ],
+    "answer": 1,
+    "explanation": "O discriminador garante a presença de campos específicos em cada variante.",
+    "task": "Crie estados de busca e trate todos com switch sem '!' ou casts inseguros.",
+    "checks": [
+      "Typecheck com strict.",
+      "Teste loading/vazio/falha.",
+      "Adicione um novo estado e veja alerta do compilador."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "level": "Intermediário",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-generics-advanced",
+    "title": "Generics e constraints",
+    "goal": "Escrever código reutilizável mantendo relações de tipos.",
+    "theory": [
+      "Generics preservam relações entre entrada e saída, diferentemente de any. Constraints com extends restringem os valores aceitos e tornam operações seguras.",
+      "Não crie generics abstratos que não representam relações úteis. Prefira tipos concretos quando tornam a API mais clara."
+    ],
+    "example": "function obter<T, K extends keyof T>(objeto:T, chave:K):T[K]{return objeto[chave];}\nconst usuario = {id:1,nome:'Ana'};\nconsole.log(obter(usuario, 'nome'));",
+    "question": "Por que K extends keyof T é útil?",
+    "choices": [
+      "Restringe chave às propriedades do objeto",
+      "Converte string em número",
+      "Remove necessidade de runtime"
+    ],
+    "answer": 0,
+    "explanation": "A constraint relaciona a chave às propriedades conhecidas de T.",
+    "task": "Implemente helper de seleção de propriedades que rejeite chave inexistente no typecheck.",
+    "checks": [
+      "Teste chaves válidas.",
+      "Garanta erro para chave inválida.",
+      "Não use any."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/2/generics.html",
+    "level": "Intermediário",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-utility",
+    "title": "Mapped e utility types",
+    "goal": "Derivar formatos sem duplicar definições.",
+    "theory": [
+      "Partial, Pick, Omit e Readonly ajudam a criar variações de modelos. Mapped types percorrem chaves de um tipo para transformar suas propriedades.",
+      "Readonly impede reatribuição em tempo de compilação, mas não congela objetos em JavaScript. Validações de entrada remota continuam necessárias."
+    ],
+    "example": "type Usuario = {id:string; nome:string; ativo:boolean};\ntype CriarUsuario = Omit<Usuario, 'id'>;\nconst novo: CriarUsuario = {nome:'Ana', ativo:true};\nconsole.log(novo);",
+    "question": "Qual utility remove id do formato?",
+    "choices": [
+      "Omit<Usuario,'id'>",
+      "Pick<Usuario,'id'>",
+      "Readonly<Usuario>"
+    ],
+    "answer": 0,
+    "explanation": "Omit deriva um tipo sem as chaves indicadas.",
+    "task": "Modele create/update/response DTOs sem duplicar todos os campos.",
+    "checks": [
+      "Teste tipos com tsc.",
+      "Diferencie input de output.",
+      "Não trate Readonly como congelamento runtime."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/utility-types.html",
+    "level": "Intermediário",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-unknown",
+    "title": "unknown, never e validação em runtime",
+    "goal": "Lidar com dados não confiáveis sem cair em any.",
+    "theory": [
+      "unknown impede uso de dados até que sejam refinados. JSON.parse e respostas de API devem passar por validações, pois tipos não executam em runtime.",
+      "never representa estados impossíveis no tipo. Validar tipo no TypeScript não significa que o servidor tenha enviado valores corretos."
+    ],
+    "example": "function nomeSeguro(valor:unknown): string {\n if(typeof valor !== 'object' || valor === null || !('nome' in valor) || typeof valor.nome !== 'string') throw new Error('inválido');\n return valor.nome;\n}\nconsole.log(nomeSeguro({nome:'Bia'}));",
+    "question": "Qual tipo exige inspeção antes de usar uma propriedade?",
+    "choices": [
+      "any",
+      "unknown",
+      "string"
+    ],
+    "answer": 1,
+    "explanation": "unknown força verificações e narrowing explícito.",
+    "task": "Valide um payload de API com campos obrigatórios, opcionais e erros detalhados.",
+    "checks": [
+      "Teste null/array/objeto incompleto.",
+      "Use unknown na borda de entrada.",
+      "Demonstre que tsc não valida JSON remoto."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/2/narrowing.html",
+    "level": "Intermediário",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-async",
+    "title": "Promises e tipos de retorno",
+    "goal": "Projetar funções assíncronas que comunicam falhas.",
+    "theory": [
+      "Uma função async retorna Promise<T>. Sem contrato de erro no tipo, rejeições ainda precisam ser tratadas com try/catch.",
+      "Use um resultado discriminado quando o chamador deve tratar erros de negócio esperados. Não use Promise<any> sem necessidade."
+    ],
+    "example": "type Resultado = {ok:true; valor:number} | {ok:false; erro:string};\nasync function carregar():Promise<Resultado>{return {ok:true,valor:42};}\ncarregar().then(r => console.log(r.ok ? r.valor : r.erro));",
+    "question": "Qual retorno de uma função async que produz número?",
+    "choices": [
+      "number direto",
+      "Promise<number>",
+      "void sempre"
+    ],
+    "answer": 1,
+    "explanation": "async sempre devolve uma Promise.",
+    "task": "Implemente cliente tipado de consulta simulada com loading, sucesso e falha.",
+    "checks": [
+      "Typecheck dos resultados.",
+      "Teste rejeição inesperada.",
+      "Evite ! em propriedades opcionais."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/2/everyday-types.html",
+    "level": "Intermediário",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-dom",
+    "title": "DOM e eventos com segurança de tipos",
+    "goal": "Usar elementos tipados sem assumir que existem.",
+    "theory": [
+      "querySelector pode retornar null. O tipo de elemento influencia quais propriedades existem: HTMLInputElement oferece value, enquanto HTMLElement genérico não garante isso.",
+      "Use instanceof para refinar e evite casts cegos. O handler deve tratar ausência de elementos de forma compreensível."
+    ],
+    "example": "const elemento = document.querySelector('#nome');\nif(elemento instanceof HTMLInputElement){console.log(elemento.value.trim());}\nelse {console.log('Campo não encontrado');}",
+    "question": "Por que checar instanceof?",
+    "choices": [
+      "Para garantir elemento esperado antes de acessar value",
+      "Para desativar null checks",
+      "Para converter a página em React"
+    ],
+    "answer": 0,
+    "explanation": "A verificação refina o tipo e a existência do elemento em runtime.",
+    "task": "Crie formulário tipado com validação, feedback acessível e listener removível.",
+    "checks": [
+      "Teste campo ausente.",
+      "Teste input válido e inválido.",
+      "Evite innerHTML com entrada externa."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/dom-manipulation.html",
+    "level": "Intermediário",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-testing",
+    "title": "Teste de tipos e testes de comportamento",
+    "goal": "Separar garantia de compilação de garantia de funcionamento.",
+    "theory": [
+      "TypeScript detecta incompatibilidades de tipos; ele não prova que sua regra de negócio está correta. Testes automatizados executam entradas e comparam saídas.",
+      "Use @ts-expect-error somente em casos de teste de compilação deliberados, com comentários claros. Evite silenciar erros reais do programa."
+    ],
+    "example": "function desconto(valor:number, taxa:number):number {\n if(taxa<0 || taxa>1) throw new RangeError('taxa');\n return valor*(1-taxa);\n}\nconsole.log(desconto(100,0.1));",
+    "question": "Qual cenário o compilador não garante sozinho?",
+    "choices": [
+      "Atribuição string a number",
+      "Correção matemática do desconto",
+      "Propriedade obrigatória ausente"
+    ],
+    "answer": 1,
+    "explanation": "Uma expressão pode ter tipo válido e ainda calcular resultado incorreto.",
+    "task": "Adicione testes de tipo e de execução a um cálculo de desconto.",
+    "checks": [
+      "Teste limites.",
+      "Inclua um erro de tipo esperado.",
+      "Execute suíte e compilação."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "level": "Avançado",
+    "moduleId": "typescript-expansion"
+  },
+  {
+    "id": "ts-capstone",
+    "title": "Projeto TypeScript completo",
+    "goal": "Projetar, implementar e entregar aplicativo tipado do início ao fim.",
+    "theory": [
+      "Separe tipos de domínio, validação de dados externos, estado e infraestrutura. Um projeto tipado exige tanto boa modelagem quanto verificação no runtime.",
+      "Entregue testes, documentação, análise de falhas e typecheck sem any desnecessário. A aplicação deve ser utilizável, não apenas compilar."
+    ],
+    "example": "type Tarefa={id:string; titulo:string; feita:boolean};\nfunction criar(id:string,titulo:string):Tarefa {\n if(!titulo.trim()) throw new Error('Título vazio');\n return {id,titulo:titulo.trim(),feita:false};\n}\nconsole.log(criar('t1','Estudar'));",
+    "question": "Qual evidência vai além de typecheck?",
+    "choices": [
+      "Testes de fluxo executados",
+      "Um as any em cada borda",
+      "A ausência de console.log"
+    ],
+    "answer": 0,
+    "explanation": "Testes de fluxo verificam o comportamento real que tipos não cobrem.",
+    "task": "Entregue app de tarefas TypeScript com validação runtime, testes, estados carregando/erro e README.",
+    "checks": [
+      "Execute tsc --noEmit.",
+      "Teste dados inválidos em runtime.",
+      "Documente build e resultados de testes."
+    ],
+    "docs": "https://www.typescriptlang.org/docs/handbook/intro.html",
+    "level": "Avançado",
+    "moduleId": "typescript-expansion"
+  }
+];

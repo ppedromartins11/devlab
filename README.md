@@ -1,6 +1,6 @@
 ## DevLab 21 — Microaprendizagem interativa
 
-A auditoria das referências públicas do Mimo identificou que o DevLab tinha boa cobertura curricular, mas menor **frequência de interação nas aulas guiadas**. Esta evolução introduz **31 microdesafios autorais de código**: leia, complete a lacuna, receba feedback imediato, consulte até duas dicas e aplique em exercícios maiores. Há uma sugestão de prática rápida na página inicial e um indicador de sequência nas aulas guiadas.
+A auditoria das referências públicas do Mimo identificou que o DevLab tinha boa cobertura curricular, mas menor **frequência de interação nas aulas guiadas**. Esta evolução introduz **32 microdesafios autorais de código**: leia, complete a lacuna, receba feedback imediato, consulte até duas dicas e aplique em exercícios maiores. Há uma sugestão de prática rápida na página inicial e um indicador de sequência nas aulas guiadas.
 
 O código é corrigido por **comparação textual**, não executado; acertar uma lacuna não comprova domínio de programação. Exercícios e projetos maiores permanecem necessários. **Não foram reutilizados textos, visual, marca ou código do Mimo.**
 

@@ -6,16 +6,20 @@ import {frontendLessons} from '../src/frontend-curriculum.js';
 import {backendLessons} from '../src/backend-curriculum.js';
 import {guidedLanguageLessons} from '../src/language-curriculum.js';
 import {microChallenges as existingMicro} from '../src/micro-lessons.js';
-import {completeMicroChallenges,allMicroLessonIds,findCompleteMicroChallenge,microCoverageReport,allMicroLessonData} from '../src/micro-coverage.js';
+import {completeMicroChallenges,allMicroLessonIds,findCompleteMicroChallenge,microCoverageReport,allMicroLessonData,microActivityKey} from '../src/micro-coverage.js';
 const read=p=>readFileSync(new URL('../'+p,import.meta.url),'utf8');
 
 test('100% das aulas distintas têm um desafio de código ligado à aula',()=>{
  const unique=new Set([...allLessons,...frontendLessons,...backendLessons,...Object.values(guidedLanguageLessons).flat()].map(x=>x.id));
- assert.equal(unique.size,179);
+ assert.equal(unique.size,176,'há três IDs de aula reutilizados entre cursos');
  assert.equal(allMicroLessonData.length,179);
  assert.equal(allMicroLessonIds.length,179);
- assert.deepEqual(new Set(allMicroLessonIds),unique);
- for(const id of unique)assert.equal(findCompleteMicroChallenge(id)?.lessonId,id);
+ assert.equal(new Set(allMicroLessonIds).size,179);
+ for(const {lesson,group} of allMicroLessonData){
+  const activity=microActivityKey(lesson.id,group);
+  assert.equal(findCompleteMicroChallenge(activity)?.lessonId,lesson.id,group+':'+lesson.id);
+ }
+ for(const id of unique)assert.ok(findCompleteMicroChallenge(id)||allMicroLessonData.some(x=>x.lesson.id===id));
  assert.equal(findCompleteMicroChallenge('inexistente'),null);
  const report=microCoverageReport();
  assert.equal(report.total,179);
@@ -53,7 +57,7 @@ test('nenhum exercício altera IDs anteriores nem executa código digitado na in
  assert.ok(ui.includes('não é executado nem avaliado automaticamente'));
  assert.ok(read('offline/source/app.js').includes('microChallengeHtml(l.id)'));
  assert.ok(read('offline/source/php-ui.js').includes('microChallengeHtml(id)'));
- assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id)'));
+ assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id,kind)'));
 });
 
 test('biblioteca possui cobertura de JS TS Python Java PHP SQL frontend e backend',()=>{
@@ -61,5 +65,5 @@ test('biblioteca possui cobertura de JS TS Python Java PHP SQL frontend e backen
  const counts=Object.fromEntries(['javascript','typescript','python','java','php','sql','frontend','backend']
   .map(group=>[group,rows.filter(r=>r.group===group).length]));
  assert.deepEqual(counts,{javascript:24,typescript:5,python:17,java:17,php:32,sql:15,frontend:25,backend:25});
- for(const r of rows)assert.ok(findCompleteMicroChallenge(r.lesson.id));
+ for(const r of rows)assert.ok(findCompleteMicroChallenge(microActivityKey(r.lesson.id,r.group)));
 });

@@ -20,7 +20,7 @@ O objetivo não é reproduzir o Mimo pixel a pixel. O DevLab deve aprender com p
 
 ## O que a Sprint 21 acrescentou
 
-- **31 microdesafios autorais** diretamente associados a aulas de JavaScript, TypeScript, Python, Java, PHP, SQL, Frontend e Backend. Cada um contém código com lacuna, objetivo, resposta, **duas dicas progressivas** e explicação do raciocínio.
+- **32 microdesafios autorais** diretamente associados a aulas de JavaScript, TypeScript, Python, Java, PHP, SQL, Frontend e Backend. Cada um contém código com lacuna, objetivo, resposta, **duas dicas progressivas** e explicação do raciocínio.
 - **Resposta digitada e feedback imediato**, com destaque de erro e acerto. O desafio é uma verificação textual de sintaxe/leitura, **não executa código nem avalia competência prática**.
 - **Retomada rápida de cinco minutos** na página inicial, usando microdesafio pendente e, quando pertinente, última aula com atividade ainda não completada.
 - **Feedback contextual para alternativas erradas** em quizzes de linguagens guiadas, em vez de apenas toast genérico.
@@ -30,7 +30,7 @@ O objetivo não é reproduzir o Mimo pixel a pixel. O DevLab deve aprender com p
 
 ## Cobertura e limitações
 
-O DevLab mantém **129 aulas na Biblioteca de Linguagens** e dezenas de aulas compartilhadas em Frontend/Backend. Esta sprint inclui 31 atividades direcionadas; **não é correto afirmar que todas as aulas já contam com micropráticas equivalentes**. Nos demais conteúdos, continuam existindo perguntas de compreensão, exercícios no editor ou checklists. Ampliar gradualmente a cobertura com questões escritas e verificações adequadas será um projeto curricular próprio.
+O DevLab mantém **129 aulas na Biblioteca de Linguagens** e dezenas de aulas compartilhadas em Frontend/Backend. Esta sprint inclui 32 atividades direcionadas; **não é correto afirmar que todas as aulas já contam com micropráticas equivalentes**. Nos demais conteúdos, continuam existindo perguntas de compreensão, exercícios no editor ou checklists. Ampliar gradualmente a cobertura com questões escritas e verificações adequadas será um projeto curricular próprio.
 
 Aulas JS e TS com editor e verificação funcional mantêm essa execução. Para Python, Java, PHP e SQL, o programa precisa ser executado **localmente**, com runtime e ambiente apropriados; preencher a lacuna **não substitui testes**. Os checklists de execução são autodeclarados.
 

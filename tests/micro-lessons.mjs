@@ -48,9 +48,9 @@ test('build inclui exercício e interface nas rotas de linguagens e editor',()=>
  const ui=read('offline/source/micro-lessons-ui.js'),css=read('offline/source/micro-v21.css');
  for(const file of ['micro-lessons.js','micro-lessons-ui.js','micro-v21.css'])assert.ok(build.includes(file),file);
  assert.ok(app.includes('microChallengeHtml(l.id)'));
- assert.ok(lang.includes('microChallengeHtml(l.id)'));
- assert.ok(php.includes('microChallengeHtml(id)'));
- assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id)'));
+ assert.ok(lang.includes('microChallengeHtml(l.id,lang)'));
+ assert.ok(php.includes("microChallengeHtml(id,'php')"));
+ assert.ok(read('offline/source/learning-shell.js').includes('microChallengeHtml(id,kind)'));
  for(const key of ['micro-completed','micro-drafts','micro-attempts','micro-hints'])assert.ok(ui.includes(key));
  assert.match(ui,/role="status"/);
  assert.match(css,/:focus-visible/);

@@ -1,3 +1,18 @@
+# DevLab 19 — Aprendizado progressivo, do básico ao avançado
+
+**Objetivo atual: aprender programação de verdade**, sem treinamento para provas nem objetivos acadêmicos pontuais. A Biblioteca de Linguagens reúne **129 aulas**: JavaScript (33), TypeScript (15), Python (17), Java (17), PHP (32) e SQL/PostgreSQL (15), com fundamentos, aplicações, testes, depuração e projetos integradores.
+
+A metodologia incentiva prever a saída, explicar conceitos, executar código, modificar o exemplo, testar erros e construir uma solução própria. Quizzes e checklists mostram **atividade registrada**, não certificam que o aluno domina o assunto.
+
+**Acesso:** [DevLab](https://devlab-zeta.vercel.app) · Rotas `#/linguagens`, `#/trilhas`, `#/frontend`, `#/backend`. Python, Java, PHP e SQL precisam de runtimes locais; a interface não finge executar esses programas no navegador. O editor JavaScript/TypeScript anterior continua funcionando.
+
+**Segurança e progresso:** IDs, exercícios e registros locais anteriores foram preservados. O login não sincroniza progresso entre aparelhos nesta fase, e os laboratórios de banco não devem utilizar o Supabase de produção.
+
+Leia [Sprint 19 — Aprendizagem](docs/SPRINT-19-APRENDIZAGEM.md) para conteúdo, método, limites e testes. Valide com `npm test`, `node --test tests/curriculum-mastery.mjs` e `npm run build:static`.
+
+---
+
+## Histórico das sprints anteriores
 
 ## DevLab 16.0 — PHP do extremo básico ao avançado
 

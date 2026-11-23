@@ -31,7 +31,7 @@ export const phpModules = [
     "title": "03 · Arrays e transformação de dados",
     "level": "Básico",
     "summary": "Organize listas, mapas, filtros e pequenos relatórios.",
-    "objective": "Dominar coleções cobradas nas provas práticas.",
+    "objective": "Trabalhar com coleções para transformar e consultar dados de aplicações reais.",
     "lessonIds": [
       "php-arrays-indexados",
       "php-associativos",
@@ -44,7 +44,7 @@ export const phpModules = [
     "title": "04 · Formulários e requisições",
     "level": "Intermediário",
     "summary": "Receba e valide dados do navegador, com segurança.",
-    "objective": "Criar formulários prontos para a prova prática.",
+    "objective": "Desenvolver formulários com validação e tratamento seguro das entradas.",
     "lessonIds": [
       "php-get-post",
       "php-form-validacao",
@@ -70,7 +70,7 @@ export const phpModules = [
     "title": "06 · PHP com MySQL e CRUD",
     "level": "Intermediário",
     "summary": "Conecte o PHP a um banco real usando PDO e SQL seguro.",
-    "objective": "Preparar uma aplicação de cadastro similar à prova de pizzaria.",
+    "objective": "Desenvolver CRUD com PDO, MySQL e integridade dos dados.",
     "lessonIds": [
       "php-sql-modelagem",
       "php-pdo-conexao",
@@ -83,7 +83,7 @@ export const phpModules = [
     "title": "07 · POO e arquitetura PHP",
     "level": "Avançado",
     "summary": "Organize sistemas com classes, contratos e dependências.",
-    "objective": "Entender conceitos de programação orientada a objetos cobrados em provas.",
+    "objective": "Aplicar orientação a objetos em regras de negócio, serviços e modelos testáveis.",
     "lessonIds": [
       "php-classes",
       "php-heranca-contratos",
@@ -93,10 +93,10 @@ export const phpModules = [
   },
   {
     "id": "seguranca-projeto",
-    "title": "08 · Segurança, API e prova final",
+    "title": "08 · Segurança, APIs e projeto integrador",
     "level": "Avançado",
     "summary": "Una conceitos em uma aplicação prática segura e testável.",
-    "objective": "Concluir um CRUD de pizzaria e responder questões integradoras de prova.",
+    "objective": "Integrar validação, CRUD, autenticação, APIs e testes em uma aplicação prática.",
     "lessonIds": [
       "php-passwords",
       "php-csrf-sql-xss",
@@ -131,7 +131,7 @@ export const phpLessons = [
       "Explique por que não basta abrir o arquivo por file://."
     ],
     "docs": "https://www.php.net/manual/pt_BR/tutorial.firstpage.php",
-    "tip": "PROVA: PHP não é JavaScript. PHP roda no servidor, JS pode rodar no navegador.",
+    "tip": "ESSENCIAL: PHP não é JavaScript. PHP roda no servidor, JS pode rodar no navegador.",
     "filename": "exemplo.php"
   },
   {
@@ -159,7 +159,7 @@ export const phpLessons = [
       "Compare aspas simples e duplas."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.basic-syntax.php",
-    "tip": "PROVA: echo não precisa dos parênteses de uma chamada de função.",
+    "tip": "ESSENCIAL: echo não precisa dos parênteses de uma chamada de função.",
     "filename": "exemplo.php"
   },
   {
@@ -187,7 +187,7 @@ export const phpLessons = [
       "Faça uma conversão explícita e explique o risco."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.variables.basics.php",
-    "tip": "PROVA: $valor = \"5\" guarda string, não int; === considera tipo e valor.",
+    "tip": "ESSENCIAL: $valor = \"5\" guarda string, não int; === considera tipo e valor.",
     "filename": "exemplo.php"
   },
   {
@@ -215,7 +215,7 @@ export const phpLessons = [
       "Não confunda texto de preço com cálculo financeiro."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.types.string.php",
-    "tip": "PROVA: \"Olá, $nome\" interpola; 'Olá, $nome' exibe o cifrão literalmente.",
+    "tip": "ESSENCIAL: \"Olá, $nome\" interpola; 'Olá, $nome' exibe o cifrão literalmente.",
     "filename": "exemplo.php"
   },
   {
@@ -243,7 +243,7 @@ export const phpLessons = [
       "Diferencie =, == e ===."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.operators.comparison.php",
-    "tip": "PROVA: = atribui; == compara com coerção; === compara sem conversão de tipo.",
+    "tip": "ESSENCIAL: = atribui; == compara com coerção; === compara sem conversão de tipo.",
     "filename": "exemplo.php"
   },
   {
@@ -271,7 +271,7 @@ export const phpLessons = [
       "Compare match e switch."
     ],
     "docs": "https://www.php.net/manual/pt_BR/control-structures.match.php",
-    "tip": "PROVA: match não usa break e compara estritamente.",
+    "tip": "ESSENCIAL: match não usa break e compara estritamente.",
     "filename": "exemplo.php"
   },
   {
@@ -299,7 +299,7 @@ export const phpLessons = [
       "Mostre onde um while infinito poderia surgir."
     ],
     "docs": "https://www.php.net/manual/pt_BR/control-structures.foreach.php",
-    "tip": "PROVA: foreach ($itens as $chave => $valor) acessa chave e valor.",
+    "tip": "ESSENCIAL: foreach ($itens as $chave => $valor) acessa chave e valor.",
     "filename": "exemplo.php"
   },
   {
@@ -327,7 +327,7 @@ export const phpLessons = [
       "Use parâmetro e retorno tipados."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.functions.php",
-    "tip": "PROVA: printar uma saída não equivale a retornar o resultado.",
+    "tip": "ESSENCIAL: printar uma saída não equivale a retornar o resultado.",
     "filename": "exemplo.php"
   },
   {
@@ -355,7 +355,7 @@ export const phpLessons = [
       "Não acesse posição inexistente."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.types.array.php",
-    "tip": "PROVA: count conta elementos; não confunda com end() nem array_sum().",
+    "tip": "ESSENCIAL: count conta elementos; não confunda com end() nem array_sum().",
     "filename": "exemplo.php"
   },
   {
@@ -383,7 +383,7 @@ export const phpLessons = [
       "Distinga array de objeto."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.types.array.php",
-    "tip": "PROVA: $dados[\"nome\"] lê array; $objeto->nome lê propriedade de objeto.",
+    "tip": "ESSENCIAL: $dados[\"nome\"] lê array; $objeto->nome lê propriedade de objeto.",
     "filename": "exemplo.php"
   },
   {
@@ -411,7 +411,7 @@ export const phpLessons = [
       "Explique preservação das chaves."
     ],
     "docs": "https://www.php.net/manual/pt_BR/ref.array.php",
-    "tip": "PROVA: array_filter seleciona; array_map transforma; array_reduce acumula.",
+    "tip": "ESSENCIAL: array_filter seleciona; array_map transforma; array_reduce acumula.",
     "filename": "exemplo.php"
   },
   {
@@ -439,7 +439,7 @@ export const phpLessons = [
       "Diferencie encode e decode."
     ],
     "docs": "https://www.php.net/manual/pt_BR/ref.json.php",
-    "tip": "PROVA: json_encode gera JSON; json_decode lê JSON; true retorna arrays associativos.",
+    "tip": "ESSENCIAL: json_encode gera JSON; json_decode lê JSON; true retorna arrays associativos.",
     "filename": "exemplo.php"
   },
   {
@@ -467,7 +467,7 @@ export const phpLessons = [
       "Não exiba senha pela URL."
     ],
     "docs": "https://www.php.net/manual/pt_BR/tutorial.forms.php",
-    "tip": "PROVA: id identifica elemento HTML; name é a chave enviada pelo formulário.",
+    "tip": "ESSENCIAL: id identifica elemento HTML; name é a chave enviada pelo formulário.",
     "filename": "exemplo.php"
   },
   {
@@ -495,7 +495,7 @@ export const phpLessons = [
       "Rejeite quantidade zero ou negativa."
     ],
     "docs": "https://www.php.net/manual/pt_BR/filter.filters.validate.php",
-    "tip": "PROVA: required do HTML ajuda a UX, mas não substitui validação no PHP.",
+    "tip": "ESSENCIAL: required do HTML ajuda a UX, mas não substitui validação no PHP.",
     "filename": "exemplo.php"
   },
   {
@@ -523,7 +523,7 @@ export const phpLessons = [
       "Diferencie escaping de validação."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.htmlspecialchars.php",
-    "tip": "PROVA: escapar a saída para HTML é diferente de validar ou sanitizar entrada.",
+    "tip": "ESSENCIAL: escapar a saída para HTML é diferente de validar ou sanitizar entrada.",
     "filename": "exemplo.php"
   },
   {
@@ -551,7 +551,7 @@ export const phpLessons = [
       "Atualize a página e observe o comportamento."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.header.php",
-    "tip": "PROVA: headers HTTP precisam ser enviados antes do conteúdo de resposta.",
+    "tip": "ESSENCIAL: headers HTTP precisam ser enviados antes do conteúdo de resposta.",
     "filename": "exemplo.php"
   },
   {
@@ -579,7 +579,7 @@ export const phpLessons = [
       "Evite incluir arquivos indicados pela URL."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.require-once.php",
-    "tip": "PROVA: include pode emitir aviso e prosseguir; require é usado para dependências obrigatórias.",
+    "tip": "ESSENCIAL: include pode emitir aviso e prosseguir; require é usado para dependências obrigatórias.",
     "filename": "exemplo.php"
   },
   {
@@ -607,7 +607,7 @@ export const phpLessons = [
       "Explique diferença de cookie e sessão."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.setcookie.php",
-    "tip": "PROVA: cookie é client-side; $_SESSION é mantido pelo mecanismo de sessão no servidor.",
+    "tip": "ESSENCIAL: cookie é client-side; $_SESSION é mantido pelo mecanismo de sessão no servidor.",
     "filename": "exemplo.php"
   },
   {
@@ -635,7 +635,7 @@ export const phpLessons = [
       "Remova os dados e cookie da sessão ao sair."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.session-start.php",
-    "tip": "PROVA: $_SESSION precisa de session_start e não é equivalente a $_COOKIE.",
+    "tip": "ESSENCIAL: $_SESSION precisa de session_start e não é equivalente a $_COOKIE.",
     "filename": "exemplo.php"
   },
   {
@@ -663,7 +663,7 @@ export const phpLessons = [
       "Trate falha de upload sem mostrar path sensível."
     ],
     "docs": "https://www.php.net/manual/pt_BR/features.file-upload.php",
-    "tip": "PROVA: enctype=\"multipart/form-data\" é necessário para envio tradicional de arquivos.",
+    "tip": "ESSENCIAL: enctype=\"multipart/form-data\" é necessário para envio tradicional de arquivos.",
     "filename": "exemplo.php"
   },
   {
@@ -691,7 +691,7 @@ export const phpLessons = [
       "Evite armazenar múltiplos produtos em uma coluna."
     ],
     "docs": "https://www.php.net/manual/pt_BR/book.pdo.php",
-    "tip": "PROVA: banco relacional usa PK, FK e joins; não guarde listas separadas por vírgula em uma célula.",
+    "tip": "ESSENCIAL: banco relacional usa PK, FK e joins; não guarde listas separadas por vírgula em uma célula.",
     "filename": "exemplo.php"
   },
   {
@@ -719,7 +719,7 @@ export const phpLessons = [
       "Trate indisponibilidade do banco."
     ],
     "docs": "https://www.php.net/manual/pt_BR/book.pdo.php",
-    "tip": "PROVA: PDO é API; pdo_mysql é driver de banco e precisa estar habilitado.",
+    "tip": "ESSENCIAL: PDO é API; pdo_mysql é driver de banco e precisa estar habilitado.",
     "filename": "exemplo.php"
   },
   {
@@ -747,7 +747,7 @@ export const phpLessons = [
       "Teste pizza inexistente."
     ],
     "docs": "https://www.php.net/manual/pt_BR/pdo.prepare.php",
-    "tip": "PROVA: parâmetros preparados evitam injeção por valores; não parametrizam identificadores SQL.",
+    "tip": "ESSENCIAL: parâmetros preparados evitam injeção por valores; não parametrizam identificadores SQL.",
     "filename": "exemplo.php"
   },
   {
@@ -775,7 +775,7 @@ export const phpLessons = [
       "Use prepared statements em todos os valores."
     ],
     "docs": "https://www.php.net/manual/pt_BR/pdo.transactions.php",
-    "tip": "PROVA: DELETE sem WHERE pode remover todas as linhas; transações protegem operações relacionadas.",
+    "tip": "ESSENCIAL: DELETE sem WHERE pode remover todas as linhas; transações protegem operações relacionadas.",
     "filename": "exemplo.php"
   },
   {
@@ -803,7 +803,7 @@ export const phpLessons = [
       "Explique readonly vs private."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.oop5.decon.php",
-    "tip": "PROVA: -> acessa propriedade/método de instância; :: acessa membros estáticos/constantes.",
+    "tip": "ESSENCIAL: -> acessa propriedade/método de instância; :: acessa membros estáticos/constantes.",
     "filename": "exemplo.php"
   },
   {
@@ -831,7 +831,7 @@ export const phpLessons = [
       "Use enum para estados fixos."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.oop5.interfaces.php",
-    "tip": "PROVA: extends é herança; implements é contrato; trait não substitui interface.",
+    "tip": "ESSENCIAL: extends é herança; implements é contrato; trait não substitui interface.",
     "filename": "exemplo.php"
   },
   {
@@ -859,7 +859,7 @@ export const phpLessons = [
       "Use finally quando houver recurso para limpar."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.exceptions.php",
-    "tip": "PROVA: Exception e Error implementam Throwable; nem toda falha deve ser silenciosa.",
+    "tip": "ESSENCIAL: Exception e Error implementam Throwable; nem toda falha deve ser silenciosa.",
     "filename": "exemplo.php"
   },
   {
@@ -887,7 +887,7 @@ export const phpLessons = [
       "Documente como rodar o sistema."
     ],
     "docs": "https://www.php.net/manual/pt_BR/language.namespaces.php",
-    "tip": "PROVA: Composer não é servidor web nem banco de dados; gera autoload e gerencia dependências.",
+    "tip": "ESSENCIAL: Composer não é servidor web nem banco de dados; gera autoload e gerencia dependências.",
     "filename": "exemplo.php"
   },
   {
@@ -915,7 +915,7 @@ export const phpLessons = [
       "Regere ID de sessão no login."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.password-hash.php",
-    "tip": "PROVA: senha é armazenada em hash, nunca deve ser recuperada/descriptografada.",
+    "tip": "ESSENCIAL: senha é armazenada em hash, nunca deve ser recuperada/descriptografada.",
     "filename": "exemplo.php"
   },
   {
@@ -943,7 +943,7 @@ export const phpLessons = [
       "Valide token CSRF ao receber POST."
     ],
     "docs": "https://www.php.net/manual/pt_BR/security.php",
-    "tip": "PROVA: prepared SQL não substitui escaping HTML; são ataques e controles diferentes.",
+    "tip": "ESSENCIAL: prepared SQL não substitui escaping HTML; são ataques e controles diferentes.",
     "filename": "exemplo.php"
   },
   {
@@ -971,20 +971,20 @@ export const phpLessons = [
       "Teste 400/404 e sucesso."
     ],
     "docs": "https://www.php.net/manual/pt_BR/function.http-response-code.php",
-    "tip": "PROVA: 401 exige autenticação; 403 significa acesso negado para a identidade existente.",
+    "tip": "ESSENCIAL: 401 exige autenticação; 403 significa acesso negado para a identidade existente.",
     "filename": "exemplo.php"
   },
   {
     "id": "php-projeto-final",
     "moduleId": "seguranca-projeto",
-    "title": "Projeto final: Pizzaria da Turma",
+    "title": "Projeto integrador: sistema de pedidos",
     "goal": "Integrar formulário, validação, PDO, transação e relatório.",
     "theory": [
-      "Uma entrega prática de PHP costuma envolver formulário HTML, captura com $_POST, validação, gravação no banco e exibição segura de resultados. Divida em arquivos reutilizáveis e registre o esquema SQL.",
-      "No desafio final, implemente listar pizzas, fazer pedido, registrar itens e visualizar pedidos. Acrescente segurança básica (CSRF, prepared, escaping) e testes; CRUD administrativo e login são extensões avançadas."
+      "Um sistema web real em PHP costuma envolver formulário HTML, captura com $_POST, validação, gravação no banco e exibição segura de resultados. Divida em arquivos reutilizáveis e registre o esquema SQL.",
+      "No projeto integrador, implemente catálogo de produtos, criação de pedido, registro de itens e consulta de pedidos. Acrescente segurança básica (CSRF, prepared, escaping) e testes; CRUD administrativo e login são extensões avançadas."
     ],
-    "example": "<?php\n// Exemplo de contrato de função da prova.\nfunction calcularPedido(float $preco, int $qtd): float {\n    if ($preco < 0 || $qtd < 1) throw new InvalidArgumentException();\n    return round($preco * $qtd, 2);\n}\necho calcularPedido(34.90, 2);",
-    "question": "Na prova prática, qual é a sequência mais adequada?",
+    "example": "<?php\n// Exemplo de regra de negócio testável.\nfunction calcularPedido(float $preco, int $qtd): float {\n    if ($preco < 0 || $qtd < 1) throw new InvalidArgumentException();\n    return round($preco * $qtd, 2);\n}\necho calcularPedido(34.90, 2);",
+    "question": "Ao implementar o fluxo de criação de pedido, qual sequência é mais segura?",
     "choices": [
       "Ler dados → validar → preparar SQL → gravar → responder",
       "Imprimir $_POST direto → concatenar SQL",
@@ -992,14 +992,14 @@ export const phpLessons = [
     ],
     "answer": 0,
     "explanation": "Separar entrada, validação, persistência e resposta melhora segurança e correção.",
-    "task": "Baixe o projeto Pizzaria PHP, importe database/schema.sql no MySQL do XAMPP e faça um pedido completo.",
+    "task": "Estude o projeto de pedidos em PHP, execute o schema em MySQL local, conclua um fluxo completo e adapte a modelagem a outro domínio.",
     "checks": [
       "Teste formulário válido e inválido.",
       "Confirme pedido e itens no phpMyAdmin.",
       "Reveja hash, CSRF, PDO e saída segura."
     ],
     "docs": "https://www.php.net/manual/pt_BR/tutorial.forms.php",
-    "tip": "PROVA: exercício integrador junta $_POST, PHP, MySQL, PDO e consulta no phpMyAdmin.",
+    "tip": "ESSENCIAL: exercício integrador junta $_POST, PHP, MySQL, PDO e consulta no phpMyAdmin.",
     "filename": "exemplo.php"
   }
 ];

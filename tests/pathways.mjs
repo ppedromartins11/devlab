@@ -30,10 +30,10 @@ test('trilhas profissionais próprias e separadas por carreira',()=>{
 
 test('biblioteca independente com cursos reais e aulas guiadas',()=>{
  assert.deepEqual(languageCatalog.map(l=>l.id),['javascript','typescript','python','java','php','sql']);
- assert.equal(languageCatalog.reduce((n,l)=>n+(l.kind==='guided'?l.count:0),0),42);
+ assert.equal(languageCatalog.reduce((n,l)=>n+(l.kind==='guided'?l.count:0),0),81);
  for(const l of languageCatalog){assert.equal(findLanguage(l.id),l);assert.ok(l.roadmap.startsWith('https://roadmap.sh/'));}
- for(const id of ['python','java']){
-  assert.equal(guidedLessonsFor(id).length,5);
+ for(const id of ['python','java','sql','javascript','typescript']){
+  assert.equal(guidedLessonsFor(id).length,({python:17,java:17,sql:15,javascript:9,typescript:10})[id]);
   for(const l of guidedLessonsFor(id)){
    assert.equal(findGuidedLesson(l.id),l);
    assert.equal(l.choices.length,3);
@@ -51,6 +51,10 @@ test('rotas e salvamento novos sem alterar chaves das aulas anteriores',()=>{
  assert.ok(ui.includes('st.completed.includes(item.id)'));
  assert.ok(ui.includes('frontendDone(l)')&&ui.includes('backendDone(l)'));
  assert.ok(build.includes('learning-pathways.js')&&build.includes('language-curriculum.js'));
+ assert.ok(build.includes('extended-language-curriculum.js'));
  assert.ok(build.includes('pathways-v14.css'));
  assert.ok(read('offline/index.html').includes('Desenvolvedor Full-Stack'));
+ assert.ok(read('offline/index.html').includes('Projeto integrador: sistema de pedidos'));
+ assert.equal(new Set(Object.values(guidedLanguageLessons).flat().map(l=>l.id)).size,Object.values(guidedLanguageLessons).flat().length);
+ for(const language of languageCatalog){const count=(language.id==='javascript'?24:language.id==='typescript'?5:0)+guidedLessonsFor(language.id).length;assert.equal(language.count,count,language.id+' conteúdo inconsistente');}
 });

@@ -35,4 +35,5 @@ jobs:
       - run: node --test tests/pathways.mjs
       - run: node tests/editor-theme.mjs
       - run: node --test tests/php.mjs
+      - run: node --test tests/curriculum-mastery.mjs
       - run: node scripts/build-static.mjs

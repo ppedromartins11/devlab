@@ -1,8 +1,12 @@
 import { phpLessons } from './php-curriculum.js';
+import { extendedPythonLessons, extendedJavaLessons, guidedSqlLessons, extendedJavaScriptLessons, extendedTypeScriptLessons } from './extended-language-curriculum.js';
 /** Aulas autorais: execução Python, Java e PHP no ambiente local (sem fingir que executam no navegador). */
 const guidedLanguageLessonFactory=(id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs)=>({id,title,goal,theory,example,question,choices,answer,explanation,task,checks,docs});
 export const guidedLanguageLessons={
  php:phpLessons,
+ sql:guidedSqlLessons,
+ javascript: extendedJavaScriptLessons,
+ typescript: extendedTypeScriptLessons,
  python:[
   guidedLanguageLessonFactory('py-intro','Variáveis e tipos','Identificar tipos e imprimir informações sem concatenar tudo.',
    ['Python organiza instruções por linhas e usa indentação significativa. int, float, str e bool são tipos comuns; as variáveis não exigem declaração prévia do tipo.','Use f-strings para montar mensagens legíveis. Execute o arquivo com python main.py no terminal e observe erros, sem tentar memorizar cada comando.'],
@@ -33,7 +37,8 @@ export const guidedLanguageLessons={
    'import unittest\n\ndef dobrar(valor):\n    return valor * 2\n\nclass Testes(unittest.TestCase):\n    def test_dobrar(self):\n        self.assertEqual(dobrar(4), 8)',
    'Qual comando executa a descoberta de testes unittest?',['python -m unittest discover','python import all','python run tests'],0,'O comando unittest discover encontra testes seguindo o padrão do módulo.',
    'Crie um pequeno gerenciador de tarefas em memória com três testes e um README para executar.',
-   ['Teste um fluxo válido e um inválido.','Inclua comando de execução no README.','Execute o conjunto completo de testes.'],'https://docs.python.org/3/library/unittest.html')
+   ['Teste um fluxo válido e um inválido.','Inclua comando de execução no README.','Execute o conjunto completo de testes.'],'https://docs.python.org/3/library/unittest.html'),
+  ...extendedPythonLessons
  ],
  java:[
   guidedLanguageLessonFactory('java-intro','JDK, tipos e método main','Compilar e executar uma classe Java básica.',
@@ -44,19 +49,19 @@ export const guidedLanguageLessons={
    ['Verifique java -version e javac -version.','Compile sem erros.','Altere um valor e execute novamente.'],'https://dev.java/learn/getting-started/'),
   guidedLanguageLessonFactory('java-control','Condições e loops','Implementar decisões e repetições com casos-limite.',
    ['if/else decide qual bloco executar. Comparações booleanas usam == para tipos primitivos; strings devem ser comparadas pelo conteúdo com equals.','for percorre intervalos e coleções. Evite loops que não alteram o contador e use nomes que expressem sua intenção.'],
-   'int[] notas = {6, 8, 10};\nint aprovadas = 0;\nfor (int nota : notas) {\n    if (nota >= 7) aprovadas++;\n}\nSystem.out.println(aprovadas);',
+   "public class Main {\n    public static void main(String[] args) {\n        int[] notas = {6, 8, 10};\n        int aprovadas = 0;\n        for (int nota : notas) {\n            if (nota >= 7) aprovadas++;\n        }\n        System.out.println(aprovadas);\n    }\n}",
    'Como comparar conteúdo de duas Strings Java?',['textoA == textoB','textoA.equals(textoB)','textoA = textoB'],1,'equals compara conteúdo; == em objetos compara referências.',
    'Conte notas acima de 7 e diferencie intervalo fechado de aberto.',
    ['Teste zero elementos.','Teste limites 6, 7 e 8.','Explique diferença entre == e equals em String.'],'https://dev.java/learn/language-basics/'),
   guidedLanguageLessonFactory('java-objects','Classes, objetos e encapsulamento','Modelar uma tarefa com comportamento consistente.',
    ['Uma classe combina estado e comportamento. Um objeto é uma instância com valores próprios. Encapsulamento protege invariantes, em vez de expor todos os campos livremente.','Um construtor pode validar argumentos. Prefira métodos de intenção como concluir() a alterar campos arbitrariamente em todo o sistema.'],
-   'public class Tarefa {\n    private String titulo;\n    private boolean concluida;\n    public Tarefa(String titulo) {\n        if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException();\n        this.titulo = titulo;\n    }\n    public void concluir() { concluida = true; }\n}',
+   "class Tarefa {\n    private final String titulo;\n    private boolean concluida;\n    Tarefa(String titulo) {\n        if (titulo == null || titulo.isBlank()) throw new IllegalArgumentException();\n        this.titulo = titulo;\n    }\n    void concluir() { concluida = true; }\n    boolean estaConcluida() { return concluida; }\n}\npublic class Main {\n    public static void main(String[] args) {\n        Tarefa tarefa = new Tarefa(\"Estudar\");\n        tarefa.concluir();\n        System.out.println(tarefa.estaConcluida());\n    }\n}",
    'O que impede alteração direta de um campo por outras classes?',['private','public','static'],0,'private restringe acesso direto ao campo a sua própria classe.',
    'Implemente uma classe Tarefa com validação de título e método concluir().',
    ['Rejeite título vazio.','Use campos privados.','Crie duas tarefas independentes para testar estado.'],'https://dev.java/learn/classes-objects/'),
   guidedLanguageLessonFactory('java-collections','Listas, generics e exceções','Trabalhar com coleções de maneira tipada.',
    ['List<T> representa uma sequência de elementos do tipo T. Generics ajudam a encontrar erros durante a compilação e reduzem conversões inseguras.','Exceções devem comunicar problemas que o chamador consegue tratar. Para recursos que precisam ser fechados, use try-with-resources.'],
-   'import java.util.List;\nimport java.util.ArrayList;\nList<String> titulos = new ArrayList<>();\ntitulos.add("Estudar");\nfor (String titulo : titulos) System.out.println(titulo);',
+   "import java.util.List;\nimport java.util.ArrayList;\npublic class Main {\n    public static void main(String[] args) {\n        List<String> titulos = new ArrayList<>();\n        titulos.add(\"Estudar\");\n        for (String titulo : titulos) System.out.println(titulo);\n    }\n}",
    'Qual tipo representa uma lista de textos com generics?',['List<String>','List<int, String>','String[]<>'],0,'List<String> informa ao compilador o tipo de cada elemento.',
    'Implemente um catálogo de tarefas com List<Tarefa> e operações de adicionar e listar.',
    ['Use generics.','Teste lista vazia.','Não retorne coleções internas mutáveis sem necessidade.'],'https://dev.java/learn/api/collections-framework/'),
@@ -65,9 +70,17 @@ export const guidedLanguageLessons={
    'import static org.junit.jupiter.api.Assertions.*;\nimport org.junit.jupiter.api.Test;\nclass TarefaTest {\n    @Test void rejeitaTituloVazio() {\n        assertThrows(IllegalArgumentException.class, () -> new Tarefa(""));\n    }\n}',
    'Qual ferramenta é usada para escrever testes automatizados Java?',['JUnit','HTML','JSON'],0,'JUnit é uma biblioteca de testes usada em projetos Java.',
    'Crie testes para a classe Tarefa e registre no README os comandos Maven ou Gradle do seu projeto.',
-   ['Cubra entrada inválida.','Teste criação e conclusão.','Execute testes no terminal e corrija as falhas.'],'https://junit.org/junit5/docs/current/user-guide/')
+   ['Cubra entrada inválida.','Teste criação e conclusão.','Execute testes no terminal e corrija as falhas.'],'https://junit.org/junit5/docs/current/user-guide/'),
+  ...extendedJavaLessons
  ]
 };
+
+// A ordem de navegação é por nível de aprofundamento, preservando todos os IDs e os dados salvos.
+const guidedLevel = lesson => lesson.level || (lesson.id==='py-test'||lesson.id==='java-tests'?'Intermediário':'Fundamentos');
+const guidedRank = {Fundamentos:0,Intermediário:1,Avançado:2};
+for (const languageId of ['python','java','sql','typescript','javascript']) {
+ guidedLanguageLessons[languageId].sort((left,right)=>guidedRank[guidedLevel(left)]-guidedRank[guidedLevel(right)]);
+}
 
 export const findGuidedLesson = id => Object.values(guidedLanguageLessons).flat().find(l=>l.id===id);
 export const guidedLessonsFor = id => guidedLanguageLessons[id]||[];
